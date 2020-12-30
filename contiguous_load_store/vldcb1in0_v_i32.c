@@ -1,9 +1,3 @@
-/*
- * vldcb1in0_v_i32.c
- *
- *  Created on: Dec 23, 2020
- *      Author: test
- */
 #include "rivai_rugrats.h"
 #include "rivai_bare.h"
 

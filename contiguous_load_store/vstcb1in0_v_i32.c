@@ -13,7 +13,7 @@ int main() {
 	vstcb1in0_v_i32(base,value,0);
 	for(i=0;i<32;i++) {
 		printf("base[%d]=%d\n",i,base[i]);
-		printf("exp_result[%d]=%d\n",i,exp_result[i]);
+		//printf("exp_result[%d]=%d\n",i,exp_result[i]);
 		if(exp_result[i] != base[i]) err = 1;
 	}
 

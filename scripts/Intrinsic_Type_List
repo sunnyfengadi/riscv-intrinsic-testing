@@ -1,0 +1,90 @@
+CSR Register Configure: CSR Read
+CSR Register Configure: CSR Scalar Write
+CSR Register Configure: CSR immediate Write
+Contiguous Load: Unmasked Load
+Contiguous Load: Masked Load
+Contiguous Store: Unmasked Store
+Contiguous Store: Masked Store
+Interleave Load: Unmasked Load
+Interleave Load: Masked Load
+Interleave Store: Unmasked Store
+Interleave Store: Masked Store
+Indexed Load: Unmasked Load
+Indexed Load: Masked Load
+Indexed Store: Unmasked Store
+Indexed Store: Masked Store
+Arithmetic: Unmasked Add
+Arithmetic: Masked Add
+Arithmetic: Unmasked Sub
+Arithmetic: Masked Sub
+Arithmetic: Unmasked Multiply
+Arithmetic: Masked Multiply
+Arithmetic: Unmasked Neg
+Arithmetic: Masked Neg
+Arithmetic: Unmasked Min
+Arithmetic: Masked Min
+Arithmetic: Unmasked Max
+Arithmetic: Masked Max
+Logic: Unmasked Vector logical
+Logic: Masked Vector logical
+Logic: Unmasked Mask logical
+Logic: Masked Mask logical
+Shift: Unmasked Logic Shift Left
+Shift: Masked Logic Shift Left
+Shift: Unmasked Logic Shift Right
+Shift: Masked Logic Shift Right
+Shift: Unmasked Arithmetic Shift Right
+Shift: Masked Arithmetic Shift Right
+Shift: Unmasked Accumulator Shift Right
+Shift: Masked Accumulator Shift Right
+Shift: Unmasked Circular Buffer Shift Left
+Shift: Masked Circular Buffer Shift Left
+Shift: Unmasked Circular Buffer Shift Right
+Shift: Masked Circular Buffer Shift Right
+Shift: Mask Shift Left
+Mac: Unmasked  Multiply-Add
+Mac: Masked  Multiply-Add
+Mac: Unmasked  Multiply-Subtract
+Mac: Masked  Multiply-Subtract
+Mac: Unmasked  Multiply-Neg-Add
+Mac: Masked  Multiply-Neg-Add
+Mac: Unmasked  Multiply-Neg-Subtract
+Mac: Masked  Multiply-Neg-Subtract
+Reduction: Unmasked Reduce Sum
+Reduction: Masked Reduce Sum
+Reduction: Unmasked Reduce Dot
+Reduction: Masked Reduce Dot
+Reduction: Unmasked Reduce Min
+Reduction: Masked Reduce Min
+Reduction: Unmasked Reduce Max
+Reduction: Masked Reduce Min
+Move: Unmasked Duplicate
+Move: Masked Duplicate
+Move: Unmasked Extract
+Move: Masked Extract
+Move: Masket Intrinsic
+Permutation: Unmasked Gather Intrinsic
+Permutation: Masked Gather Intrinsic
+Permutation: Merge Intrinsic
+Conversion: Unmasked Extend Intrinsic
+Conversion: Masked Extend Intrinsic
+Conversion: Unmasked Truncate Intrinsic
+Conversion: Masked Truncate Intrinsic
+Conversion: Unmasked Clip Intrinsic
+Conversion: Masked Clip Intrinsic
+Compare: Unmasked EQ Intrinsic
+Compare: Masked EQ Intrinsic
+Compare: Unmasked NE Intrinsic
+Compare: masked NE Intrinsic
+Compare: Unmasked LT Intrinsic
+Compare: Masked LT Intrinsic
+Compare: Unmasked LE Intrinsic
+Compare: Masked LE Intrinsic
+Compare: Unmasked GT Intrinsic
+Compare: Masked GT Intrinsic
+Compare: Unmasked GE Intrinsic
+Compare: Masked GE Intrinsic
+IIR: Signed Fract Clear Dotiir
+IIR: Signed Fract Dotiir
+IIR: Unsigned Fract Clear Dotiir
+IIR: Unsigned Fract Dotiir

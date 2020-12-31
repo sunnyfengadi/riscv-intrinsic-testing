@@ -46,8 +46,8 @@ def html_to_csv(html):
             df.to_csv(r'/home/test/intrinsic_table.csv', mode='a', encoding='utf_8_sig', header=0, index=1)
 
 if __name__ == '__main__':
-    file = open(HTML_FILE,'rb')
-    html = file.read()
+    #file = open(HTML_FILE,'rb')
+    #html = file.read()
     #html_to_csv(html)
 
     transjson(JSON_FILE,CSV_FILE)

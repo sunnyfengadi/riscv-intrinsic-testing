@@ -1,42 +1,47 @@
-#ifdef vneg_v_i32_m
-void vneg_v_i32_m() {
+#include "rivai_rugrats.h"
+#include "rivai_bare.h"
+
+int main() {
+	/* Begin adding your custom code here */
 	unsigned long start=0,stop=0;
 	int i;
-    int32x16_t result;
+	int error=0;
+	int element_num = 16;
 
-    int32x16_t a={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+	int32x16_t a={11,22,33,44,55,66,77,88,99,100,110,120,130,140,150,160};
+    int32x16_t b={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+	int32x16_t result;
+	int32x16_t exp_result={10,20,30,40,50,60,70,80,90,90,99,108,117,126,135,144};
 
-    int32x16_t mask_off = {111,222,333,444,555,666,777,888,999,1100,1110,1120,1130,1140,1150,1160}; //Initialise V0
-    bool16_t mask={1,1,0,1,0,0};
-
-
-    start = cycles();
-	result = vneg_v_i32_m(mask,mask_off,a);
+	start = cycles();
+	result = vsub_vv_i32(a,b);
 	stop = cycles();
+	printf("cycles\t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
 
-	printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
+	printf("result={");
+	for(i=0;i<element_num;i++) {
+		if(i==element_num-1)
+			printf("%d}\n",result[i]);
+		else
+			printf("%d,",result[i]);
 
-	for(i=0;i<16;i++)
-		printf("result[%d]=%d\n",i,result[i]);
+		//printf("exp_result[%d]=%d\n",j,exp_result[j]);
+		if(exp_result[i] != result[i]) error = 1;
+	}
 
-/*
-	cycles  = stop-start    = 4315 - 4294 = 21
-	result[0]=-1
-	result[1]=-2
-	result[2]=333
-	result[3]=-4
-	result[4]=555
-	result[5]=666
-	result[6]=777
-	result[7]=888
-	result[8]=999
-	result[9]=1100
-	result[10]=1110
-	result[11]=1120
-	result[12]=1130
-	result[13]=1140
-	result[14]=1150
-	result[15]=1160
-*/
+	if(error)
+		printf("TEST FAILED!\n");
+	else
+		printf("TEST PASSED!\n");
+
+	/*
+	 *
+	cycles	= stop-start 	= 5384399 - 5384376 = 23
+	result={10,20,30,40,50,60,70,80,90,90,99,108,117,126,135,144}
+	TEST PASSED!
+	 */
+	// The while(1) here is a workaround solution to resolve an issue in simulator.
+	// Once the simulator issue is fixed, the while(1) will be removed in the c src.
+	while(1);
+	return 0;
 }
-#endif

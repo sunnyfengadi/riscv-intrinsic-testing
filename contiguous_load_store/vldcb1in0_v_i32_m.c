@@ -17,20 +17,22 @@ int main(void) {
 	result = vldcb1in0_v_i32_m(mask,mask_off,test,0);
 	stop = cycles();
 
-	printf("cycles \t= stop-start\t= %u - %u = %u\n",stop,start,stop-start);
-	for(i=0;i<combo_num;i++) {
-		for(j=0;j<element_num;j++) {
-		//	printf("result[%d]=%d\n",j,result[j]);
-		//	printf("exp_result[%d]=%d\n",j,exp_result[j]);
-			if(exp_result[j] != result[j]) error = 1;
-		}
+	printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
+	printf("result={");
+	for(i=0;i<element_num;i++) {
+		if(i==element_num-1)
+			printf("%d}\n",result[i]);
+		else
+			printf("%d,",result[i]);
+
+		//printf("exp_result[%d]=%d\n",j,exp_result[j]);
+		if(exp_result[i] != result[i]) error = 1;
 	}
 
 	if(error)
 		printf("TEST FAILED!\n");
 	else
 		printf("TEST PASSED!\n");
-
 	//result ={1,2,33,4,55,66,77,88,99,100,110,120,130,140,150,160}
 
 	// The //while(1) here is a workaround solution to resolve an issue in simulator.

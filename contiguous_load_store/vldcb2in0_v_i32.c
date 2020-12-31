@@ -23,11 +23,13 @@ int main(void) {
 	stop = cycles();
 
 	printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-
+	printf("result={");
 	for(i=0;i<combo_num;i++) {
 		for(j=0;j<element_num;j++) {
-			printf("result[%d][%d]=%d\n",i,j,result.val[i][j]);
-			printf("exp_result[%d][%d]=%d\n",i,j,exp_result.val[i][j]);
+			if(j==element_num-1 && i==combo_num-1)
+			printf("%d}\n",result.val[i][j]);
+		else
+			printf("%d,",result.val[i][j]);
 			if(exp_result.val[i][j] != result.val[i][j]) error = 1;
 		}
 	}

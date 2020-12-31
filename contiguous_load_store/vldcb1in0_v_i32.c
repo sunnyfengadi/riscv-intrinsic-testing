@@ -15,13 +15,16 @@ int main(void) {
 	result = vldcb1in0_v_i32(test,0);
 	stop = cycles();
 
-	printf("cycles \t= stop-start\t= %u - %u = %u\n",stop,start,stop-start);
-	for(i=0;i<combo_num;i++) {
-		for(j=0;j<element_num;j++) {
-		//	printf("result[%d]=%d\n",j,result[j]);
-		//	printf("exp_result[%d]=%d\n",j,exp_result[j]);
-			if(exp_result[j] != result[j]) error = 1;
-		}
+	printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
+	printf("result={");
+	for(i=0;i<element_num;i++) {
+		if(i==element_num-1)
+			printf("%d}\n",result[i]);
+		else
+			printf("%d,",result[i]);
+
+		//printf("exp_result[%d]=%d\n",j,exp_result[j]);
+		if(exp_result[i] != result[i]) error = 1;
 	}
 
 	if(error)

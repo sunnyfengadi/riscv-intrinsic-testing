@@ -1,15 +1,15 @@
 #include "rivai_rugrats.h"
 #include "rivai_bare.h"
 
-int main() {
+int main(void) {
 	/* Begin adding your custom code here */
-	unsigned long start=0,stop=0;
+	unsigned int start=0,stop=0;
 	int i;
 	int error=0;
 	int element_num = 16;
     int32x16_t result;
-    int32x16_t a={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
-    int32x16_t b = {11,22,33,44,55,66,77,88,99,100,110,120,130,140,150,160,170};
+    int32x16_t a={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+    int32x16_t b = {11,22,33,44,55,66,77,88,99,100,110,120,130,140,150,160};
 
     int32x16_t mask_off = {111,222,333,444,555,666,777,888,999,1100,1110,1120,1130,1140,1150,1160}; //Initialise V0
     bool16_t mask={1,1,0,1,0,0};
@@ -41,8 +41,8 @@ int main() {
 	result={12,24,333,48,555,666,777,888,999,1100,1110,1120,1130,1140,1150,1160}
 	TEST FAILED!
 */
-	// The while(1) here is a workaround solution to resolve an issue in simulator.
-	// Once the simulator issue is fixed, the while(1) will be removed in the c src.
-	while(1);
+	// The //while(1) here is a workaround solution to resolve an issue in simulator.
+	// Once the simulator issue is fixed, the //while(1) will be removed in the c src.
+	//while(1);
 	return 0;
 }

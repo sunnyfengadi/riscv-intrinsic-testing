@@ -1,7 +1,7 @@
 #include "rivai_rugrats.h"
 #include "rivai_bare.h"
 
-void main() {
+void main(void) {
 	unsigned long start=0,stop=0;
 	int i;
 	int error=0;
@@ -42,8 +42,8 @@ void main() {
 	result={11,44,333,176,555,666,777,888,999,1100,1110,1120,1130,1140,1150,1160}
 	TEST PASSED!
  */
-	// The while(1) here is a workaround solution to resolve an issue in simulator.
-	// Once the simulator issue is fixed, the while(1) will be removed in the c src.
-	while(1);
+	// The //while(1) here is a workaround solution to resolve an issue in simulator.
+	// Once the simulator issue is fixed, the //while(1) will be removed in the c src.
+	//while(1);
 	return;
 }

@@ -1,9 +1,9 @@
 #include "rivai_rugrats.h"
 #include "rivai_bare.h"
 
-void main() {
+int main(void) {
 	/* Begin adding your custom code here */
-	unsigned long start=0,stop=0;
+	unsigned int start=0,stop=0;
 	int i;
 	int error=0;
 	int element_num = 16;
@@ -40,8 +40,8 @@ void main() {
 	result={-1,-2,333,-4,555,666,777,888,999,1100,1110,1120,1130,1140,1150,1160}
 	TEST PASSED!
  */
-	// The while(1) here is a workaround solution to resolve an issue in simulator.
-	// Once the simulator issue is fixed, the while(1) will be removed in the c src.
-	while(1);
-	return;
+	// The //while(1) here is a workaround solution to resolve an issue in simulator.
+	// Once the simulator issue is fixed, the //while(1) will be removed in the c src.
+	//while(1);
+	return 0;
 }

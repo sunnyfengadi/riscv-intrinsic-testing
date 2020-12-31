@@ -1,7 +1,7 @@
 #include "rivai_rugrats.h"
 #include "rivai_bare.h"
 
-int main() {
+int main(void) {
 	/* Begin adding your custom code here */
 	unsigned long start=0,stop=0;
 	int i;
@@ -40,8 +40,8 @@ int main() {
 	result={10,20,30,40,50,60,70,80,90,90,99,108,117,126,135,144}
 	TEST PASSED!
 	 */
-	// The while(1) here is a workaround solution to resolve an issue in simulator.
-	// Once the simulator issue is fixed, the while(1) will be removed in the c src.
-	while(1);
+	// The //while(1) here is a workaround solution to resolve an issue in simulator.
+	// Once the simulator issue is fixed, the //while(1) will be removed in the c src.
+	//while(1);
 	return 0;
 }

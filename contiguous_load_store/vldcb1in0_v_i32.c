@@ -1,7 +1,7 @@
 #include "rivai_rugrats.h"
 #include "rivai_bare.h"
 
-int main() {
+int main(void) {
 	unsigned long start=0,stop=0;
 	int i,j,combo_num = 1;
 	int element_num = 16;
@@ -29,8 +29,8 @@ int main() {
 	else
 		printf("TEST PASSED!\n");
 
-	// The while(1) here is a workaround solution to resolve an issue in simulator.
-	// Once the simulator issue is fixed, the while(1) will be removed in the c src.
-	while(1);
+	// The //while(1) here is a workaround solution to resolve an issue in simulator.
+	// Once the simulator issue is fixed, the //while(1) will be removed in the c src.
+	//while(1);
 	return 0;
 }

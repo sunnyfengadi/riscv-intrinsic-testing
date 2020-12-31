@@ -1,7 +1,7 @@
 #include "rivai_rugrats.h"
 #include "rivai_bare.h"
 
-int main() {
+int main(void) {
 
 	/* Begin adding your custom code here */
 	int i,err=0,combo_num = 2;
@@ -29,9 +29,9 @@ int main() {
 	else
 			printf("TEST PASSED!\n");
 
-	// The while(1) here is a workaround solution to resolve an issue in simulator.
-	// Once the simulator issue is fixed, the while(1) will be removed in the c src.
-	while(1);
+	// The //while(1) here is a workaround solution to resolve an issue in simulator.
+	// Once the simulator issue is fixed, the //while(1) will be removed in the c src.
+	//while(1);
 	return 0;
 }
 

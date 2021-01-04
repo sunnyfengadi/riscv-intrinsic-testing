@@ -15,10 +15,10 @@ int main(void) {
 	int32_t exp_result[16*2]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
 	vwr_csr(RUGRATS_VMELEMENTSTRIDE,element_width*combo_num);//element_stride = combo_num * element_width
-	vwr_csr(RUGRATS_VMCOMBOSTRIDE,4);  //combo_stride = element_width
-	vwr_csr(RUGRATS_VMGROUPSTRIDE,16); //group_stride = element_stride *N( N = 1,2,3... && N <= element_num_per_group)
+	vwr_csr(RUGRATS_VMCOMBOSTRIDE,element_width);  //combo_stride = element_width
+	vwr_csr(RUGRATS_VMGROUPSTRIDE,element_width*combo_num*2); //group_stride = element_stride *N( N = 1,2,3... && N <= element_num_per_group)
 	vwr_csr(RUGRATS_VMGROUPNUMBER,4);
-	vwr_csr(RUGRATS_VMGROUPDEPTH,16);  //group_depth = element_width * element_num_per_group
+	vwr_csr(RUGRATS_VMGROUPDEPTH,combo_num*4);  //group_depth = element_width * element_num_per_group
 
 	vstcb2in0_v_i32(base,value,0);
 

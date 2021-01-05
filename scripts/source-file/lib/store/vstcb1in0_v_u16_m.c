@@ -6,25 +6,24 @@ int main() {
     int i,j;
     int error = 0;
 
-    int16x32_t a = ;
-    int16x32_t b = ;
+    bool32_t mask = {1,1,0,1,0,0};
+    uint16_t base[32] = ;
+    uint16x32_t value = ;
+    uint32_t imm = 0;
+    int combo_num = 1;
     int element_num = 32;
-    int16x32_t result = {0};
-    int16x32_t exp_result = {0};
+    uint16_t exp_result[32] = {0};
 
-    start = cycles();
-    result = vadd_vv_i16(a,b);
-    stop = cycles();
+    vstcb1in0_v_u16_m(mask,base,value,0);
 
-    printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
+
     printf("result={");
     for(i=0;i<element_num;i++) {
         if(i==element_num-1)
-            printf("%d}\n",result[i]);
+            printf("%d}\n",base[i]);
         else
-            printf("%d,",result[i]);
-
-        if(exp_result[i] != result[i]) error = 1;
+            printf("%d,",base[i]);
+        if(exp_result[i] != base[i]) error = 1;
     }
 
     if(error)

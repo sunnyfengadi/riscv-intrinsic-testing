@@ -13,7 +13,7 @@ int main() {
     int16x32_t exp_result = {0};
 
     start = cycles();
-    result = vadd_vv_i16(a,b);
+    result = vssub_vv_i16(a,b);
     stop = cycles();
 
     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);

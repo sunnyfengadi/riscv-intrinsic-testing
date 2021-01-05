@@ -6,14 +6,13 @@ int main() {
     int i,j;
     int error = 0;
 
-    int16x32_t a = ;
-    int16x32_t b = ;
-    int element_num = 32;
-    int16x32_t result = {0};
-    int16x32_t exp_result = {0};
+    uint32x16_t a = ;
+    int element_num = 16;
+    uint32x16_t result = {0};
+    uint32x16_t exp_result = {0};
 
     start = cycles();
-    result = vadd_vv_i16(a,b);
+    result = vneg_v_u32(a);
     stop = cycles();
 
     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);

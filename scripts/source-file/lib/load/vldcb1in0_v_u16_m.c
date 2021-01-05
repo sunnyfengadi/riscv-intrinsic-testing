@@ -6,14 +6,17 @@ int main() {
     int i,j;
     int error = 0;
 
-    int16x32_t a = ;
-    int16x32_t b = ;
+    bool32_t mask = {1,1,0,1,0,0};
+    uint16x32_t maskoff = {11,22,33,44,55,66,77,88};
+    uint16_t base[32] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32};
+    uint32_t imm = 0;
+    int combo_num = 1;
     int element_num = 32;
-    int16x32_t result = {0};
-    int16x32_t exp_result = {0};
+    uint16x32_t result = {0};
+    uint16x32_t exp_result = {0};
 
     start = cycles();
-    result = vadd_vv_i16(a,b);
+    result = vldcb1in0_v_u16_m(mask,maskoff,base,0);
     stop = cycles();
 
     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);

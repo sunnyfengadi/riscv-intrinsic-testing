@@ -6,12 +6,15 @@ int main() {
     int i,j;
     int error = 0;
 
-    int combo_num = 1;
+    uint16x32_t a = ;
+    uint16_t b = ;
     int element_num = 32;
-    void result = {0};
-    void exp_result = {0};
+    uint16x32_t result = {0};
+    uint16x32_t exp_result = {0};
 
-    vsstcb1_v_i16(base,index,value);
+    start = cycles();
+    result = vmul_vx_u16(a,b);
+    stop = cycles();
 
     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
     printf("result={");

@@ -6,14 +6,16 @@ int main() {
     int i,j;
     int error = 0;
 
-    int16x32_t a = ;
-    int16x32_t b = ;
-    int element_num = 32;
-    int16x32_t result = {0};
-    int16x32_t exp_result = {0};
+    bool16_t mask = {1,1,0,1,0,0};
+    uint32x16_t maskoff = {11,22,33,44,55,66,77,88};
+    uint32x16_t a = {1,2,3,4,5,6,7,8};
+    uint32_t b = 0xff;
+    int element_num = 16;
+    uint32x16_t result = {0};
+    uint32x16_t exp_result = {0};
 
     start = cycles();
-    result = vadd_vv_i16(a,b);
+    result = vmin_vx_u32_m(mask,maskoff,a,b);
     stop = cycles();
 
     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);

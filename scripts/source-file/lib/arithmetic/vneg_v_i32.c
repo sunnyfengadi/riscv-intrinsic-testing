@@ -6,16 +6,14 @@ int main() {
     int i,j;
     int error = 0;
 
-    int16_t base[32] = ;
-    int16x32_t index = ;
-    int combo_num = 1;
-    int element_num = 32;
-    int16x32_t result = {0};
-    int16x32_t exp_result = {0};
+    int32x16_t a = ;
+    int element_num = 16;
+    int32x16_t result = {0};
+    int32x16_t exp_result = {0};
 
-    start=cycles();
-    result = vgldcb1_v_i16(base,index);
-    stop=cycles();
+    start = cycles();
+    result = vneg_v_i32(a);
+    stop = cycles();
 
     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
     printf("result={");

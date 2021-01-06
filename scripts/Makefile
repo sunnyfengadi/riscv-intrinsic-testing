@@ -5,7 +5,7 @@ endif
 
 # give default app type here: test or demo ?
 ifeq ($(type),)
-type = Arithmetic
+type = test
 endif
 
 BARE_APP_DIR = $(PROJ_ROOT)/$(type)

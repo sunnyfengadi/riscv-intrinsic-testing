@@ -12,6 +12,13 @@ int main() {
     int element_num = 16;
     int32x16_t result = {0};
     int32x16_t exp_result = {1,3,5,7,5,7,9,11,9,11,13,15,13,15,17,19,2,4,6,8,6,8,10,12,10,12,14,16,14,16,18,20};
+    int element_width = 32/8;
+
+    vwr_csr(RUGRATS_VMELEMENTSTRIDE,4);
+    vwr_csr(RUGRATS_VMCOMBOSTRIDE,4);
+    vwr_csr(RUGRATS_VMGROUPSTRIDE,8);
+    vwr_csr(RUGRATS_VMGROUPNUMBER,4);
+    vwr_csr(RUGRATS_VMGROUPDEPTH,16);
 
     start = cycles();
     result = vldcb1in0_v_i32(base,0);

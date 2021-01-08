@@ -38,9 +38,9 @@ debug_data_start=0x380
 debug_progbuf_start=0x374
 debug_abstract_start=0x360
 debug_vdata_start=0x390
-Start Loading Kernel @ Fri Jan  8 01:53:36 2021
+Start Loading Kernel @ Fri Jan  8 04:06:03 2021
 
-Start Setting Reset PC for orv32 @ Fri Jan  8 01:53:36 2021
+Start Setting Reset PC for orv32 @ Fri Jan  8 04:06:03 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================

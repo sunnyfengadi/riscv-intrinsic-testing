@@ -2,39 +2,29 @@ vldcb6in0_v_i16_m.c:4:5: warning: function declaration isn't a prototype [-Wstri
     4 | int main() {
       |     ^~~~
 vldcb6in0_v_i16_m.c: In function 'main':
-vldcb6in0_v_i16_m.c:10:28: warning: missing braces around initializer [-Wmissing-braces]
-   10 |     int16x32x6_t maskoff = {11,22,33,44,55,66,77,88};
-      |                            ^
-      |                             {{                     }}
-vldcb6in0_v_i16_m.c:29:40: warning: format '%u' expects argument of type 'unsigned int', but argument 2 has type 'long unsigned int' [-Wformat=]
-   29 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
+vldcb6in0_v_i16_m.c:34:40: warning: format '%u' expects argument of type 'unsigned int', but argument 2 has type 'long unsigned int' [-Wformat=]
+   34 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
       |                                       ~^              ~~~~
       |                                        |              |
       |                                        unsigned int   long unsigned int
       |                                       %lu
-vldcb6in0_v_i16_m.c:29:45: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'long unsigned int' [-Wformat=]
-   29 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
+vldcb6in0_v_i16_m.c:34:45: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'long unsigned int' [-Wformat=]
+   34 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
       |                                            ~^              ~~~~~
       |                                             |              |
       |                                             unsigned int   long unsigned int
       |                                            %lu
-vldcb6in0_v_i16_m.c:29:50: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'long unsigned int' [-Wformat=]
-   29 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
+vldcb6in0_v_i16_m.c:34:50: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'long unsigned int' [-Wformat=]
+   34 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
       |                                                 ~^               ~~~~~~~~~~
       |                                                  |                   |
       |                                                  unsigned int        long unsigned int
       |                                                 %lu
-vldcb6in0_v_i16_m.c:35:9: warning: this 'else' clause does not guard... [-Wmisleading-indentation]
-   35 |         else
-      |         ^~~~
-vldcb6in0_v_i16_m.c:37:13: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'else'
-   37 |             if(exp_result.val[i][j] != result.val[i][j]) error = 1;
-      |             ^~
-vldcb6in0_v_i16_m.c:17:9: warning: unused variable 'element_width' [-Wunused-variable]
-   17 |     int element_width = 16/8;
+vldcb6in0_v_i16_m.c:22:9: warning: unused variable 'element_width' [-Wunused-variable]
+   22 |     int element_width = 16/8;
       |         ^~~~~~~~~~~~~
-vldcb6in0_v_i16_m.c:12:14: warning: unused variable 'imm' [-Wunused-variable]
-   12 |     uint32_t imm = 0;
+vldcb6in0_v_i16_m.c:17:14: warning: unused variable 'imm' [-Wunused-variable]
+   17 |     uint32_t imm = 0;
       |              ^~~
 soc_mode = 0 progsize = 2 
 binary file = /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i16_m.elf
@@ -42,9 +32,9 @@ debug_data_start=0x380
 debug_progbuf_start=0x374
 debug_abstract_start=0x360
 debug_vdata_start=0x390
-Start Loading Kernel @ Fri Jan  8 01:53:15 2021
+Start Loading Kernel @ Fri Jan  8 04:05:43 2021
 
-Start Setting Reset PC for orv32 @ Fri Jan  8 01:53:15 2021
+Start Setting Reset PC for orv32 @ Fri Jan  8 04:05:43 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================
@@ -69,5 +59,5 @@ make[1]: Leaving directory '/home/test/Risc-v/riscv-intrinsic-testing/test'
 ~/Risc-v/riscv-intrinsic-testing
 /opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i16_m.elf ++load_pk
 cycles 	= stop-start 	= 0 - 0 = 0
-result={1,7,33,19,55,66,13,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,8,0,20,0,0,14,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,9,0,21,0,0,15,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,10,0,22,0,0,16,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,11,0,23,0,0,17,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,12,0,24,0,0,18,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+result={.val[0]={1,7,33,19,55,66,13,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[1]={2,8,33,20,55,66,14,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[2]={3,9,33,21,55,66,15,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[3]={4,10,33,22,55,66,16,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[4]={5,11,33,23,55,66,17,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[5]={6,12,33,24,55,66,18,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}}
 TEST FAILED!

@@ -44,7 +44,7 @@ def getInputParameters(inputDict, elementnum, combonum, apitype):
                 valueList += value + '\n\t\t\t'
             value2 = valueList.rstrip('\n\t\t\t').rstrip(',') + '};'
         else: 
-            value2 = inputDict['Input_2_Type'] + ' ' + inputDict['Input_2_Variable'].rstrip() + ' = ' +  str(inputDict['Input_3_Value'])+ ';'
+            value2 = inputDict['Input_2_Type'] + ' ' + inputDict['Input_2_Variable'].rstrip() + ' = ' +  str(inputDict['Input_2_Value'])+ ';'
             
         if inputDict['Input_1_Type']: 
             inputList.append(inputDict['Input_1_Type'] + ' ' + Input_1_Variable + ' = ' + str(inputDict['Input_1_Value']) + ';')

@@ -7,7 +7,7 @@ int main() {
     int error = 0;
 
     int32_t base[16] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
-    uint32_t imm = imm;
+    uint32_t imm = ;
     int combo_num = 1;
     int element_num = 16;
     int32x16_t result = {0};

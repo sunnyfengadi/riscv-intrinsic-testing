@@ -1,0 +1,6 @@
+Test API=load
+--------------------
+Total test api: 64
+Pass number: 64
+Fail number: 0
+

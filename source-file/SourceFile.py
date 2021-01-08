@@ -177,11 +177,11 @@ def main():
         rootNode = json.loads(f.read())
     for nodes in rootNode:
         if 'CSR' in nodes['Intrinsic_Type']:  pass #All apis in CSR type are tested together by another files
-        elif 'Contiguous Load:' in nodes['Intrinsic_Type'] and '64' not in nodes['Intrinsic_Name']:  pass #loadFile(nodes)
+        elif 'Contiguous Load:' in nodes['Intrinsic_Type'] and '64' not in nodes['Intrinsic_Name']:  loadFile(nodes)
         elif 'Contiguous Store:' in nodes['Intrinsic_Type'] and '64' not in nodes['Intrinsic_Name']: pass #storeFile(nodes)
         elif 'Arithmetic:' in nodes['Intrinsic_Type'] and '64' not in nodes['Intrinsic_Name']:       pass #arithmeticFile(nodes)
         elif 'Logic:' in nodes['Intrinsic_Type'] and 'bool' not in nodes['Output_Type']:             pass #logicalFile(nodes) #pass
-        elif 'Shift:' in nodes['Intrinsic_Type'] and 'bool' not in nodes['Output_Type']:             shiftFile(nodes)
+        elif 'Shift:' in nodes['Intrinsic_Type'] and 'bool' not in nodes['Output_Type']:             pass #shiftFile(nodes)
         else: pass
         
 if __name__ == "__main__":  

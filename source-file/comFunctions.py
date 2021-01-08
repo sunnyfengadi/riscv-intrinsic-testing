@@ -31,10 +31,19 @@ def getInputParameters(inputDict, elementnum, combonum, apitype):
     
     if apitype == 'load':
         totalnum = int(elementnum)* int(combonum)
-        if 'base' in inputDict['Input_1_Variable']:Input_1_Variable = inputDict['Input_1_Variable'].strip( ']' ) + str(totalnum) + ']'
-        else:Input_1_Variable = inputDict['Input_1_Variable'].rstrip()
-        if inputDict['Input_1_Type']: inputList.append(inputDict['Input_1_Type'] + ' ' + Input_1_Variable + ' = ' + str(inputDict['Input_1_Value']) + ';')
-        if inputDict['Input_2_Type']: inputList.append(inputDict['Input_2_Type'] + ' ' + inputDict['Input_2_Variable'].rstrip() + ' = ' + str(inputDict['Input_2_Value']) + ';')
+        if 'base' in inputDict['Input_1_Variable']:
+            Input_1_Variable = inputDict['Input_1_Variable'].strip( ']' ) + str(totalnum) + ']'
+        else: Input_1_Variable = inputDict['Input_1_Variable'].rstrip()
+            
+        if 'maskoff' in inputDict['Input_2_Variable']:
+            # int16x32x2_t maskoff = {.val[0]={11,22,33,44,55,66,77,88},.val[1]={11,22,33,44,55,66,77,88}};
+            valueList = '{' + '.val[0]=' + inputDict['Input_2_Value'] + ', .val[1]=' + inputDict['Input_2_Value'] + '}'
+        else: valueList = inputDict['Input_2_Variable'].rstrip()
+            
+        if inputDict['Input_1_Type']: 
+            inputList.append(inputDict['Input_1_Type'] + ' ' + Input_1_Variable + ' = ' + str(inputDict['Input_1_Value']) + ';')
+        if inputDict['Input_2_Type']: 
+            inputList.append(inputDict['Input_2_Type'] + ' ' + inputDict['Input_2_Variable'].rstrip() + ' = ' + valueList + ';')
         if inputDict['Input_3_Type']:
             Input_3_Variable = inputDict['Input_3_Variable'].strip( ']' ) + str(totalnum) + ']'
             inputList.append(inputDict['Input_3_Type'] + ' ' + Input_3_Variable + ' = ' + str(inputDict['Input_3_Value']) + ';')

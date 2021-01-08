@@ -40,7 +40,7 @@ def getInputParameters(inputDict, elementnum, combonum, apitype):
             inputList.append(inputDict['Input_3_Type'] + ' ' + Input_3_Variable + ' = ' + str(inputDict['Input_3_Value']) + ';')
         if inputDict['Input_4_Type']: inputList.append(inputDict['Input_4_Type'] + ' ' + inputDict['Input_4_Variable'] + ' = ' + str(inputDict['Input_4_Value']) + ';')
     
-    elif apitype == 'arithmetic' or apitype == 'logic':
+    elif apitype == 'arithmetic' or apitype == 'logic' or apitype == 'shift':
         if inputDict['Input_1_Type']: inputList.append(inputDict['Input_1_Type'] + ' ' + inputDict['Input_1_Variable'].rstrip() + ' = ' + str(inputDict['Input_1_Value']) + ';')
         if inputDict['Input_2_Type']: inputList.append(inputDict['Input_2_Type'] + ' ' + inputDict['Input_2_Variable'].rstrip() + ' = ' + str(inputDict['Input_2_Value']) + ';')
         if inputDict['Input_3_Type']: inputList.append(inputDict['Input_3_Type'] + ' ' + inputDict['Input_3_Variable'].rstrip() + ' = ' + str(inputDict['Input_3_Value']) + ';')
@@ -55,7 +55,6 @@ def getInputParameters(inputDict, elementnum, combonum, apitype):
         if inputDict['Input_2_Type']: inputList.append(inputDict['Input_2_Type'] + ' ' + Input_2_Variable + ' = ' + str(inputDict['Input_2_Value']) + ';')
         if inputDict['Input_3_Type']: inputList.append(inputDict['Input_3_Type'] + ' ' + inputDict['Input_3_Variable'].rstrip() + ' = ' + str(inputDict['Input_3_Value']) + ';')
         if inputDict['Input_4_Type']: inputList.append(inputDict['Input_4_Type'] + ' ' + inputDict['Input_4_Variable'].rstrip() + ' = ' + str(inputDict['Input_4_Value']) + ';')
-    #elif apitype == 'logic':
         
     else: pass
     

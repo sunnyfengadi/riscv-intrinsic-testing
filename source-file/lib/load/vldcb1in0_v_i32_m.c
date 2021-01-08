@@ -6,7 +6,7 @@ int main() {
     int i,j;
     int error = 0;
 
-    bool16_t mask = {1,1,0,1,0,0};
+    bool16_t mask = {1,1,0,1,0,0,1,1};
     int32x16_t maskoff = {11,22,33,44,55,66,77,88};
     int32_t base[16] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
     uint32_t imm = 0;

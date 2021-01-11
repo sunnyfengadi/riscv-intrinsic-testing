@@ -7,13 +7,13 @@ int main() {
     int error = 0;
 
     int16x32_t a = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33};
-    int16x32_t b = {2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34};
+    int16_t b = 6;
     int element_num = 32;
     int16x32_t result = {0};
     int16x32_t exp_result = {0};
 
     start = cycles();
-    result = vand_vv_i16(a,b);
+    result = vor_vx_i16(a,b);
     stop = cycles();
 
     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);

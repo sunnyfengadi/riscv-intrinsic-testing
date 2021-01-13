@@ -1,0 +1,7 @@
+Test API=load
+--------------------
+Total test api: 64
+Pass number: 1
+Fail number: 63
+Fail API name: ['vldcb1in0_v_i16 ', 'vldcb1in0_v_i32 ', 'vldcb1in0_v_u16 ', 'vldcb1in0_v_u32 ', 'vldcb2in0_v_i16 ', 'vldcb2in0_v_i32 ', 'vldcb2in0_v_u16 ', 'vldcb2in0_v_u32 ', 'vldcb3in0_v_i16 ', 'vldcb3in0_v_i32 ', 'vldcb3in0_v_u16 ', 'vldcb3in0_v_u32 ', 'vldcb4in0_v_i16 ', 'vldcb4in0_v_i32 ', 'vldcb4in0_v_u16 ', 'vldcb4in0_v_u32 ', 'vldcb5in0_v_i16 ', 'vldcb5in0_v_i32 ', 'vldcb5in0_v_u16 ', 'vldcb5in0_v_u32 ', 'vldcb6in0_v_i16 ', 'vldcb6in0_v_i32 ', 'vldcb6in0_v_u16 ', 'vldcb6in0_v_u32 ', 'vldcb7in0_v_i16 ', 'vldcb7in0_v_i32 ', 'vldcb7in0_v_u16 ', 'vldcb7in0_v_u32 ', 'vldcb8in0_v_i16 ', 'vldcb8in0_v_i32 ', 'vldcb8in0_v_u16 ', 'vldcb8in0_v_u32 ', 'vldcb1in0_v_i16_m ', 'vldcb1in0_v_i32_m ', 'vldcb1in0_v_u16_m ', 'vldcb1in0_v_u32_m ', 'vldcb2in0_v_i16_m ', 'vldcb2in0_v_i32_m ', 'vldcb2in0_v_u16_m ', 'vldcb2in0_v_u32_m ', 'vldcb3in0_v_i16_m ', 'vldcb3in0_v_i32_m ', 'vldcb3in0_v_u16_m ', 'vldcb3in0_v_u32_m ', 'vldcb4in0_v_i16_m ', 'vldcb4in0_v_i32_m ', 'vldcb4in0_v_u16_m ', 'vldcb4in0_v_u32_m ', 'vldcb5in0_v_i16_m ', 'vldcb5in0_v_i32_m ', 'vldcb5in0_v_u16_m ', 'vldcb5in0_v_u32_m ', 'vldcb6in0_v_i16_m ', 'vldcb6in0_v_i32_m ', 'vldcb6in0_v_u16_m ', 'vldcb6in0_v_u32_m ', 'vldcb7in0_v_i16_m ', 'vldcb7in0_v_i32_m ', 'vldcb7in0_v_u16_m ', 'vldcb7in0_v_u32_m ', 'vldcb8in0_v_i16_m ', 'vldcb8in0_v_i32_m ', 'vldcb8in0_v_u16_m ']
+

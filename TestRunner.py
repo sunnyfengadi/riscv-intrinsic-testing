@@ -7,21 +7,24 @@ import platform
 import datetime,time
 import shutil
 import json
+import csv
 from optparse import OptionParser
 from subprocess import Popen, PIPE
 from easyprocess import EasyProcess
+from scripts.typeMap import TYPE_MAP
 
 #####################################################################################
 ROOT_DIR=os.path.dirname(os.path.abspath(__file__))
 
 LOG_PATH = os.path.join( ROOT_DIR, 'test','log' )
 ELF_PATH = os.path.join( ROOT_DIR,'test', 'elf' )
-#UPPER_LEVEL = os.path.abspath(os.path.join(ROOT_DIR, ".."))
 BIN_PATH = os.path.join(ROOT_DIR, 'bin', 'test')
 TEST_PATH = os.path.join(ROOT_DIR, 'test')
 
+JSON_PATH = os.path.join( ROOT_DIR, 'scripts', 'intrinsic_table.json' )
+RESULT_CSV = os.path.join( ROOT_DIR, 'scripts', 'intrinsic_testing.csv' )
+
 sys.path.append(ROOT_DIR)
-#sys.path.append(UPPER_LEVEL)
 
 def cleanWorkspace(path):
     for file in os.listdir(path):
@@ -79,43 +82,91 @@ def runTest(apitype, apiname):
         testResult = 'build fail'
     
     return testResult
-        
+
+def getResult(file):
+    data = ''
+    result = ''
+    with open(file, 'r') as f:
+        lines= f.readlines()
+        for line in lines:
+            if 'result={' in line:
+                data = line.split('=',1)[1].replace('\n', '').replace('\r', '')
+        status = lines[-1].replace('\n', '').replace('\r', '').replace('!', '')
+    return data, status
+           
 def TestRunner(type, path, apitype):
+    totalNum = 0
+    passNum = 0
+    failNum = 0
+    failApi = []
+    subResult = {}
     # run shell scripts to get the test logs
     if type == 'test':
-        totalNum = 0
-        passNum = 0
-        failNum = 0
-        failApi = []
-        subResult = {}
-
         srcDir = os.path.join(path, apitype)
         for file in os.listdir(srcDir):
             totalNum += 1 
             cleanWorkspace(TEST_PATH)
             copyAction(srcDir, TEST_PATH, file)
-            result = runTest(apitype, file.split('.')[0])      
+            result = runTest(apitype, file.split('.')[0])
             if 'test pass' in result: 
                 passNum += 1
             else: 
                 failNum += 1
                 failApi.append(file)
             os.remove(os.path.join(TEST_PATH, file))
-        subResult['total']= totalNum
-        subResult['pass'] = passNum
-        subResult['fail'] = failNum
-        subResult['fail_api_name'] = failApi
-        return subResult
         
     # parse test results from logs into Json 
     if type == 'parse':
-        pass
+        rootNode={}
+        valueList = []
+        logDir = os.path.join(path, apitype) 
         
-
-
+        jsonFile = open(JSON_PATH, "r",encoding='utf-8')
+        csvFile = open(RESULT_CSV, "w",encoding='utf-8',newline='')
+        rootNode = json.load(jsonFile)
+        writer = csv.writer(csvFile)
+        
+        writer.writerow(rootNode[0].keys())
+        for nodes in rootNode:
+            if apitype == 'all':  # for all, 遍历文件夹/test/log 找到该api的.txt
+                for parent,dirnames,files in os.walk(path):
+                    for file in files:
+                        if file == nodes['Intrinsic_Name'].strip() + '.txt':
+                            totalNum += 1
+                            logfile = os.path.join(parent,file)
+                            testData, testStatus = getResult( logfile )
+                            nodes['Testing_Result'] = testData
+                            nodes['Testing_Status'] = testStatus
+                        else: 
+                            failApi.append(nodes['Intrinsic_Name'])
+                
+            else: # for apitype, to find this log file under /test/log/apitype
+                if nodes['Intrinsic_Type'] in TYPE_MAP[apitype] and '64' not in nodes['Intrinsic_Name']: # big issue for 64bit
+                    totalNum += 1
+                    logfile = os.path.join( logDir, nodes['Intrinsic_Name'].strip() + '.txt' )
+                    if os.path.exists(logfile): 
+                        testData, testStatus = getResult( logfile )
+                        nodes['Testing_Result'] = testData
+                        nodes['Testing_Status'] = testStatus
+                        passNum += 1
+                    else: 
+                        failNum += 1
+                        failApi.append(nodes['Intrinsic_Name'])
+            
+            valueList.append(nodes.values())
+            
+        writer.writerows(valueList)
+        csvFile.close()
+        
+    subResult['total']= totalNum
+    subResult['pass'] = passNum
+    subResult['fail'] = failNum
+    subResult['fail_api_name'] = failApi
+    return subResult
+    
 ###########################################################################################
 # Main
-# python3 TestRunner.py -t load   # or -t all that is for all apis 
+# python3 TestRunner.py -t load   # or '-t all' that is for all apis 
 # python3 TestRunner.py -p load 
 ###########################################################################################
 def main():
@@ -149,13 +200,13 @@ def main():
     else: pass
     
     if parseApi:
+        resultAll = {'total': 0, 'pass':0, 'fail':0}
         logPath = os.path.join(ROOT_DIR, 'test', 'log')
-        if parseApi == 'all':
-            folder = os.listdir(logPath)
-            for apiType in folder:
-                TestRunner('parse', logPath, apiType)
-        else:
-            TestRunner('parse', logPath, parseApi)
+        resultFile = os.path.join(TEST_PATH,'parse_result.txt')
+        if os.path.exists(resultFile): os.remove(resultFile)
+        
+        result = TestRunner('parse', logPath, parseApi)
+        writeResult(resultFile, result, parseApi)
     else: pass
     
 if __name__ == "__main__":  

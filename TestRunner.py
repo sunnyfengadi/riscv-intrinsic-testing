@@ -11,7 +11,7 @@ import csv
 from optparse import OptionParser
 from subprocess import Popen, PIPE
 from easyprocess import EasyProcess
-from scripts.typeMap import TYPE_MAP
+from source.typeMap import TYPE_MAP
 
 #####################################################################################
 ROOT_DIR=os.path.dirname(os.path.abspath(__file__))

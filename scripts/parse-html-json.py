@@ -1,14 +1,26 @@
 import os,sys
 import pandas as pd
 import numpy as np
-import csv
+import csv, re
 import json
 import shlex
+from shutil import move
 from pandas import DataFrame,Series
 from ValueMap import VALUE_MAP
+from Intrinsic_Type_List import INTRINSIC_TYPE_MAP
 from optparse import OptionParser
 
 ROOT_DIR=os.path.dirname(os.path.abspath(__file__))
+JSON_FILE = os.path.join(ROOT_DIR, 'intrinsic_table.json' )
+
+def get_expect_result(api):
+    result = ''
+    with open(JSON_FILE,'r') as f:
+        rootNode = json.loads(f.read())
+    for note in rootNode:
+        if note['Expect_Result'] and note['Intrinsic_Name'].rstrip() == api:
+            result = note['Expect_Result']
+    return result
 
 def json_to_csv(jsonpath,csvpath):
     # 1.分别 读，创建文件
@@ -35,7 +47,6 @@ def json_to_csv(jsonpath,csvpath):
     json_fp.close()
     csv_fp.close()
 
-#file:csv to json
 def csv_to_json(csvpath,jsonpath):
     fw = open(jsonpath, 'w', encoding='utf8')   # 打开json文件
     fo = open(csvpath, 'r', newline='')    # 打开csv文件
@@ -66,11 +77,8 @@ def formalize_csv(csv_file):
     dfs = csv.reader(fo)
     for n in range(len(dfs)):
         df=dfs[n].iloc[:,:1]
-        print(len(dfs))
-        print(df)
         df.insert(0,'ID','')
         df.insert(1,'Intrinsic_Type','')
-    # close files
     fo.close()
 
 def html_to_csv(html_file,csv_file):
@@ -89,53 +97,66 @@ def html_to_csv(html_file,csv_file):
             df.replace(translations,regex=True, inplace=True)
             df.replace('const ','',regex=True, inplace=True)
             df.replace(',','',regex=True, inplace=True)
+            df.replace('enum ACCUM','enumACCUM',regex=True, inplace=True)
             df = df['Intrinsic'].str.split(' ',expand=True)
             df.to_csv(csv_file, mode='a', encoding='utf_8_sig', header=0, index=1)
 
-def SetJsonValue(json_file):
+def set_json_value(temp_file):
     rootNode={}
-    with open(json_file, 'r') as f:
+    with open(temp_file, 'r') as f:
         rootNode = json.loads(f.read())
     for data in rootNode:
-        if 'CSR' in data['Intrinsic_Type']: pass
-       # elif 'Load' in data['Intrinsic_Type']: pass
-        else:
-            #print('【data】:',data)
+        ##### Set Intrinsic_Type
+        for key in INTRINSIC_TYPE_MAP:
+            ret = re.match(INTRINSIC_TYPE_MAP[key],data['Intrinsic_Name'])
+            if ret:
+                data['Intrinsic_Type'] = key
 
-            for i in range(1,5):
-                #print(data['Intrinsic_Name'],'【Input_'+str(i)+'】:\t',data['Input_'+str(i)+'_Type'],data['Input_'+str(i)+'_Variable'],data['Input_'+str(i)+'_Value'])
+        ##### Set Input_X_Value
+        if 'CSR' in data['Intrinsic_Type']: pass
+        else:
+            for i in range(1,8):
                 if data['Input_'+str(i)+'_Type'] =='': pass
                 else:
                     if data['Input_'+str(i)+'_Value'] == '':
                         data['Input_'+str(i)+'_Value'] = VALUE_MAP[data['Input_'+str(i)+'_Type']][data['Input_'+str(i)+'_Variable']]
-                   # print('【INPUT_'+str(i)+'_FINIAL】:\t',data['Input_'+str(i)+'_Type'],data['Input_'+str(i)+'_Variable'],data['Input_'+str(i)+'_Value'])
+        
+        #### Set Expect Result
+        if 'CSR' in data['Intrinsic_Type']: pass
+        else:
+            if data['Expect_Result']== '':
+                data['Expect_Result'] = get_expect_result(data['Intrinsic_Name'])
 
-    with open(json_file, 'w') as f2:
+    with open(temp_file, 'w') as f2:
         json.dump(rootNode,f2,ensure_ascii=True,indent=4)
-
 
 def main():
     parser=OptionParser()
-    parser.add_option("-t","--h2c",help="transiton from html to csv",dest="html",default='')
-    parser.add_option("-c","--c2j",help="transiton from csv to json",dest="csv",default='')
-    parser.add_option("-j","--j2c",help="transiton from json to csv",dest="json",default='')
+    parser.add_option('--h2c', action='store_true',dest='h2c',default=False, help='transiton from html to csv')
+    parser.add_option('--c2j', action='store_true',dest='c2j',default=False, help='transiton from csv to json')
+    parser.add_option('--j2c', action='store_true',dest='j2c',default=False, help='transiton from json to csv')
+    parser.add_option('--fcsv', action='store_true',dest='fcsv',default=False, help='formalize csv to insert ID and type')
     (options,args)=parser.parse_args()
-    html_file = options.html
+    
+    html_file = os.path.join(ROOT_DIR, 'intrinsic.html' )
     csv_file = os.path.join(ROOT_DIR, 'intrinsic_table.csv' )
     testing_result_csv_file = os.path.join(ROOT_DIR, 'intrinsic_testing.csv' )
-    json_file = os.path.join(ROOT_DIR, 'intrinsic_table.json' )
-    #html_file = os.path.join(ROOT_DIR, 'intrinsic.html' )
-    #csv_file = options.csv
-    #json_file = options.json
-    if html_file: pass
-        #html_to_csv(html_file,csv_file) #html -> csv
-        #formalize_csv(csv_file)
+    
+    temp_json = os.path.join(ROOT_DIR, 'tmp.json' )
 
-    if json_file:
-        csv_to_json(csv_file,json_file) #csv -> json
-        SetJsonValue(json_file)
-    json_to_csv(json_file,testing_result_csv_file)
-
+    if options.h2c:  #html -> csv
+        html_to_csv(html_file,csv_file) 
+        
+    if options.fcsv: #formalize csv to insert ID and type
+        formalize_csv(csv_file)  
+        
+    if options.c2j:  #csv -> json
+        csv_to_json(csv_file,temp_json) 
+        set_json_value(temp_json)
+        move(temp_json, JSON_FILE)
+        
+    if options.j2c:  #json -> csv
+        json_to_csv(JSON_FILE,testing_result_csv_file) 
 
 if __name__ == '__main__':
     main()

@@ -11,9 +11,9 @@ dst_mask_64 = '{1,1,0,1,0,0,1,1,1,1,0,1,0,0,1,1,1,1,0,1,0,0,1,1,1,1,0,1,0,0,1,1,
 
 def generate_num(start_num,total_num):
     output = '{'
-    for i in range(start_num,start_num + total_num):
+    for i in range(start_num,start_num + total_num-1):
         output = output + str(i) + ','
-    output += str(start_num + total_num) + '}'
+    output += str(start_num + total_num-1) + '}'
     return output
 
 def generate_maskoff(num):
@@ -135,4 +135,5 @@ VALUE_MAP={
                             'maskoff':generate_maskoff(8*7),'index':generate_num(4,8*7)},
     'uint64x8x8_t':            {'a':generate_num(1,8*8),'b':generate_num(2,8*8),'c':generate_num(3,8*8),'value':generate_num(1,8*8),
                             'maskoff':generate_maskoff(8*8),'index':generate_num(4,8*8)},
+    'enum ACCUM':               {'accum':'','dst_accum':'','src1_accum':'','src2_accum':'',}
 }

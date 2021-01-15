@@ -6,8 +6,8 @@ import json
 import shlex
 from shutil import move
 from pandas import DataFrame,Series
-from ValueMap import VALUE_MAP
-from Intrinsic_Type_List import INTRINSIC_TYPE_MAP
+from .ValueMap import VALUE_MAP
+from .Intrinsic_Type_List import INTRINSIC_TYPE_MAP
 from optparse import OptionParser
 
 ROOT_DIR=os.path.dirname(os.path.abspath(__file__))
@@ -122,44 +122,35 @@ def set_json_value(temp_file):
                         data['Input_'+str(i)+'_Value'] = VALUE_MAP[data['Input_'+str(i)+'_Type']][data['Input_'+str(i)+'_Variable']]
         
         #### Set Expect Result
-        if 'CSR' in data['Intrinsic_Type']: pass
-        else:
-            if data['Expect_Result']== '':
-                data['Expect_Result'] = get_expect_result(data['Intrinsic_Name'])
+        #if 'CSR' in data['Intrinsic_Type']: pass
+        #else:
+        #    if data['Expect_Result']== '':
+        #        data['Expect_Result'] = get_expect_result(data['Intrinsic_Name'])
 
     with open(temp_file, 'w') as f2:
         json.dump(rootNode,f2,ensure_ascii=True,indent=4)
 
-def main():
-    parser=OptionParser()
-    parser.add_option('--h2c', action='store_true',dest='h2c',default=False, help='transiton from html to csv')
-    parser.add_option('--c2j', action='store_true',dest='c2j',default=False, help='transiton from csv to json')
-    parser.add_option('--j2c', action='store_true',dest='j2c',default=False, help='transiton from json to csv')
-    parser.add_option('--fcsv', action='store_true',dest='fcsv',default=False, help='formalize csv to insert ID and type')
-    (options,args)=parser.parse_args()
-    
+def functionHandler(option):
     html_file = os.path.join(ROOT_DIR, 'intrinsic.html' )
     csv_file = os.path.join(ROOT_DIR, 'intrinsic_table.csv' )
     testing_result_csv_file = os.path.join(ROOT_DIR, 'intrinsic_testing.csv' )
     
     temp_json = os.path.join(ROOT_DIR, 'tmp.json' )
 
-    if options.h2c:  #html -> csv
+    if 'h2c' in option:  #html -> csv
         html_to_csv(html_file,csv_file) 
         
-    if options.fcsv: #formalize csv to insert ID and type
+    if 'fcsv' in option: #formalize csv to insert ID and type
         formalize_csv(csv_file)  
         
-    if options.c2j:  #csv -> json
+    if 'c2j' in option:  #csv -> json
         csv_to_json(csv_file,temp_json) 
         set_json_value(temp_json)
         move(temp_json, JSON_FILE)
         
-    if options.j2c:  #json -> csv
+    if 'j2c' in option:  #json -> csv
         json_to_csv(JSON_FILE,testing_result_csv_file) 
 
-if __name__ == '__main__':
-    main()
         
 
         

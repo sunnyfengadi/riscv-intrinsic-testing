@@ -10,8 +10,8 @@ import json
 from optparse import OptionParser
 from subprocess import Popen, PIPE
 
-from typeMap import TEMPLATE_TYPE
-from comFunctions import copyFile,getInputParameters,getRunlines,getVwrCsr,writeFile
+from .typeMap import TEMPLATE_TYPE
+from .comFunctions import *
 #####################################################################################
 ROOT_DIR=os.path.dirname(os.path.abspath(__file__))
 
@@ -167,7 +167,7 @@ def shiftFile(node):
 # usage: python3 
 # python SourceFile.py -d "C:\Analog Devices\Risc-v\source-file" -n "intrinsic_table.json"
 ###########################################################################################
-def main():
+def sourceHandler():
     jsonDir = os.path.join(os.path.abspath(os.path.join(ROOT_DIR, "..")), 'scripts' )
 
     rootNode={}
@@ -184,5 +184,3 @@ def main():
         elif 'Shift:' in nodes['Intrinsic_Type'] and 'bool' not in nodes['Output_Type']:             pass #shiftFile(nodes)
         else: pass
         
-if __name__ == "__main__":  
-    main() 

@@ -11,7 +11,10 @@ import csv
 from optparse import OptionParser
 from subprocess import Popen, PIPE
 from easyprocess import EasyProcess
+
 from source.typeMap import TYPE_MAP
+from source.SourceFile import *
+from scripts.parseHtmlJson import *
 
 #####################################################################################
 ROOT_DIR=os.path.dirname(os.path.abspath(__file__))
@@ -166,29 +169,46 @@ def TestRunner(type, path, apitype):
     
 ###########################################################################################
 # Main
-# python3 TestRunner.py -t load   # or '-t all' that is for all apis 
-# python3 TestRunner.py -p load 
 ###########################################################################################
 def main():
     parser=OptionParser()
-    parser.add_option("-t","--test",help="test api file with different type",dest="test",default='')
-    parser.add_option("-p","--parse",help="parse result and fill json",dest="parse",default='')
-    (options,args)=parser.parse_args()  
+    
+    # options only for parse html and generate json used by source scripts
+    parser.add_option('-f','--function',dest='function',default='',
+        help="functions to parse html and generate json. it has four options: "
+              " -f h2c, to transiton from html to csv "
+              " -f c2j, to transiton from csv to json "
+              " -f j2c, to transiton from json to csv "
+              " -f fcsv, to formalize csv to insert ID and type ")
+    
+    # options only for c source file configuration
+    parser.add_option('--source',action='store_true',dest='source',default=False, 
+        help="generate the source c file according to json. e.g. --source")
+    
+    # options only for both build/test and parse result
+    parser.add_option('-t','--test',dest='test',default='', 
+        help="test api file with different type. e.g. -t load, -t all")
+    parser.add_option('-p','--parse',dest='parse',default='',
+        help="parse result and fill json. e.g. -p store, -p all")
+    
+    (options,args)=parser.parse_args()
     testApi = options.test
     parseApi = options.parse
+
+    if options.function: functionHandler(options.function)
+    
+    if options.source: sourceHandler()
 
     if testApi:
         resultAll = {'total': 0, 'pass':0, 'fail':0}
         libPath = os.path.join(ROOT_DIR, 'source-file', 'lib')
         resultFile = os.path.join(TEST_PATH,'test_result.txt')
         if os.path.exists(resultFile): os.remove(resultFile)
-
         if testApi == 'all':
             folder = os.listdir(libPath)
             for apiType in folder: 
                 result = TestRunner('test', libPath, apiType)
                 writeResult(resultFile, result, apiType)
-
                 for key,value in result.items():
                     if key in resultAll:
                         resultAll[key]+=value
@@ -204,7 +224,6 @@ def main():
         logPath = os.path.join(ROOT_DIR, 'test', 'log')
         resultFile = os.path.join(TEST_PATH,'parse_result.txt')
         if os.path.exists(resultFile): os.remove(resultFile)
-        
         result = TestRunner('parse', logPath, parseApi)
         writeResult(resultFile, result, parseApi)
     else: pass

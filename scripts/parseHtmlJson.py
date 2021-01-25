@@ -107,10 +107,10 @@ def set_json_value(temp_file):
         rootNode = json.loads(f.read())
     for data in rootNode:
         ##### Set Intrinsic_Type
-        for key in INTRINSIC_TYPE_MAP:
-            ret = re.match(INTRINSIC_TYPE_MAP[key],data['Intrinsic_Name'])
+        for item in INTRINSIC_TYPE_MAP.items():
+            ret = re.match(item[1][0],data['Intrinsic_Name'])
             if ret:
-                data['Intrinsic_Type'] = key
+                data['Intrinsic_Type'] = item[0]
 
         ##### Set Input_X_Value
         if 'CSR' in data['Intrinsic_Type']: pass

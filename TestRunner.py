@@ -21,8 +21,8 @@ ROOT_DIR=os.path.dirname(os.path.abspath(__file__))
 
 LOG_PATH = os.path.join( ROOT_DIR, 'test','log' )
 ELF_PATH = os.path.join( ROOT_DIR,'test', 'elf' )
-BIN_PATH = os.path.join(ROOT_DIR, 'bin', 'test')
-TEST_PATH = os.path.join(ROOT_DIR, 'test')
+BIN_PATH = os.path.join( ROOT_DIR, 'bin', 'test')
+TEST_PATH = os.path.join( ROOT_DIR, 'test')
 
 JSON_PATH = os.path.join( ROOT_DIR, 'scripts', 'intrinsic_table.json' )
 RESULT_CSV = os.path.join( ROOT_DIR, 'scripts', 'intrinsic_testing.csv' )
@@ -117,7 +117,7 @@ def TestRunner(type, path, apitype):
                 failNum += 1
                 failApi.append(file)
             os.remove(os.path.join(TEST_PATH, file))
-        
+
     # parse test results from logs into Json 
     if type == 'parse':
         rootNode={}
@@ -142,7 +142,6 @@ def TestRunner(type, path, apitype):
                             nodes['Testing_Status'] = testStatus
                         else: 
                             failApi.append(nodes['Intrinsic_Name'])
-                
             else: # for apitype, to find this log file under /test/log/apitype
                 if nodes['Intrinsic_Type'] in TYPE_MAP[apitype] and '64' not in nodes['Intrinsic_Name']: # big issue for 64bit
                     totalNum += 1
@@ -155,12 +154,10 @@ def TestRunner(type, path, apitype):
                     else: 
                         failNum += 1
                         failApi.append(nodes['Intrinsic_Name'])
-            
             valueList.append(nodes.values())
-            
         writer.writerows(valueList)
         csvFile.close()
-        
+    
     subResult['total']= totalNum
     subResult['pass'] = passNum
     subResult['fail'] = failNum
@@ -175,16 +172,16 @@ def main():
     
     # options only for parse html and generate json used by source scripts
     parser.add_option('-f','--function',dest='function',default='',
-        help="functions to parse html and generate json. it has four options: "
+        help= "functions to parse html and generate json. it has four options: "
               " -f h2c, to transiton from html to csv "
               " -f c2j, to transiton from csv to json "
               " -f j2c, to transiton from json to csv "
               " -f fcsv, to formalize csv to insert ID and type ")
     
-    # options only for c source file configuration
-    parser.add_option('--source',action='store_true',dest='source',default=False, 
+    # options only for source c file generation        
+    parser.add_option('-s','--source',action='store_true',dest='source',default=False, 
         help="generate the source c file according to json. e.g. --source")
-    
+        
     # options only for both build/test and parse result
     parser.add_option('-t','--test',dest='test',default='', 
         help="test api file with different type. e.g. -t load, -t all")
@@ -192,19 +189,16 @@ def main():
         help="parse result and fill json. e.g. -p store, -p all")
     
     (options,args)=parser.parse_args()
-    testApi = options.test
-    parseApi = options.parse
 
     if options.function: functionHandler(options.function)
-    
-    if options.source: sourceHandler()
+    if options.source: sourceHandler(options.source)
 
-    if testApi:
+    if options.test:
         resultAll = {'total': 0, 'pass':0, 'fail':0}
         libPath = os.path.join(ROOT_DIR, 'source-file', 'lib')
         resultFile = os.path.join(TEST_PATH,'test_result.txt')
         if os.path.exists(resultFile): os.remove(resultFile)
-        if testApi == 'all':
+        if options.test == 'all':
             folder = os.listdir(libPath)
             for apiType in folder: 
                 result = TestRunner('test', libPath, apiType)
@@ -215,17 +209,17 @@ def main():
             resultAll['fail_api_name'] = ''
             writeResult(resultFile, resultAll, "Summary of all")
         else: 
-            result = TestRunner('test', libPath, testApi)
-            writeResult(resultFile, result, testApi)
+            result = TestRunner('test', libPath, options.test)
+            writeResult(resultFile, result, options.test)
     else: pass
     
-    if parseApi:
+    if options.parse:
         resultAll = {'total': 0, 'pass':0, 'fail':0}
         logPath = os.path.join(ROOT_DIR, 'test', 'log')
         resultFile = os.path.join(TEST_PATH,'parse_result.txt')
         if os.path.exists(resultFile): os.remove(resultFile)
-        result = TestRunner('parse', logPath, parseApi)
-        writeResult(resultFile, result, parseApi)
+        result = TestRunner('parse', logPath, options.parse)
+        writeResult(resultFile, result, options.parse)
     else: pass
     
 if __name__ == "__main__":  

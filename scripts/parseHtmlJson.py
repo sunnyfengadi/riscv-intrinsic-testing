@@ -1,8 +1,8 @@
 import os,sys
 import pandas as pd
 import numpy as np
-import csv, re
-import json
+import random, re
+import csv,json
 import shlex
 from shutil import move
 from pandas import DataFrame,Series
@@ -36,7 +36,6 @@ def json_to_csv(jsonpath,csvpath):
 
     # 3.csv 写入器
     writer = csv.writer(csv_fp)
-
     # 4.写入表头
     writer.writerow(sheet_title)
 
@@ -116,10 +115,28 @@ def set_json_value(temp_file):
         if 'CSR' in data['Intrinsic_Type']: pass
         else:
             for i in range(1,8):
-                if data['Input_'+str(i)+'_Type'] =='': pass
-                else:
-                    if data['Input_'+str(i)+'_Value'] == '':
-                        data['Input_'+str(i)+'_Value'] = VALUE_MAP[data['Input_'+str(i)+'_Type']][data['Input_'+str(i)+'_Variable']]
+                if data['Input_'+str(i)+'_Type'] =='': pass # if Input_X_Type is null, pass
+                else:# if Input_X_Variable is base[]
+                    if data['Input_'+str(i)+'_Variable'] == 'base[]':
+                        if 'Store:' in data['Intrinsic_Type']:
+                            if data['Input_'+str(i)+'_Value'] == '': # if Input_X_Variable is null, set the value
+                                data['Input_'+str(i)+'_Value'] = '{0}'
+                        else:
+                            apiName = data['Intrinsic_Name'].rstrip()
+                            comboNum = int(re.findall(r"\d+\.?\d*", apiName)[0])
+                            for item in data.items():
+                                if item[0] == 'Output_Type':
+                                    typeBit = int(re.sub("\D", "", item[1].split( 'x' )[0]))    # get the type bit number 16/32/64 bit
+                                    elementNum = int(re.sub("\D", "", item[1].split( 'x' )[1])) # get the number of element that is 16 or 32
+                            output = '{'
+                            for j in range(0,comboNum*elementNum-1):
+                                output = output + str(random.randint(0,pow(2,typeBit))) + ','
+                            output += str(random.randint(0,pow(2,typeBit))) + '}'
+                            if data['Input_'+str(i)+'_Value'] == '': # if Input_X_Variable is null, set the value
+                                data['Input_'+str(i)+'_Value'] = output
+                    else:
+                        if data['Input_'+str(i)+'_Value'] == '':
+                            data['Input_'+str(i)+'_Value'] = VALUE_MAP[data['Input_'+str(i)+'_Type']][data['Input_'+str(i)+'_Variable']]
         
         #### Set Expect Result
         #if 'CSR' in data['Intrinsic_Type']: pass

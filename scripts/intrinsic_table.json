@@ -33421,7 +33421,7 @@
     },
     {
         "ID": "0",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Add",
         "Output_Type": "int16x32_t",
         "Intrinsic_Name": "vmacc_vv_i16",
         "Input_1_Type": "int16x32_t",
@@ -33451,7 +33451,7 @@
     },
     {
         "ID": "1",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Add",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vmacc_vv_i32",
         "Input_1_Type": "int32x16_t",
@@ -33481,7 +33481,7 @@
     },
     {
         "ID": "2",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Add",
         "Output_Type": "uint16x32_t",
         "Intrinsic_Name": "vmacc_vv_u16",
         "Input_1_Type": "uint16x32_t",
@@ -33511,7 +33511,7 @@
     },
     {
         "ID": "3",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Add",
         "Output_Type": "uint32x16_t",
         "Intrinsic_Name": "vmacc_vv_u32",
         "Input_1_Type": "uint32x16_t",
@@ -33541,7 +33541,7 @@
     },
     {
         "ID": "4",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Add",
         "Output_Type": "int32x16x2_t",
         "Intrinsic_Name": "vwmacc_vv_i16",
         "Input_1_Type": "int32x16x2_t",
@@ -33571,7 +33571,7 @@
     },
     {
         "ID": "5",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Add",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwmacc_vv_i32",
         "Input_1_Type": "int64x8x2_t",
@@ -33601,7 +33601,7 @@
     },
     {
         "ID": "6",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Add",
         "Output_Type": "uint32x16x2_t",
         "Intrinsic_Name": "vwmacc_vv_u16",
         "Input_1_Type": "uint32x16x2_t",
@@ -33631,7 +33631,7 @@
     },
     {
         "ID": "7",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Add",
         "Output_Type": "uint64x8x2_t",
         "Intrinsic_Name": "vwmacc_vv_u32",
         "Input_1_Type": "uint64x8x2_t",
@@ -33661,7 +33661,7 @@
     },
     {
         "ID": "8",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Add",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vsmaccq_vv_i32",
         "Input_1_Type": "int32x16_t",
@@ -33691,7 +33691,7 @@
     },
     {
         "ID": "9",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Add",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwsmaccq_vv_i32",
         "Input_1_Type": "int64x8x2_t",
@@ -33721,7 +33721,7 @@
     },
     {
         "ID": "0",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Add",
         "Output_Type": "int16x32_t",
         "Intrinsic_Name": "vmacc_vv_i16_m",
         "Input_1_Type": "bool32_t",
@@ -33751,7 +33751,7 @@
     },
     {
         "ID": "1",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Add",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vmacc_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -33781,7 +33781,7 @@
     },
     {
         "ID": "2",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Add",
         "Output_Type": "uint16x32_t",
         "Intrinsic_Name": "vmacc_vv_u16_m",
         "Input_1_Type": "bool32_t",
@@ -33811,7 +33811,7 @@
     },
     {
         "ID": "3",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Add",
         "Output_Type": "uint32x16_t",
         "Intrinsic_Name": "vmacc_vv_u32_m",
         "Input_1_Type": "bool16_t",
@@ -33841,7 +33841,7 @@
     },
     {
         "ID": "4",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Add",
         "Output_Type": "int32x16x2_t",
         "Intrinsic_Name": "vwmacc_vv_i16_m",
         "Input_1_Type": "bool32_t",
@@ -33871,7 +33871,7 @@
     },
     {
         "ID": "5",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Add",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwmacc_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -33901,7 +33901,7 @@
     },
     {
         "ID": "6",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Add",
         "Output_Type": "uint32x16x2_t",
         "Intrinsic_Name": "vwmacc_vv_u16_m",
         "Input_1_Type": "bool32_t",
@@ -33931,7 +33931,7 @@
     },
     {
         "ID": "7",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Add",
         "Output_Type": "uint64x8x2_t",
         "Intrinsic_Name": "vwmacc_vv_u32_m",
         "Input_1_Type": "bool16_t",
@@ -33961,7 +33961,7 @@
     },
     {
         "ID": "8",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Add",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vsmaccq_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -33991,7 +33991,7 @@
     },
     {
         "ID": "9",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Add",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwsmaccq_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -34021,7 +34021,7 @@
     },
     {
         "ID": "0",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Subtract",
         "Output_Type": "int16x32_t",
         "Intrinsic_Name": "vmsub_vv_i16",
         "Input_1_Type": "int16x32_t",
@@ -34051,7 +34051,7 @@
     },
     {
         "ID": "1",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Subtract",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vmsub_vv_i32",
         "Input_1_Type": "int32x16_t",
@@ -34081,7 +34081,7 @@
     },
     {
         "ID": "2",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Subtract",
         "Output_Type": "uint16x32_t",
         "Intrinsic_Name": "vmsub_vv_u16",
         "Input_1_Type": "uint16x32_t",
@@ -34111,7 +34111,7 @@
     },
     {
         "ID": "3",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Subtract",
         "Output_Type": "uint32x16_t",
         "Intrinsic_Name": "vmsub_vv_u32",
         "Input_1_Type": "uint32x16_t",
@@ -34141,7 +34141,7 @@
     },
     {
         "ID": "4",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Subtract",
         "Output_Type": "int32x16x2_t",
         "Intrinsic_Name": "vwmsub_vv_i16",
         "Input_1_Type": "int32x16x2_t",
@@ -34171,7 +34171,7 @@
     },
     {
         "ID": "5",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Subtract",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwmsub_vv_i32",
         "Input_1_Type": "int64x8x2_t",
@@ -34201,7 +34201,7 @@
     },
     {
         "ID": "6",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Subtract",
         "Output_Type": "uint32x16x2_t",
         "Intrinsic_Name": "vwmsub_vv_u16",
         "Input_1_Type": "uint32x16x2_t",
@@ -34231,7 +34231,7 @@
     },
     {
         "ID": "7",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Subtract",
         "Output_Type": "uint64x8x2_t",
         "Intrinsic_Name": "vwmsub_vv_u32",
         "Input_1_Type": "uint64x8x2_t",
@@ -34261,7 +34261,7 @@
     },
     {
         "ID": "8",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Subtract",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vsmsubq_vv_i32",
         "Input_1_Type": "int32x16_t",
@@ -34291,7 +34291,7 @@
     },
     {
         "ID": "9",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Subtract",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwsmsubq_vv_i32",
         "Input_1_Type": "int64x8x2_t",
@@ -34321,7 +34321,7 @@
     },
     {
         "ID": "0",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Subtract",
         "Output_Type": "int16x32_t",
         "Intrinsic_Name": "vmsub_vv_i16_m",
         "Input_1_Type": "bool32_t",
@@ -34351,7 +34351,7 @@
     },
     {
         "ID": "1",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Subtract",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vmsub_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -34381,7 +34381,7 @@
     },
     {
         "ID": "2",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Subtract",
         "Output_Type": "uint16x32_t",
         "Intrinsic_Name": "vmsub_vv_u16_m",
         "Input_1_Type": "bool32_t",
@@ -34411,7 +34411,7 @@
     },
     {
         "ID": "3",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Subtract",
         "Output_Type": "uint32x16_t",
         "Intrinsic_Name": "vmsub_vv_u32_m",
         "Input_1_Type": "bool16_t",
@@ -34441,7 +34441,7 @@
     },
     {
         "ID": "4",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Subtract",
         "Output_Type": "int32x16x2_t",
         "Intrinsic_Name": "vwmsub_vv_i16_m",
         "Input_1_Type": "bool32_t",
@@ -34471,7 +34471,7 @@
     },
     {
         "ID": "5",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Subtract",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwmsub_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -34501,7 +34501,7 @@
     },
     {
         "ID": "6",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Subtract",
         "Output_Type": "uint32x16x2_t",
         "Intrinsic_Name": "vwmsub_vv_u16_m",
         "Input_1_Type": "bool32_t",
@@ -34531,7 +34531,7 @@
     },
     {
         "ID": "7",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Subtract",
         "Output_Type": "uint64x8x2_t",
         "Intrinsic_Name": "vwmsub_vv_u32_m",
         "Input_1_Type": "bool16_t",
@@ -34561,7 +34561,7 @@
     },
     {
         "ID": "8",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Subtract",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vsmsubq_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -34591,7 +34591,7 @@
     },
     {
         "ID": "9",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Subtract",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwsmsubq_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -34621,7 +34621,7 @@
     },
     {
         "ID": "0",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Add",
         "Output_Type": "int16x32_t",
         "Intrinsic_Name": "vnmsac_vv_i16",
         "Input_1_Type": "int16x32_t",
@@ -34651,7 +34651,7 @@
     },
     {
         "ID": "1",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Add",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vnmsac_vv_i32",
         "Input_1_Type": "int32x16_t",
@@ -34681,7 +34681,7 @@
     },
     {
         "ID": "2",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Add",
         "Output_Type": "uint16x32_t",
         "Intrinsic_Name": "vnmsac_vv_u16",
         "Input_1_Type": "uint16x32_t",
@@ -34711,7 +34711,7 @@
     },
     {
         "ID": "3",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Add",
         "Output_Type": "uint32x16_t",
         "Intrinsic_Name": "vnmsac_vv_u32",
         "Input_1_Type": "uint32x16_t",
@@ -34741,7 +34741,7 @@
     },
     {
         "ID": "4",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Add",
         "Output_Type": "int32x16x2_t",
         "Intrinsic_Name": "vwnmsac_vv_i16",
         "Input_1_Type": "int32x16x2_t",
@@ -34771,7 +34771,7 @@
     },
     {
         "ID": "5",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Add",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwnmsac_vv_i32",
         "Input_1_Type": "int64x8x2_t",
@@ -34801,7 +34801,7 @@
     },
     {
         "ID": "6",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Add",
         "Output_Type": "uint32x16x2_t",
         "Intrinsic_Name": "vwnmsac_vv_u16",
         "Input_1_Type": "uint32x16x2_t",
@@ -34831,7 +34831,7 @@
     },
     {
         "ID": "7",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Add",
         "Output_Type": "uint64x8x2_t",
         "Intrinsic_Name": "vwnmsac_vv_u32",
         "Input_1_Type": "uint64x8x2_t",
@@ -34861,7 +34861,7 @@
     },
     {
         "ID": "8",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Add",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vsnmsacq_vv_i32",
         "Input_1_Type": "int32x16_t",
@@ -34891,7 +34891,7 @@
     },
     {
         "ID": "9",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Add",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwsnmsacq_vv_i32",
         "Input_1_Type": "int64x8x2_t",
@@ -34921,7 +34921,7 @@
     },
     {
         "ID": "0",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Add",
         "Output_Type": "int16x32_t",
         "Intrinsic_Name": "vnmsac_vv_i16_m",
         "Input_1_Type": "bool32_t",
@@ -34951,7 +34951,7 @@
     },
     {
         "ID": "1",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Add",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vnmsac_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -34981,7 +34981,7 @@
     },
     {
         "ID": "2",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Add",
         "Output_Type": "uint16x32_t",
         "Intrinsic_Name": "vnmsac_vv_u16_m",
         "Input_1_Type": "bool32_t",
@@ -35011,7 +35011,7 @@
     },
     {
         "ID": "3",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Add",
         "Output_Type": "uint32x16_t",
         "Intrinsic_Name": "vnmsac_vv_u32_m",
         "Input_1_Type": "bool16_t",
@@ -35041,7 +35041,7 @@
     },
     {
         "ID": "4",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Add",
         "Output_Type": "int32x16x2_t",
         "Intrinsic_Name": "vwnmsac_vv_i16_m",
         "Input_1_Type": "bool32_t",
@@ -35071,7 +35071,7 @@
     },
     {
         "ID": "5",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Add",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwnmsac_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -35101,7 +35101,7 @@
     },
     {
         "ID": "6",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Add",
         "Output_Type": "uint32x16x2_t",
         "Intrinsic_Name": "vwnmsac_vv_u16_m",
         "Input_1_Type": "bool32_t",
@@ -35131,7 +35131,7 @@
     },
     {
         "ID": "7",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Add",
         "Output_Type": "uint64x8x2_t",
         "Intrinsic_Name": "vwnmsac_vv_u32_m",
         "Input_1_Type": "bool16_t",
@@ -35161,7 +35161,7 @@
     },
     {
         "ID": "8",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Add",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vsnmsacq_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -35191,7 +35191,7 @@
     },
     {
         "ID": "9",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Add",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Add",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwsnmsacq_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -35221,7 +35221,7 @@
     },
     {
         "ID": "0",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Subtract",
         "Output_Type": "int16x32_t",
         "Intrinsic_Name": "vnmsub_vv_i16",
         "Input_1_Type": "int16x32_t",
@@ -35251,7 +35251,7 @@
     },
     {
         "ID": "1",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Subtract",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vnmsub_vv_i32",
         "Input_1_Type": "int32x16_t",
@@ -35281,7 +35281,7 @@
     },
     {
         "ID": "2",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Subtract",
         "Output_Type": "uint16x32_t",
         "Intrinsic_Name": "vnmsub_vv_u16",
         "Input_1_Type": "uint16x32_t",
@@ -35311,7 +35311,7 @@
     },
     {
         "ID": "3",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Subtract",
         "Output_Type": "uint32x16_t",
         "Intrinsic_Name": "vnmsub_vv_u32",
         "Input_1_Type": "uint32x16_t",
@@ -35341,7 +35341,7 @@
     },
     {
         "ID": "4",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Subtract",
         "Output_Type": "int32x16x2_t",
         "Intrinsic_Name": "vwnmsub_vv_i16",
         "Input_1_Type": "int32x16x2_t",
@@ -35371,7 +35371,7 @@
     },
     {
         "ID": "5",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Subtract",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwnmsub_vv_i32",
         "Input_1_Type": "int64x8x2_t",
@@ -35401,7 +35401,7 @@
     },
     {
         "ID": "6",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Subtract",
         "Output_Type": "uint32x16x2_t",
         "Intrinsic_Name": "vwnmsub_vv_u16",
         "Input_1_Type": "uint32x16x2_t",
@@ -35431,7 +35431,7 @@
     },
     {
         "ID": "7",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Subtract",
         "Output_Type": "uint64x8x2_t",
         "Intrinsic_Name": "vwnmsub_vv_u32",
         "Input_1_Type": "uint64x8x2_t",
@@ -35461,7 +35461,7 @@
     },
     {
         "ID": "8",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Subtract",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vsnmsubq_vv_i32",
         "Input_1_Type": "int32x16_t",
@@ -35491,7 +35491,7 @@
     },
     {
         "ID": "9",
-        "Intrinsic_Type": "Mac: Unmasked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Unmasked Multiply-Neg-Subtract",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwsnmsubq_vv_i32",
         "Input_1_Type": "int64x8x2_t",
@@ -35521,7 +35521,7 @@
     },
     {
         "ID": "0",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Subtract",
         "Output_Type": "int16x32_t",
         "Intrinsic_Name": "vnmsub_vv_i16_m",
         "Input_1_Type": "bool32_t",
@@ -35551,7 +35551,7 @@
     },
     {
         "ID": "1",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Subtract",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vnmsub_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -35581,7 +35581,7 @@
     },
     {
         "ID": "2",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Subtract",
         "Output_Type": "uint16x32_t",
         "Intrinsic_Name": "vnmsub_vv_u16_m",
         "Input_1_Type": "bool32_t",
@@ -35611,7 +35611,7 @@
     },
     {
         "ID": "3",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Subtract",
         "Output_Type": "uint32x16_t",
         "Intrinsic_Name": "vnmsub_vv_u32_m",
         "Input_1_Type": "bool16_t",
@@ -35641,7 +35641,7 @@
     },
     {
         "ID": "4",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Subtract",
         "Output_Type": "int32x16x2_t",
         "Intrinsic_Name": "vwnmsub_vv_i16_m",
         "Input_1_Type": "bool32_t",
@@ -35671,7 +35671,7 @@
     },
     {
         "ID": "5",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Subtract",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwnmsub_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -35701,7 +35701,7 @@
     },
     {
         "ID": "6",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Subtract",
         "Output_Type": "uint32x16x2_t",
         "Intrinsic_Name": "vwnmsub_vv_u16_m",
         "Input_1_Type": "bool32_t",
@@ -35731,7 +35731,7 @@
     },
     {
         "ID": "7",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Subtract",
         "Output_Type": "uint64x8x2_t",
         "Intrinsic_Name": "vwnmsub_vv_u32_m",
         "Input_1_Type": "bool16_t",
@@ -35761,7 +35761,7 @@
     },
     {
         "ID": "8",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Subtract",
         "Output_Type": "int32x16_t",
         "Intrinsic_Name": "vsnmsubq_vv_i32_m",
         "Input_1_Type": "bool16_t",
@@ -35791,7 +35791,7 @@
     },
     {
         "ID": "9",
-        "Intrinsic_Type": "Mac: Masked  Multiply-Neg-Subtract",
+        "Intrinsic_Type": "Mac: Masked Multiply-Neg-Subtract",
         "Output_Type": "int64x8x2_t",
         "Intrinsic_Name": "vwsnmsubq_vv_i32_m",
         "Input_1_Type": "bool16_t",

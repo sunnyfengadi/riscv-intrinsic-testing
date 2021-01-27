@@ -98,7 +98,7 @@ def getRunlines(inputDict, functionName, apitype):
         run = [ '', apiTest]
     else:
         apiTest = 'result = ' + functionName + '(' + apiInput.strip( ',' ) + ');'
-        run = [ '', 'start = cycles();', apiTest, 'stop = cycles();']
+        run = [ '', 'start = rdcycle();', apiTest, 'stop = rdcycle();']
     
     return run 
     

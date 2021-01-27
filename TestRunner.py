@@ -1,5 +1,5 @@
 ####################################################################################
-#TestRunner.py
+#TestRunner.py 
 ####################################################################################
 import os,sys
 import re,subprocess
@@ -49,19 +49,19 @@ def writeResult(file, result, apitype):
         f.write("Pass number: %d" %result['pass'] +'\n')
         f.write("Fail number: %d" %result['fail'] +'\n')
         if result['fail_api_name']:
-            f.write("Fail API name: %s" %result['fail_api_name'] +'\n')
+            f.write("Fail API name: %s" %result['fail_api_name'] +'\n') 
         f.write('\n')
     f.close()
-
+        
 def runTest(apitype, apiname):
     testResult = ''
     # create folder and clean the older file of log and elf
-    if not os.path.exists(os.path.join( LOG_PATH, apitype ) ):
+    if not os.path.exists(os.path.join( LOG_PATH, apitype ) ): 
         os.mkdir( os.path.join( LOG_PATH, apitype ) )
     testLog = os.path.join(LOG_PATH, apitype, apiname+'.txt')
     if os.path.exists(testLog): os.remove(testLog)
 
-    if not os.path.exists(os.path.join( ELF_PATH, apitype) ):
+    if not os.path.exists(os.path.join( ELF_PATH, apitype) ): 
         os.mkdir( os.path.join( ELF_PATH, apitype ) )
     elfFile = os.path.join(BIN_PATH, apiname+'.elf')
     if os.path.exists(elfFile): os.remove(elfFile)
@@ -69,8 +69,8 @@ def runTest(apitype, apiname):
     # run source and make
     os.system("sh scripts/env.sh")
     p = EasyProcess(['make', 'app='+apiname]).call(timeout=10)
-
-    if 'PASSED' in p.stderr:
+    
+    if 'PASSED' in p.stderr: 
         if os.path.exists(os.path.join(BIN_PATH, apiname +'.elf')):
             copyAction(BIN_PATH, os.path.join( ELF_PATH, apitype), apiname +'.elf')
         if 'result={' in p.stdout:
@@ -83,7 +83,7 @@ def runTest(apitype, apiname):
             testResult = 'build pass'
     else:
         testResult = 'build fail'
-
+    
     return testResult
 
 def getResult(file):
@@ -96,8 +96,8 @@ def getResult(file):
                 data = line.split('=',1)[1].replace('\n', '').replace('\r', '')
         status = lines[-1].replace('\n', '').replace('\r', '').replace('!', '')
     return data, status
-
-def TestRunner(type, path, apitype):
+           
+def testRunner(type, path, apitype):
     totalNum = 0
     passNum = 0
     failNum = 0
@@ -107,28 +107,31 @@ def TestRunner(type, path, apitype):
     if type == 'test':
         srcDir = os.path.join(path, apitype)
         for file in os.listdir(srcDir):
-            totalNum += 1
+            totalNum += 1 
             cleanWorkspace(TEST_PATH)
             copyAction(srcDir, TEST_PATH, file)
             result = runTest(apitype, file.split('.')[0])
-            if 'test pass' in result:
+            if 'test pass' in result: 
                 passNum += 1
-            else:
+            else: 
                 failNum += 1
                 failApi.append(file)
             os.remove(os.path.join(TEST_PATH, file))
 
-    # parse test results from logs into Json
-    if type == 'parse':
+    if type == 'golden':
+        pass
+
+    # parse test results from logs into Json 
+    if type == 'parser':
         rootNode={}
         valueList = []
-        logDir = os.path.join(path, apitype)
-
+        logDir = os.path.join(path, apitype) 
+        
         jsonFile = open(JSON_PATH, "r",encoding='utf-8')
         csvFile = open(RESULT_CSV, "w",encoding='utf-8',newline='')
         rootNode = json.load(jsonFile)
         writer = csv.writer(csvFile)
-
+        
         writer.writerow(rootNode[0].keys())
         for nodes in rootNode:
             if apitype == 'all':  # for all, 遍历文件夹/test/log 找到该api的.txt
@@ -140,59 +143,60 @@ def TestRunner(type, path, apitype):
                             testData, testStatus = getResult( logfile )
                             nodes['Testing_Result'] = testData
                             nodes['Testing_Status'] = testStatus
-                        else:
+                        else: 
                             failApi.append(nodes['Intrinsic_Name'])
             else: # for apitype, to find this log file under /test/log/apitype
                 if nodes['Intrinsic_Type'] in TYPE_MAP[apitype] and '64' not in nodes['Intrinsic_Name']: # big issue for 64bit
                     totalNum += 1
                     logfile = os.path.join( logDir, nodes['Intrinsic_Name'].strip() + '.txt' )
-                    if os.path.exists(logfile):
+                    if os.path.exists(logfile): 
                         testData, testStatus = getResult( logfile )
                         nodes['Testing_Result'] = testData
                         nodes['Testing_Status'] = testStatus
                         passNum += 1
-                    else:
+                    else: 
                         failNum += 1
                         failApi.append(nodes['Intrinsic_Name'])
             valueList.append(nodes.values())
         writer.writerows(valueList)
         csvFile.close()
-
+    
     subResult['total']= totalNum
     subResult['pass'] = passNum
     subResult['fail'] = failNum
     subResult['fail_api_name'] = failApi
     return subResult
-
+    
 ###########################################################################################
 # Main
 ###########################################################################################
 def main():
     parser=OptionParser()
-
+    
     # options only for parse html and generate json used by source scripts
-    parser.add_option('-f','--function',dest='function',default='',
+    parser.add_option('-f', '--function', dest='function', default='',
         help= "functions to parse html and generate json. it has four options: "
               " -f h2c, to transiton from html to csv "
               " -f c2j, to transiton from csv to json "
               " -f j2c, to transiton from json to csv "
               " -f fcsv, to formalize csv to insert ID and type ")
-
+    
     # options only for source c file generation
-    parser.add_option('-s','--source',action='store_true',dest='source',default=False,
+    parser.add_option('-s', '--source', action='store_true', dest='source', default=False, 
         help="generate the source c file according to json. e.g. --source")
-
+        
     # options only for both build/test and parse result
-    parser.add_option('-t','--test',dest='test',default='',
-        help="test api file with different type. e.g. -t load, -t all")
-    parser.add_option('-p','--parse',dest='parse',default='',
-        help="parse result and fill json. e.g. -p store, -p all")
-
+    parser.add_option('-t', '--test', dest='test', default='', 
+        help="test api file with vector core. e.g. -t load, -t all")
+    parser.add_option('-g', '--golden', dest='golden', default='',
+        help="test api in golden file with scalar core. e.g. -g store, -g all")
+    parser.add_option('-p', '--parser', dest='parser', default='',
+        help="parse the expect result from golden and fill json. e.g. -p store, -p all")
+        
     (options,args)=parser.parse_args()
 
     if options.function: functionHandler(options.function)
     if options.source: sourceHandler(options.source)
-
     if options.test:
         resultAll = {'total': 0, 'pass':0, 'fail':0}
         libPath = os.path.join(ROOT_DIR, 'source', 'lib')
@@ -200,27 +204,31 @@ def main():
         if os.path.exists(resultFile): os.remove(resultFile)
         if options.test == 'all':
             folder = os.listdir(libPath)
-            for apiType in folder:
-                result = TestRunner('test', libPath, apiType)
+            for apiType in folder: 
+                result = testRunner('test', libPath, apiType)
                 writeResult(resultFile, result, apiType)
                 for key,value in result.items():
-                    if key in resultAll:
-                        resultAll[key]+=value
+                    if key in resultAll: resultAll[key]+=value
             resultAll['fail_api_name'] = ''
             writeResult(resultFile, resultAll, "Summary of all")
-        else:
-            result = TestRunner('test', libPath, options.test)
+        else: 
+            result = testRunner('test', libPath, options.test)
             writeResult(resultFile, result, options.test)
     else: pass
+    
+    if options.golden:
+        filePath = os.path.join(ROOT_DIR, 'golden')
+        testRunner(golden, filePath, 'all')
+        pass
 
-    if options.parse:
+    if options.parser:
         resultAll = {'total': 0, 'pass':0, 'fail':0}
         logPath = os.path.join(ROOT_DIR, 'test', 'log')
         resultFile = os.path.join(TEST_PATH,'parse_result.txt')
         if os.path.exists(resultFile): os.remove(resultFile)
-        result = TestRunner('parse', logPath, options.parse)
+        result = testRunner('parse', logPath, options.parse)
         writeResult(resultFile, result, options.parse)
     else: pass
-
-if __name__ == "__main__":
-    main()
+    
+if __name__ == "__main__":  
+    main() 

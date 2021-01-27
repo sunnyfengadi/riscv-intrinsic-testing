@@ -50,7 +50,11 @@ CFLAGS += \
 	-fomit-frame-pointer -fno-strict-aliasing -fno-builtin \
 	-D__gracefulExit -mcmodel=medany -g #-fPIC
 
-CFLAGS += -O3 -mcpu=rugrats
+ifeq ($(findstring golden, $(APP_NAME)),golden)
+	CFLAGS += -O0
+else
+	CFLAGS += -O3 -mcpu=rugrats -mopt=autovec
+endif
 
 #
 # Define all object files.

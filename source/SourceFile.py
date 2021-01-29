@@ -11,11 +11,27 @@ import json
 from optparse import OptionParser
 from subprocess import Popen, PIPE
 from .comFunctions import *
+from .goldenFunctions import *
 
 sys.path.append('..') 
 from scripts.Intrinsic_Type_List import INTRINSIC_TYPE_MAP
 #####################################################################################
 ROOT_DIR=os.path.dirname(os.path.abspath(__file__))
+
+TYPE_DICT= {
+    'Load:'       :'Load',
+    'Store:'      :'store',
+    'IIR:'        :'iir',
+    'Compare:'    :'compare',
+    'Logic:'      :'logic',
+    'Shift:'      :'shift',
+    'Move:'       :'move',
+    'Arithmetic:' :'arithmetic',
+    'Mac:'        :'mac',
+    'Reduction:'  :'reduction',
+    'Permutation:':'permutation',
+    'Conversion:' :'conversion',
+    }
 
 def loadFile(node):
     parameters={}
@@ -52,7 +68,7 @@ def loadFile(node):
         tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][2]
     else: tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1]
         
-    writeFile(apiFile, paraLines + runLines, tailFile)
+    #writeFile(apiFile, paraLines + runLines, tailFile)
 
 def storeFile(node):
     parameters={}
@@ -89,7 +105,7 @@ def storeFile(node):
         tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][2]
     else: tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1]
     
-    writeFile(apiFile, paraLines + runLines, tailFile)
+    #writeFile(apiFile, paraLines + runLines, tailFile)
     
 def iirFile(node):
     parameters={}
@@ -126,7 +142,7 @@ def iirFile(node):
         tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][2]
     else: tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1]
         
-    writeFile(apiFile, paraLines + runLines, tailFile)
+    #writeFile(apiFile, paraLines + runLines, tailFile)
     
 def commonFile(node, apitype):
     parameters={}
@@ -134,6 +150,12 @@ def commonFile(node, apitype):
     apiFile = copyFile('template_head.c', apitype, apiName)
     
     for item in node.items():
+        if item[0] == 'Output_Type':                               # get combo_num, 1-8
+            if len(item[1].split('x'))==3:
+                comboNum = re.sub("\D", "", item[1].split('x')[2])
+            else:
+                comboNum = 1
+            
         if item[0] == 'Intrinsic_Name':                             # get the type bit number 16/32/64 bit
             for i in item[1].split('_'):                            # get the number of element that is 8 or 16 or 32
                 if re.match('[iu][136][624]$',i):
@@ -144,12 +166,10 @@ def commonFile(node, apitype):
                     typeBit = str(512// int(elementNum))
         if item[0].split( '_' )[0] == 'Input':                      # get the list of variables
             parameters[item[0]] = item[1]
-        
-    paraLines = getInputParameters(parameters, elementNum, '1', 'common')
+            
+    goldenLines = getExpResult(node, elementNum, typeBit, apitype)
+    paraLines = getInputParameters(parameters, elementNum, comboNum, 'common')
     runLines = getRunlines(parameters, apiName, 'common' )
-    
-    elementLine = 'int element_num = ' + elementNum + ';'
-    resultLine = node['Output_Type'] + ' result = {0};'
     
     if 'x' in node['Output_Type']: 
         expType = node['Output_Type'].split('x')[0] + '_t'
@@ -157,23 +177,22 @@ def commonFile(node, apitype):
         expType = 'uint'+ typeBit + '_t'
     else: 
         expType = node['Output_Type']
-    if node['Expect_Result']:
-        expectResult = expType + ' exp_result[' + elementNum + '] = ' + str(node['Expect_Result']) + ';'
-    else:
-        expectResult = expType + ' exp_result[' + elementNum + '] = {0};'
-        #print("please add the expect result for %s" %node['Intrinsic_Name'])
-
-    paraLines.extend([elementLine, resultLine, expectResult])
-    writeFile(apiFile, paraLines + runLines, INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1])
+    expectResult = expType + ' exp_result[' + elementNum + '] = {0};'
+    resultLine = node['Output_Type'] + ' result = {0};'
     
+    paraLines.extend([resultLine, expectResult])
+    writeFile(apiFile, goldenLines, paraLines + runLines, INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1])
+
+
 ###########################################################################################
 # usage: python3 
 # python SourceFile.py -d "C:\Analog Devices\Risc-v\source-file" -n "intrinsic_table.json"
 ###########################################################################################
-def sourceHandler(typeList):
+def sourceHandler():
     jsonDir = os.path.join(os.path.abspath(os.path.join(ROOT_DIR, "..")), 'scripts' )
     rootNode={}
     file = os.path.join( jsonDir, 'intrinsic_table.json' )
+    
     with open(file, 'r') as f:
         rootNode = json.loads(f.read())
     for nodes in rootNode:
@@ -183,15 +202,15 @@ def sourceHandler(typeList):
         if 'IIR:' in nodes['Intrinsic_Type']: iirFile(nodes)
             
         #for logic, shift, move, compare that have bool type
-        if 'Compare:' in nodes['Intrinsic_Type']: commonFile(nodes, 'compare')
-        if 'Logic:' in nodes['Intrinsic_Type']: commonFile(nodes, 'logic')
-        if 'Shift:' in nodes['Intrinsic_Type']: commonFile(nodes, 'shift')
-        if 'Move:' in nodes['Intrinsic_Type']: commonFile(nodes, 'move')
+        #if 'Compare:' in nodes['Intrinsic_Type']: commonFile(nodes, 'compare')
+        #if 'Logic:' in nodes['Intrinsic_Type']: commonFile(nodes, 'logic')
+        #if 'Shift:' in nodes['Intrinsic_Type']: commonFile(nodes, 'shift')
+        #if 'Move:' in nodes['Intrinsic_Type']: commonFile(nodes, 'move')
         
         #for arithmetic, mac, reduction, permutation, conversion
-        if 'Arithmetic:' in nodes['Intrinsic_Type']: commonFile(nodes, 'arithmetic')
-        if 'Mac:' in nodes['Intrinsic_Type']: commonFile(nodes, 'mac')
-        if 'Reduction:' in nodes['Intrinsic_Type']: commonFile(nodes, 'reduction')
-        if 'Permutation:' in nodes['Intrinsic_Type']: commonFile(nodes, 'permutation')
-        if 'Conversion:' in nodes['Intrinsic_Type']: commonFile(nodes, 'conversion')
-    
+        if 'Arithmetic:' in nodes['Intrinsic_Type'] and '64' not in nodes['Intrinsic_Name']: commonFile(nodes, 'arithmetic')
+        #if 'Mac:' in nodes['Intrinsic_Type']: commonFile(nodes, 'mac')
+        #if 'Reduction:' in nodes['Intrinsic_Type']: commonFile(nodes, 'reduction')
+        #if 'Permutation:' in nodes['Intrinsic_Type']: commonFile(nodes, 'permutation')
+        #if 'Conversion:' in nodes['Intrinsic_Type']: commonFile(nodes, 'conversion')
+

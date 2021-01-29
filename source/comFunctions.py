@@ -11,9 +11,9 @@ from subprocess import Popen, PIPE
 ##############################################################
 ROOT_DIR=os.path.dirname(os.path.abspath(__file__))
 
-TEMPLATE_EXP = os.path.join( ROOT_DIR, 'expResult' )
 TEMPLATE_PATH = os.path.join( ROOT_DIR, 'template' )
 TARGETFILE_PATH = os.path.join( ROOT_DIR, 'lib' )
+GOLDEN_PATH = os.path.join( ROOT_DIR, 'golden' )
 
 def copyFile( templateFile, apitype, dstName ):
     dst = os.path.join( TARGETFILE_PATH, apitype )
@@ -30,8 +30,26 @@ def copyFile( templateFile, apitype, dstName ):
         
     return dstFile
     
+def writeFile (sourceFile,goldenlines, lines, tailfile):
+    with open(sourceFile, 'a+') as f:
+        for line in goldenlines:
+            if line == '': f.write('\n')
+            else: f.write(line + '\n' )
+            
+        for line in lines:
+            if line == '': f.write('\n')
+            else: f.write( '    ' + line + '\n' )
+    # Write the file tail
+    with open(os.path.join(TEMPLATE_PATH,tailfile),'r') as f:
+        tailLines=f.readlines()
+    with open(sourceFile,'a') as f:
+            for line in tailLines:
+                f.writelines(line)
+    f.close()
+    
 def getInputParameters(inputDict, elementnum, combonum, apitype):
-    inputList = []
+    inputList = ['int i,j;']
+    expInput = []
     
     if apitype=='load' or apitype=='iir':
         totalnum = int(elementnum)* int(combonum)
@@ -51,7 +69,6 @@ def getInputParameters(inputDict, elementnum, combonum, apitype):
             
         if inputDict['Input_1_Type']: 
             inputList.append(inputDict['Input_1_Type'] + ' ' + Input_1_Variable + ' = ' + str(inputDict['Input_1_Value']) + ';')
-            
         if inputDict['Input_2_Type']: 
             inputList.append(value2)
         if inputDict['Input_3_Type']:
@@ -80,25 +97,38 @@ def getInputParameters(inputDict, elementnum, combonum, apitype):
             if inputDict['Input_'+str(i)+'_Type']: 
                 inputList.append(inputDict['Input_'+str(i)+'_Type'] +' '+inputDict['Input_'+ str(i)+'_Variable'].rstrip()+' = '+ str(inputDict['Input_'+str(i)+'_Value']) + ';')
                 
-    return inputList
+                if 'x' in inputDict['Input_'+str(i)+'_Type']: 
+                    inputType = inputDict['Input_'+str(i)+'_Type'].split('x')[0] + '_t'
+                else: inputType = inputDict['Input_'+str(i)+'_Type']
+                
+                if ',' in inputDict['Input_'+str(i)+'_Value']:
+                    expInput.append(inputType +' exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()+'['+ elementnum + ']= '+ str(inputDict['Input_'+str(i)+'_Value']) + ';')
+                else:
+                    expInput.append(inputType +' exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()+' = '+ str(inputDict['Input_'+str(i)+'_Value']) + ';')
+                
+    return inputList + expInput
 
 def getRunlines(inputDict, functionName, apitype):
     variableList = []
     apiInput = ''
+    expInput = ''
     
     for item in inputDict.items():
         if item[0].split( '_' )[2] == 'Variable' and item[1]:
             variableList.append(item[1].strip( '[]' ))  #need remove the '[]' in 'base[]'
-    
     for variable in variableList:
+        expInput += 'exp_' + variable + ','
         if 'imm' == variable: variable = '0'  #now imm is fixed as 0 since Risc-v issue
         apiInput += variable + ','
+    
+    expRun =  functionName + '_golden(' + expInput + 'exp_result);'
+    
     if apitype == 'store':
-        apiTest = functionName + '(' + apiInput.strip( ',' ) + ');'
-        run = [ '', apiTest]
+        apiRun = functionName + '(' + apiInput.strip( ',' ) + ');'
+        run = [ '', expRun, apiRun]
     else:
-        apiTest = 'result = ' + functionName + '(' + apiInput.strip( ',' ) + ');'
-        run = [ '', 'start = rdcycle();', apiTest, 'stop = rdcycle();']
+        apiRun = 'result = ' + functionName + '(' + apiInput.strip( ',' ) + ');'
+        run = [ '', expRun, apiRun]
     
     return run 
     
@@ -119,16 +149,4 @@ def getVwrCsr (combonum,typebit):
     
     return lines 
     
-def writeFile (sourceFile, lines, tailfile):
-    with open(sourceFile, 'a+') as f:
-        for line in lines:
-            if line == '': f.write('\n')
-            else: f.write( '    ' + line + '\n' )
-    # Write the file tail
-    with open(os.path.join(TEMPLATE_PATH,tailfile),'r') as f:
-        tailLines=f.readlines()
-    with open(os.path.join(TARGETFILE_PATH,sourceFile),'a') as f:
-            for line in tailLines:
-                f.writelines(line)
-    f.close()
 

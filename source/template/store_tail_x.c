@@ -1,13 +1,12 @@
-    
-    printf("result={");
-    for(i=0;i<element_num*combo_num;i++) {
-        if(i==element_num*combo_num-1)
-            printf("%d}\n",base[i]);
-        else
-            printf("%d,",base[i]);
-        if(exp_result[i] != base[i]) error = 1;
-    }
 
+    //compare result
+    for(i=0;i<ELE_NUM*COMBO_NUM;i++) {
+        if(exp_base[i] != base[i]) {
+            printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, base[i], i, exp_base[i]);
+            //abort();
+            error = 1;
+        }
+    }
     if(error)
             printf("TEST FAILED!\n");
     else

@@ -47,7 +47,7 @@ def writeFile (sourceFile,goldenlines, lines, tailfile):
                 f.writelines(line)
     f.close()
 
-def getInputParameters(inputDict, elementnum, combonum, apitype):
+def getInputParameters(inputDict, elementnum, combonum):
     inputList = ['int error = 0;']
     expInput = []
     for i in range(1,8):
@@ -142,7 +142,7 @@ def SetMacro(typebit, elenum, combonum, apitype):
     if (combonum != 1):
         lines.append('#define COMBO_NUM ' + str(combonum))
 
-    if apitype == 'load':
+    if apitype == 'load' or apitype == 'store' or apitype == 'iir':
         lines.append('#define GROUP_NUM ' + str(group_num))
         lines.append('#define GROUP_DEPTH ' + str(group_depth))
         lines.append('#define ELE_STRIDE ' + str(element_stride))
@@ -174,36 +174,35 @@ def SetDataInitDefinition():
 def SetResultLine(node,typebit):
     lines = ['']
 
-    lines.append(node['Output_Type'] + ' result = {0};')
     #int16_t exp_result[ELE_NUM] = {0};
     split_output = node['Output_Type'].split('x')
-    if 'bool' in node['Output_Type']: #bool8_t bool8x2_t
-        eleNum = re.sub("\D", "", split_output[0])
-        if (len(split_output) == 1): #bool8_t
-            expResultLine = 'uint'+ typebit + '_t' + ' exp_result['+str(eleNum)+'] = {0};'
-        elif (len(split_output) == 2): #bool8x2_t
-            comboNum = re.sub("\D", "", split_output[1])
-            expResultLine = 'uint'+ typebit + '_t' + ' exp_result['+str(eleNum)+'*'+str(comboNum) +'] = {0};'
-
-    elif 'void' in node['Output_Type']: #void
-        expResultLine = ''
+    if 'void' in node['Output_Type']: pass #void
     else:
-        if (len(split_output) == 1): # int16_t int32_t
-            expResultLine = node['Output_Type'] + ' exp_result;'
-        elif (len(split_output) == 2): # int16x32_t int16x32_t
-            eleNum = re.sub("\D", "", split_output[1])
-            expResultLine = split_output[0] + '_t' + ' exp_result['+str(eleNum)+'] = {0};'
-        elif (len(split_output) == 3): # int16x32x2_t int16x32x3_t
-            eleNum = re.sub("\D", "", split_output[1])
-            comboNum = re.sub("\D", "", split_output[2])
-            expResultLine = split_output[0] + '_t' + ' exp_result['+str(eleNum)+'*'+str(comboNum) +'] = {0};'
+        if 'bool' in node['Output_Type']: #bool8_t bool8x2_t
+            eleNum = re.sub("\D", "", split_output[0])
+            if (len(split_output) == 1): #bool8_t
+                expResultLine = 'uint'+ typebit + '_t' + ' exp_result['+str(eleNum)+'] = {0};'
+            elif (len(split_output) == 2): #bool8x2_t
+                comboNum = re.sub("\D", "", split_output[1])
+                expResultLine = 'uint'+ typebit + '_t' + ' exp_result['+str(eleNum)+'*'+str(comboNum) +'] = {0};'
+        else:
+            if (len(split_output) == 1): # int16_t int32_t
+                expResultLine = node['Output_Type'] + ' exp_result;'
+            elif (len(split_output) == 2): # int16x32_t int16x32_t
+                eleNum = re.sub("\D", "", split_output[1])
+                expResultLine = split_output[0] + '_t' + ' exp_result['+str(eleNum)+'] = {0};'
+            elif (len(split_output) == 3): # int16x32x2_t int16x32x3_t
+                eleNum = re.sub("\D", "", split_output[1])
+                comboNum = re.sub("\D", "", split_output[2])
+                expResultLine = split_output[0] + '_t' + ' exp_result['+str(eleNum)+'*'+str(comboNum) +'] = {0};'
 
-    lines.append(expResultLine)
+        lines.append(node['Output_Type'] + ' result = {0};')
+        lines.append(expResultLine)
+
     return lines
 
-def DataInit(node,inputDict,typebit):
+def DataInit(node,inputDict,typebit,apitype):
     dataInit = ['']
-    # if apitype == 'common':
     for i in range(1,8):
         if inputDict['Input_'+str(i)+'_Type']:
             split_input = inputDict['Input_'+str(i)+'_Type'].split('x')
@@ -223,7 +222,9 @@ def DataInit(node,inputDict,typebit):
                     if 'imm' in inputDict['Input_'+str(i)+'_Variable']:
                         data_init_str = 'imm = exp_imm = 0; // imm and exp_imm do not need to call data_init'
                     elif 'base' in inputDict['Input_'+str(i)+'_Variable']:
-                        data_init_str = 'data_init(base, exp_base'
+                        if apitype == 'store':
+                            data_init_str = '//base here is output, do not need to call data_init'
+                        else: data_init_str = 'data_init(base, exp_base'
                     else:
                         data_init_str = 'data_init_scalar(' + \
                                     inputDict['Input_'+str(i)+'_Variable'] + \

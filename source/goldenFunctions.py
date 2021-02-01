@@ -47,14 +47,13 @@ def arithmetic(node, variable):
             
     return '        exp_result[i] = ' + oper + ';'
 
-def getExpResult(node, elenum, typebit, apitype):
+def SetGoldenFunction(node, elenum, typebit, apitype):
     expLines = []
     variableList = []
     expInput = ''
     
     operator = 'TODO'
-    line1 = ['#define ELE_NUM ' + elenum, ' ', 
-             '#pragma GCC push_options', 
+    line1 = ['#pragma GCC push_options', 
              '#pragma GCC optimize("O0")'
              '__attribute__((noinline, noclone))']
     line3 = ['#pragma GCC pop_options', '', 

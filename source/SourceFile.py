@@ -151,10 +151,14 @@ def commonFile(node, apitype):
     
     for item in node.items():
         if item[0] == 'Output_Type':                               # get combo_num, 1-8
-            if len(item[1].split('x'))==3:
+            if len(item[1].split('x'))== 3:
                 comboNum = re.sub("\D", "", item[1].split('x')[2])
             else:
-                comboNum = 1
+                for i in range(1,8):
+                    if node['Input_'+str(i)+'_Type']:
+                        if len(item[1].split('x'))== 3:
+                            comboNum = re.sub("\D", "", item[1].split('x')[2])
+                        else: comboNum = 1
             
         if item[0] == 'Intrinsic_Name':                             # get the type bit number 16/32/64 bit
             for i in item[1].split('_'):                            # get the number of element that is 8 or 16 or 32
@@ -166,29 +170,23 @@ def commonFile(node, apitype):
                     typeBit = str(512// int(elementNum))
         if item[0].split( '_' )[0] == 'Input':                      # get the list of variables
             parameters[item[0]] = item[1]
-            
-    goldenLines = getExpResult(node, elementNum, typeBit, apitype)
-    paraLines = getInputParameters(parameters, elementNum, comboNum, 'common')
+
+    MacroLines = SetMacro(apitype, elementNum, typeBit, comboNum)
+    DataInitDefinitionLines = SetDataInitDefinition()
+    goldenLines = SetGoldenFunction(node, elementNum, typeBit, apitype)
+    DataInitLines = DataInit(node,parameters,typeBit)
     runLines = getRunlines(parameters, apiName, 'common' )
     
-    if 'x' in node['Output_Type']: 
-        expType = node['Output_Type'].split('x')[0] + '_t'
-    elif 'bool' in node['Output_Type']:
-        expType = 'uint'+ typeBit + '_t'
-    else: 
-        expType = node['Output_Type']
-    expectResult = expType + ' exp_result[' + elementNum + '] = {0};'
-    resultLine = node['Output_Type'] + ' result = {0};'
-    
-    paraLines.extend([resultLine, expectResult])
-    writeFile(apiFile, goldenLines, paraLines + runLines, INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1])
+    goldenLines = MacroLines + DataInitDefinitionLines + goldenLines
+
+    writeFile(apiFile, goldenLines, DataInitLines + runLines, INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1])
 
 
 ###########################################################################################
 # usage: python3 
 # python SourceFile.py -d "C:\Analog Devices\Risc-v\source-file" -n "intrinsic_table.json"
 ###########################################################################################
-def sourceHandler():
+def sourceHandler(typeList):
     jsonDir = os.path.join(os.path.abspath(os.path.join(ROOT_DIR, "..")), 'scripts' )
     rootNode={}
     file = os.path.join( jsonDir, 'intrinsic_table.json' )
@@ -202,15 +200,14 @@ def sourceHandler():
         if 'IIR:' in nodes['Intrinsic_Type']: iirFile(nodes)
             
         #for logic, shift, move, compare that have bool type
-        #if 'Compare:' in nodes['Intrinsic_Type']: commonFile(nodes, 'compare')
-        #if 'Logic:' in nodes['Intrinsic_Type']: commonFile(nodes, 'logic')
-        #if 'Shift:' in nodes['Intrinsic_Type']: commonFile(nodes, 'shift')
-        #if 'Move:' in nodes['Intrinsic_Type']: commonFile(nodes, 'move')
+        if 'Compare:' in nodes['Intrinsic_Type']: commonFile(nodes, 'compare')
+        if 'Logic:' in nodes['Intrinsic_Type']: commonFile(nodes, 'logic')
+        if 'Shift:' in nodes['Intrinsic_Type']: commonFile(nodes, 'shift')
+        if 'Move:' in nodes['Intrinsic_Type']: commonFile(nodes, 'move')
         
         #for arithmetic, mac, reduction, permutation, conversion
-        if 'Arithmetic:' in nodes['Intrinsic_Type'] and '64' not in nodes['Intrinsic_Name']: commonFile(nodes, 'arithmetic')
-        #if 'Mac:' in nodes['Intrinsic_Type']: commonFile(nodes, 'mac')
-        #if 'Reduction:' in nodes['Intrinsic_Type']: commonFile(nodes, 'reduction')
-        #if 'Permutation:' in nodes['Intrinsic_Type']: commonFile(nodes, 'permutation')
-        #if 'Conversion:' in nodes['Intrinsic_Type']: commonFile(nodes, 'conversion')
-
+        if 'Arithmetic:' in nodes['Intrinsic_Type']: commonFile(nodes, 'arithmetic')
+        if 'Mac:' in nodes['Intrinsic_Type']: commonFile(nodes, 'mac')
+        if 'Reduction:' in nodes['Intrinsic_Type']: commonFile(nodes, 'reduction')
+        if 'Permutation:' in nodes['Intrinsic_Type']: commonFile(nodes, 'permutation')
+        if 'Conversion:' in nodes['Intrinsic_Type']: commonFile(nodes, 'conversion')

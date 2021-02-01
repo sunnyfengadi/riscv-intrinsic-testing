@@ -1,17 +1,13 @@
-    
-    printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-    printf("result={");
-    for(i=0;i<combo_num;i++) {
-    printf(".val[%d]={",i);
-        for(j=0;j<element_num;j++) {
-            if(j==element_num-1) printf("%d",result.val[i][j]);
-            else printf("%d,",result.val[i][j]);
 
-            if(exp_result.val[i][j] != result.val[i][j]) error = 1;
+    //Compare Result
+    for(int i = 0; i < COMBO_NUM; i++) {
+        for(int j = 0; j < ELE_NUM; j++) {
+            if(exp_result[i][j] != result.val[i][j]) {
+                printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+                //abort();
+                error = 1;
+            }
         }
-    if (i==combo_num-1) printf("}}\n");
-    else printf("},");
-
     }
 
     if(error)

@@ -75,7 +75,6 @@ def logic(node, variable):
                     oper = variable[0] + '[i]' + operator + variable[1]
                 else:
                     oper = variable[0] + '[i]' + operator + variable[1] + '[i]'
-            
 
     return '        exp_result[i] = ' + oper + ';'
 
@@ -97,8 +96,10 @@ def SetGoldenFunction(node, elenum, typebit, apitype):
             
             if 'x' in node['Input_'+str(i)+'_Type']:
                 inputType = node['Input_'+str(i)+'_Type'].split('x')[0]+'_t'
-            else: inputType = node['Input_'+str(i)+'_Type']
-            expInput+= inputType + ' *' + node['Input_'+str(i)+'_Variable'] + ','
+                expInput+= inputType + ' *' + node['Input_'+str(i)+'_Variable'] + ','
+            else:
+                inputType = node['Input_'+str(i)+'_Type']
+                expInput+= inputType + ' ' + node['Input_'+str(i)+'_Variable'] + ','
 
     if 'x' in node['Output_Type']: expType = node['Output_Type'].split('x')[0] + '_t'
     elif 'bool' in node['Output_Type']: expType = 'uint'+ typebit + '_t'
@@ -112,7 +113,7 @@ def SetGoldenFunction(node, elenum, typebit, apitype):
         operator = logic(node, variableList)
     else:
         pass
-            
+
     line2 = ['void '+ node['Intrinsic_Name'].rstrip() + '_golden(' + expInput + ') {',
              '    for (int i = 0; i < ELE_NUM; i++)',
              operator,

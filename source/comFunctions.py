@@ -158,9 +158,9 @@ def SetDataInitDefinition():
     lines.append(' \
 #define random(threshold) rand()%threshold \n \
 //#define data_init_bool(a, b, n, threshold) \\ \n \
-    //	a = b = 1; \\ \n \
+    //	a = b = 1; \n \
 #define data_init_scalar(a, b, threshold) \\ \n \
-    a = b = random(threshold);\\ \n \
+    a = b = random(threshold); \n \
 #define data_init(a, b, n, threshold) \\ \n \
     for(int i = 0; i < n; i++) { \\ \n \
             a[i] = random(threshold); \\ \n \

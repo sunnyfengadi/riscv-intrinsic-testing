@@ -38,37 +38,31 @@ def loadFile(node):
     apiName = node['Intrinsic_Name'].rstrip()
     comboNum = re.findall(r"\d+\.?\d*", apiName)[0]
     apiFile = copyFile('template_head.c', 'load', apiName)
-    
+
     for item in node.items():
         if item[0] == 'Output_Type':
             typeBit = re.sub("\D", "", item[1].split( 'x' )[0])    # get the type bit number 16/32/64 bit
             elementNum = re.sub("\D", "", item[1].split( 'x' )[1]) # get the number of element that is 16 or 32 
         if item[0].split( '_' )[0] == 'Input':                     # get the list of variables
             parameters[item[0]] = item[1]
-    
+
+    MacroLines = SetMacro(typeBit, elementNum, comboNum, 'load')
+    DataInitDefinitionLines = SetDataInitDefinition()
+    goldenLines = SetGoldenFunction(node, elementNum, typeBit, 'load')
     paraLines = getInputParameters(parameters, elementNum, comboNum, 'load')
-    runLines = getRunlines(parameters, apiName,'load')
+    resultLine = SetResultLine(node,typeBit)
+    DataInitLines = DataInit(node,parameters,typeBit)
+    vwrcsrLines = getVwrCsr()
+    runLines = getRunlines(parameters, apiName, 'load' )
     
-    comboLine = 'int combo_num = ' + comboNum + ';'
-    elementLine = 'int element_num = ' + elementNum + ';'
-    resultLine = node['Output_Type'] + ' result = {0};'
-    if node['Expect_Result']:
-        expectResult = node['Output_Type'].split('x')[0] + '_t exp_result[' + elementNum + ']= ' + str(node['Expect_Result']) + ';'
-    else:
-        expectResult = node['Output_Type'].split('x')[0] + '_t exp_result[' + elementNum + '] = {0};'
-        #print("please add the expect result for %s" %node['Intrinsic_Name'])
-    paraLines.extend([comboLine, elementLine, resultLine, expectResult])
-    
-    elementWidth = 'int element_width = ' + typeBit + '/8;'
-    paraLines.extend([elementWidth, ''])
-    vwrcsrLines = getVwrCsr(int (comboNum), int (typeBit))
-    paraLines.extend(vwrcsrLines)
-    
+    goldenLines = MacroLines + DataInitDefinitionLines + goldenLines
+    paraLines += resultLine + DataInitLines + vwrcsrLines + runLines
+
     if comboNum != '1':
         tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][2]
     else: tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1]
         
-    #writeFile(apiFile, paraLines + runLines, tailFile)
+    writeFile(apiFile, goldenLines, paraLines, tailFile)
 
 def storeFile(node):
     parameters={}
@@ -98,14 +92,14 @@ def storeFile(node):
     
     elementWidth = 'int element_width = ' + typeBit + '/8;'
     paraLines.extend([elementWidth, ''])
-    vwrcsrLines = getVwrCsr(int (comboNum), int (typeBit))
+    vwrcsrLines = getVwrCsr()
     paraLines.extend(vwrcsrLines)
     
     if comboNum != '1':
         tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][2]
     else: tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1]
     
-    #writeFile(apiFile, paraLines + runLines, tailFile)
+    writeFile(apiFile, paraLines + runLines, tailFile)
     
 def iirFile(node):
     parameters={}
@@ -135,7 +129,7 @@ def iirFile(node):
     
     elementWidth = 'int element_width = ' + typeBit + '/8;'
     paraLines.extend([elementWidth, ''])
-    vwrcsrLines = getVwrCsr(int (comboNum), int (typeBit))
+    vwrcsrLines = getVwrCsr()
     paraLines.extend(vwrcsrLines)
     
     if comboNum != '1':
@@ -171,15 +165,18 @@ def commonFile(node, apitype):
         if item[0].split( '_' )[0] == 'Input':                      # get the list of variables
             parameters[item[0]] = item[1]
 
-    MacroLines = SetMacro(apitype, elementNum, typeBit, comboNum)
+    MacroLines = SetMacro(typeBit, elementNum, comboNum, 'common')
     DataInitDefinitionLines = SetDataInitDefinition()
-    goldenLines = SetGoldenFunction(node, elementNum, typeBit, apitype)
+    goldenLines = SetGoldenFunction(node, elementNum, typeBit, 'common')
+    paraLines = getInputParameters(parameters, elementNum, comboNum, 'common')
+    resultLine = SetResultLine(node,typeBit)
     DataInitLines = DataInit(node,parameters,typeBit)
     runLines = getRunlines(parameters, apiName, 'common' )
     
     goldenLines = MacroLines + DataInitDefinitionLines + goldenLines
+    paraLines += resultLine + DataInitLines + runLines
 
-    writeFile(apiFile, goldenLines, DataInitLines + runLines, INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1])
+    writeFile(apiFile, goldenLines, paraLines, INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1])
 
 
 ###########################################################################################
@@ -196,8 +193,8 @@ def sourceHandler(typeList):
     for nodes in rootNode:
         #for apis that have combo num: 1-8, others is 1 
         if 'Load:' in nodes['Intrinsic_Type'] and 'Interleave' not in nodes['Intrinsic_Type']: loadFile(nodes)
-        if 'Store:' in nodes['Intrinsic_Type'] and 'Interleave' not in nodes['Intrinsic_Type']: storeFile(nodes)
-        if 'IIR:' in nodes['Intrinsic_Type']: iirFile(nodes)
+        # if 'Store:' in nodes['Intrinsic_Type'] and 'Interleave' not in nodes['Intrinsic_Type']: storeFile(nodes)
+        # if 'IIR:' in nodes['Intrinsic_Type']: iirFile(nodes)
             
         #for logic, shift, move, compare that have bool type
         if 'Compare:' in nodes['Intrinsic_Type']: commonFile(nodes, 'compare')

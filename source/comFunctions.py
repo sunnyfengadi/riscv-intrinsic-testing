@@ -48,64 +48,48 @@ def writeFile (sourceFile,goldenlines, lines, tailfile):
     f.close()
 
 def getInputParameters(inputDict, elementnum, combonum, apitype):
-    inputList = ['int i,j;']
+    inputList = ['int error = 0;']
     expInput = []
+    for i in range(1,8):
+        if inputDict['Input_'+str(i)+'_Type']:
+            if 'base' in inputDict['Input_'+str(i)+'_Variable']:
+                Input_Variable = inputDict['Input_'+ str(i)+'_Variable'].strip( ']' ) +'ELE_NUM*COMBO_NUM];' #base[ELE_NUM]
+                inputList.append(inputDict['Input_'+str(i)+'_Type'] + ' ' + Input_Variable)
+            else:
+                inputList.append(inputDict['Input_'+str(i)+'_Type'] +\
+                            ' '+ inputDict['Input_'+ str(i)+'_Variable'].rstrip()+';')
 
-    if apitype=='load' or apitype=='iir':
-        totalnum = int(elementnum)* int(combonum)
-        value2 = ''
-        if 'base' in inputDict['Input_1_Variable']:
-            Input_1_Variable = inputDict['Input_1_Variable'].strip( ']' ) + str(totalnum) + ']'
-        else: Input_1_Variable = inputDict['Input_1_Variable'].rstrip()
-            
-        if 'maskoff' in inputDict['Input_2_Variable'] and combonum != '1':
-            valueList = inputDict['Input_2_Type'] + ' ' + inputDict['Input_2_Variable'].rstrip() + ' = ' + '{'
-            for i in range(int(combonum)):
-                value = '.val[' + str(i) + '] = ' + inputDict['Input_2_Value'] + ','
-                valueList += value + '\n\t\t\t'
-            value2 = valueList.rstrip('\n\t\t\t').rstrip(',') + '};'
-        else: 
-            value2 = inputDict['Input_2_Type'] + ' ' + inputDict['Input_2_Variable'].rstrip() + ' = ' +  str(inputDict['Input_2_Value'])+ ';'
-            
-        if inputDict['Input_1_Type']: 
-            inputList.append(inputDict['Input_1_Type'] + ' ' + Input_1_Variable + ' = ' + str(inputDict['Input_1_Value']) + ';')
-            
-        if inputDict['Input_2_Type']: 
-            inputList.append(value2)
-        if inputDict['Input_3_Type']:
-            Input_3_Variable = inputDict['Input_3_Variable'].strip( ']' ) + str(totalnum) + ']'
-            inputList.append(inputDict['Input_3_Type'] + ' ' + Input_3_Variable + ' = ' + str(inputDict['Input_3_Value']) + ';')
-            
-        for i in range(4,8):
-            if inputDict['Input_'+str(i)+'_Type']: 
-                inputList.append(inputDict['Input_'+str(i)+'_Type'] +' '+inputDict['Input_'+ str(i)+'_Variable'].rstrip()+' = '+ str(inputDict['Input_'+str(i)+'_Value']) + ';')
-        
-    if apitype == 'store':
-        if 'base' in inputDict['Input_1_Variable']:Input_1_Variable = inputDict['Input_1_Variable'].strip( ']' ) + str(elementnum) + ']'
-        else:Input_1_Variable = inputDict['Input_1_Variable'].rstrip()
-        if 'base' in inputDict['Input_2_Variable']:Input_2_Variable = inputDict['Input_2_Variable'].strip( ']' ) + str(elementnum) + ']'
-        else:Input_2_Variable = inputDict['Input_2_Variable'].rstrip()
-        
-        if inputDict['Input_1_Type']: inputList.append(inputDict['Input_1_Type'] + ' ' + Input_1_Variable + ' = ' + str(inputDict['Input_1_Value']) + ';')
-        if inputDict['Input_2_Type']: inputList.append(inputDict['Input_2_Type'] + ' ' + Input_2_Variable + ' = ' + str(inputDict['Input_2_Value']) + ';')
-        for i in range(3,8):
-            if inputDict['Input_'+str(i)+'_Type']: 
-                inputList.append(inputDict['Input_'+str(i)+'_Type'] +' '+inputDict['Input_'+ str(i)+'_Variable'].rstrip()+' = '+ str(inputDict['Input_'+str(i)+'_Value']) + ';')
-        
-    if apitype=='common':
-        # common type list: logic, shfit, move, mac, arithmetic, reduction, permutation, conversion, compare
-        for i in range(1,8):
-            if inputDict['Input_'+str(i)+'_Type']: 
-                inputList.append(inputDict['Input_'+str(i)+'_Type'] +' '+inputDict['Input_'+ str(i)+'_Variable'].rstrip()+' = '+ str(inputDict['Input_'+str(i)+'_Value']) + ';')
+            split_input = inputDict['Input_'+str(i)+'_Type'].split('x')
+            if 'bool' in inputDict['Input_'+str(i)+'_Type']: #bool8_t bool8x2_t
+                eleNum = re.sub("\D", "", split_input[0])
+                expInputLine = 'uint64_t exp_'+ inputDict['Input_'+str(i)+'_Variable']
+                if (len(split_input) == 1): #bool8_t
+                    expInputLine += '[' + str(eleNum)+'];'
+                elif (len(split_input) == 2): #bool8x2_t
+                    comboNum = re.sub("\D", "", split_input[1])
+                    expInputLine += '[' + str(eleNum)+'*'+str(comboNum)+'];'
+            else:
+                if (len(split_input) == 1): ## int16_t
+                    typebit = re.sub("\D", "", split_input[0])
+                    inputType = inputDict['Input_'+str(i)+'_Type']
                 
-                if 'x' in inputDict['Input_'+str(i)+'_Type']:
-                    inputType = inputDict['Input_'+str(i)+'_Type'].split('x')[0] + '_t'
-                else: inputType = inputDict['Input_'+str(i)+'_Type']
+                    if 'base' in inputDict['Input_'+str(i)+'_Variable']:
+                        Input_Variable = inputDict['Input_'+ str(i)+'_Variable'].strip( ']' ) +'ELE_NUM*COMBO_NUM];' #base[ELE_NUM]
+                        expInputLine = inputType +' exp_'+ Input_Variable
+                    else:
+                        expInputLine = inputType +' exp_'+ inputDict['Input_'+ str(i)+'_Variable'].rstrip()+';'
 
-                if ',' in inputDict['Input_'+str(i)+'_Value']:
-                    expInput.append(inputType +' exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()+'['+ elementnum + ']= '+ str(inputDict['Input_'+str(i)+'_Value']) + ';')
                 else:
-                    expInput.append(inputType +' exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()+' = '+ str(inputDict['Input_'+str(i)+'_Value']) + ';')
+                    typebit = re.sub("\D", "", split_input[0])
+                    eleNum = re.sub("\D", "", split_input[1])
+                    inputType = split_input[0] + '_t'
+                    expInputLine = inputType +' exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()
+                    if (len(split_input) == 2): # int16x32_t int16x32_t
+                        expInputLine += '[' + str(eleNum)+'];'
+                    elif(len(split_input) == 3): # int16x32x2_t int16x32x2_t
+                        comboNum = re.sub("\D", "", split_input[2])
+                        expInputLine += '[' + str(eleNum)+'*'+str(comboNum) +'];'
+            expInput.append(expInputLine)
 
     return inputList + expInput
 
@@ -133,34 +117,38 @@ def getRunlines(inputDict, functionName, apitype):
     
     return expRun + apiRun
     
-def getVwrCsr (combonum,typebit):
-    lines = []
-    
-    element_width = typebit//8
-    element_stride = combonum * element_width
-    combo_stride = element_width
-    group_stride = element_stride *2
-    group_depth = element_width *4
-    
-    lines.append('vwr_csr(' + 'RUGRATS_VMELEMENTSTRIDE,' + str(element_stride) + ');') #element_stride = combo_num * element_width
-    lines.append('vwr_csr(' + 'RUGRATS_VMCOMBOSTRIDE,' + str(combo_stride) + ');')     #combo_stride = element_width
-    lines.append('vwr_csr(' + 'RUGRATS_VMGROUPSTRIDE,' + str(group_stride) + ');')     #group_stride = element_stride *N( N = 1,2,3... && N <= element_num_per_group), N=2
-    lines.append('vwr_csr(' + 'RUGRATS_VMGROUPNUMBER,' + str(4) + ');')
-    lines.append('vwr_csr(' + 'RUGRATS_VMGROUPDEPTH,' + str(group_depth) + ');')       #group_depth = element_width *element_num_per_group (element_num_per_group = 4)
+def getVwrCsr ():
+    lines = ['']
+
+    lines.append('vwr_csr(RUGRATS_VMELEMENTSTRIDE, ELE_STRIDE);') #element_stride = combo_num * element_width
+    lines.append('vwr_csr(RUGRATS_VMCOMBOSTRIDE, COMBO_STRIDE);')     #combo_stride = element_width
+    lines.append('vwr_csr(RUGRATS_VMGROUPSTRIDE, GROUP_STRIDE);')     #group_stride = element_stride *N( N = 1,2,3... && N <= element_num_per_group), N=2
+    lines.append('vwr_csr(RUGRATS_VMGROUPNUMBER, GROUP_NUM);')
+    lines.append('vwr_csr(RUGRATS_VMGROUPDEPTH, GROUP_DEPTH);')       #group_depth = element_width *element_num_per_group (element_num_per_group = 4)
     
     return lines 
 
-def SetMacro(node, elenum, typebit, combonum):
+def SetMacro(typebit, elenum, combonum, apitype):
     lines = []
     #if 'Load:' in node
-    # element_width = typebit/8
-    # element_stride = combonum * element_width
-    # combo_stride = element_width
-    # group_stride = element_stride *2
-    # group_depth = element_width *4
+    element_width = int(typebit)//8
+    element_stride = int(combonum) * element_width
+    combo_stride = element_width
+    group_stride = element_stride *2
+    group_num = 4
+    group_depth = element_width *group_num
+
     lines.append('#define ELE_NUM ' + elenum)
     if (combonum != 1):
         lines.append('#define COMBO_NUM ' + str(combonum))
+
+    if apitype == 'load':
+        lines.append('#define GROUP_NUM ' + str(group_num))
+        lines.append('#define GROUP_DEPTH ' + str(group_depth))
+        lines.append('#define ELE_STRIDE ' + str(element_stride))
+        lines.append('#define COMBO_STRIDE ' + str(combo_stride))
+        lines.append('#define GROUP_STRIDE ' + str(group_stride))
+
     lines.append('')
 
     return lines
@@ -183,62 +171,10 @@ def SetDataInitDefinition():
 
     return lines
 
-def DataInit(node,inputDict,typebit):
-    inputList = ['int error = 0;']
-    expInputList = ['']
-    dataInit = ['']
+def SetResultLine(node,typebit):
+    lines = ['']
 
-    for i in range(1,8):
-        if inputDict['Input_'+str(i)+'_Type']:
-            inputList.append(inputDict['Input_'+str(i)+'_Type'] +\
-                    ' '+inputDict['Input_'+ str(i)+'_Variable'].rstrip()+';')
-
-            split_input = inputDict['Input_'+str(i)+'_Type'].split('x')
-            if 'bool' in inputDict['Input_'+str(i)+'_Type']: #bool8_t bool8x2_t
-                eleNum = re.sub("\D", "", split_input[0])
-                expInputLine = 'uint64_t exp_'+ inputDict['Input_'+str(i)+'_Variable']
-                data_init_str = 'data_init_bool('+ \
-                                inputDict['Input_'+str(i)+'_Variable']+ \
-                                ', exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()
-                if (len(split_input) == 1): #bool8_t
-                    expInputLine += '[' + str(eleNum)+'];'
-                    data_init_str += ', '+ str(eleNum)
-                elif (len(split_input) == 2): #bool8x2_t
-                    comboNum = re.sub("\D", "", split_input[1])
-                    expInputLine += '[' + str(eleNum)+'*'+str(comboNum)+'];'
-                    data_init_str += ', '+ str(eleNum)+'*'+str(comboNum)
-            else:
-                if (len(split_input) == 1): ## int16_t
-                    typebit = re.sub("\D", "", split_input[0])
-                    inputType = inputDict['Input_'+str(i)+'_Type']
-                    expInputLine = inputType +' exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()+';'
-                    data_init_str = 'data_init_scalar(' + \
-                                    inputDict['Input_'+str(i)+'_Variable']+ \
-                                    ', exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()    
-                else:
-                    typebit = re.sub("\D", "", split_input[0])
-                    eleNum = re.sub("\D", "", split_input[1])
-                    inputType = split_input[0] + '_t'
-                    expInputLine = inputType +' exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()
-                    data_init_str = 'data_init(' + \
-                                    inputDict['Input_'+str(i)+'_Variable']+ \
-                                    ', exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()
-                    if (len(split_input) == 2): # int16x32_t int16x32_t
-                        expInputLine += '[' + str(eleNum)+'];'
-                        data_init_str += ', '+ str(eleNum)
-                    elif(len(split_input) == 3): # int16x32x2_t int16x32x2_t
-                        comboNum = re.sub("\D", "", split_input[2])
-                        expInputLine += '[' + str(eleNum)+'*'+str(comboNum) +'];'
-                        data_init_str += ', '+ str(eleNum)+'*'+str(comboNum)
-
-            if (typebit == '8'):  data_init_str += ', 0xff);'
-            elif (typebit == '16'):  data_init_str += ', 0xffff);'
-            elif (typebit == '32'):  data_init_str += ', 0xffffffff);'
-            elif (typebit == '64'):  data_init_str += ', 0xffffffffffffffff);'
-
-            expInputList.append(expInputLine)
-            dataInit.append(data_init_str)
-
+    lines.append(node['Output_Type'] + ' result = {0};')
     #int16_t exp_result[ELE_NUM] = {0};
     split_output = node['Output_Type'].split('x')
     if 'bool' in node['Output_Type']: #bool8_t bool8x2_t
@@ -262,7 +198,53 @@ def DataInit(node,inputDict,typebit):
             comboNum = re.sub("\D", "", split_output[2])
             expResultLine = split_output[0] + '_t' + ' exp_result['+str(eleNum)+'*'+str(comboNum) +'] = {0};'
 
-    inputList.append(node['Output_Type'] + ' result = {0};')
-    expInputList.append(expResultLine)
+    lines.append(expResultLine)
+    return lines
 
-    return inputList + expInputList + dataInit
+def DataInit(node,inputDict,typebit):
+    dataInit = ['']
+    # if apitype == 'common':
+    for i in range(1,8):
+        if inputDict['Input_'+str(i)+'_Type']:
+            split_input = inputDict['Input_'+str(i)+'_Type'].split('x')
+            if 'bool' in inputDict['Input_'+str(i)+'_Type']: #bool8_t bool8x2_t
+                eleNum = re.sub("\D", "", split_input[0])
+                data_init_str = 'data_init_bool('+ \
+                                inputDict['Input_'+str(i)+'_Variable']+ \
+                                ', exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()
+                if (len(split_input) == 1): #bool8_t
+                    data_init_str += ', '+ str(eleNum)
+                elif (len(split_input) == 2): #bool8x2_t
+                    comboNum = re.sub("\D", "", split_input[1])
+                    data_init_str += ', '+ str(eleNum)+'*'+str(comboNum)
+            else:
+                if (len(split_input) == 1):
+                    typebit = re.sub("\D", "", split_input[0])
+                    if 'imm' in inputDict['Input_'+str(i)+'_Variable']:
+                        data_init_str = 'imm = exp_imm = 0; // imm and exp_imm do not need to call data_init'
+                    elif 'base' in inputDict['Input_'+str(i)+'_Variable']:
+                        data_init_str = 'data_init(base, exp_base'
+                    else:
+                        data_init_str = 'data_init_scalar(' + \
+                                    inputDict['Input_'+str(i)+'_Variable'] + \
+                                    ', exp_'+ inputDict['Input_'+ str(i)+'_Variable'].rstrip()
+                else:
+                    typebit = re.sub("\D", "", split_input[0])
+                    eleNum = re.sub("\D", "", split_input[1])
+                    data_init_str = 'data_init(' + \
+                                    inputDict['Input_'+str(i)+'_Variable']+ \
+                                    ', exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()
+                    if (len(split_input) == 2): # int16x32_t int16x32_t
+                        data_init_str += ', '+ str(eleNum)
+                    elif(len(split_input) == 3): # int16x32x2_t int16x32x2_t
+                        comboNum = re.sub("\D", "", split_input[2])
+                        data_init_str += ', '+ str(eleNum)+'*'+str(comboNum)
+
+            if (typebit == '8'):  data_init_str += ', 0xff);'
+            elif (typebit == '16'):  data_init_str += ', 0xffff);'
+            elif (typebit == '32'):  data_init_str += ', 0xffffffff);'
+            elif (typebit == '64'):  data_init_str += ', 0xffffffffffffffff);'
+
+            dataInit.append(data_init_str)
+
+    return dataInit

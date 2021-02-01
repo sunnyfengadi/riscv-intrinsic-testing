@@ -188,12 +188,12 @@ def sourceHandler(typeList):
             
         #for logic, shift, move, compare that have bool type
         if 'Compare:' in nodes['Intrinsic_Type']: commonFile(nodes, 'compare')
-        if 'Logic:' in nodes['Intrinsic_Type']: commonFile(nodes, 'logic')
+        if 'Logic:' in nodes['Intrinsic_Type'] and 'bool' not in node['Output_Type']: commonFile(nodes, 'logic')
         if 'Shift:' in nodes['Intrinsic_Type']: commonFile(nodes, 'shift')
         if 'Move:' in nodes['Intrinsic_Type']: commonFile(nodes, 'move')
         
         #for arithmetic, mac, reduction, permutation, conversion
-        if 'Arithmetic:' in nodes['Intrinsic_Type']: commonFile(nodes, 'arithmetic')
+        if 'Arithmetic:' in nodes['Intrinsic_Type'] and '64' not in node['Intrinsic_Name']: commonFile(nodes, 'arithmetic')
         if 'Mac:' in nodes['Intrinsic_Type']: commonFile(nodes, 'mac')
         if 'Reduction:' in nodes['Intrinsic_Type']: commonFile(nodes, 'reduction')
         if 'Permutation:' in nodes['Intrinsic_Type']: commonFile(nodes, 'permutation')

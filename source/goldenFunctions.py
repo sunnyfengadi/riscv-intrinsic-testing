@@ -11,50 +11,81 @@ ROOT_DIR=os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_PATH = os.path.join( ROOT_DIR, 'template' )
 GOLDEN_PATH = os.path.join( ROOT_DIR, 'golden' )
 
-OPERATOR_1= {'-' : 'neg',
+OPERATOR_1= {# for arithmetic
+             '-' : 'vs?neg_v_[iu][13][62]_?m?$',
+             # for logic
+             '!' : 'vnot_v[vx]?_[iu][13][62]_?m?$',
 }
 
-OPERATOR_2= {'+': 'add',
-             '-': 'sub',
-             '*': 'mul',
+OPERATOR_2= {# for arithmetic
+             '+': 'vw?s?add_[vw][vxw]_[iu][136][624]_?m?$',
+             '-': 'vw?s?sub_[vw][vxw]_[iu][136][624]_?m?$',
+             '*': 'vw?s?mulh?q?_v[vx]_[iu][13][62]_?m?$',
+             '<': 'vmin_v[vx]_[iu][13][62]_?m?$',
+             '>': 'vmax_v[vx]_[iu][13][62]_?m?$',
+             # for logic
+             '&': 'vand_v[vx]_[iu][13][62]_?m?$',
+             '|': 'vor_v[vx]_[iu][13][62]_?m?$',
+             '^': 'vxor_v[vx]_[iu][13][62]_?m?$',
 }
 OPERATOR_3= {}
 
 def arithmetic(node, variable):
     oper = 'TODO'
-    if '_m' in node['Intrinsic_Name']: 
-        return oper
-    else:
-        if len(variable)==1:
-            for item in OPERATOR_2.items():
-                if item[1] in node['Intrinsic_Name']:
-                    operator  = item[0]
-                    oper = operator + variable[1] + '[i]'
-                
-        if len(variable)==2:
-            for item in OPERATOR_2.items():
-                if item[1] in node['Intrinsic_Name']:
-                    operator  = item[0]
-                    print(operator)
-                else:
-                    operator = 'Todo'
-                    
-            if 'vx' in node['Intrinsic_Name'].split('_')[1]:
-                print("sssssssssssssssssssssssssss")
-                oper = variable[0] + '[i]' + operator + variable[1]
-            else:
-                oper = variable[0] + '[i]' + operator + variable[1] + '[i]'
+    if len(variable)==1:
+        for item in OPERATOR_1.items():
+            ret = re.match(item[1],node['Intrinsic_Name'])
+            if ret:
+                operator = item[0]
+                oper = operator + variable[0] + '[i]'
             
+    if len(variable)==2:
+        for item in OPERATOR_2.items():
+            ret = re.match(item[1],node['Intrinsic_Name'])
+            if ret:
+                operator = item[0]
+                if 'vx' in node['Intrinsic_Name'].split('_')[1]:
+                    oper = variable[0] + '[i]' + operator + variable[1]
+                else:
+                    oper = variable[0] + '[i]' + operator + variable[1] + '[i]'
+            
+                if 'max' in node['Intrinsic_Name'] or 'min' in node['Intrinsic_Name']:
+                    if 'vx' in node['Intrinsic_Name'].split('_')[1]:
+                        oper = variable[0] + '[i]' + operator + variable[1] + ' ? a[i]:b'
+                    else:
+                        oper = variable[0] + '[i]' + operator + variable[1] + '[i]' + ' ? a[i]:b[i]'
+
+    return '        exp_result[i] = ' + oper + ';'
+
+def logic(node, variable):
+    oper = 'TODO'
+    if len(variable)==1:
+        for item in OPERATOR_1.items():
+            ret = re.match(item[1],node['Intrinsic_Name'])
+            if ret:
+                operator = item[0]
+                oper = operator + variable[0] + '[i]'
+            
+    if len(variable)==2:
+        for item in OPERATOR_2.items():
+            ret = re.match(item[1],node['Intrinsic_Name'])
+            if ret:
+                operator = item[0]
+                if 'vx' in node['Intrinsic_Name'].split('_')[1]:
+                    oper = variable[0] + '[i]' + operator + variable[1]
+                else:
+                    oper = variable[0] + '[i]' + operator + variable[1] + '[i]'
+            
+
     return '        exp_result[i] = ' + oper + ';'
 
 def SetGoldenFunction(node, elenum, typebit, apitype):
-    expLines = []
     variableList = []
     expInput = ''
     
     operator = 'TODO'
     line1 = ['#pragma GCC push_options', 
-             '#pragma GCC optimize("O0")'
+             '#pragma GCC optimize("O0")',
              '__attribute__((noinline, noclone))']
     line3 = ['#pragma GCC pop_options', '', 
              'int main(void) {' ]
@@ -77,6 +108,8 @@ def SetGoldenFunction(node, elenum, typebit, apitype):
     # get exp operator 
     if apitype == 'arithmetic':
         operator = arithmetic(node, variableList)
+    if apitype == 'logic':
+        operator = logic(node, variableList)
     else:
         pass
             
@@ -85,5 +118,6 @@ def SetGoldenFunction(node, elenum, typebit, apitype):
              operator,
              '}']
             
-    expLines = line1+line2+line3
-    return expLines 
+    return line1+line2+line3
+    
+    

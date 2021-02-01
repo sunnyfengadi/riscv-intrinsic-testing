@@ -245,6 +245,7 @@ def DataInit(node,inputDict,typebit,apitype):
             elif (typebit == '16'):  data_init_str += ', 0xffff);'
             elif (typebit == '32'):  data_init_str += ', 0xffffffff);'
             elif (typebit == '64'):  data_init_str += ', 0xffffffffffffffff);'
+            else: data_init_str += ');'
 
             dataInit.append(data_init_str)
 

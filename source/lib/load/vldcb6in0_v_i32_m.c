@@ -1,49 +1,82 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
 #include "rivai_rugrats.h"
-#include "rivai_bare.h"
+extern void abort(void);
+#define ELE_NUM 16
+#define COMBO_NUM 6
+#define ELE_WIDTH 4
+#define GROUP_NUM 4
+#define GROUP_DEPTH 16
+#define ELE_STRIDE 24
+#define COMBO_STRIDE 4
+#define GROUP_STRIDE 48
 
-int main() {
-    unsigned long start = 0, stop = 0;
-    int i,j;
+ #define random(threshold) rand()%threshold 
+ //#define data_init_bool(a, b, n, threshold) \ 
+     //	a = b = 1; 
+ #define data_init_scalar(a, b, threshold) \ 
+     a = b = random(threshold); 
+ #define data_init(a, b, n, threshold) \ 
+     for(int i = 0; i < n; i++) { \ 
+             a[i] = random(threshold); \ 
+             b[i] = a[i]; \ 
+         }
+
+#pragma GCC push_options
+#pragma GCC optimize("O0")
+__attribute__((noinline, noclone))
+void vldcb6in0_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+     for(int i=0; i<COMBO_NUM; i++){
+         for(int j=0; j<GROUP_NUM; j++){
+             for(int k=0; k<GROUP_DEPTH/ELE_WIDTH; k++){
+                 exp_result[i][j*GROUP_DEPTH/ELE_WIDTH+k] = base[i*COMBO_STRIDE/ELE_WIDTH+ j*GROUP_STRIDE/ELE_WIDTH + k*ELE_STRIDE/ELE_WIDTH];
+             }
+         }
+     }
+}
+#pragma GCC pop_options
+
+int main(void) {
     int error = 0;
+    bool16_t mask;
+    int32x16x6_t maskoff;
+    int32_t base[ELE_NUM*COMBO_NUM];
+    uint32_t imm;
+    uint64_t exp_mask[16];
+    int32_t exp_maskoff[16*6];
+    int32_t exp_base[ELE_NUM*COMBO_NUM];
+    uint32_t exp_imm;
 
-    bool16_t mask = {1,1,0,1,0,0,1,1};
-    int32x16x6_t maskoff = {.val[0] = {11,22,33,44,55,66,77,88},
-			.val[1] = {11,22,33,44,55,66,77,88},
-			.val[2] = {11,22,33,44,55,66,77,88},
-			.val[3] = {11,22,33,44,55,66,77,88},
-			.val[4] = {11,22,33,44,55,66,77,88},
-			.val[5] = {11,22,33,44,55,66,77,88}};
-    int32_t base[96] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96};
-    uint32_t imm = 0;
-    int combo_num = 6;
-    int element_num = 16;
     int32x16x6_t result = {0};
-    int32x16x6_t exp_result = {0};
-    int element_width = 32/8;
+    int32_t exp_result[16*6] = {0};
 
-    vwr_csr(RUGRATS_VMELEMENTSTRIDE,24);
-    vwr_csr(RUGRATS_VMCOMBOSTRIDE,4);
-    vwr_csr(RUGRATS_VMGROUPSTRIDE,48);
-    vwr_csr(RUGRATS_VMGROUPNUMBER,4);
-    vwr_csr(RUGRATS_VMGROUPDEPTH,16);
+    data_init_bool(mask, exp_mask, 16, 0xffffffff);
+    data_init(maskoff, exp_maskoff, 16*6, 0xffffffff);
+    data_init(base, exp_base, ELE_NUM*COMBO_NUM, 0xffffffff);
+    imm = exp_imm = 8; // imm and exp_imm do not need to call data_init, 0xffffffff);
 
-    start = cycles();
-    result = vldcb6in0_v_i32_m(mask,maskoff,base,0);
-    stop = cycles();
-    
-    printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-    printf("result={");
-    for(i=0;i<combo_num;i++) {
-    printf(".val[%d]={",i);
-        for(j=0;j<element_num;j++) {
-            if(j==element_num-1) printf("%d",result.val[i][j]);
-            else printf("%d,",result.val[i][j]);
+    vwr_csr(RUGRATS_VMELEMENTSTRIDE, ELE_STRIDE);
+    vwr_csr(RUGRATS_VMCOMBOSTRIDE, COMBO_STRIDE);
+    vwr_csr(RUGRATS_VMGROUPSTRIDE, GROUP_STRIDE);
+    vwr_csr(RUGRATS_VMGROUPNUMBER, GROUP_NUM);
+    vwr_csr(RUGRATS_VMGROUPDEPTH, GROUP_DEPTH);
 
-            if(exp_result.val[i][j] != result.val[i][j]) error = 1;
+    //Get golden result
+    vldcb6in0_v_i32_m_golden(exp_mask,exp_maskoff,exp_base,exp_imm,exp_result);
+
+    //Get Intrinsic result
+    result = vldcb6in0_v_i32_m(mask,maskoff,base,8);
+
+    //Compare Result
+    for(int i = 0; i < COMBO_NUM; i++) {
+        for(int j = 0; j < ELE_NUM; j++) {
+            if(exp_result[i*ELE_NUM+j] != result.val[i][j]) {
+                printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
+                //abort();
+                error = 1;
+            }
         }
-    if (i==combo_num-1) printf("}}\n");
-    else printf("},");
-
     }
 
     if(error)

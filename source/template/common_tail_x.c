@@ -2,8 +2,8 @@
     //Compare Result
     for(int i = 0; i < COMBO_NUM; i++) {
         for(int j = 0; j < ELE_NUM; j++) {
-            if(exp_result[i][j] != result.val[i][j]) {
-                printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+            if(exp_result[i*ELE_NUM+j] != result.val[i][j]) {
+                printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
                 //abort();
                 error = 1;
             }

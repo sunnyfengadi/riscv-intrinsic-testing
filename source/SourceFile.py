@@ -48,7 +48,7 @@ def loadFile(node):
 
     MacroLines = SetMacro(typeBit, elementNum, comboNum, 'load')
     DataInitDefinitionLines = SetDataInitDefinition()
-    goldenLines = SetGoldenFunction(node, elementNum, typeBit, 'load')
+    goldenLines = SetLoadGoldenFunction(node, elementNum, typeBit)
     paraLines = getInputParameters(parameters, elementNum, comboNum)
     resultLine = SetResultLine(node,typeBit)
     DataInitLines = DataInit(node,parameters,typeBit, 'load')

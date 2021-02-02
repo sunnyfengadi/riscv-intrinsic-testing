@@ -151,6 +151,58 @@ def move(node, variable):
 
     return '        exp_result[i] = ' + oper + ';'
 
+def load(node, variable):
+    oper = ' \
+    for(int i=0; i<COMBO_NUM; i++){\n \
+        for(int j=0; j<GROUP_NUM; j++){\n \
+            for(int k=0; k<GROUP_DEPTH/ELE_WIDTH; k++){\n \
+                exp_result[i][j*GROUP_DEPTH/ELE_WIDTH+k] = base[i*COMBO_STRIDE/ELE_WIDTH+ j*GROUP_STRIDE/ELE_WIDTH + k*ELE_STRIDE/ELE_WIDTH];\n \
+            }\n \
+        }\n \
+    }'
+    return oper
+
+def SetLoadGoldenFunction(node, elenum, typebit):
+    variableList = []
+    expInput = ''
+
+    operator = 'Operator Line --- TODO'
+    line1 = ['#pragma GCC push_options',
+             '#pragma GCC optimize("O0")',
+             '__attribute__((noinline, noclone))']
+    line3 = ['#pragma GCC pop_options', '',
+             'int main(void) {' ]
+
+    # get exp input list
+    for i in range(1,8):
+        if node['Input_'+str(i)+'_Type'] and 'accum' not in node['Input_'+str(i)+'_Variable']:
+            split_input = node['Input_'+str(i)+'_Type'].split('x')
+            if (len(split_input) == 1): ## int16_t bool8_t
+                inputType = node['Input_'+str(i)+'_Type']
+                if 'base' in node['Input_'+str(i)+'_Variable']:
+                    variableList.append('base')
+                    expInput+= inputType + ' *base,'
+                else:
+                    variableList.append(node['Input_'+str(i)+'_Variable'])
+                    expInput+= inputType + ' *' + node['Input_'+str(i)+'_Variable'] + ','
+            else: ## int16x32_t bool8x2_t
+                inputType = split_input[0]+'_t'
+                expInput+= inputType + ' ' + node['Input_'+str(i)+'_Variable'] + ','
+
+    split_input = node['Output_Type'].split('x')
+    expType = split_input[0] + '_t'
+    if (len(split_input) == 2): #int16x32_t
+        expInput += expType + ' *exp_result'
+    elif (len(split_input) == 3): #int16x32x3_t
+        expInput += expType + ' exp_result[][ELE_NUM]'
+
+    operator = load(node, variableList)
+    line2 = ['void '+ node['Intrinsic_Name'].rstrip() + '_golden(' + expInput + ') {',
+            operator,
+            '}']
+
+    return line1+line2+line3
+
 def SetGoldenFunction(node, elenum, typebit, apitype):
     variableList = []
     expInput = ''
@@ -178,7 +230,7 @@ def SetGoldenFunction(node, elenum, typebit, apitype):
     elif 'bool' in node['Output_Type']: expType = 'uint'+ typebit + '_t'
     else: expType = node['Output_Type']
     expInput += expType + ' *exp_result'
-    
+
     # get exp operator 
     if apitype == 'arithmetic':
         operator = arithmetic(node, variableList)
@@ -192,14 +244,13 @@ def SetGoldenFunction(node, elenum, typebit, apitype):
         operator = compare(node, variableList)
     if apitype == 'move':
         operator = move(node, variableList)
-        
     else:
         pass
-            
+                
     line2 = ['void '+ node['Intrinsic_Name'].rstrip() + '_golden(' + expInput + ') {',
-             '    for (int i = 0; i < ELE_NUM; i++)',
-             operator,
-             '}']
+            '    for (int i = 0; i < ELE_NUM; i++)',
+            operator,
+            '}']
             
     return line1+line2+line3
     

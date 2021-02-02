@@ -147,6 +147,7 @@ def SetMacro(typebit, elenum, combonum, apitype):
         lines.append('#define COMBO_NUM ' + str(combonum))
 
     if apitype == 'load' or apitype == 'store' or apitype == 'iir':
+        lines.append('#define ELE_WIDTH ' + str(element_width))
         lines.append('#define GROUP_NUM ' + str(group_num))
         lines.append('#define GROUP_DEPTH ' + str(group_depth))
         lines.append('#define ELE_STRIDE ' + str(element_stride))
@@ -231,7 +232,7 @@ def DataInit(node,inputDict,typebit,apitype):
                     elif 'base' in inputDict['Input_'+str(i)+'_Variable']:
                         if apitype == 'store':
                             data_init_str = '//base here is output, do not need to call data_init'
-                        else: data_init_str = 'data_init(base, exp_base'
+                        else: data_init_str = 'data_init(base, exp_base, ELE_NUM*COMBO_NUM'
                     else:
                         ret = re.match('vmv_x_v_[iu][13][62]_?m?',node['Intrinsic_Name'])
                         if ret:

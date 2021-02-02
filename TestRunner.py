@@ -46,10 +46,18 @@ def writeResult(file, result, apitype):
         f.write("Test API=%s" %apitype + '\n')
         f.write('-'*20 + '\n')
         f.write("Total test api: %d" %result['total'] +'\n')
-        f.write("Pass number: %d" %result['pass'] +'\n')
-        f.write("Fail number: %d" %result['fail'] +'\n')
-        if result['fail_api_name']:
-            f.write("Fail API name: %s" %result['fail_api_name'] +'\n') 
+        f.write("Test Pass number: %d" %result['test_passed'] +'\n')
+        f.write("Test Fail number: %d" %result['test_failed'] +'\n')
+        f.write("Build Pass number: %d" %result['build_passed'] +'\n')
+        f.write("Build Fail number: %d" %result['build_failed'] +'\n')
+        if result['test_pass_api_name']:
+            f.write("Test Passed API name: %s" %result['test_pass_api_name'] +'\n')
+        if result['test_fail_api_name']:
+            f.write("Test Failed API name: %s" %result['test_fail_api_name'] +'\n')
+        if result['build_pass_api_name']:
+            f.write("Build Passed API name: %s" %result['build_pass_api_name'] +'\n')
+        if result['build_fail_api_name']:
+            f.write("Build Failed API name: %s" %result['build_fail_api_name'] +'\n')
         f.write('\n')
     f.close()
         
@@ -69,20 +77,22 @@ def runTest(apitype, apiname):
     # run source and make
     os.system("sh scripts/env.sh")
     p = EasyProcess(['make', 'app='+apiname]).call(timeout=10)
-    
+
+    stdout=p.stderr+'\n'+ '='*70 + '\n' +p.stdout
+    f= open(testLog, 'w')
+    f.write(stdout)
+    f.close()
     if 'PASSED' in p.stderr: 
         if os.path.exists(os.path.join(BIN_PATH, apiname +'.elf')):
             copyAction(BIN_PATH, os.path.join( ELF_PATH, apitype), apiname +'.elf')
-        if 'result={' in p.stdout:
-            testResult = 'test pass'
-            stdout=p.stderr+'\n'+ '='*70 + '\n' +p.stdout
-            f= open(testLog, 'w')
-            f.write(stdout)
-            f.close()
+        if 'TEST PASSED!' in p.stdout:
+            testResult = 'test_passed'
+        elif 'TEST FAILED!' in p.stdout:
+            testResult = 'test_failed'
         else:
-            testResult = 'build pass'
+            testResult = 'build_passed'
     else:
-        testResult = 'build fail'
+        testResult = 'build_failed'
     
     return testResult
 
@@ -99,9 +109,14 @@ def getResult(file):
            
 def testRunner(type, path, apitype):
     totalNum = 0
-    passNum = 0
-    failNum = 0
-    failApi = []
+    testpassNum = 0
+    testfailNum = 0
+    buildpassNum = 0
+    buildfailNum = 0
+    testpassApi = []
+    testfailApi = []
+    buildpassApi = []
+    buildfailApi = []
     subResult = {}
     # run shell scripts to get the test logs
     if type == 'test':
@@ -111,11 +126,18 @@ def testRunner(type, path, apitype):
             cleanWorkspace(TEST_PATH)
             copyAction(srcDir, TEST_PATH, file)
             result = runTest(apitype, file.split('.')[0])
-            if 'test pass' in result: 
-                passNum += 1
-            else: 
-                failNum += 1
-                failApi.append(file)
+            if 'test_passed' in result:
+                testpassNum += 1
+                testpassApi.append(file)
+            elif 'test_failed' in result:
+                testfailNum += 1
+                testfailApi.append(file)
+            elif 'build_passed' in result:
+                buildpassNum += 1
+                buildpassApi.append(file)
+            else:
+                buildfailNum += 1
+                buildfailApi.append(file)
             os.remove(os.path.join(TEST_PATH, file))
 
     if type == 'golden':
@@ -162,9 +184,15 @@ def testRunner(type, path, apitype):
         csvFile.close()
     
     subResult['total']= totalNum
-    subResult['pass'] = passNum
-    subResult['fail'] = failNum
-    subResult['fail_api_name'] = failApi
+    subResult['test_passed'] = testpassNum
+    subResult['test_failed'] = testfailNum
+    subResult['build_passed'] = buildpassNum
+    subResult['build_failed'] = buildfailNum
+    subResult['test_pass_api_name'] = testpassApi
+    subResult['test_fail_api_name'] = testfailApi
+    subResult['build_pass_api_name'] = buildpassApi
+    subResult['build_fail_api_name'] = buildfailApi
+
     return subResult
     
 ###########################################################################################
@@ -198,7 +226,7 @@ def main():
     if options.function: functionHandler(options.function)
     if options.source: sourceHandler(options.source)
     if options.test:
-        resultAll = {'total': 0, 'pass':0, 'fail':0}
+        resultAll = {'total': 0, 'test_passed':0, 'test_failed':0, 'build_passed':0, 'build_failed':0}
         libPath = os.path.join(ROOT_DIR, 'source', 'lib')
         resultFile = os.path.join(TEST_PATH,'test_result.txt')
         if os.path.exists(resultFile): os.remove(resultFile)
@@ -209,7 +237,10 @@ def main():
                 writeResult(resultFile, result, apiType)
                 for key,value in result.items():
                     if key in resultAll: resultAll[key]+=value
-            resultAll['fail_api_name'] = ''
+            resultAll['test_pass_api_name'] = ''
+            resultAll['test_fail_api_name'] = ''
+            resultAll['build_pass_api_name'] = ''
+            resultAll['build_fail_api_name'] = ''
             writeResult(resultFile, resultAll, "Summary of all")
         else: 
             result = testRunner('test', libPath, options.test)

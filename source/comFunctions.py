@@ -103,7 +103,11 @@ def getRunlines(inputDict, functionName, apitype):
             variableList.append(item[1].strip( '[]' ))  #need remove the '[]' in 'base[]'
     for variable in variableList:
         expInput += 'exp_' + variable + ','
-        if 'imm' == variable: variable = '0'  #now imm is fixed as 0 since Risc-v issue
+        if 'imm' == variable:
+            if apitype == 'load':
+                variable = '8'  #now imm is fixed as 8 since Risc-v issue
+            else:
+                variable = '0'  #now imm is fixed as 0 since Risc-v issue
         apiInput += variable + ','
 
     expRun = ['','//Get golden result']
@@ -217,19 +221,26 @@ def DataInit(node,inputDict,typebit,apitype):
                     comboNum = re.sub("\D", "", split_input[1])
                     data_init_str += ', '+ str(eleNum)+'*'+str(comboNum)
             else:
-                if (len(split_input) == 1):
+                if (len(split_input) == 1): #int8_t
                     typebit = re.sub("\D", "", split_input[0])
                     if 'imm' in inputDict['Input_'+str(i)+'_Variable']:
-                        data_init_str = 'imm = exp_imm = 0; // imm and exp_imm do not need to call data_init'
+                        if apitype == 'load':
+                            data_init_str = 'imm = exp_imm = 8; // imm and exp_imm do not need to call data_init'
+                        else:
+                            data_init_str = 'imm = exp_imm = 0; // imm and exp_imm do not need to call data_init'
                     elif 'base' in inputDict['Input_'+str(i)+'_Variable']:
                         if apitype == 'store':
                             data_init_str = '//base here is output, do not need to call data_init'
                         else: data_init_str = 'data_init(base, exp_base'
                     else:
-                        data_init_str = 'data_init_scalar(' + \
+                        ret = re.match('vmv_x_v_[iu][13][62]_?m?',node['Intrinsic_Name'])
+                        if ret:
+                            data_init_str = 'b = exp_b = rand()%16 // b and exp_b should be in the range[0,16)'
+                        else:
+                            data_init_str = 'data_init_scalar(' + \
                                     inputDict['Input_'+str(i)+'_Variable'] + \
                                     ', exp_'+ inputDict['Input_'+ str(i)+'_Variable'].rstrip()
-                else:
+                else: #int32x16_t int32x16x2_t
                     typebit = re.sub("\D", "", split_input[0])
                     eleNum = re.sub("\D", "", split_input[1])
                     data_init_str = 'data_init(' + \

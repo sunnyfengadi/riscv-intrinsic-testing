@@ -155,13 +155,13 @@ def commonFile(node, apitype):
         if item[0].split( '_' )[0] == 'Input':                      # get the list of variables
             parameters[item[0]] = item[1]
 
-    MacroLines = SetMacro(typeBit, elementNum, comboNum, 'common')
+    MacroLines = SetMacro(typeBit, elementNum, comboNum, apitype)
     DataInitDefinitionLines = SetDataInitDefinition()
     goldenLines = SetGoldenFunction(node, elementNum, typeBit, apitype)
     paraLines = getInputParameters(parameters, elementNum, comboNum)
     resultLine = SetResultLine(node,typeBit)
-    DataInitLines = DataInit(node,parameters,typeBit, 'common')
-    runLines = getRunlines(parameters, apiName, 'common' )
+    DataInitLines = DataInit(node,parameters,typeBit, apitype)
+    runLines = getRunlines(parameters, apiName, apitype )
     
     goldenLines = MacroLines + DataInitDefinitionLines + goldenLines
     paraLines += resultLine + DataInitLines + runLines
@@ -189,8 +189,8 @@ def sourceHandler(typeList):
         #for logic, shift, move, compare that have bool type
         if 'Compare:' in nodes['Intrinsic_Type']: commonFile(nodes, 'compare')
         if 'Logic:' in nodes['Intrinsic_Type'] and 'bool' not in nodes['Output_Type']: commonFile(nodes, 'logic')
-        if 'Shift:' in nodes['Intrinsic_Type']: commonFile(nodes, 'shift')
-        if 'Move:' in nodes['Intrinsic_Type']: commonFile(nodes, 'move')
+        if 'Shift:' in nodes['Intrinsic_Type'] and 'bool' not in nodes['Output_Type'] and '64' not in nodes['Intrinsic_Name']: commonFile(nodes, 'shift')
+        if 'Move:' in nodes['Intrinsic_Type'] and 'bool' not in nodes['Output_Type']: commonFile(nodes, 'move')
         
         #for arithmetic, mac, reduction, permutation, conversion
         if 'Arithmetic:' in nodes['Intrinsic_Type'] and '64' not in nodes['Intrinsic_Name']: commonFile(nodes, 'arithmetic')

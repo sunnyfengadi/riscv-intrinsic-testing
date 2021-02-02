@@ -21,8 +21,8 @@ OPERATOR_2= {# for arithmetic
              '+': 'vw?s?add_[vw][vxw]_[iu][136][624]_?m?$',
              '-': 'vw?s?sub_[vw][vxw]_[iu][136][624]_?m?$',
              '*': 'vw?s?mulh?q?_v[vx]_[iu][13][62]_?m?$',
-             '<': 'vmin_v[vx]_[iu][13][62]_?m?$',
-             '>': 'vmax_v[vx]_[iu][13][62]_?m?$',
+             'min,<': 'vmin_v[vx]_[iu][13][62]_?m?$',
+             'max,>': 'vmax_v[vx]_[iu][13][62]_?m?$',
              # for logic
              '&': 'vand_v[vx]_[iu][13][62]_?m?$',
              '|': 'vor_v[vx]_[iu][13][62]_?m?$',
@@ -31,13 +31,12 @@ OPERATOR_2= {# for arithmetic
              '<<': 'vc?w?s?sll?_a?[vwi][vxisw]?_[iu][136][624]_?m?$',
              '>>': 'vc?w?srl?a?_a?[vwi][vxisw]?_[iu][136][624]_?m?$',
              # for compare
-             '==' : 'vcmpeq_v[vx]_[iu][13][62]_?m?$',
-             '!=' : 'vcmpne_v[vx]_[iu][13][62]_?m?$',
-             '<'  : 'vcmplt_v[vx]_[iu][13][62]_?m?$',
-             '<=' : 'vcmple_v[vx]_[iu][13][62]_?m?$',
-             '>'  : 'vcmpgt_v[vx]_[iu][13][62]_?m?$',
-             '>=' : 'vcmpge_v[vx]_[iu][13][62]_?m?$',
-           
+             '==': 'vcmpeq_v[vx]_[iu][13][62]_?m?$',
+             '!=': 'vcmpne_v[vx]_[iu][13][62]_?m?$',
+             '<' : 'vcmplt_v[vx]_[iu][13][62]_?m?$',
+             '<=': 'vcmple_v[vx]_[iu][13][62]_?m?$',
+             '>' : 'vcmpgt_v[vx]_[iu][13][62]_?m?$',
+             '>=': 'vcmpge_v[vx]_[iu][13][62]_?m?$',
 }
 OPERATOR_3= {# for mac
              '*,+'  : 'vw?s?maccq?_vv_[iu][13][62]_?h?l?p?_?m?$',
@@ -65,12 +64,11 @@ def arithmetic(node, variable):
                     oper = variable[0] + '[i]' + operator + variable[1]
                 else:
                     oper = variable[0] + '[i]' + operator + variable[1] + '[i]'
-            
                 if 'max' in node['Intrinsic_Name'] or 'min' in node['Intrinsic_Name']:
                     if 'vx' in node['Intrinsic_Name'].split('_')[1]:
-                        oper = variable[0] + '[i]' + operator + variable[1] + ' ? a[i]:b'
+                        oper = variable[0] + '[i]' + operator.split(',')[1] + variable[1] + ' ? a[i]:b'
                     else:
-                        oper = variable[0] + '[i]' + operator + variable[1] + '[i]' + ' ? a[i]:b[i]'
+                        oper = variable[0] + '[i]' + operator.split(',')[1] + variable[1] + '[i]' + ' ? a[i]:b[i]'
 
     return '        exp_result[i] = ' + oper + ';'
 

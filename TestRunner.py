@@ -51,13 +51,13 @@ def writeResult(file, result, apitype):
         f.write("Build Pass number: %d" %result['build_passed'] +'\n')
         f.write("Build Fail number: %d" %result['build_failed'] +'\n')
         if result['test_pass_api_name']:
-            f.write("Test Passed API name: %s" %result['test_pass_api_name'] +'\n')
+            f.write("\nTest Passed API name: \n \t%s" %result['test_pass_api_name'] +'\n')
         if result['test_fail_api_name']:
-            f.write("Test Failed API name: %s" %result['test_fail_api_name'] +'\n')
+            f.write("\nTest Failed API name: \n \t%s" %result['test_fail_api_name'] +'\n')
         if result['build_pass_api_name']:
-            f.write("Build Passed API name: %s" %result['build_pass_api_name'] +'\n')
+            f.write("\nBuild Passed API name: \n \t%s" %result['build_pass_api_name'] +'\n')
         if result['build_fail_api_name']:
-            f.write("Build Failed API name: %s" %result['build_fail_api_name'] +'\n')
+            f.write("\nBuild Failed API name: \n \t%s" %result['build_fail_api_name'] +'\n')
         f.write('\n')
     f.close()
         

@@ -1,40 +1,53 @@
-vldcb2in0_v_i16.c:4:5: warning: function declaration isn't a prototype [-Wstrict-prototypes]
-    4 | int main() {
-      |     ^~~~
+vldcb2in0_v_i16.c:16:2: warning: multi-line comment [-Wcomment]
+   16 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vldcb2in0_v_i16.c:18:44: warning: backslash and newline separated by space
+   18 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vldcb2in0_v_i16.c:20:40: warning: backslash and newline separated by space
+   20 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vldcb2in0_v_i16.c:21:35: warning: backslash and newline separated by space
+   21 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vldcb2in0_v_i16.c:22:40: warning: backslash and newline separated by space
+   22 |              a[i] = random(threshold); \
+      |                                         
+vldcb2in0_v_i16.c:23:27: warning: backslash and newline separated by space
+   23 |              b[i] = a[i]; \
+      |                            
+vldcb2in0_v_i16.c:29:6: warning: no previous prototype for 'vldcb2in0_v_i16_golden' [-Wmissing-prototypes]
+   29 | void vldcb2in0_v_i16_golden(int16_t *base,uint32_t *imm,int16_t exp_result[][ELE_NUM]) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+vldcb2in0_v_i16.c: In function 'vldcb2in0_v_i16_golden':
+vldcb2in0_v_i16.c:29:53: warning: unused parameter 'imm' [-Wunused-parameter]
+   29 | void vldcb2in0_v_i16_golden(int16_t *base,uint32_t *imm,int16_t exp_result[][ELE_NUM]) {
+      |                                           ~~~~~~~~~~^~~
 vldcb2in0_v_i16.c: In function 'main':
-vldcb2in0_v_i16.c:27:40: warning: format '%u' expects argument of type 'unsigned int', but argument 2 has type 'long unsigned int' [-Wformat=]
-   27 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                       ~^              ~~~~
-      |                                        |              |
-      |                                        unsigned int   long unsigned int
-      |                                       %lu
-vldcb2in0_v_i16.c:27:45: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'long unsigned int' [-Wformat=]
-   27 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                            ~^              ~~~~~
-      |                                             |              |
-      |                                             unsigned int   long unsigned int
-      |                                            %lu
-vldcb2in0_v_i16.c:27:50: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'long unsigned int' [-Wformat=]
-   27 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                                 ~^               ~~~~~~~~~~
-      |                                                  |                   |
-      |                                                  unsigned int        long unsigned int
-      |                                                 %lu
-vldcb2in0_v_i16.c:15:9: warning: unused variable 'element_width' [-Wunused-variable]
-   15 |     int element_width = 16/8;
-      |         ^~~~~~~~~~~~~
-vldcb2in0_v_i16.c:10:14: warning: unused variable 'imm' [-Wunused-variable]
-   10 |     uint32_t imm = 0;
+vldcb2in0_v_i16.c:60:37: warning: passing argument 2 of 'vldcb2in0_v_i16_golden' makes pointer from integer without a cast [-Wint-conversion]
+   60 |     vldcb2in0_v_i16_golden(exp_base,exp_imm,exp_result);
+      |                                     ^~~~~~~
+      |                                     |
+      |                                     uint32_t {aka long unsigned int}
+vldcb2in0_v_i16.c:29:53: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t' {aka 'long unsigned int'}
+   29 | void vldcb2in0_v_i16_golden(int16_t *base,uint32_t *imm,int16_t exp_result[][ELE_NUM]) {
+      |                                           ~~~~~~~~~~^~~
+vldcb2in0_v_i16.c:60:45: warning: passing argument 3 of 'vldcb2in0_v_i16_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   60 |     vldcb2in0_v_i16_golden(exp_base,exp_imm,exp_result);
+      |                                             ^~~~~~~~~~
+      |                                             |
+      |                                             int16_t * {aka short int *}
+vldcb2in0_v_i16.c:29:65: note: expected 'int16_t (*)[32]' {aka 'short int (*)[32]'} but argument is of type 'int16_t *' {aka 'short int *'}
+   29 | void vldcb2in0_v_i16_golden(int16_t *base,uint32_t *imm,int16_t exp_result[][ELE_NUM]) {
+      |                                                         ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vldcb2in0_v_i16.c:43:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   43 |     uint32_t imm;
       |              ^~~
 soc_mode = 0 progsize = 2 
-binary file = /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb2in0_v_i16.elf
-debug_data_start=0x380
-debug_progbuf_start=0x374
-debug_abstract_start=0x360
-debug_vdata_start=0x390
-Start Loading Kernel @ Fri Jan  8 04:05:55 2021
+binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb2in0_v_i16.elf
+Start Loading Kernel @ Tue Feb  2 14:50:58 2021
 
-Start Setting Reset PC for orv32 @ Fri Jan  8 04:05:55 2021
+Start Setting Reset PC for orv32 @ Tue Feb  2 14:50:58 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================
@@ -48,16 +61,74 @@ Start Setting Reset PC for orv32 @ Fri Jan  8 04:05:55 2021
  clean		:	delete objects generated by make
 ****************************
 
-/home/test/Risc-v/riscv-intrinsic-testing/scripts/gorun.sh /home/test/Risc-v/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vldcb2in0_v_i16"
-~/Risc-v/riscv-intrinsic-testing/test ~/Risc-v/riscv-intrinsic-testing
-make[1]: Entering directory '/home/test/Risc-v/riscv-intrinsic-testing/test'
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vldcb2in0_v_i16"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vldcb2in0_v_i16.c
 Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb2in0_v_i16.elf /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb2in0_v_i16.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
-Completed /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb2in0_v_i16.elf
-make[1]: Leaving directory '/home/test/Risc-v/riscv-intrinsic-testing/test'
-~/Risc-v/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb2in0_v_i16.elf ++load_pk
-cycles 	= stop-start 	= 0 - 0 = 0
-result={.val[0]={1,3,5,7,5,7,9,11,9,11,13,15,13,15,17,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[1]={2,4,6,8,6,8,10,12,10,12,14,16,14,16,18,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}}
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb2in0_v_i16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb2in0_v_i16.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb2in0_v_i16.elf
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+~/workspace/risc-v/rivai/riscv-intrinsic-testing
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb2in0_v_i16.elf ++load_pk
+Failed: result.val[0][1] = ffffcd80, exp_result[1] = 41fc
+Failed: result.val[0][2] = 41fc, exp_result[2] = ffff8b74
+Failed: result.val[0][3] = 782c, exp_result[3] = ffff9a03
+Failed: result.val[0][5] = 7eb1, exp_result[5] = ffff9a03
+Failed: result.val[0][6] = ffff9a03, exp_result[6] = 73f1
+Failed: result.val[0][7] = ffffaa01, exp_result[7] = ffffc0cc
+Failed: result.val[0][9] = ffffc2aa, exp_result[9] = ffffc0cc
+Failed: result.val[0][10] = ffffc0cc, exp_result[10] = 15cf
+Failed: result.val[0][11] = 8b7, exp_result[11] = ffffbf7f
+Failed: result.val[0][13] = ffffe3d5, exp_result[13] = ffffbf7f
+Failed: result.val[0][14] = ffffbf7f, exp_result[14] = ffffa3a7
+Failed: result.val[0][15] = 7aba, exp_result[15] = ffffd40c
+Failed: result.val[0][16] = ffffa3a7, exp_result[16] = 0
+Failed: result.val[0][17] = 14b5, exp_result[17] = 0
+Failed: result.val[0][18] = ffffd40c, exp_result[18] = 0
+Failed: result.val[0][19] = ffffb123, exp_result[19] = 0
+Failed: result.val[0][20] = ffff9c4c, exp_result[20] = 0
+Failed: result.val[0][21] = 6bff, exp_result[21] = 0
+Failed: result.val[0][22] = 3815, exp_result[22] = 0
+Failed: result.val[0][23] = 4aae, exp_result[23] = 0
+Failed: result.val[0][24] = 6b17, exp_result[24] = 0
+Failed: result.val[0][25] = 63c7, exp_result[25] = 0
+Failed: result.val[0][26] = 1ef9, exp_result[26] = 0
+Failed: result.val[0][27] = ffff92d3, exp_result[27] = 0
+Failed: result.val[0][28] = 2fe8, exp_result[28] = 0
+Failed: result.val[0][29] = ffff8a6a, exp_result[29] = 0
+Failed: result.val[0][30] = 4da9, exp_result[30] = 0
+Failed: result.val[0][31] = 7d75, exp_result[31] = 0
+Failed: result.val[1][0] = ffffd921, exp_result[32] = ffffcd80
+Failed: result.val[1][1] = ffffa527, exp_result[33] = 782c
+Failed: result.val[1][2] = ffff8796, exp_result[34] = 7eb1
+Failed: result.val[1][3] = fffff857, exp_result[35] = ffffaa01
+Failed: result.val[1][4] = 2921, exp_result[36] = 7eb1
+Failed: result.val[1][5] = 7733, exp_result[37] = ffffaa01
+Failed: result.val[1][6] = 124, exp_result[38] = ffffc2aa
+Failed: result.val[1][7] = ffffee6a, exp_result[39] = 8b7
+Failed: result.val[1][8] = ffffd9ec, exp_result[40] = ffffc2aa
+Failed: result.val[1][9] = 3b61, exp_result[41] = 8b7
+Failed: result.val[1][10] = ffffbf9a, exp_result[42] = ffffe3d5
+Failed: result.val[1][11] = ffffed36, exp_result[43] = 7aba
+Failed: result.val[1][12] = 5ede, exp_result[44] = ffffe3d5
+Failed: result.val[1][13] = 3b61, exp_result[45] = 7aba
+Failed: result.val[1][14] = 730e, exp_result[46] = 14b5
+Failed: result.val[1][15] = fffffaa2, exp_result[47] = ffffb123
+Failed: result.val[1][16] = 5f23, exp_result[48] = 0
+Failed: result.val[1][17] = ffffdd46, exp_result[49] = 0
+Failed: result.val[1][18] = 2a62, exp_result[50] = 0
+Failed: result.val[1][19] = ffff8628, exp_result[51] = 0
+Failed: result.val[1][20] = fffffd83, exp_result[52] = 0
+Failed: result.val[1][21] = 55f, exp_result[53] = 0
+Failed: result.val[1][22] = ffffc1ce, exp_result[54] = 0
+Failed: result.val[1][23] = fffff843, exp_result[55] = 0
+Failed: result.val[1][24] = ffffc681, exp_result[56] = 0
+Failed: result.val[1][25] = 6875, exp_result[57] = 0
+Failed: result.val[1][26] = 311d, exp_result[58] = 0
+Failed: result.val[1][27] = ffffb260, exp_result[59] = 0
+Failed: result.val[1][28] = 238b, exp_result[60] = 0
+Failed: result.val[1][29] = 57d0, exp_result[61] = 0
+Failed: result.val[1][30] = ffffc3e0, exp_result[62] = 0
+Failed: result.val[1][31] = fffff3c5, exp_result[63] = 0
 TEST FAILED!

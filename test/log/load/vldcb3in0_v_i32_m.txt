@@ -1,42 +1,94 @@
-vldcb3in0_v_i32_m.c:4:5: warning: function declaration isn't a prototype [-Wstrict-prototypes]
-    4 | int main() {
-      |     ^~~~
+vldcb3in0_v_i32_m.c:16:2: warning: multi-line comment [-Wcomment]
+   16 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vldcb3in0_v_i32_m.c:18:44: warning: backslash and newline separated by space
+   18 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vldcb3in0_v_i32_m.c:20:40: warning: backslash and newline separated by space
+   20 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vldcb3in0_v_i32_m.c:21:35: warning: backslash and newline separated by space
+   21 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vldcb3in0_v_i32_m.c:22:40: warning: backslash and newline separated by space
+   22 |              a[i] = random(threshold); \
+      |                                         
+vldcb3in0_v_i32_m.c:23:27: warning: backslash and newline separated by space
+   23 |              b[i] = a[i]; \
+      |                            
+vldcb3in0_v_i32_m.c:29:6: warning: no previous prototype for 'vldcb3in0_v_i32_m_golden' [-Wmissing-prototypes]
+   29 | void vldcb3in0_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~
+vldcb3in0_v_i32_m.c: In function 'vldcb3in0_v_i32_m_golden':
+vldcb3in0_v_i32_m.c:29:41: warning: unused parameter 'mask' [-Wunused-parameter]
+   29 | void vldcb3in0_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |                               ~~~~~~~~~~^~~~
+vldcb3in0_v_i32_m.c:29:54: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   29 | void vldcb3in0_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |                                              ~~~~~~~~^~~~~~~
+vldcb3in0_v_i32_m.c:29:86: warning: unused parameter 'imm' [-Wunused-parameter]
+   29 | void vldcb3in0_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |                                                                            ~~~~~~~~~~^~~
 vldcb3in0_v_i32_m.c: In function 'main':
-vldcb3in0_v_i32_m.c:31:40: warning: format '%u' expects argument of type 'unsigned int', but argument 2 has type 'long unsigned int' [-Wformat=]
-   31 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                       ~^              ~~~~
-      |                                        |              |
-      |                                        unsigned int   long unsigned int
-      |                                       %lu
-vldcb3in0_v_i32_m.c:31:45: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'long unsigned int' [-Wformat=]
-   31 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                            ~^              ~~~~~
-      |                                             |              |
-      |                                             unsigned int   long unsigned int
-      |                                            %lu
-vldcb3in0_v_i32_m.c:31:50: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'long unsigned int' [-Wformat=]
-   31 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                                 ~^               ~~~~~~~~~~
-      |                                                  |                   |
-      |                                                  unsigned int        long unsigned int
-      |                                                 %lu
-vldcb3in0_v_i32_m.c:19:9: warning: unused variable 'element_width' [-Wunused-variable]
-   19 |     int element_width = 32/8;
-      |         ^~~~~~~~~~~~~
-vldcb3in0_v_i32_m.c:14:14: warning: unused variable 'imm' [-Wunused-variable]
-   14 |     uint32_t imm = 0;
+vldcb3in0_v_i32_m.c:54:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   54 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+      |     ^~~~~~~~~~~~~~
+      |     data_init_scalar
+vldcb3in0_v_i32_m.c:22:15: error: subscripted value is neither array nor pointer nor vector
+   22 |              a[i] = random(threshold); \
+      |               ^
+vldcb3in0_v_i32_m.c:55:5: note: in expansion of macro 'data_init'
+   55 |     data_init(maskoff, exp_maskoff, 16*3, 0xffffffff);
+      |     ^~~~~~~~~
+vldcb3in0_v_i32_m.c:23:22: error: subscripted value is neither array nor pointer nor vector
+   23 |              b[i] = a[i]; \
+      |                      ^
+vldcb3in0_v_i32_m.c:55:5: note: in expansion of macro 'data_init'
+   55 |     data_init(maskoff, exp_maskoff, 16*3, 0xffffffff);
+      |     ^~~~~~~~~
+vldcb3in0_v_i32_m.c:66:30: warning: passing argument 1 of 'vldcb3in0_v_i32_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   66 |     vldcb3in0_v_i32_m_golden(exp_mask,exp_maskoff,exp_base,exp_imm,exp_result);
+      |                              ^~~~~~~~
+      |                              |
+      |                              uint64_t * {aka long long unsigned int *}
+vldcb3in0_v_i32_m.c:29:41: note: expected 'bool16_t *' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
+   29 | void vldcb3in0_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |                               ~~~~~~~~~~^~~~
+vldcb3in0_v_i32_m.c:66:39: warning: passing argument 2 of 'vldcb3in0_v_i32_m_golden' makes integer from pointer without a cast [-Wint-conversion]
+   66 |     vldcb3in0_v_i32_m_golden(exp_mask,exp_maskoff,exp_base,exp_imm,exp_result);
+      |                                       ^~~~~~~~~~~
+      |                                       |
+      |                                       int32_t * {aka long int *}
+vldcb3in0_v_i32_m.c:29:54: note: expected 'int32_t' {aka 'long int'} but argument is of type 'int32_t *' {aka 'long int *'}
+   29 | void vldcb3in0_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |                                              ~~~~~~~~^~~~~~~
+vldcb3in0_v_i32_m.c:66:60: warning: passing argument 4 of 'vldcb3in0_v_i32_m_golden' makes pointer from integer without a cast [-Wint-conversion]
+   66 |     vldcb3in0_v_i32_m_golden(exp_mask,exp_maskoff,exp_base,exp_imm,exp_result);
+      |                                                            ^~~~~~~
+      |                                                            |
+      |                                                            uint32_t {aka long unsigned int}
+vldcb3in0_v_i32_m.c:29:86: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t' {aka 'long unsigned int'}
+   29 | void vldcb3in0_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |                                                                            ~~~~~~~~~~^~~
+vldcb3in0_v_i32_m.c:66:68: warning: passing argument 5 of 'vldcb3in0_v_i32_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   66 |     vldcb3in0_v_i32_m_golden(exp_mask,exp_maskoff,exp_base,exp_imm,exp_result);
+      |                                                                    ^~~~~~~~~~
+      |                                                                    |
+      |                                                                    int32_t * {aka long int *}
+vldcb3in0_v_i32_m.c:29:98: note: expected 'int32_t (*)[16]' {aka 'long int (*)[16]'} but argument is of type 'int32_t *' {aka 'long int *'}
+   29 | void vldcb3in0_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |                                                                                          ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vldcb3in0_v_i32_m.c:75:76: warning: format '%x' expects argument of type 'unsigned int', but argument 6 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   75 |                 printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
+      |                                                                           ~^                                         ~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                            |                                                   |
+      |                                                                            unsigned int                                        int32_t {aka long int}
+      |                                                                           %lx
+vldcb3in0_v_i32_m.c:45:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   45 |     uint32_t imm;
       |              ^~~
-soc_mode = 0 progsize = 2 
-binary file = /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb3in0_v_i32_m.elf
-debug_data_start=0x380
-debug_progbuf_start=0x374
-debug_abstract_start=0x360
-debug_vdata_start=0x390
-Start Loading Kernel @ Fri Jan  8 04:05:46 2021
-
-Start Setting Reset PC for orv32 @ Fri Jan  8 04:05:46 2021
-
-*** PASSED *** (tohost = 0)
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb3in0_v_i32_m.o] Error 1
+make: *** [bare] Error 2
 ======================================================================
 
  target	:	deccription
@@ -48,16 +100,10 @@ Start Setting Reset PC for orv32 @ Fri Jan  8 04:05:46 2021
  clean		:	delete objects generated by make
 ****************************
 
-/home/test/Risc-v/riscv-intrinsic-testing/scripts/gorun.sh /home/test/Risc-v/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vldcb3in0_v_i32_m"
-~/Risc-v/riscv-intrinsic-testing/test ~/Risc-v/riscv-intrinsic-testing
-make[1]: Entering directory '/home/test/Risc-v/riscv-intrinsic-testing/test'
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vldcb3in0_v_i32_m"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vldcb3in0_v_i32_m.c
-Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb3in0_v_i32_m.elf /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb3in0_v_i32_m.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
-Completed /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb3in0_v_i32_m.elf
-make[1]: Leaving directory '/home/test/Risc-v/riscv-intrinsic-testing/test'
-~/Risc-v/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb3in0_v_i32_m.elf ++load_pk
-cycles 	= stop-start 	= 0 - 0 = 0
-result={.val[0]={1,4,33,10,55,66,7,10,0,0,0,0,0,0,0,0},.val[1]={2,5,33,11,55,66,8,11,0,0,0,0,0,0,0,0},.val[2]={3,6,33,12,55,66,9,12,0,0,0,0,0,0,0,0}}
-TEST FAILED!
+Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb3in0_v_i32_m.o' failed
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+Makefile:37: recipe for target 'bare' failed

@@ -1,0 +1,155 @@
+vsardotaccq_vv_i32_m.c:9:2: warning: multi-line comment [-Wcomment]
+    9 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vsardotaccq_vv_i32_m.c:11:44: warning: backslash and newline separated by space
+   11 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vsardotaccq_vv_i32_m.c:13:40: warning: backslash and newline separated by space
+   13 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vsardotaccq_vv_i32_m.c:14:35: warning: backslash and newline separated by space
+   14 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vsardotaccq_vv_i32_m.c:15:40: warning: backslash and newline separated by space
+   15 |              a[i] = random(threshold); \
+      |                                         
+vsardotaccq_vv_i32_m.c:16:27: warning: backslash and newline separated by space
+   16 |              b[i] = a[i]; \
+      |                            
+vsardotaccq_vv_i32_m.c:22:6: warning: no previous prototype for 'vsardotaccq_vv_i32_m_golden' [-Wmissing-prototypes]
+   22 | void vsardotaccq_vv_i32_m_golden(bool16_t src_mask,bool8_t dst_mask,int32_t *a,int16_t *b,int16_t *c,int64_t *exp_result) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+vsardotaccq_vv_i32_m.c: In function 'vsardotaccq_vv_i32_m_golden':
+vsardotaccq_vv_i32_m.c:24:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
+   24 | Operator Line --- TODO
+      | ^~~~~~~~
+      | perror
+vsardotaccq_vv_i32_m.c:24:1: note: each undeclared identifier is reported only once for each function it appears in
+vsardotaccq_vv_i32_m.c:24:9: error: expected ';' before 'Line'
+   24 | Operator Line --- TODO
+      |         ^~~~~
+      |         ;
+vsardotaccq_vv_i32_m.c:22:43: warning: unused parameter 'src_mask' [-Wunused-parameter]
+   22 | void vsardotaccq_vv_i32_m_golden(bool16_t src_mask,bool8_t dst_mask,int32_t *a,int16_t *b,int16_t *c,int64_t *exp_result) {
+      |                                  ~~~~~~~~~^~~~~~~~
+vsardotaccq_vv_i32_m.c:22:60: warning: unused parameter 'dst_mask' [-Wunused-parameter]
+   22 | void vsardotaccq_vv_i32_m_golden(bool16_t src_mask,bool8_t dst_mask,int32_t *a,int16_t *b,int16_t *c,int64_t *exp_result) {
+      |                                                    ~~~~~~~~^~~~~~~~
+vsardotaccq_vv_i32_m.c:22:78: warning: unused parameter 'a' [-Wunused-parameter]
+   22 | void vsardotaccq_vv_i32_m_golden(bool16_t src_mask,bool8_t dst_mask,int32_t *a,int16_t *b,int16_t *c,int64_t *exp_result) {
+      |                                                                     ~~~~~~~~~^
+vsardotaccq_vv_i32_m.c:22:89: warning: unused parameter 'b' [-Wunused-parameter]
+   22 | void vsardotaccq_vv_i32_m_golden(bool16_t src_mask,bool8_t dst_mask,int32_t *a,int16_t *b,int16_t *c,int64_t *exp_result) {
+      |                                                                                ~~~~~~~~~^
+vsardotaccq_vv_i32_m.c:22:100: warning: unused parameter 'c' [-Wunused-parameter]
+   22 | void vsardotaccq_vv_i32_m_golden(bool16_t src_mask,bool8_t dst_mask,int32_t *a,int16_t *b,int16_t *c,int64_t *exp_result) {
+      |                                                                                           ~~~~~~~~~^
+vsardotaccq_vv_i32_m.c:22:111: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   22 | void vsardotaccq_vv_i32_m_golden(bool16_t src_mask,bool8_t dst_mask,int32_t *a,int16_t *b,int16_t *c,int64_t *exp_result) {
+      |                                                                                                      ~~~~~~~~~^~~~~~~~~~
+vsardotaccq_vv_i32_m.c: In function 'main':
+vsardotaccq_vv_i32_m.c:46:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   46 |     data_init_bool(src_mask, exp_src_mask, 16, 0xffffffff);
+      |     ^~~~~~~~~~~~~~
+      |     data_init_scalar
+vsardotaccq_vv_i32_m.c:51:38: error: macro "data_init_scalar" requires 3 arguments, but only 2 given
+   51 |     data_init_scalar(accum, exp_accum);
+      |                                      ^
+vsardotaccq_vv_i32_m.c:11: note: macro "data_init_scalar" defined here
+   11 |  #define data_init_scalar(a, b, threshold) \
+      | 
+vsardotaccq_vv_i32_m.c:51:5: error: 'data_init_scalar' undeclared (first use in this function)
+   51 |     data_init_scalar(accum, exp_accum);
+      |     ^~~~~~~~~~~~~~~~
+vsardotaccq_vv_i32_m.c:54:33: error: incompatible type for argument 1 of 'vsardotaccq_vv_i32_m_golden'
+   54 |     vsardotaccq_vv_i32_m_golden(exp_src_mask,exp_dst_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
+      |                                 ^~~~~~~~~~~~
+      |                                 |
+      |                                 uint64_t * {aka long long unsigned int *}
+vsardotaccq_vv_i32_m.c:22:43: note: expected 'bool16_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
+   22 | void vsardotaccq_vv_i32_m_golden(bool16_t src_mask,bool8_t dst_mask,int32_t *a,int16_t *b,int16_t *c,int64_t *exp_result) {
+      |                                  ~~~~~~~~~^~~~~~~~
+vsardotaccq_vv_i32_m.c:54:46: error: incompatible type for argument 2 of 'vsardotaccq_vv_i32_m_golden'
+   54 |     vsardotaccq_vv_i32_m_golden(exp_src_mask,exp_dst_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
+      |                                              ^~~~~~~~~~~~
+      |                                              |
+      |                                              uint64_t * {aka long long unsigned int *}
+vsardotaccq_vv_i32_m.c:22:60: note: expected 'bool8_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
+   22 | void vsardotaccq_vv_i32_m_golden(bool16_t src_mask,bool8_t dst_mask,int32_t *a,int16_t *b,int16_t *c,int64_t *exp_result) {
+      |                                                    ~~~~~~~~^~~~~~~~
+vsardotaccq_vv_i32_m.c:54:77: error: incompatible type for argument 6 of 'vsardotaccq_vv_i32_m_golden'
+   54 |     vsardotaccq_vv_i32_m_golden(exp_src_mask,exp_dst_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
+      |                                                                             ^~~~~~~~~
+      |                                                                             |
+      |                                                                             enum ACCUM
+vsardotaccq_vv_i32_m.c:22:111: note: expected 'int64_t *' {aka 'long long int *'} but argument is of type 'enum ACCUM'
+   22 | void vsardotaccq_vv_i32_m_golden(bool16_t src_mask,bool8_t dst_mask,int32_t *a,int16_t *b,int16_t *c,int64_t *exp_result) {
+      |                                                                                                      ~~~~~~~~~^~~~~~~~~~
+vsardotaccq_vv_i32_m.c:54:5: error: too many arguments to function 'vsardotaccq_vv_i32_m_golden'
+   54 |     vsardotaccq_vv_i32_m_golden(exp_src_mask,exp_dst_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+vsardotaccq_vv_i32_m.c:22:6: note: declared here
+   22 | void vsardotaccq_vv_i32_m_golden(bool16_t src_mask,bool8_t dst_mask,int32_t *a,int16_t *b,int16_t *c,int64_t *exp_result) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+vsardotaccq_vv_i32_m.c:57:5: note: use '-flax-vector-conversions' to permit conversions between vectors with differing element types or numbers of subparts
+   57 |     result = vsardotaccq_vv_i32_m(src_mask,dst_mask,a,b,c,accum);
+      |     ^~~~~~
+vsardotaccq_vv_i32_m.c:57:53: error: incompatible type for argument 3 of 'vsardotaccq_vv_i32_m'
+   57 |     result = vsardotaccq_vv_i32_m(src_mask,dst_mask,a,b,c,accum);
+      |                                                     ^
+      |                                                     |
+      |                                                     int32x16_t
+In file included from vsardotaccq_vv_i32_m.c:4:
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2182:60: note: expected 'int64x8_t' but argument is of type 'int32x16_t'
+ 2182 | vsardotaccq_vv_i32_m (bool16_t __a, bool8_t __b, int64x8_t __c, int32x16_t __d, int32x16_t __e, enum ACCUM accum)
+      |                                                  ~~~~~~~~~~^~~
+vsardotaccq_vv_i32_m.c:57:55: error: incompatible type for argument 4 of 'vsardotaccq_vv_i32_m'
+   57 |     result = vsardotaccq_vv_i32_m(src_mask,dst_mask,a,b,c,accum);
+      |                                                       ^
+      |                                                       |
+      |                                                       int16x32_t
+In file included from vsardotaccq_vv_i32_m.c:4:
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2182:76: note: expected 'int32x16_t' but argument is of type 'int16x32_t'
+ 2182 | vsardotaccq_vv_i32_m (bool16_t __a, bool8_t __b, int64x8_t __c, int32x16_t __d, int32x16_t __e, enum ACCUM accum)
+      |                                                                 ~~~~~~~~~~~^~~
+vsardotaccq_vv_i32_m.c:57:57: error: incompatible type for argument 5 of 'vsardotaccq_vv_i32_m'
+   57 |     result = vsardotaccq_vv_i32_m(src_mask,dst_mask,a,b,c,accum);
+      |                                                         ^
+      |                                                         |
+      |                                                         int16x32_t
+In file included from vsardotaccq_vv_i32_m.c:4:
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2182:92: note: expected 'int32x16_t' but argument is of type 'int16x32_t'
+ 2182 | vsardotaccq_vv_i32_m (bool16_t __a, bool8_t __b, int64x8_t __c, int32x16_t __d, int32x16_t __e, enum ACCUM accum)
+      |                                                                                 ~~~~~~~~~~~^~~
+vsardotaccq_vv_i32_m.c:62:43: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'long long int' [-Wformat=]
+   62 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+      |                                          ~^                             ~~~~~~~~~
+      |                                           |                                   |
+      |                                           unsigned int                        long long int
+      |                                          %llx
+vsardotaccq_vv_i32_m.c:62:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'int64_t' {aka 'long long int'} [-Wformat=]
+   62 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+      |                                                               ~^                      ~~~~~~~~~~~~~
+      |                                                                |                                |
+      |                                                                unsigned int                     int64_t {aka long long int}
+      |                                                               %llx
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsardotaccq_vv_i32_m.o] Error 1
+make: *** [bare] Error 2
+======================================================================
+
+ target	:	deccription
+****************************
+ bare	:	build application on baremental case. param: type=app-type app=app-name
+
+ rbb	:	run bare-app on beak. (build it firstly if modified) param: APP_TYPE=type APP_NAME=app-name , bp=beak-param
+
+ clean		:	delete objects generated by make
+****************************
+
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vsardotaccq_vv_i32_m"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+    CC vsardotaccq_vv_i32_m.c
+Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsardotaccq_vv_i32_m.o' failed
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+Makefile:37: recipe for target 'bare' failed

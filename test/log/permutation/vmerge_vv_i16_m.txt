@@ -1,0 +1,91 @@
+vmerge_vv_i16_m.c:9:2: warning: multi-line comment [-Wcomment]
+    9 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vmerge_vv_i16_m.c:11:44: warning: backslash and newline separated by space
+   11 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vmerge_vv_i16_m.c:13:40: warning: backslash and newline separated by space
+   13 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vmerge_vv_i16_m.c:14:35: warning: backslash and newline separated by space
+   14 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vmerge_vv_i16_m.c:15:40: warning: backslash and newline separated by space
+   15 |              a[i] = random(threshold); \
+      |                                         
+vmerge_vv_i16_m.c:16:27: warning: backslash and newline separated by space
+   16 |              b[i] = a[i]; \
+      |                            
+vmerge_vv_i16_m.c:22:6: warning: no previous prototype for 'vmerge_vv_i16_m_golden' [-Wmissing-prototypes]
+   22 | void vmerge_vv_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *b,int16_t *exp_result) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+vmerge_vv_i16_m.c: In function 'vmerge_vv_i16_m_golden':
+vmerge_vv_i16_m.c:24:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
+   24 | Operator Line --- TODO
+      | ^~~~~~~~
+      | perror
+vmerge_vv_i16_m.c:24:1: note: each undeclared identifier is reported only once for each function it appears in
+vmerge_vv_i16_m.c:24:9: error: expected ';' before 'Line'
+   24 | Operator Line --- TODO
+      |         ^~~~~
+      |         ;
+vmerge_vv_i16_m.c:22:38: warning: unused parameter 'mask' [-Wunused-parameter]
+   22 | void vmerge_vv_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *b,int16_t *exp_result) {
+      |                             ~~~~~~~~~^~~~
+vmerge_vv_i16_m.c:22:52: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   22 | void vmerge_vv_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *b,int16_t *exp_result) {
+      |                                           ~~~~~~~~~^~~~~~~
+vmerge_vv_i16_m.c:22:69: warning: unused parameter 'a' [-Wunused-parameter]
+   22 | void vmerge_vv_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *b,int16_t *exp_result) {
+      |                                                            ~~~~~~~~~^
+vmerge_vv_i16_m.c:22:80: warning: unused parameter 'b' [-Wunused-parameter]
+   22 | void vmerge_vv_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *b,int16_t *exp_result) {
+      |                                                                       ~~~~~~~~~^
+vmerge_vv_i16_m.c:22:91: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   22 | void vmerge_vv_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *b,int16_t *exp_result) {
+      |                                                                                  ~~~~~~~~~^~~~~~~~~~
+vmerge_vv_i16_m.c: In function 'main':
+vmerge_vv_i16_m.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   42 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+      |     ^~~~~~~~~~~~~~
+      |     data_init_scalar
+vmerge_vv_i16_m.c:48:28: error: incompatible type for argument 1 of 'vmerge_vv_i16_m_golden'
+   48 |     vmerge_vv_i16_m_golden(exp_mask,exp_maskoff,exp_a,exp_b,exp_result);
+      |                            ^~~~~~~~
+      |                            |
+      |                            uint64_t * {aka long long unsigned int *}
+vmerge_vv_i16_m.c:22:38: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
+   22 | void vmerge_vv_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *b,int16_t *exp_result) {
+      |                             ~~~~~~~~~^~~~
+vmerge_vv_i16_m.c:51:5: note: use '-flax-vector-conversions' to permit conversions between vectors with differing element types or numbers of subparts
+   51 |     result = vmerge_vv_i16_m(mask,maskoff,a,b);
+      |     ^~~~~~
+vmerge_vv_i16_m.c:51:45: error: incompatible type for argument 4 of 'vmerge_vv_i16_m'
+   51 |     result = vmerge_vv_i16_m(mask,maskoff,a,b);
+      |                                             ^
+      |                                             |
+      |                                             int16x32_t
+In file included from vmerge_vv_i16_m.c:4:
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2248:1: note: expected 'uint16x32_t' but argument is of type 'int16x32_t'
+ 2248 | __RUGRATS_MERGE_VV_OP (merge, i, int, uint, 16, 16, 32)
+      | ^~~~~~~~~~~~~~~~~~~~~
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmerge_vv_i16_m.o] Error 1
+make: *** [bare] Error 2
+======================================================================
+
+ target	:	deccription
+****************************
+ bare	:	build application on baremental case. param: type=app-type app=app-name
+
+ rbb	:	run bare-app on beak. (build it firstly if modified) param: APP_TYPE=type APP_NAME=app-name , bp=beak-param
+
+ clean		:	delete objects generated by make
+****************************
+
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vmerge_vv_i16_m"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+    CC vmerge_vv_i16_m.c
+Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmerge_vv_i16_m.o' failed
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+Makefile:37: recipe for target 'bare' failed

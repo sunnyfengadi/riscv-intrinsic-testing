@@ -1,40 +1,59 @@
-vldcb6in0_v_i32.c:4:5: warning: function declaration isn't a prototype [-Wstrict-prototypes]
-    4 | int main() {
-      |     ^~~~
+vldcb6in0_v_i32.c:16:2: warning: multi-line comment [-Wcomment]
+   16 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vldcb6in0_v_i32.c:18:44: warning: backslash and newline separated by space
+   18 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vldcb6in0_v_i32.c:20:40: warning: backslash and newline separated by space
+   20 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vldcb6in0_v_i32.c:21:35: warning: backslash and newline separated by space
+   21 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vldcb6in0_v_i32.c:22:40: warning: backslash and newline separated by space
+   22 |              a[i] = random(threshold); \
+      |                                         
+vldcb6in0_v_i32.c:23:27: warning: backslash and newline separated by space
+   23 |              b[i] = a[i]; \
+      |                            
+vldcb6in0_v_i32.c:29:6: warning: no previous prototype for 'vldcb6in0_v_i32_golden' [-Wmissing-prototypes]
+   29 | void vldcb6in0_v_i32_golden(int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+vldcb6in0_v_i32.c: In function 'vldcb6in0_v_i32_golden':
+vldcb6in0_v_i32.c:29:53: warning: unused parameter 'imm' [-Wunused-parameter]
+   29 | void vldcb6in0_v_i32_golden(int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |                                           ~~~~~~~~~~^~~
 vldcb6in0_v_i32.c: In function 'main':
-vldcb6in0_v_i32.c:27:40: warning: format '%u' expects argument of type 'unsigned int', but argument 2 has type 'long unsigned int' [-Wformat=]
-   27 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                       ~^              ~~~~
-      |                                        |              |
-      |                                        unsigned int   long unsigned int
-      |                                       %lu
-vldcb6in0_v_i32.c:27:45: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'long unsigned int' [-Wformat=]
-   27 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                            ~^              ~~~~~
-      |                                             |              |
-      |                                             unsigned int   long unsigned int
-      |                                            %lu
-vldcb6in0_v_i32.c:27:50: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'long unsigned int' [-Wformat=]
-   27 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                                 ~^               ~~~~~~~~~~
-      |                                                  |                   |
-      |                                                  unsigned int        long unsigned int
-      |                                                 %lu
-vldcb6in0_v_i32.c:15:9: warning: unused variable 'element_width' [-Wunused-variable]
-   15 |     int element_width = 32/8;
-      |         ^~~~~~~~~~~~~
-vldcb6in0_v_i32.c:10:14: warning: unused variable 'imm' [-Wunused-variable]
-   10 |     uint32_t imm = 0;
+vldcb6in0_v_i32.c:60:37: warning: passing argument 2 of 'vldcb6in0_v_i32_golden' makes pointer from integer without a cast [-Wint-conversion]
+   60 |     vldcb6in0_v_i32_golden(exp_base,exp_imm,exp_result);
+      |                                     ^~~~~~~
+      |                                     |
+      |                                     uint32_t {aka long unsigned int}
+vldcb6in0_v_i32.c:29:53: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t' {aka 'long unsigned int'}
+   29 | void vldcb6in0_v_i32_golden(int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |                                           ~~~~~~~~~~^~~
+vldcb6in0_v_i32.c:60:45: warning: passing argument 3 of 'vldcb6in0_v_i32_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   60 |     vldcb6in0_v_i32_golden(exp_base,exp_imm,exp_result);
+      |                                             ^~~~~~~~~~
+      |                                             |
+      |                                             int32_t * {aka long int *}
+vldcb6in0_v_i32.c:29:65: note: expected 'int32_t (*)[16]' {aka 'long int (*)[16]'} but argument is of type 'int32_t *' {aka 'long int *'}
+   29 | void vldcb6in0_v_i32_golden(int32_t *base,uint32_t *imm,int32_t exp_result[][ELE_NUM]) {
+      |                                                         ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vldcb6in0_v_i32.c:69:76: warning: format '%x' expects argument of type 'unsigned int', but argument 6 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   69 |                 printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
+      |                                                                           ~^                                         ~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                            |                                                   |
+      |                                                                            unsigned int                                        int32_t {aka long int}
+      |                                                                           %lx
+vldcb6in0_v_i32.c:43:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   43 |     uint32_t imm;
       |              ^~~
 soc_mode = 0 progsize = 2 
-binary file = /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i32.elf
-debug_data_start=0x380
-debug_progbuf_start=0x374
-debug_abstract_start=0x360
-debug_vdata_start=0x390
-Start Loading Kernel @ Fri Jan  8 04:05:58 2021
+binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i32.elf
+Start Loading Kernel @ Tue Feb  2 14:52:06 2021
 
-Start Setting Reset PC for orv32 @ Fri Jan  8 04:05:58 2021
+Start Setting Reset PC for orv32 @ Tue Feb  2 14:52:06 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================
@@ -48,16 +67,108 @@ Start Setting Reset PC for orv32 @ Fri Jan  8 04:05:58 2021
  clean		:	delete objects generated by make
 ****************************
 
-/home/test/Risc-v/riscv-intrinsic-testing/scripts/gorun.sh /home/test/Risc-v/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vldcb6in0_v_i32"
-~/Risc-v/riscv-intrinsic-testing/test ~/Risc-v/riscv-intrinsic-testing
-make[1]: Entering directory '/home/test/Risc-v/riscv-intrinsic-testing/test'
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vldcb6in0_v_i32"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vldcb6in0_v_i32.c
 Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i32.elf /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i32.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
-Completed /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i32.elf
-make[1]: Leaving directory '/home/test/Risc-v/riscv-intrinsic-testing/test'
-~/Risc-v/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i32.elf ++load_pk
-cycles 	= stop-start 	= 0 - 0 = 0
-result={.val[0]={1,7,13,19,13,19,25,31,25,31,37,43,37,43,49,55},.val[1]={2,8,14,20,14,20,26,32,26,32,38,44,38,44,50,56},.val[2]={3,9,15,21,15,21,27,33,27,33,39,45,39,45,51,57},.val[3]={4,10,16,22,16,22,28,34,28,34,40,46,40,46,52,58},.val[4]={5,11,17,23,17,23,29,35,29,35,41,47,41,47,53,59},.val[5]={6,12,18,24,18,24,30,36,30,36,42,48,42,48,54,60}}
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i32.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i32.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i32.elf
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+~/workspace/risc-v/rivai/riscv-intrinsic-testing
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb6in0_v_i32.elf ++load_pk
+Failed: result.val[0][1] = 40b18ccf, exp_result[1] = 1a8b7f78
+Failed: result.val[0][2] = 4bb5f646, exp_result[2] = 70a3a52b
+Failed: result.val[0][3] = 47033129, exp_result[3] = 76035e09
+Failed: result.val[0][4] = 30705b04, exp_result[4] = 70a3a52b
+Failed: result.val[0][5] = 20fd5db4, exp_result[5] = 76035e09
+Failed: result.val[0][6] = 1a8b7f78, exp_result[6] = 2e533cc4
+Failed: result.val[0][7] = 502959d8, exp_result[7] = 37521657
+Failed: result.val[0][8] = 2b894868, exp_result[8] = 2e533cc4
+Failed: result.val[0][9] = 6c0356a7, exp_result[9] = 37521657
+Failed: result.val[0][10] = 8cdb7ff, exp_result[10] = 5378d5a8
+Failed: result.val[0][11] = 3477d43f, exp_result[11] = 2b449456
+Failed: result.val[0][12] = 70a3a52b, exp_result[12] = 5378d5a8
+Failed: result.val[0][13] = 28e4baf1, exp_result[13] = 2b449456
+Failed: result.val[0][14] = 7d8341fc, exp_result[14] = 71dfed43
+Failed: result.val[0][15] = ae16fd9, exp_result[15] = 6931589d
+Failed: result.val[1][0] = 742d2f7a, exp_result[16] = 40b18ccf
+Failed: result.val[1][1] = d1f0796, exp_result[17] = 502959d8
+Failed: result.val[1][2] = 76035e09, exp_result[18] = 28e4baf1
+Failed: result.val[1][4] = 6fa72ca5, exp_result[20] = 28e4baf1
+Failed: result.val[1][5] = 2aa84157, exp_result[21] = 40f7702c
+Failed: result.val[1][6] = 58a0df74, exp_result[22] = 4185faf
+Failed: result.val[1][7] = 474a0364, exp_result[23] = 4d9a2fdb
+Failed: result.val[1][8] = 2e533cc4, exp_result[24] = 4185faf
+Failed: result.val[1][9] = 4185faf, exp_result[25] = 4d9a2fdb
+Failed: result.val[1][10] = 6de3b115, exp_result[26] = 76e5004e
+Failed: result.val[1][11] = cab8628, exp_result[27] = 67128624
+Failed: result.val[1][12] = 7043bfa4, exp_result[28] = 76e5004e
+Failed: result.val[1][13] = 398150e9, exp_result[29] = 67128624
+Failed: result.val[1][14] = 37521657, exp_result[30] = 45cb977b
+Failed: result.val[1][15] = 4d9a2fdb, exp_result[31] = 17c5e07e
+Failed: result.val[2][0] = 76c3625e, exp_result[32] = 4bb5f646
+Failed: result.val[2][1] = 55075020, exp_result[33] = 2b894868
+Failed: result.val[2][2] = 329b54fb, exp_result[34] = 7d8341fc
+Failed: result.val[2][3] = 381fc038, exp_result[35] = 6fa72ca5
+Failed: result.val[2][4] = 5378d5a8, exp_result[36] = 7d8341fc
+Failed: result.val[2][5] = 76e5004e, exp_result[37] = 6fa72ca5
+Failed: result.val[2][6] = 797d87a6, exp_result[38] = 6de3b115
+Failed: result.val[2][7] = 2756c714, exp_result[39] = 76c3625e
+Failed: result.val[2][8] = 4c598d93, exp_result[40] = 6de3b115
+Failed: result.val[2][9] = 643bd725, exp_result[41] = 76c3625e
+Failed: result.val[2][10] = 2b449456, exp_result[42] = 797d87a6
+Failed: result.val[2][11] = 67128624, exp_result[43] = 7899e644
+Failed: result.val[2][12] = 7899e644, exp_result[44] = 797d87a6
+Failed: result.val[2][13] = 88232df, exp_result[45] = 7899e644
+Failed: result.val[2][14] = 6db50559, exp_result[46] = 6ea3bbbe
+Failed: result.val[2][15] = 7d157d8d, exp_result[47] = b0abb77
+Failed: result.val[3][0] = 71dfed43, exp_result[48] = 47033129
+Failed: result.val[3][1] = 45cb977b, exp_result[49] = 6c0356a7
+Failed: result.val[3][2] = 6ea3bbbe, exp_result[50] = ae16fd9
+Failed: result.val[3][3] = 3a984b90, exp_result[51] = 2aa84157
+Failed: result.val[3][4] = 666d9716, exp_result[52] = ae16fd9
+Failed: result.val[3][5] = 6fd59589, exp_result[53] = 2aa84157
+Failed: result.val[3][6] = 6931589d, exp_result[54] = cab8628
+Failed: result.val[3][7] = 17c5e07e, exp_result[55] = 55075020
+Failed: result.val[3][8] = b0abb77, exp_result[56] = cab8628
+Failed: result.val[3][9] = 51af16c6, exp_result[57] = 55075020
+Failed: result.val[3][10] = 1dee132f, exp_result[58] = 2756c714
+Failed: result.val[3][11] = 3b3a7726, exp_result[59] = 88232df
+Failed: result.val[3][12] = f32298, exp_result[60] = 2756c714
+Failed: result.val[3][13] = 51480688, exp_result[61] = 88232df
+Failed: result.val[3][14] = 35eb8df5, exp_result[62] = 3a984b90
+Failed: result.val[3][15] = 7a1179b4, exp_result[63] = 51af16c6
+Failed: result.val[4][0] = 1ae53a30, exp_result[64] = 30705b04
+Failed: result.val[4][1] = 7c418dd4, exp_result[65] = 8cdb7ff
+Failed: result.val[4][2] = 2170b934, exp_result[66] = 742d2f7a
+Failed: result.val[4][3] = 6db4489d, exp_result[67] = 58a0df74
+Failed: result.val[4][4] = 4a691c3a, exp_result[68] = 742d2f7a
+Failed: result.val[4][5] = 5a89680d, exp_result[69] = 58a0df74
+Failed: result.val[4][6] = 249ad60f, exp_result[70] = 7043bfa4
+Failed: result.val[4][7] = 28bae6bd, exp_result[71] = 329b54fb
+Failed: result.val[4][8] = 526d022f, exp_result[72] = 7043bfa4
+Failed: result.val[4][9] = 6de3eda1, exp_result[73] = 329b54fb
+Failed: result.val[4][10] = 559e2ff7, exp_result[74] = 4c598d93
+Failed: result.val[4][11] = 38b9210f, exp_result[75] = 6db50559
+Failed: result.val[4][12] = 72790d9, exp_result[76] = 4c598d93
+Failed: result.val[4][13] = 63839168, exp_result[77] = 6db50559
+Failed: result.val[4][14] = 4c1ee2f4, exp_result[78] = 666d9716
+Failed: result.val[4][15] = d1102d9, exp_result[79] = 1dee132f
+Failed: result.val[5][0] = 2657c93c, exp_result[80] = 20fd5db4
+Failed: result.val[5][1] = 79b12ba8, exp_result[81] = 3477d43f
+Failed: result.val[5][2] = 55365135, exp_result[82] = d1f0796
+Failed: result.val[5][3] = 794f06e5, exp_result[83] = 474a0364
+Failed: result.val[5][4] = 7091758f, exp_result[84] = d1f0796
+Failed: result.val[5][5] = 59b5fe2a, exp_result[85] = 474a0364
+Failed: result.val[5][6] = 302059cd, exp_result[86] = 398150e9
+Failed: result.val[5][7] = 4e8694c2, exp_result[87] = 381fc038
+Failed: result.val[5][8] = 6e7b6440, exp_result[88] = 398150e9
+Failed: result.val[5][9] = 116e0fc1, exp_result[89] = 381fc038
+Failed: result.val[5][10] = 38479acf, exp_result[90] = 643bd725
+Failed: result.val[5][11] = 23252c52, exp_result[91] = 7d157d8d
+Failed: result.val[5][12] = 17e96171, exp_result[92] = 643bd725
+Failed: result.val[5][13] = 40c9fe6a, exp_result[93] = 7d157d8d
+Failed: result.val[5][14] = 49067a72, exp_result[94] = 6fd59589
+Failed: result.val[5][15] = 561f3b29, exp_result[95] = 3b3a7726
 TEST FAILED!

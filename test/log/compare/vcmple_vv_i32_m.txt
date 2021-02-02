@@ -1,0 +1,86 @@
+vcmple_vv_i32_m.c:9:2: warning: multi-line comment [-Wcomment]
+    9 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vcmple_vv_i32_m.c:11:44: warning: backslash and newline separated by space
+   11 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vcmple_vv_i32_m.c:13:40: warning: backslash and newline separated by space
+   13 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vcmple_vv_i32_m.c:14:35: warning: backslash and newline separated by space
+   14 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vcmple_vv_i32_m.c:15:40: warning: backslash and newline separated by space
+   15 |              a[i] = random(threshold); \
+      |                                         
+vcmple_vv_i32_m.c:16:27: warning: backslash and newline separated by space
+   16 |              b[i] = a[i]; \
+      |                            
+vcmple_vv_i32_m.c:22:6: warning: no previous prototype for 'vcmple_vv_i32_m_golden' [-Wmissing-prototypes]
+   22 | void vcmple_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,uint32_t *exp_result) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+vcmple_vv_i32_m.c: In function 'vcmple_vv_i32_m_golden':
+vcmple_vv_i32_m.c:24:25: error: 'TODO' undeclared (first use in this function)
+   24 |         exp_result[i] = TODO;
+      |                         ^~~~
+vcmple_vv_i32_m.c:24:25: note: each undeclared identifier is reported only once for each function it appears in
+vcmple_vv_i32_m.c:22:38: warning: unused parameter 'mask' [-Wunused-parameter]
+   22 | void vcmple_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,uint32_t *exp_result) {
+      |                             ~~~~~~~~~^~~~
+vcmple_vv_i32_m.c:22:52: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   22 | void vcmple_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,uint32_t *exp_result) {
+      |                                           ~~~~~~~~~^~~~~~~
+vcmple_vv_i32_m.c:22:69: warning: unused parameter 'a' [-Wunused-parameter]
+   22 | void vcmple_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,uint32_t *exp_result) {
+      |                                                            ~~~~~~~~~^
+vcmple_vv_i32_m.c:22:80: warning: unused parameter 'b' [-Wunused-parameter]
+   22 | void vcmple_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,uint32_t *exp_result) {
+      |                                                                       ~~~~~~~~~^
+vcmple_vv_i32_m.c: In function 'main':
+vcmple_vv_i32_m.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   42 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+      |     ^~~~~~~~~~~~~~
+      |     data_init_scalar
+vcmple_vv_i32_m.c:48:28: error: incompatible type for argument 1 of 'vcmple_vv_i32_m_golden'
+   48 |     vcmple_vv_i32_m_golden(exp_mask,exp_maskoff,exp_a,exp_b,exp_result);
+      |                            ^~~~~~~~
+      |                            |
+      |                            uint64_t * {aka long long unsigned int *}
+vcmple_vv_i32_m.c:22:38: note: expected 'bool16_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
+   22 | void vcmple_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,uint32_t *exp_result) {
+      |                             ~~~~~~~~~^~~~
+vcmple_vv_i32_m.c:51:35: error: incompatible type for argument 2 of 'vcmple_vv_i32_m'
+   51 |     result = vcmple_vv_i32_m(mask,maskoff,a,b);
+      |                                   ^~~~~~~
+      |                                   |
+      |                                   int32x16_t
+In file included from vcmple_vv_i32_m.c:4:
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2648:1: note: expected 'bool16_t' but argument is of type 'int32x16_t'
+ 2648 | __RUGRATS_CMP_VV_OP (cmple, i, int, int, 32, 32, 16)
+      | ^~~~~~~~~~~~~~~~~~~
+vcmple_vv_i32_m.c:56:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   56 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+      |                                                               ~^                      ~~~~~~~~~~~~~
+      |                                                                |                                |
+      |                                                                unsigned int                     uint32_t {aka long unsigned int}
+      |                                                               %lx
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmple_vv_i32_m.o] Error 1
+make: *** [bare] Error 2
+======================================================================
+
+ target	:	deccription
+****************************
+ bare	:	build application on baremental case. param: type=app-type app=app-name
+
+ rbb	:	run bare-app on beak. (build it firstly if modified) param: APP_TYPE=type APP_NAME=app-name , bp=beak-param
+
+ clean		:	delete objects generated by make
+****************************
+
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vcmple_vv_i32_m"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+    CC vcmple_vv_i32_m.c
+Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmple_vv_i32_m.o' failed
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+Makefile:37: recipe for target 'bare' failed

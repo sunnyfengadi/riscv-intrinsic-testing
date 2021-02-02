@@ -1,0 +1,103 @@
+vwsnmsacq_vv_i32_m.c:10:2: warning: multi-line comment [-Wcomment]
+   10 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vwsnmsacq_vv_i32_m.c:12:44: warning: backslash and newline separated by space
+   12 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vwsnmsacq_vv_i32_m.c:14:40: warning: backslash and newline separated by space
+   14 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vwsnmsacq_vv_i32_m.c:15:35: warning: backslash and newline separated by space
+   15 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vwsnmsacq_vv_i32_m.c:16:40: warning: backslash and newline separated by space
+   16 |              a[i] = random(threshold); \
+      |                                         
+vwsnmsacq_vv_i32_m.c:17:27: warning: backslash and newline separated by space
+   17 |              b[i] = a[i]; \
+      |                            
+vwsnmsacq_vv_i32_m.c:23:6: warning: no previous prototype for 'vwsnmsacq_vv_i32_m_golden' [-Wmissing-prototypes]
+   23 | void vwsnmsacq_vv_i32_m_golden(bool16_t mask,int64_t *a,int32_t *b,int32_t *c,int64_t *exp_result) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+vwsnmsacq_vv_i32_m.c: In function 'vwsnmsacq_vv_i32_m_golden':
+vwsnmsacq_vv_i32_m.c:23:77: warning: unused parameter 'c' [-Wunused-parameter]
+   23 | void vwsnmsacq_vv_i32_m_golden(bool16_t mask,int64_t *a,int32_t *b,int32_t *c,int64_t *exp_result) {
+      |                                                                    ~~~~~~~~~^
+vwsnmsacq_vv_i32_m.c: In function 'main':
+vwsnmsacq_vv_i32_m.c:45:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   45 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+      |     ^~~~~~~~~~~~~~
+      |     data_init_scalar
+vwsnmsacq_vv_i32_m.c:16:15: error: subscripted value is neither array nor pointer nor vector
+   16 |              a[i] = random(threshold); \
+      |               ^
+vwsnmsacq_vv_i32_m.c:46:5: note: in expansion of macro 'data_init'
+   46 |     data_init(a, exp_a, 8*2, 0xffffffffffffffff);
+      |     ^~~~~~~~~
+vwsnmsacq_vv_i32_m.c:17:22: error: subscripted value is neither array nor pointer nor vector
+   17 |              b[i] = a[i]; \
+      |                      ^
+vwsnmsacq_vv_i32_m.c:46:5: note: in expansion of macro 'data_init'
+   46 |     data_init(a, exp_a, 8*2, 0xffffffffffffffff);
+      |     ^~~~~~~~~
+vwsnmsacq_vv_i32_m.c:49:38: error: macro "data_init_scalar" requires 3 arguments, but only 2 given
+   49 |     data_init_scalar(accum, exp_accum);
+      |                                      ^
+vwsnmsacq_vv_i32_m.c:12: note: macro "data_init_scalar" defined here
+   12 |  #define data_init_scalar(a, b, threshold) \
+      | 
+vwsnmsacq_vv_i32_m.c:49:5: error: 'data_init_scalar' undeclared (first use in this function)
+   49 |     data_init_scalar(accum, exp_accum);
+      |     ^~~~~~~~~~~~~~~~
+vwsnmsacq_vv_i32_m.c:49:5: note: each undeclared identifier is reported only once for each function it appears in
+vwsnmsacq_vv_i32_m.c:52:31: error: incompatible type for argument 1 of 'vwsnmsacq_vv_i32_m_golden'
+   52 |     vwsnmsacq_vv_i32_m_golden(exp_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
+      |                               ^~~~~~~~
+      |                               |
+      |                               uint64_t * {aka long long unsigned int *}
+vwsnmsacq_vv_i32_m.c:23:41: note: expected 'bool16_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
+   23 | void vwsnmsacq_vv_i32_m_golden(bool16_t mask,int64_t *a,int32_t *b,int32_t *c,int64_t *exp_result) {
+      |                                ~~~~~~~~~^~~~
+vwsnmsacq_vv_i32_m.c:52:58: error: incompatible type for argument 5 of 'vwsnmsacq_vv_i32_m_golden'
+   52 |     vwsnmsacq_vv_i32_m_golden(exp_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
+      |                                                          ^~~~~~~~~
+      |                                                          |
+      |                                                          enum ACCUM
+vwsnmsacq_vv_i32_m.c:23:88: note: expected 'int64_t *' {aka 'long long int *'} but argument is of type 'enum ACCUM'
+   23 | void vwsnmsacq_vv_i32_m_golden(bool16_t mask,int64_t *a,int32_t *b,int32_t *c,int64_t *exp_result) {
+      |                                                                               ~~~~~~~~~^~~~~~~~~~
+vwsnmsacq_vv_i32_m.c:52:5: error: too many arguments to function 'vwsnmsacq_vv_i32_m_golden'
+   52 |     vwsnmsacq_vv_i32_m_golden(exp_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+vwsnmsacq_vv_i32_m.c:23:6: note: declared here
+   23 | void vwsnmsacq_vv_i32_m_golden(bool16_t mask,int64_t *a,int32_t *b,int32_t *c,int64_t *exp_result) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+vwsnmsacq_vv_i32_m.c:59:35: error: subscripted value is neither array nor pointer nor vector
+   59 |         if(exp_result[i] != result[i]) {
+      |                                   ^
+vwsnmsacq_vv_i32_m.c:60:79: error: subscripted value is neither array nor pointer nor vector
+   60 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+      |                                                                               ^
+vwsnmsacq_vv_i32_m.c:42:17: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+   42 |     int64x8x2_t result = {0};
+      |                 ^~~~~~
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwsnmsacq_vv_i32_m.o] Error 1
+make: *** [bare] Error 2
+======================================================================
+
+ target	:	deccription
+****************************
+ bare	:	build application on baremental case. param: type=app-type app=app-name
+
+ rbb	:	run bare-app on beak. (build it firstly if modified) param: APP_TYPE=type APP_NAME=app-name , bp=beak-param
+
+ clean		:	delete objects generated by make
+****************************
+
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vwsnmsacq_vv_i32_m"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+    CC vwsnmsacq_vv_i32_m.c
+Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwsnmsacq_vv_i32_m.o' failed
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+Makefile:37: recipe for target 'bare' failed

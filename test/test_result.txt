@@ -1,6 +1,173 @@
+Test API=arithmetic
+--------------------
+Total test api: 188
+Test Pass number: 56
+Test Fail number: 28
+Build Pass number: 0
+Build Fail number: 104
+
+Test Passed API name: 
+ 	['vwadd_ww_i32.c', 'vsub_vv_u16.c', 'vneg_v_i16.c', 'vmin_vv_u16.c', 'vmax_vx_i32.c', 'vadd_vx_i32.c', 'vmin_vx_i32.c', 'vmax_vx_u16.c', 'vmax_vx_i16.c', 'vssub_vv_i32.c', 'vmax_vv_i32.c', 'vadd_vv_i16.c', 'vmin_vx_u16.c', 'vneg_v_i32.c', 'vmax_vv_u16.c', 'vmin_vv_i32.c', 'vadd_vv_i32.c', 'vmax_vx_u32.c', 'vsadd_vx_u32.c', 'vmin_vx_i16.c', 'vadd_vv_u16.c', 'vneg_v_u16.c', 'vmul_vx_i32.c', 'vwsub_ww_i32.c', 'vsub_vx_u32.c', 'vwssub_ww_i32.c', 'vadd_vx_u32.c', 'vsub_vx_i16.c', 'vmul_vv_u16.c', 'vsub_vx_i32.c', 'vneg_v_u32.c', 'vmul_vv_i16.c', 'vsneg_v_i16.c', 'vmul_vx_i16.c', 'vsub_vv_i32.c', 'vadd_vx_i16.c', 'vmul_vx_u32.c', 'vmax_vv_u32.c', 'vmax_vv_i16.c', 'vssub_vx_i32.c', 'vsadd_vv_u32.c', 'vmul_vv_u32.c', 'vadd_vv_u32.c', 'vwsadd_ww_u32.c', 'vsub_vv_u32.c', 'vwadd_ww_u32.c', 'vmul_vx_u16.c', 'vmin_vx_u32.c', 'vmin_vv_i16.c', 'vsub_vx_u16.c', 'vsneg_v_i32.c', 'vmul_vv_i32.c', 'vsub_vv_i16.c', 'vwsub_ww_u32.c', 'vadd_vx_u16.c', 'vmin_vv_u32.c']
+
+Test Failed API name: 
+ 	['vsadd_vv_u16.c', 'vsadd_vx_i32.c', 'vsadd_vv_i16.c', 'vssub_vx_u32.c', 'vssub_vx_u16.c', 'vsadd_vv_i32.c', 'vmulh_vv_i16.c', 'vwssub_ww_u32.c', 'vsmulhq_vx_i32.c', 'vsadd_vx_u16.c', 'vssub_vv_u32.c', 'vssub_vv_i16.c', 'vmulh_vv_u16.c', 'vmulh_vx_i16.c', 'vsadd_vx_i16.c', 'vmulh_vv_i32.c', 'vssub_vv_u16.c', 'vwsadd_ww_i32.c', 'vsmul_vx_i16.c', 'vmulh_vx_i32.c', 'vsmul_vx_i32.c', 'vsmul_vv_i32.c', 'vmulh_vv_u32.c', 'vmulh_vx_u32.c', 'vmulh_vx_u16.c', 'vssub_vx_i16.c', 'vsmul_vv_i16.c', 'vsmulhq_vv_i32.c']
+
+Build Failed API name: 
+ 	['vmul_vv_u16_m.c', 'vssub_vx_i32_m.c', 'vsub_vv_u32_m.c', 'vsub_vx_u16_m.c', 'vwmul_vv_i32_m.c', 'vwmul_vv_u16_m.c', 'vsadd_vx_u32_m.c', 'vwmul_vv_i32.c', 'vneg_v_i32_m.c', 'vneg_v_i16_m.c', 'vssub_vx_u16_m.c', 'vmulh_vx_u32_m.c', 'vmin_vx_i32_m.c', 'vmax_vv_i32_m.c', 'vadd_vv_i16_m.c', 'vsadd_vv_u16_m.c', 'vmul_vx_i16_m.c', 'vwmul_vx_i32_m.c', 'vwmul_vx_u16.c', 'vsneg_v_i16_m.c', 'vssub_vv_u32_m.c', 'vwmul_vx_u32.c', 'vmin_vv_i32_m.c', 'vsadd_vx_i16_m.c', 'vadd_vx_u32_m.c', 'vmulh_vv_i32_m.c', 'vadd_vv_i32_m.c', 'vmul_vx_i32_m.c', 'vsmulhq_vx_i32_m.c', 'vmax_vx_i16_m.c', 'vmin_vx_i16_m.c', 'vneg_v_u16_m.c', 'vmul_vv_u32_m.c', 'vadd_vv_u16_m.c', 'vmulh_vx_i32_m.c', 'vsadd_vx_u16_m.c', 'vwssub_ww_i32_m.c', 'vwmul_vv_u32.c', 'vwmul_vx_u32_m.c', 'vmax_vv_u16_m.c', 'vadd_vv_u32_m.c', 'vwsmulq_vx_i32_m.c', 'vmin_vv_u32_m.c', 'vmulh_vv_u32_m.c', 'vwadd_ww_i32_m.c', 'vmax_vx_u16_m.c', 'vssub_vv_i16_m.c', 'vmax_vv_u32_m.c', 'vsmul_vx_i32_m.c', 'vmul_vx_u32_m.c', 'vsneg_v_i32_m.c', 'vmulh_vx_i16_m.c', 'vwmul_vx_i32.c', 'vwmul_vx_i16_m.c', 'vsmul_vx_i16_m.c', 'vwmul_vx_u16_m.c', 'vmax_vx_i32_m.c', 'vmulh_vv_i16_m.c', 'vmax_vx_u32_m.c', 'vsadd_vv_i16_m.c', 'vmin_vv_i16_m.c', 'vmulh_vx_u16_m.c', 'vssub_vx_u32_m.c', 'vmin_vv_u16_m.c', 'vmulh_vv_u16_m.c', 'vwsmulq_vv_i32_m.c', 'vsub_vv_i32_m.c', 'vadd_vx_i32_m.c', 'vsadd_vv_u32_m.c', 'vneg_v_u32_m.c', 'vssub_vv_i32_m.c', 'vsmul_vv_i32_m.c', 'vwsub_ww_i32_m.c', 'vmul_vv_i32_m.c', 'vmax_vv_i16_m.c', 'vwmul_vx_i16.c', 'vwssub_ww_u32_m.c', 'vwsmulq_vv_i32.c', 'vssub_vx_i16_m.c', 'vadd_vx_u16_m.c', 'vadd_vx_i16_m.c', 'vwmul_vv_i16.c', 'vssub_vv_u16_m.c', 'vsub_vx_i16_m.c', 'vwsmulq_vx_i32.c', 'vmul_vx_u16_m.c', 'vsmulhq_vv_i32_m.c', 'vwadd_ww_u32_m.c', 'vsadd_vx_i32_m.c', 'vmin_vx_u32_m.c', 'vsub_vx_i32_m.c', 'vsadd_vv_i32_m.c', 'vsub_vv_i16_m.c', 'vwsub_ww_u32_m.c', 'vwmul_vv_i16_m.c', 'vwmul_vv_u32_m.c', 'vsub_vv_u16_m.c', 'vwmul_vv_u16.c', 'vmul_vv_i16_m.c', 'vmin_vx_u16_m.c', 'vsmul_vv_i16_m.c', 'vsub_vx_u32_m.c', 'vwsadd_ww_u32_m.c', 'vwsadd_ww_i32_m.c']
+
+Test API=conversion
+--------------------
+Total test api: 22
+Test Pass number: 0
+Test Fail number: 0
+Build Pass number: 0
+Build Fail number: 22
+
+Build Failed API name: 
+ 	['vextend_v_u16_m.c', 'vextend_v_u32_m.c', 'vextend_v_u16.c', 'vextend_v_u32.c', 'vextend_v_i32.c', 'vextend_v_i16.c', 'vtrunc_w_u16_m.c', 'vtrunc_w_u16.c', 'vclip_wv_u32.c', 'vclip_wv_u32_m.c', 'vextend_v_i16_m.c', 'vtrunc_w_i16_m.c', 'vtrunc_w_i16.c', 'vclip_wv_i16.c', 'vclip_wv_i16_m.c', 'vextend_v_i32_m.c', 'vtrunc_w_i32.c', 'vclip_wv_u16.c', 'vclip_wv_u16_m.c', 'vtrunc_w_u32_m.c', 'vtrunc_w_i32_m.c', 'vtrunc_w_u32.c']
+
 Test API=load
 --------------------
-Total test api: 64
-Pass number: 64
-Fail number: 0
+Total test api: 192
+Test Pass number: 0
+Test Fail number: 56
+Build Pass number: 0
+Build Fail number: 136
+
+Test Failed API name: 
+ 	['vgldcb2_v_i16.c', 'vldcb6in0_v_u16.c', 'vgldcb6_v_u16.c', 'vgldcb7_v_i16.c', 'vldcb7in0_v_i32.c', 'vldcb3in0_v_u32.c', 'vldcb8in0_v_i32.c', 'vgldcb2_v_u32.c', 'vldcb5in0_v_u16.c', 'vldcb4in0_v_u16.c', 'vgldcb7_v_i32.c', 'vgldcb8_v_i16.c', 'vldcb3in0_v_u16.c', 'vldcb4in0_v_u32.c', 'vldcb5in0_v_i16.c', 'vldcb4in0_v_i16.c', 'vgldcb4_v_u32.c', 'vgldcb5_v_u32.c', 'vgldcb5_v_i16.c', 'vgldcb3_v_i16.c', 'vldcb2in0_v_i32.c', 'vldcb5in0_v_i32.c', 'vldcb3in0_v_i32.c', 'vgldcb5_v_i32.c', 'vgldcb6_v_i32.c', 'vgldcb7_v_u16.c', 'vgldcb2_v_u16.c', 'vgldcb5_v_u16.c', 'vldcb2in0_v_i16.c', 'vgldcb8_v_u16.c', 'vldcb7in0_v_u32.c', 'vldcb3in0_v_i16.c', 'vldcb8in0_v_i16.c', 'vldcb7in0_v_u16.c', 'vgldcb8_v_i32.c', 'vgldcb3_v_u32.c', 'vgldcb4_v_i32.c', 'vldcb6in0_v_i16.c', 'vgldcb4_v_u16.c', 'vldcb2in0_v_u16.c', 'vldcb6in0_v_i32.c', 'vgldcb8_v_u32.c', 'vgldcb6_v_i16.c', 'vldcb2in0_v_u32.c', 'vldcb8in0_v_u16.c', 'vldcb6in0_v_u32.c', 'vldcb7in0_v_i16.c', 'vgldcb3_v_i32.c', 'vgldcb3_v_u16.c', 'vgldcb4_v_i16.c', 'vgldcb6_v_u32.c', 'vldcb5in0_v_u32.c', 'vgldcb2_v_i32.c', 'vldcb8in0_v_u32.c', 'vgldcb7_v_u32.c', 'vldcb4in0_v_i32.c']
+
+Build Failed API name: 
+ 	['vgldcb8_v_u32_m.c', 'vldcb8in0_v_i32_m.c', 'vldcb6in0_v_i16_m.c', 'vldcb3in0_v_u64_m.c', 'vldcb8in0_v_u64_m.c', 'vgldcb4_v_i64_m.c', 'vldcb7in0_v_i32_m.c', 'vgldcb5_v_u64_m.c', 'vldcb1in0_v_i32.c', 'vldcb4in0_v_i64_m.c', 'vldcb4in0_v_i32_m.c', 'vldcb2in0_v_i16_m.c', 'vgldcb6_v_u32_m.c', 'vgldcb5_v_i64_m.c', 'vgldcb5_v_i32_m.c', 'vgldcb4_v_u32_m.c', 'vldcb3in0_v_i64_m.c', 'vldcb5in0_v_u32_m.c', 'vgldcb3_v_i64_m.c', 'vgldcb8_v_i64.c', 'vgldcb5_v_i64.c', 'vgldcb1_v_i16_m.c', 'vgldcb7_v_u16_m.c', 'vldcb1in0_v_u64.c', 'vldcb6in0_v_u16_m.c', 'vldcb1in0_v_u32_m.c', 'vgldcb8_v_u16_m.c', 'vgldcb4_v_i64.c', 'vgldcb8_v_i16_m.c', 'vgldcb8_v_i32_m.c', 'vldcb1in0_v_i64.c', 'vgldcb3_v_u64.c', 'vgldcb2_v_i16_m.c', 'vldcb3in0_v_u16_m.c', 'vgldcb3_v_u32_m.c', 'vgldcb3_v_i32_m.c', 'vldcb6in0_v_i64_m.c', 'vldcb5in0_v_i16_m.c', 'vldcb8in0_v_i64_m.c', 'vldcb2in0_v_i64.c', 'vldcb6in0_v_u64.c', 'vgldcb7_v_i64_m.c', 'vgldcb4_v_u64_m.c', 'vldcb3in0_v_i64.c', 'vldcb2in0_v_i32_m.c', 'vgldcb6_v_i16_m.c', 'vldcb2in0_v_u64_m.c', 'vgldcb4_v_i32_m.c', 'vgldcb1_v_u64_m.c', 'vgldcb8_v_u64_m.c', 'vldcb4in0_v_u32_m.c', 'vldcb2in0_v_i64_m.c', 'vgldcb6_v_i64_m.c', 'vgldcb5_v_i16_m.c', 'vldcb8in0_v_u16_m.c', 'vgldcb3_v_u16_m.c', 'vgldcb1_v_i64.c', 'vgldcb8_v_i64_m.c', 'vgldcb4_v_u16_m.c', 'vldcb6in0_v_i32_m.c', 'vldcb1in0_v_u32.c', 'vldcb4in0_v_u64.c', 'vldcb8in0_v_u32_m.c', 'vldcb3in0_v_i32_m.c', 'vgldcb5_v_u64.c', 'vldcb7in0_v_u16_m.c', 'vgldcb7_v_i32_m.c', 'vgldcb1_v_i32.c', 'vldcb1in0_v_i32_m.c', 'vldcb4in0_v_i16_m.c', 'vgldcb4_v_i16_m.c', 'vgldcb7_v_i64.c', 'vgldcb6_v_i32_m.c', 'vldcb5in0_v_u64.c', 'vgldcb3_v_i64.c', 'vgldcb4_v_u64.c', 'vgldcb1_v_i32_m.c', 'vgldcb2_v_u64.c', 'vgldcb7_v_u64_m.c', 'vldcb6in0_v_i64.c', 'vldcb7in0_v_i64_m.c', 'vldcb1in0_v_u64_m.c', 'vldcb5in0_v_i64_m.c', 'vgldcb2_v_i32_m.c', 'vgldcb1_v_u32_m.c', 'vldcb5in0_v_i32_m.c', 'vgldcb6_v_u64_m.c', 'vgldcb2_v_u64_m.c', 'vldcb3in0_v_u64.c', 'vgldcb1_v_u64.c', 'vgldcb1_v_i64_m.c', 'vldcb7in0_v_u32_m.c', 'vldcb1in0_v_i16.c', 'vldcb4in0_v_u64_m.c', 'vldcb3in0_v_u32_m.c', 'vldcb7in0_v_u64.c', 'vldcb5in0_v_u64_m.c', 'vgldcb8_v_u64.c', 'vgldcb3_v_i16_m.c', 'vldcb5in0_v_i64.c', 'vgldcb2_v_u32_m.c', 'vldcb2in0_v_u32_m.c', 'vgldcb1_v_u16_m.c', 'vgldcb5_v_u32_m.c', 'vldcb6in0_v_u32_m.c', 'vgldcb3_v_u64_m.c', 'vldcb2in0_v_u64.c', 'vldcb3in0_v_i16_m.c', 'vldcb8in0_v_i16_m.c', 'vldcb4in0_v_u16_m.c', 'vgldcb2_v_i64.c', 'vldcb2in0_v_u16_m.c', 'vldcb5in0_v_u16_m.c', 'vldcb1in0_v_u16.c', 'vgldcb6_v_u16_m.c', 'vgldcb2_v_u16_m.c', 'vgldcb7_v_u32_m.c', 'vldcb1in0_v_i16_m.c', 'vgldcb7_v_u64.c', 'vldcb7in0_v_i16_m.c', 'vgldcb2_v_i64_m.c', 'vgldcb1_v_u16.c', 'vgldcb1_v_u32.c', 'vgldcb6_v_i64.c', 'vldcb6in0_v_u64_m.c', 'vgldcb1_v_i16.c', 'vldcb7in0_v_i64.c', 'vgldcb5_v_u16_m.c', 'vldcb8in0_v_u64.c', 'vldcb7in0_v_u64_m.c', 'vldcb4in0_v_i64.c', 'vldcb1in0_v_u16_m.c', 'vgldcb7_v_i16_m.c', 'vgldcb6_v_u64.c', 'vldcb1in0_v_i64_m.c', 'vldcb8in0_v_i64.c']
+
+Test API=store
+--------------------
+Total test api: 192
+Test Pass number: 0
+Test Fail number: 0
+Build Pass number: 0
+Build Fail number: 192
+
+Build Failed API name: 
+ 	['vsstcb4_v_i16_m.c', 'vsstcb2_v_u16_m.c', 'vstcb7in0_v_u16.c', 'vsstcb6_v_i32.c', 'vstcb7in0_v_u64_m.c', 'vsstcb1_v_i32.c', 'vsstcb4_v_i16.c', 'vsstcb5_v_u64.c', 'vsstcb6_v_i64.c', 'vstcb1in0_v_i64.c', 'vstcb8in0_v_u32.c', 'vsstcb5_v_i64.c', 'vsstcb2_v_i32.c', 'vstcb7in0_v_u32.c', 'vsstcb1_v_i16_m.c', 'vstcb3in0_v_i32_m.c', 'vsstcb2_v_i64.c', 'vstcb6in0_v_i64_m.c', 'vstcb1in0_v_u64.c', 'vstcb4in0_v_i64.c', 'vsstcb4_v_u16.c', 'vsstcb5_v_u32_m.c', 'vsstcb7_v_u16.c', 'vstcb4in0_v_u16_m.c', 'vsstcb2_v_u16.c', 'vsstcb2_v_u64_m.c', 'vsstcb6_v_u64_m.c', 'vsstcb8_v_u32.c', 'vstcb5in0_v_i64.c', 'vsstcb7_v_i64_m.c', 'vsstcb7_v_u32_m.c', 'vstcb1in0_v_u32_m.c', 'vstcb8in0_v_i32_m.c', 'vstcb7in0_v_i16.c', 'vsstcb7_v_i16.c', 'vsstcb7_v_u32.c', 'vsstcb8_v_i64_m.c', 'vstcb7in0_v_u64.c', 'vstcb8in0_v_u16.c', 'vstcb2in0_v_i16.c', 'vsstcb3_v_u16.c', 'vsstcb3_v_i64.c', 'vsstcb8_v_i32.c', 'vstcb1in0_v_u16.c', 'vstcb5in0_v_u16.c', 'vsstcb7_v_i16_m.c', 'vstcb2in0_v_i64.c', 'vstcb1in0_v_i16_m.c', 'vstcb5in0_v_u64_m.c', 'vstcb4in0_v_i32.c', 'vstcb5in0_v_u64.c', 'vstcb1in0_v_i32.c', 'vstcb1in0_v_i64_m.c', 'vstcb8in0_v_i64.c', 'vstcb2in0_v_i32_m.c', 'vsstcb4_v_u32.c', 'vsstcb4_v_i32_m.c', 'vstcb5in0_v_i32.c', 'vstcb4in0_v_u32.c', 'vstcb1in0_v_i32_m.c', 'vsstcb3_v_u64.c', 'vstcb2in0_v_u16.c', 'vstcb5in0_v_u32.c', 'vstcb3in0_v_u64_m.c', 'vsstcb1_v_i64.c', 'vsstcb3_v_i32.c', 'vstcb2in0_v_u64.c', 'vstcb4in0_v_i64_m.c', 'vstcb2in0_v_i32.c', 'vsstcb5_v_i32_m.c', 'vstcb6in0_v_u32.c', 'vstcb3in0_v_u16.c', 'vstcb5in0_v_i32_m.c', 'vstcb1in0_v_i16.c', 'vsstcb5_v_u16.c', 'vstcb2in0_v_u32_m.c', 'vsstcb3_v_u32_m.c', 'vstcb8in0_v_i16_m.c', 'vsstcb3_v_i16.c', 'vsstcb5_v_i16_m.c', 'vstcb6in0_v_u32_m.c', 'vsstcb4_v_i64_m.c', 'vsstcb8_v_u32_m.c', 'vstcb2in0_v_u16_m.c', 'vstcb6in0_v_i32.c', 'vsstcb1_v_u16_m.c', 'vsstcb6_v_u64.c', 'vsstcb5_v_u64_m.c', 'vsstcb7_v_u64_m.c', 'vstcb3in0_v_u64.c', 'vstcb6in0_v_i64.c', 'vstcb6in0_v_u64.c', 'vsstcb2_v_i16.c', 'vstcb8in0_v_i32.c', 'vstcb1in0_v_u32.c', 'vstcb8in0_v_u64.c', 'vsstcb4_v_u64.c', 'vsstcb2_v_u32.c', 'vsstcb2_v_u64.c', 'vsstcb1_v_u64_m.c', 'vstcb4in0_v_u64_m.c', 'vstcb3in0_v_i32.c', 'vstcb1in0_v_u64_m.c', 'vsstcb5_v_i16.c', 'vsstcb3_v_i64_m.c', 'vsstcb4_v_i32.c', 'vstcb6in0_v_u16.c', 'vsstcb7_v_i32.c', 'vstcb8in0_v_u64_m.c', 'vsstcb4_v_u64_m.c', 'vsstcb1_v_i16.c', 'vstcb3in0_v_i16.c', 'vstcb3in0_v_u32.c', 'vsstcb6_v_u32_m.c', 'vsstcb3_v_u64_m.c', 'vstcb3in0_v_i16_m.c', 'vstcb5in0_v_u32_m.c', 'vstcb4in0_v_u16.c', 'vstcb8in0_v_i16.c', 'vsstcb8_v_i64.c', 'vsstcb4_v_i64.c', 'vsstcb7_v_i64.c', 'vsstcb6_v_i64_m.c', 'vsstcb4_v_u32_m.c', 'vsstcb7_v_i32_m.c', 'vstcb7in0_v_i16_m.c', 'vsstcb3_v_u16_m.c', 'vsstcb1_v_i64_m.c', 'vstcb2in0_v_u32.c', 'vstcb6in0_v_u16_m.c', 'vsstcb3_v_u32.c', 'vsstcb1_v_u32.c', 'vstcb2in0_v_i64_m.c', 'vstcb4in0_v_u32_m.c', 'vsstcb1_v_u64.c', 'vsstcb3_v_i32_m.c', 'vsstcb7_v_u64.c', 'vstcb8in0_v_u32_m.c', 'vstcb4in0_v_i16.c', 'vsstcb6_v_i16_m.c', 'vstcb6in0_v_u64_m.c', 'vsstcb2_v_i32_m.c', 'vsstcb6_v_u32.c', 'vstcb3in0_v_u32_m.c', 'vstcb5in0_v_i16.c', 'vstcb5in0_v_i16_m.c', 'vsstcb1_v_u16.c', 'vstcb7in0_v_u16_m.c', 'vstcb7in0_v_i32.c', 'vsstcb8_v_u16_m.c', 'vsstcb8_v_i16.c', 'vstcb6in0_v_i16.c', 'vsstcb5_v_i32.c', 'vsstcb6_v_u16_m.c', 'vsstcb6_v_u16.c', 'vstcb7in0_v_i64_m.c', 'vstcb8in0_v_i64_m.c', 'vstcb4in0_v_i16_m.c', 'vsstcb2_v_i64_m.c', 'vstcb5in0_v_u16_m.c', 'vstcb5in0_v_i64_m.c', 'vstcb8in0_v_u16_m.c', 'vstcb6in0_v_i32_m.c', 'vstcb3in0_v_u16_m.c', 'vstcb7in0_v_u32_m.c', 'vstcb2in0_v_i16_m.c', 'vsstcb6_v_i32_m.c', 'vstcb2in0_v_u64_m.c', 'vsstcb8_v_u64.c', 'vstcb3in0_v_i64_m.c', 'vsstcb1_v_u32_m.c', 'vsstcb8_v_u64_m.c', 'vsstcb6_v_i16.c', 'vsstcb1_v_i32_m.c', 'vstcb7in0_v_i32_m.c', 'vsstcb5_v_i64_m.c', 'vsstcb8_v_u16.c', 'vstcb6in0_v_i16_m.c', 'vstcb4in0_v_i32_m.c', 'vsstcb4_v_u16_m.c', 'vsstcb2_v_u32_m.c', 'vsstcb3_v_i16_m.c', 'vsstcb8_v_i32_m.c', 'vsstcb5_v_u16_m.c', 'vsstcb8_v_i16_m.c', 'vstcb3in0_v_i64.c', 'vstcb7in0_v_i64.c', 'vstcb1in0_v_u16_m.c', 'vsstcb2_v_i16_m.c', 'vstcb4in0_v_u64.c', 'vsstcb5_v_u32.c', 'vsstcb7_v_u16_m.c']
+
+Test API=shift
+--------------------
+Total test api: 100
+Test Pass number: 16
+Test Fail number: 34
+Build Pass number: 0
+Build Fail number: 50
+
+Test Passed API name: 
+ 	['vwsll_ww_i32.c', 'vsll_vx_u32.c', 'vwsrl_wx_u32.c', 'vsra_vx_i32.c', 'vsrl_vv_u32.c', 'vsll_vv_i32.c', 'vwsll_ww_u32.c', 'vsrl_vx_u32.c', 'vwsll_wx_u32.c', 'vwsll_wx_i32.c', 'vsll_vx_i32.c', 'vwsrl_ww_u32.c', 'vwsra_ww_i32.c', 'vwsra_wx_i32.c', 'vsll_vv_u32.c', 'vsra_vv_i32.c']
+
+Test Failed API name: 
+ 	['vssll_vx_i32.c', 'vcsr_i_u32.c', 'vsll_vv_i16.c', 'vwsll_wi_u32.c', 'vssll_vi_i32.c', 'vsll_vi_i16.c', 'vsra_vx_i16.c', 'vsra_vi_i16.c', 'vcsl_i_i32.c', 'vwsll_wi_i32.c', 'vcsl_i_i16.c', 'vsrl_vv_u16.c', 'vsll_vx_i16.c', 'vssll_vv_i32.c', 'vsll_vv_u16.c', 'vsll_vi_u16.c', 'vsrl_vi_u16.c', 'vcsr_i_u16.c', 'vsll_vi_u32.c', 'vcsl_i_u32.c', 'vwsra_wi_i32.c', 'vwssll_wx_i32.c', 'vwssll_ww_i32.c', 'vsll_vx_u16.c', 'vsra_vi_i32.c', 'vsrl_vi_u32.c', 'vcsr_i_i32.c', 'vcsr_i_i16.c', 'vsll_vi_i32.c', 'vcsl_i_u16.c', 'vsra_vv_i16.c', 'vwssll_wi_i32.c', 'vsrl_vx_u16.c', 'vwsrl_wi_u32.c']
+
+Build Failed API name: 
+ 	['vcsl_i_u16_m.c', 'vcsl_i_i32_m.c', 'vsll_vx_u16_m.c', 'vsrl_vv_u32_m.c', 'vwssll_wi_i32_m.c', 'vwsra_wi_i32_m.c', 'vwsrl_ww_u32_m.c', 'vwsll_ww_i32_m.c', 'vcsl_i_u32_m.c', 'vcsr_i_i16_m.c', 'vssll_vi_i32_m.c', 'vsll_vv_i32_m.c', 'vwssll_wx_i32_m.c', 'vcsl_i_i16_m.c', 'vsll_vx_i16_m.c', 'vsll_vi_u32_m.c', 'vsll_vi_i32_m.c', 'vsra_vi_i32_m.c', 'vsra_vi_i16_m.c', 'vwssll_ww_i32_m.c', 'vwsll_wx_u32_m.c', 'vwsll_ww_u32_m.c', 'vsra_vx_i32_m.c', 'vsrl_vi_u16_m.c', 'vsrl_vx_u32_m.c', 'vsrl_vv_u16_m.c', 'vssll_vx_i32_m.c', 'vsll_vv_u32_m.c', 'vcsr_i_u16_m.c', 'vsll_vx_i32_m.c', 'vsll_vi_u16_m.c', 'vsll_vv_u16_m.c', 'vsll_vv_i16_m.c', 'vcsr_i_i32_m.c', 'vsrl_vx_u16_m.c', 'vsll_vi_i16_m.c', 'vsrl_vi_u32_m.c', 'vsra_vv_i32_m.c', 'vwsll_wi_i32_m.c', 'vwsrl_wx_u32_m.c', 'vwsrl_wi_u32_m.c', 'vsll_vx_u32_m.c', 'vsra_vx_i16_m.c', 'vcsr_i_u32_m.c', 'vwsll_wi_u32_m.c', 'vwsll_wx_i32_m.c', 'vsra_vv_i16_m.c', 'vssll_vv_i32_m.c', 'vwsra_wx_i32_m.c', 'vwsra_ww_i32_m.c']
+
+Test API=mac
+--------------------
+Total test api: 80
+Test Pass number: 0
+Test Fail number: 16
+Build Pass number: 0
+Build Fail number: 64
+
+Test Failed API name: 
+ 	['vmacc_vv_i16.c', 'vnmsub_vv_i16.c', 'vnmsub_vv_i32.c', 'vnmsac_vv_i32.c', 'vmsub_vv_u32.c', 'vnmsub_vv_u16.c', 'vmsub_vv_i16.c', 'vmsub_vv_u16.c', 'vnmsac_vv_i16.c', 'vmacc_vv_i32.c', 'vnmsac_vv_u32.c', 'vmsub_vv_i32.c', 'vmacc_vv_u32.c', 'vnmsac_vv_u16.c', 'vmacc_vv_u16.c', 'vnmsub_vv_u32.c']
+
+Build Failed API name: 
+ 	['vwnmsac_vv_u32_m.c', 'vmacc_vv_i16_m.c', 'vsmsubq_vv_i32.c', 'vnmsac_vv_i16_m.c', 'vwsmsubq_vv_i32.c', 'vwnmsub_vv_u16.c', 'vwmsub_vv_i16_m.c', 'vwsnmsacq_vv_i32.c', 'vsmaccq_vv_i32_m.c', 'vwnmsub_vv_i32.c', 'vwmsub_vv_u32.c', 'vwnmsub_vv_i16.c', 'vwnmsac_vv_u16.c', 'vnmsub_vv_i16_m.c', 'vwmacc_vv_u32.c', 'vwmsub_vv_u16.c', 'vwmacc_vv_i16.c', 'vwmsub_vv_i32.c', 'vwnmsub_vv_u32.c', 'vwmsub_vv_u32_m.c', 'vwnmsub_vv_u16_m.c', 'vwmacc_vv_u32_m.c', 'vwnmsac_vv_u32.c', 'vwsnmsubq_vv_i32.c', 'vsnmsacq_vv_i32_m.c', 'vwnmsub_vv_u32_m.c', 'vwmacc_vv_u16_m.c', 'vmacc_vv_i32_m.c', 'vmacc_vv_u32_m.c', 'vmacc_vv_u16_m.c', 'vmsub_vv_u32_m.c', 'vwmsub_vv_u16_m.c', 'vwmacc_vv_i32_m.c', 'vsnmsubq_vv_i32.c', 'vwmacc_vv_u16.c', 'vsmsubq_vv_i32_m.c', 'vwmacc_vv_i32.c', 'vwmsub_vv_i32_m.c', 'vmsub_vv_i16_m.c', 'vwnmsac_vv_i32_m.c', 'vnmsac_vv_i32_m.c', 'vsnmsubq_vv_i32_m.c', 'vwnmsac_vv_i16_m.c', 'vwmsub_vv_i16.c', 'vwsnmsacq_vv_i32_m.c', 'vwnmsub_vv_i32_m.c', 'vnmsub_vv_u32_m.c', 'vwmacc_vv_i16_m.c', 'vwnmsub_vv_i16_m.c', 'vwsmaccq_vv_i32.c', 'vnmsub_vv_i32_m.c', 'vwsmaccq_vv_i32_m.c', 'vnmsac_vv_u16_m.c', 'vsmaccq_vv_i32.c', 'vwnmsac_vv_u16_m.c', 'vmsub_vv_i32_m.c', 'vsnmsacq_vv_i32.c', 'vnmsub_vv_u16_m.c', 'vnmsac_vv_u32_m.c', 'vwnmsac_vv_i32.c', 'vwsnmsubq_vv_i32_m.c', 'vwnmsac_vv_i16.c', 'vwsmsubq_vv_i32_m.c', 'vmsub_vv_u16_m.c']
+
+Test API=move
+--------------------
+Total test api: 32
+Test Pass number: 6
+Test Fail number: 6
+Build Pass number: 0
+Build Fail number: 20
+
+Test Passed API name: 
+ 	['vmv_v_x_i32.c', 'vmv_v_x_u32.c', 'vmv_v_x_i64.c', 'vmv_v_x_i16.c', 'vmv_v_x_u16.c', 'vmv_v_x_u64.c']
+
+Test Failed API name: 
+ 	['vmv_v_i_i16.c', 'vmv_v_i_i32.c', 'vmv_v_i_u32.c', 'vmv_v_i_i64.c', 'vmv_v_i_u64.c', 'vmv_v_i_u16.c']
+
+Build Failed API name: 
+ 	['vmv_v_x_u16_m.c', 'vmv_v_x_i16_m.c', 'vmv_x_v_i16_m.c', 'vmv_v_i_i32_m.c', 'vmv_x_v_i16.c', 'vmv_v_i_i64_m.c', 'vmv_v_i_i16_m.c', 'vmv_v_x_u64_m.c', 'vmv_v_x_u32_m.c', 'vmv_x_v_u32.c', 'vmv_v_x_i32_m.c', 'vmv_v_i_u64_m.c', 'vmv_v_i_u16_m.c', 'vmv_x_v_u16.c', 'vmv_x_v_u32_m.c', 'vmv_x_v_i32.c', 'vmv_x_v_u16_m.c', 'vmv_v_i_u32_m.c', 'vmv_v_x_i64_m.c', 'vmv_x_v_i32_m.c']
+
+Test API=permutation
+--------------------
+Total test api: 12
+Test Pass number: 0
+Test Fail number: 0
+Build Pass number: 0
+Build Fail number: 12
+
+Build Failed API name: 
+ 	['vgather_vv_i16.c', 'vgather_vv_u16.c', 'vmerge_vv_i16_m.c', 'vgather_vv_u32_m.c', 'vmerge_vv_u16_m.c', 'vmerge_vv_u32_m.c', 'vgather_vv_i32_m.c', 'vgather_vv_u16_m.c', 'vmerge_vv_i32_m.c', 'vgather_vv_u32.c', 'vgather_vv_i32.c', 'vgather_vv_i16_m.c']
+
+Test API=iir
+--------------------
+Total test api: 256
+Test Pass number: 0
+Test Fail number: 0
+Build Pass number: 0
+Build Fail number: 256
+
+Build Failed API name: 
+ 	['vsrdotiiru_v_i32_d2s3.c', 'vsrdotiircq_v_i32_d5s6.c', 'vsrdotiiru_v_i32_d8s6.c', 'vsrdotiircu_v_i32_d3s6.c', 'vsrdotiircu_v_i32_d3s8.c', 'vsrdotiiru_v_i32_d5s3.c', 'vsrdotiircu_v_i32_d1s2.c', 'vsrdotiiru_v_i32_d4s3.c', 'vsrdotiircu_v_i32_d7s6.c', 'vsrdotiiru_v_i32_d3s5.c', 'vsrdotiircq_v_i32_d6s6.c', 'vsrdotiircq_v_i32_d6s2.c', 'vsrdotiiru_v_i32_d2s8.c', 'vsrdotiircq_v_i32_d2s6.c', 'vsrdotiirq_v_i32_d4s7.c', 'vsrdotiircq_v_i32_d1s5.c', 'vsrdotiircq_v_i32_d3s7.c', 'vsrdotiircu_v_i32_d6s7.c', 'vsrdotiircq_v_i32_d1s1.c', 'vsrdotiircu_v_i32_d2s7.c', 'vsrdotiiru_v_i32_d7s5.c', 'vsrdotiircu_v_i32_d7s5.c', 'vsrdotiiru_v_i32_d4s5.c', 'vsrdotiirq_v_i32_d1s4.c', 'vsrdotiirq_v_i32_d3s7.c', 'vsrdotiircu_v_i32_d8s8.c', 'vsrdotiiru_v_i32_d8s1.c', 'vsrdotiircu_v_i32_d4s4.c', 'vsrdotiircq_v_i32_d6s5.c', 'vsrdotiircu_v_i32_d5s1.c', 'vsrdotiirq_v_i32_d6s1.c', 'vsrdotiirq_v_i32_d8s6.c', 'vsrdotiirq_v_i32_d5s5.c', 'vsrdotiirq_v_i32_d2s6.c', 'vsrdotiiru_v_i32_d7s3.c', 'vsrdotiircq_v_i32_d1s7.c', 'vsrdotiiru_v_i32_d4s4.c', 'vsrdotiirq_v_i32_d2s8.c', 'vsrdotiirq_v_i32_d7s5.c', 'vsrdotiircq_v_i32_d8s1.c', 'vsrdotiiru_v_i32_d1s1.c', 'vsrdotiiru_v_i32_d8s7.c', 'vsrdotiircq_v_i32_d2s3.c', 'vsrdotiircq_v_i32_d4s1.c', 'vsrdotiirq_v_i32_d5s1.c', 'vsrdotiircu_v_i32_d5s5.c', 'vsrdotiiru_v_i32_d5s2.c', 'vsrdotiircq_v_i32_d7s3.c', 'vsrdotiircq_v_i32_d5s8.c', 'vsrdotiircq_v_i32_d4s5.c', 'vsrdotiircu_v_i32_d2s3.c', 'vsrdotiircq_v_i32_d7s8.c', 'vsrdotiircu_v_i32_d5s3.c', 'vsrdotiircq_v_i32_d8s8.c', 'vsrdotiircu_v_i32_d3s5.c', 'vsrdotiirq_v_i32_d7s4.c', 'vsrdotiircq_v_i32_d3s2.c', 'vsrdotiircu_v_i32_d3s2.c', 'vsrdotiirq_v_i32_d6s4.c', 'vsrdotiircu_v_i32_d3s3.c', 'vsrdotiircu_v_i32_d4s1.c', 'vsrdotiiru_v_i32_d7s2.c', 'vsrdotiirq_v_i32_d2s2.c', 'vsrdotiircu_v_i32_d8s3.c', 'vsrdotiiru_v_i32_d4s7.c', 'vsrdotiiru_v_i32_d6s5.c', 'vsrdotiircq_v_i32_d5s1.c', 'vsrdotiircu_v_i32_d4s7.c', 'vsrdotiircq_v_i32_d6s4.c', 'vsrdotiirq_v_i32_d3s4.c', 'vsrdotiircq_v_i32_d6s3.c', 'vsrdotiircq_v_i32_d2s2.c', 'vsrdotiircq_v_i32_d3s5.c', 'vsrdotiircq_v_i32_d1s4.c', 'vsrdotiircu_v_i32_d8s2.c', 'vsrdotiiru_v_i32_d1s8.c', 'vsrdotiirq_v_i32_d2s1.c', 'vsrdotiiru_v_i32_d6s1.c', 'vsrdotiircq_v_i32_d7s5.c', 'vsrdotiircu_v_i32_d7s4.c', 'vsrdotiiru_v_i32_d7s7.c', 'vsrdotiiru_v_i32_d8s5.c', 'vsrdotiirq_v_i32_d7s6.c', 'vsrdotiiru_v_i32_d6s8.c', 'vsrdotiircq_v_i32_d6s8.c', 'vsrdotiircq_v_i32_d8s6.c', 'vsrdotiiru_v_i32_d1s2.c', 'vsrdotiircq_v_i32_d8s2.c', 'vsrdotiircu_v_i32_d1s5.c', 'vsrdotiircq_v_i32_d1s8.c', 'vsrdotiircu_v_i32_d8s1.c', 'vsrdotiiru_v_i32_d7s1.c', 'vsrdotiiru_v_i32_d4s1.c', 'vsrdotiircu_v_i32_d8s6.c', 'vsrdotiircu_v_i32_d3s4.c', 'vsrdotiirq_v_i32_d7s1.c', 'vsrdotiiru_v_i32_d5s8.c', 'vsrdotiircq_v_i32_d4s4.c', 'vsrdotiircu_v_i32_d6s8.c', 'vsrdotiiru_v_i32_d5s5.c', 'vsrdotiircq_v_i32_d2s7.c', 'vsrdotiiru_v_i32_d2s5.c', 'vsrdotiircq_v_i32_d2s8.c', 'vsrdotiiru_v_i32_d2s6.c', 'vsrdotiirq_v_i32_d8s4.c', 'vsrdotiircu_v_i32_d8s5.c', 'vsrdotiiru_v_i32_d3s7.c', 'vsrdotiircq_v_i32_d8s7.c', 'vsrdotiiru_v_i32_d6s3.c', 'vsrdotiirq_v_i32_d4s5.c', 'vsrdotiircq_v_i32_d4s3.c', 'vsrdotiiru_v_i32_d3s6.c', 'vsrdotiircq_v_i32_d7s7.c', 'vsrdotiirq_v_i32_d8s1.c', 'vsrdotiirq_v_i32_d1s1.c', 'vsrdotiircu_v_i32_d4s5.c', 'vsrdotiiru_v_i32_d5s6.c', 'vsrdotiircu_v_i32_d2s2.c', 'vsrdotiiru_v_i32_d3s8.c', 'vsrdotiircq_v_i32_d5s7.c', 'vsrdotiircq_v_i32_d1s6.c', 'vsrdotiircu_v_i32_d2s8.c', 'vsrdotiircq_v_i32_d8s5.c', 'vsrdotiircu_v_i32_d6s1.c', 'vsrdotiircq_v_i32_d8s4.c', 'vsrdotiircu_v_i32_d8s7.c', 'vsrdotiircu_v_i32_d4s3.c', 'vsrdotiircu_v_i32_d2s4.c', 'vsrdotiirq_v_i32_d5s7.c', 'vsrdotiirq_v_i32_d1s8.c', 'vsrdotiiru_v_i32_d8s8.c', 'vsrdotiircu_v_i32_d5s7.c', 'vsrdotiirq_v_i32_d3s3.c', 'vsrdotiiru_v_i32_d5s4.c', 'vsrdotiircu_v_i32_d2s5.c', 'vsrdotiiru_v_i32_d4s2.c', 'vsrdotiircq_v_i32_d7s6.c', 'vsrdotiirq_v_i32_d1s3.c', 'vsrdotiircq_v_i32_d5s5.c', 'vsrdotiirq_v_i32_d5s4.c', 'vsrdotiircq_v_i32_d2s4.c', 'vsrdotiircq_v_i32_d5s4.c', 'vsrdotiirq_v_i32_d4s4.c', 'vsrdotiirq_v_i32_d8s8.c', 'vsrdotiircq_v_i32_d4s7.c', 'vsrdotiircu_v_i32_d2s6.c', 'vsrdotiircq_v_i32_d2s5.c', 'vsrdotiircq_v_i32_d2s1.c', 'vsrdotiirq_v_i32_d7s8.c', 'vsrdotiiru_v_i32_d7s8.c', 'vsrdotiirq_v_i32_d3s2.c', 'vsrdotiirq_v_i32_d6s2.c', 'vsrdotiircu_v_i32_d1s4.c', 'vsrdotiircu_v_i32_d5s2.c', 'vsrdotiircu_v_i32_d4s8.c', 'vsrdotiircq_v_i32_d6s1.c', 'vsrdotiirq_v_i32_d5s6.c', 'vsrdotiiru_v_i32_d1s6.c', 'vsrdotiircu_v_i32_d1s3.c', 'vsrdotiirq_v_i32_d6s7.c', 'vsrdotiircu_v_i32_d8s4.c', 'vsrdotiirq_v_i32_d4s3.c', 'vsrdotiiru_v_i32_d3s1.c', 'vsrdotiirq_v_i32_d8s2.c', 'vsrdotiircq_v_i32_d8s3.c', 'vsrdotiircq_v_i32_d1s3.c', 'vsrdotiircu_v_i32_d6s4.c', 'vsrdotiiru_v_i32_d1s5.c', 'vsrdotiiru_v_i32_d4s8.c', 'vsrdotiircu_v_i32_d3s7.c', 'vsrdotiircq_v_i32_d7s2.c', 'vsrdotiiru_v_i32_d8s2.c', 'vsrdotiircu_v_i32_d7s3.c', 'vsrdotiirq_v_i32_d8s7.c', 'vsrdotiirq_v_i32_d4s8.c', 'vsrdotiircq_v_i32_d5s2.c', 'vsrdotiiru_v_i32_d2s1.c', 'vsrdotiircu_v_i32_d1s6.c', 'vsrdotiirq_v_i32_d3s6.c', 'vsrdotiircu_v_i32_d4s6.c', 'vsrdotiirq_v_i32_d2s4.c', 'vsrdotiirq_v_i32_d4s6.c', 'vsrdotiirq_v_i32_d2s3.c', 'vsrdotiiru_v_i32_d1s4.c', 'vsrdotiiru_v_i32_d5s7.c', 'vsrdotiirq_v_i32_d4s1.c', 'vsrdotiiru_v_i32_d3s2.c', 'vsrdotiiru_v_i32_d3s4.c', 'vsrdotiirq_v_i32_d5s2.c', 'vsrdotiiru_v_i32_d8s3.c', 'vsrdotiiru_v_i32_d7s4.c', 'vsrdotiircq_v_i32_d3s8.c', 'vsrdotiircq_v_i32_d5s3.c', 'vsrdotiirq_v_i32_d2s7.c', 'vsrdotiircu_v_i32_d6s2.c', 'vsrdotiircu_v_i32_d7s1.c', 'vsrdotiirq_v_i32_d7s3.c', 'vsrdotiiru_v_i32_d8s4.c', 'vsrdotiircq_v_i32_d3s4.c', 'vsrdotiiru_v_i32_d7s6.c', 'vsrdotiircq_v_i32_d4s2.c', 'vsrdotiirq_v_i32_d1s5.c', 'vsrdotiircq_v_i32_d4s8.c', 'vsrdotiirq_v_i32_d2s5.c', 'vsrdotiirq_v_i32_d6s6.c', 'vsrdotiiru_v_i32_d1s3.c', 'vsrdotiirq_v_i32_d5s3.c', 'vsrdotiiru_v_i32_d4s6.c', 'vsrdotiiru_v_i32_d6s7.c', 'vsrdotiircq_v_i32_d3s3.c', 'vsrdotiircu_v_i32_d7s2.c', 'vsrdotiirq_v_i32_d8s5.c', 'vsrdotiirq_v_i32_d6s3.c', 'vsrdotiircu_v_i32_d5s8.c', 'vsrdotiircq_v_i32_d1s2.c', 'vsrdotiircu_v_i32_d3s1.c', 'vsrdotiircq_v_i32_d4s6.c', 'vsrdotiiru_v_i32_d2s7.c', 'vsrdotiiru_v_i32_d6s2.c', 'vsrdotiiru_v_i32_d3s3.c', 'vsrdotiiru_v_i32_d6s4.c', 'vsrdotiirq_v_i32_d1s2.c', 'vsrdotiircq_v_i32_d3s6.c', 'vsrdotiirq_v_i32_d6s5.c', 'vsrdotiiru_v_i32_d6s6.c', 'vsrdotiircu_v_i32_d7s8.c', 'vsrdotiircq_v_i32_d3s1.c', 'vsrdotiircu_v_i32_d7s7.c', 'vsrdotiirq_v_i32_d1s6.c', 'vsrdotiirq_v_i32_d8s3.c', 'vsrdotiiru_v_i32_d5s1.c', 'vsrdotiirq_v_i32_d3s1.c', 'vsrdotiircu_v_i32_d6s3.c', 'vsrdotiirq_v_i32_d4s2.c', 'vsrdotiircu_v_i32_d5s6.c', 'vsrdotiircu_v_i32_d1s8.c', 'vsrdotiircu_v_i32_d6s5.c', 'vsrdotiircq_v_i32_d6s7.c', 'vsrdotiirq_v_i32_d5s8.c', 'vsrdotiiru_v_i32_d1s7.c', 'vsrdotiircu_v_i32_d1s7.c', 'vsrdotiircq_v_i32_d7s4.c', 'vsrdotiircu_v_i32_d5s4.c', 'vsrdotiircu_v_i32_d2s1.c', 'vsrdotiirq_v_i32_d7s7.c', 'vsrdotiircu_v_i32_d6s6.c', 'vsrdotiirq_v_i32_d7s2.c', 'vsrdotiircu_v_i32_d4s2.c', 'vsrdotiiru_v_i32_d2s4.c', 'vsrdotiirq_v_i32_d3s5.c', 'vsrdotiircu_v_i32_d1s1.c', 'vsrdotiiru_v_i32_d2s2.c', 'vsrdotiirq_v_i32_d3s8.c', 'vsrdotiirq_v_i32_d1s7.c', 'vsrdotiirq_v_i32_d6s8.c', 'vsrdotiircq_v_i32_d7s1.c']
+
+Test API=compare
+--------------------
+Total test api: 96
+Test Pass number: 0
+Test Fail number: 48
+Build Pass number: 0
+Build Fail number: 48
+
+Test Failed API name: 
+ 	['vcmpge_vx_i16.c', 'vcmplt_vx_i32.c', 'vcmpeq_vv_u16.c', 'vcmplt_vx_i16.c', 'vcmple_vx_i32.c', 'vcmpeq_vx_i16.c', 'vcmpeq_vx_u32.c', 'vcmple_vv_i16.c', 'vcmplt_vv_u32.c', 'vcmpne_vv_u32.c', 'vcmpgt_vx_i32.c', 'vcmpgt_vx_u16.c', 'vcmpgt_vx_i16.c', 'vcmple_vx_i16.c', 'vcmple_vx_u16.c', 'vcmpne_vx_u16.c', 'vcmpeq_vx_u16.c', 'vcmplt_vv_i32.c', 'vcmpne_vv_i16.c', 'vcmpgt_vx_u32.c', 'vcmpne_vx_i16.c', 'vcmpge_vv_i16.c', 'vcmple_vx_u32.c', 'vcmpgt_vv_i32.c', 'vcmpge_vx_i32.c', 'vcmplt_vv_u16.c', 'vcmpge_vv_u16.c', 'vcmple_vv_i32.c', 'vcmpeq_vv_i32.c', 'vcmpeq_vv_i16.c', 'vcmpge_vv_i32.c', 'vcmpne_vx_i32.c', 'vcmpeq_vx_i32.c', 'vcmple_vv_u16.c', 'vcmpge_vv_u32.c', 'vcmpne_vv_i32.c', 'vcmpge_vx_u32.c', 'vcmple_vv_u32.c', 'vcmpgt_vv_i16.c', 'vcmpgt_vv_u16.c', 'vcmpeq_vv_u32.c', 'vcmpne_vv_u16.c', 'vcmplt_vx_u16.c', 'vcmplt_vx_u32.c', 'vcmpge_vx_u16.c', 'vcmplt_vv_i16.c', 'vcmpne_vx_u32.c', 'vcmpgt_vv_u32.c']
+
+Build Failed API name: 
+ 	['vcmple_vx_u16_m.c', 'vcmpge_vv_i16_m.c', 'vcmple_vv_i16_m.c', 'vcmpgt_vx_i32_m.c', 'vcmpge_vx_i32_m.c', 'vcmpeq_vv_u16_m.c', 'vcmplt_vv_i16_m.c', 'vcmpgt_vv_i32_m.c', 'vcmpne_vx_i16_m.c', 'vcmpge_vx_u32_m.c', 'vcmplt_vv_i32_m.c', 'vcmplt_vv_u16_m.c', 'vcmpne_vv_u32_m.c', 'vcmpgt_vx_u32_m.c', 'vcmpne_vx_u32_m.c', 'vcmpge_vx_u16_m.c', 'vcmpge_vv_u32_m.c', 'vcmpgt_vx_u16_m.c', 'vcmpeq_vv_i16_m.c', 'vcmpeq_vv_u32_m.c', 'vcmpeq_vx_u16_m.c', 'vcmplt_vx_i32_m.c', 'vcmple_vv_i32_m.c', 'vcmpeq_vx_i32_m.c', 'vcmpne_vx_i32_m.c', 'vcmple_vv_u32_m.c', 'vcmpne_vx_u16_m.c', 'vcmplt_vv_u32_m.c', 'vcmplt_vx_u32_m.c', 'vcmpeq_vv_i32_m.c', 'vcmple_vv_u16_m.c', 'vcmpge_vv_u16_m.c', 'vcmpge_vv_i32_m.c', 'vcmpeq_vx_u32_m.c', 'vcmpgt_vv_u16_m.c', 'vcmpgt_vv_u32_m.c', 'vcmpge_vx_i16_m.c', 'vcmple_vx_u32_m.c', 'vcmplt_vx_i16_m.c', 'vcmpne_vv_i32_m.c', 'vcmpeq_vx_i16_m.c', 'vcmpne_vv_i16_m.c', 'vcmpgt_vx_i16_m.c', 'vcmpne_vv_u16_m.c', 'vcmple_vx_i16_m.c', 'vcmple_vx_i32_m.c', 'vcmpgt_vv_i16_m.c', 'vcmplt_vx_u16_m.c']
+
+Test API=reduction
+--------------------
+Total test api: 63
+Test Pass number: 0
+Test Fail number: 0
+Build Pass number: 0
+Build Fail number: 63
+
+Build Failed API name: 
+ 	['vrssum_v_u32_m.c', 'vrssum_v_i32_m.c', 'vrdotp_vv_i32_m1.c', 'vrdotp_vv_u16.c', 'vrmin_v_i32.c', 'vardotacc_vv_i32_m1.c', 'vrsum_v_i32_m.c', 'vrsum_v_i64_m.c', 'vrsum_v_u32_m.c', 'vardotacc_vv_u32.c', 'vrsum_v_i64.c', 'vrdotp_vv_u32_m.c', 'vardotacc_vv_u16_m1.c', 'vrmax_v_i32.c', 'vrdotp_vv_u32_m1.c', 'vrsum_v_u64_m.c', 'vrdotp_vv_i16_m.c', 'vrdotp_vv_u32.c', 'vsardotaccq_vv_i32_m.c', 'vrsum_v_u32.c', 'vardotacc_vv_i16_m1.c', 'vrssum_v_u32.c', 'vsardotaccq_vv_i32.c', 'vrdotp_vv_u16_m.c', 'vrmax_v_i32_m.c', 'vrmax_v_u16.c', 'vrmin_v_u16_m.c', 'vrmin_v_u32.c', 'vrsum_v_i16_m.c', 'vrmax_v_u16_m.c', 'vrsum_v_i32.c', 'vrsum_v_u16.c', 'vardotacc_vv_u16.c', 'vrmax_v_u32.c', 'vrmin_v_u16.c', 'vardotacc_vv_u16_m.c', 'vrmin_v_i16_m.c', 'vrmin_v_u32_m.c', 'vrssum_v_i64_m.c', 'vrmax_v_i16_m.c', 'vrmax_v_u32_m.c', 'vrdotp_vv_i16.c', 'vrmin_v_i32_m.c', 'vrdotp_vv_u16_m1.c', 'vrmax_v_i16.c', 'vrssum_v_i32.c', 'vardotacc_vv_i16_m.c', 'vardotacc_vv_i32.c', 'vrdotp_vv_i32_m.c', 'vrssum_v_i64.c', 'vardotacc_vv_i16.c', 'vardotacc_vv_u32_m1.c', 'vrdotp_vv_i32.c', 'vrssum_v_u64.c', 'vrssum_v_u64_m.c', 'vrmin_v_i16.c', 'vrsum_v_u64.c', 'vrsum_v_i16.c', 'vardotacc_vv_i32_m.c', 'vrsum_v_u16_m.c', 'vardotacc_vv_u32_m.c', 'vrdotp_vv_i16_m1.c', 'vsardotaccq_vv_i32_m1.c']
+
+Test API=logic
+--------------------
+Total test api: 56
+Test Pass number: 24
+Test Fail number: 4
+Build Pass number: 0
+Build Fail number: 28
+
+Test Passed API name: 
+ 	['vand_vx_u16.c', 'vand_vv_u32.c', 'vand_vx_i16.c', 'vor_vx_i16.c', 'vor_vv_u16.c', 'vxor_vx_i16.c', 'vand_vx_i32.c', 'vxor_vx_u16.c', 'vand_vv_u16.c', 'vor_vx_u32.c', 'vxor_vv_i32.c', 'vxor_vx_i32.c', 'vxor_vv_u16.c', 'vxor_vv_u32.c', 'vand_vv_i32.c', 'vor_vv_u32.c', 'vand_vx_u32.c', 'vor_vx_u16.c', 'vxor_vv_i16.c', 'vand_vv_i16.c', 'vor_vv_i16.c', 'vxor_vx_u32.c', 'vor_vv_i32.c', 'vor_vx_i32.c']
+
+Test Failed API name: 
+ 	['vnot_v_i16.c', 'vnot_v_u16.c', 'vnot_v_i32.c', 'vnot_v_u32.c']
+
+Build Failed API name: 
+ 	['vnot_v_u16_m.c', 'vor_vv_i16_m.c', 'vand_vv_u16_m.c', 'vxor_vv_u32_m.c', 'vxor_vx_u16_m.c', 'vor_vv_i32_m.c', 'vor_vv_u32_m.c', 'vor_vx_i16_m.c', 'vxor_vv_i16_m.c', 'vxor_vv_u16_m.c', 'vxor_vx_i32_m.c', 'vnot_v_i32_m.c', 'vxor_vx_i16_m.c', 'vand_vv_i16_m.c', 'vand_vx_i16_m.c', 'vor_vx_i32_m.c', 'vor_vx_u16_m.c', 'vand_vv_i32_m.c', 'vnot_v_i16_m.c', 'vxor_vv_i32_m.c', 'vxor_vx_u32_m.c', 'vor_vx_u32_m.c', 'vor_vv_u16_m.c', 'vand_vx_i32_m.c', 'vnot_v_u32_m.c', 'vand_vx_u32_m.c', 'vand_vv_u32_m.c', 'vand_vx_u16_m.c']
+
+Test API=Summary of all
+--------------------
+Total test api: 1289
+Test Pass number: 102
+Test Fail number: 192
+Build Pass number: 0
+Build Fail number: 995
 

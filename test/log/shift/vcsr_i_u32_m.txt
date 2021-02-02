@@ -1,0 +1,89 @@
+vcsr_i_u32_m.c:9:2: warning: multi-line comment [-Wcomment]
+    9 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vcsr_i_u32_m.c:11:44: warning: backslash and newline separated by space
+   11 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vcsr_i_u32_m.c:13:40: warning: backslash and newline separated by space
+   13 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vcsr_i_u32_m.c:14:35: warning: backslash and newline separated by space
+   14 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vcsr_i_u32_m.c:15:40: warning: backslash and newline separated by space
+   15 |              a[i] = random(threshold); \
+      |                                         
+vcsr_i_u32_m.c:16:27: warning: backslash and newline separated by space
+   16 |              b[i] = a[i]; \
+      |                            
+vcsr_i_u32_m.c:22:6: warning: no previous prototype for 'vcsr_i_u32_m_golden' [-Wmissing-prototypes]
+   22 | void vcsr_i_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t imm,uint32_t *exp_result) {
+      |      ^~~~~~~~~~~~~~~~~~~
+vcsr_i_u32_m.c: In function 'vcsr_i_u32_m_golden':
+vcsr_i_u32_m.c:22:50: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   22 | void vcsr_i_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t imm,uint32_t *exp_result) {
+      |                                        ~~~~~~~~~~^~~~~~~
+vcsr_i_u32_m.c:22:68: warning: unused parameter 'a' [-Wunused-parameter]
+   22 | void vcsr_i_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t imm,uint32_t *exp_result) {
+      |                                                          ~~~~~~~~~~^
+vcsr_i_u32_m.c:22:79: warning: unused parameter 'imm' [-Wunused-parameter]
+   22 | void vcsr_i_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t imm,uint32_t *exp_result) {
+      |                                                                      ~~~~~~~~~^~~
+vcsr_i_u32_m.c: In function 'main':
+vcsr_i_u32_m.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   42 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+      |     ^~~~~~~~~~~~~~
+      |     data_init_scalar
+vcsr_i_u32_m.c:48:25: error: incompatible type for argument 1 of 'vcsr_i_u32_m_golden'
+   48 |     vcsr_i_u32_m_golden(exp_mask,exp_maskoff,exp_a,exp_imm,exp_result);
+      |                         ^~~~~~~~
+      |                         |
+      |                         uint64_t * {aka long long unsigned int *}
+vcsr_i_u32_m.c:22:35: note: expected 'bool16_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
+   22 | void vcsr_i_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t imm,uint32_t *exp_result) {
+      |                          ~~~~~~~~~^~~~
+vcsr_i_u32_m.c:51:40: error: incompatible type for argument 3 of 'vcsr_i_u32_m'
+   51 |     result = vcsr_i_u32_m(mask,maskoff,a,0);
+      |                                        ^
+      |                                        |
+      |                                        uint32x16_t
+In file included from vcsr_i_u32_m.c:4:
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:1705:1: note: expected 'uint32_t' {aka 'const long unsigned int'} but argument is of type 'uint32x16_t'
+ 1705 | __RUGRATS_I_OP (csr, u, uint, uint, 32, 32, 16)
+      | ^~~~~~~~~~~~~~
+vcsr_i_u32_m.c:51:14: error: too many arguments to function 'vcsr_i_u32_m'
+   51 |     result = vcsr_i_u32_m(mask,maskoff,a,0);
+      |              ^~~~~~~~~~~~
+In file included from vcsr_i_u32_m.c:4:
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:1705:1: note: declared here
+ 1705 | __RUGRATS_I_OP (csr, u, uint, uint, 32, 32, 16)
+      | ^~~~~~~~~~~~~~
+vcsr_i_u32_m.c:56:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   56 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+      |                                                               ~^                      ~~~~~~~~~~~~~
+      |                                                                |                                |
+      |                                                                unsigned int                     uint32_t {aka long unsigned int}
+      |                                                               %lx
+vcsr_i_u32_m.c:33:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   33 |     uint32_t imm;
+      |              ^~~
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcsr_i_u32_m.o] Error 1
+make: *** [bare] Error 2
+======================================================================
+
+ target	:	deccription
+****************************
+ bare	:	build application on baremental case. param: type=app-type app=app-name
+
+ rbb	:	run bare-app on beak. (build it firstly if modified) param: APP_TYPE=type APP_NAME=app-name , bp=beak-param
+
+ clean		:	delete objects generated by make
+****************************
+
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vcsr_i_u32_m"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+    CC vcsr_i_u32_m.c
+Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcsr_i_u32_m.o' failed
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+Makefile:37: recipe for target 'bare' failed

@@ -1,0 +1,112 @@
+vgldcb2_v_i64_m.c:16:2: warning: multi-line comment [-Wcomment]
+   16 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vgldcb2_v_i64_m.c:18:44: warning: backslash and newline separated by space
+   18 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vgldcb2_v_i64_m.c:20:40: warning: backslash and newline separated by space
+   20 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vgldcb2_v_i64_m.c:21:35: warning: backslash and newline separated by space
+   21 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vgldcb2_v_i64_m.c:22:40: warning: backslash and newline separated by space
+   22 |              a[i] = random(threshold); \
+      |                                         
+vgldcb2_v_i64_m.c:23:27: warning: backslash and newline separated by space
+   23 |              b[i] = a[i]; \
+      |                            
+vgldcb2_v_i64_m.c:29:6: warning: no previous prototype for 'vgldcb2_v_i64_m_golden' [-Wmissing-prototypes]
+   29 | void vgldcb2_v_i64_m_golden(bool8_t *mask,int64_t maskoff,int64_t *base,int64_t index,int64_t exp_result[][ELE_NUM]) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+vgldcb2_v_i64_m.c: In function 'vgldcb2_v_i64_m_golden':
+vgldcb2_v_i64_m.c:29:38: warning: unused parameter 'mask' [-Wunused-parameter]
+   29 | void vgldcb2_v_i64_m_golden(bool8_t *mask,int64_t maskoff,int64_t *base,int64_t index,int64_t exp_result[][ELE_NUM]) {
+      |                             ~~~~~~~~~^~~~
+vgldcb2_v_i64_m.c:29:51: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   29 | void vgldcb2_v_i64_m_golden(bool8_t *mask,int64_t maskoff,int64_t *base,int64_t index,int64_t exp_result[][ELE_NUM]) {
+      |                                           ~~~~~~~~^~~~~~~
+vgldcb2_v_i64_m.c:29:81: warning: unused parameter 'index' [-Wunused-parameter]
+   29 | void vgldcb2_v_i64_m_golden(bool8_t *mask,int64_t maskoff,int64_t *base,int64_t index,int64_t exp_result[][ELE_NUM]) {
+      |                                                                         ~~~~~~~~^~~~~
+vgldcb2_v_i64_m.c: In function 'main':
+vgldcb2_v_i64_m.c:54:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   54 |     data_init_bool(mask, exp_mask, 8, 0xffffffffffffffff);
+      |     ^~~~~~~~~~~~~~
+      |     data_init_scalar
+vgldcb2_v_i64_m.c:22:15: error: subscripted value is neither array nor pointer nor vector
+   22 |              a[i] = random(threshold); \
+      |               ^
+vgldcb2_v_i64_m.c:55:5: note: in expansion of macro 'data_init'
+   55 |     data_init(maskoff, exp_maskoff, 8*2, 0xffffffffffffffff);
+      |     ^~~~~~~~~
+vgldcb2_v_i64_m.c:23:22: error: subscripted value is neither array nor pointer nor vector
+   23 |              b[i] = a[i]; \
+      |                      ^
+vgldcb2_v_i64_m.c:55:5: note: in expansion of macro 'data_init'
+   55 |     data_init(maskoff, exp_maskoff, 8*2, 0xffffffffffffffff);
+      |     ^~~~~~~~~
+vgldcb2_v_i64_m.c:66:28: warning: passing argument 1 of 'vgldcb2_v_i64_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   66 |     vgldcb2_v_i64_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
+      |                            ^~~~~~~~
+      |                            |
+      |                            uint64_t * {aka long long unsigned int *}
+vgldcb2_v_i64_m.c:29:38: note: expected 'bool8_t *' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
+   29 | void vgldcb2_v_i64_m_golden(bool8_t *mask,int64_t maskoff,int64_t *base,int64_t index,int64_t exp_result[][ELE_NUM]) {
+      |                             ~~~~~~~~~^~~~
+vgldcb2_v_i64_m.c:66:37: warning: passing argument 2 of 'vgldcb2_v_i64_m_golden' makes integer from pointer without a cast [-Wint-conversion]
+   66 |     vgldcb2_v_i64_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
+      |                                     ^~~~~~~~~~~
+      |                                     |
+      |                                     int64_t * {aka long long int *}
+vgldcb2_v_i64_m.c:29:51: note: expected 'int64_t' {aka 'long long int'} but argument is of type 'int64_t *' {aka 'long long int *'}
+   29 | void vgldcb2_v_i64_m_golden(bool8_t *mask,int64_t maskoff,int64_t *base,int64_t index,int64_t exp_result[][ELE_NUM]) {
+      |                                           ~~~~~~~~^~~~~~~
+vgldcb2_v_i64_m.c:66:58: warning: passing argument 4 of 'vgldcb2_v_i64_m_golden' makes integer from pointer without a cast [-Wint-conversion]
+   66 |     vgldcb2_v_i64_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
+      |                                                          ^~~~~~~~~
+      |                                                          |
+      |                                                          int64_t * {aka long long int *}
+vgldcb2_v_i64_m.c:29:81: note: expected 'int64_t' {aka 'long long int'} but argument is of type 'int64_t *' {aka 'long long int *'}
+   29 | void vgldcb2_v_i64_m_golden(bool8_t *mask,int64_t maskoff,int64_t *base,int64_t index,int64_t exp_result[][ELE_NUM]) {
+      |                                                                         ~~~~~~~~^~~~~
+vgldcb2_v_i64_m.c:66:68: warning: passing argument 5 of 'vgldcb2_v_i64_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   66 |     vgldcb2_v_i64_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
+      |                                                                    ^~~~~~~~~~
+      |                                                                    |
+      |                                                                    int64_t * {aka long long int *}
+vgldcb2_v_i64_m.c:29:95: note: expected 'int64_t (*)[8]' {aka 'long long int (*)[8]'} but argument is of type 'int64_t *' {aka 'long long int *'}
+   29 | void vgldcb2_v_i64_m_golden(bool8_t *mask,int64_t maskoff,int64_t *base,int64_t index,int64_t exp_result[][ELE_NUM]) {
+      |                                                                                       ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vgldcb2_v_i64_m.c:75:55: warning: format '%x' expects argument of type 'unsigned int', but argument 4 has type 'long long int' [-Wformat=]
+   75 |                 printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
+      |                                                      ~^                               ~~~~~~~~~~~~~~~~
+      |                                                       |                                            |
+      |                                                       unsigned int                                 long long int
+      |                                                      %llx
+vgldcb2_v_i64_m.c:75:76: warning: format '%x' expects argument of type 'unsigned int', but argument 6 has type 'int64_t' {aka 'long long int'} [-Wformat=]
+   75 |                 printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
+      |                                                                           ~^                                         ~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                            |                                                   |
+      |                                                                            unsigned int                                        int64_t {aka long long int}
+      |                                                                           %llx
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb2_v_i64_m.o] Error 1
+make: *** [bare] Error 2
+======================================================================
+
+ target	:	deccription
+****************************
+ bare	:	build application on baremental case. param: type=app-type app=app-name
+
+ rbb	:	run bare-app on beak. (build it firstly if modified) param: APP_TYPE=type APP_NAME=app-name , bp=beak-param
+
+ clean		:	delete objects generated by make
+****************************
+
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vgldcb2_v_i64_m"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+    CC vgldcb2_v_i64_m.c
+Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb2_v_i64_m.o' failed
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+Makefile:37: recipe for target 'bare' failed

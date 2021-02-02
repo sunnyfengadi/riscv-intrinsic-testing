@@ -1,0 +1,106 @@
+vgldcb6_v_u32_m.c:16:2: warning: multi-line comment [-Wcomment]
+   16 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vgldcb6_v_u32_m.c:18:44: warning: backslash and newline separated by space
+   18 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vgldcb6_v_u32_m.c:20:40: warning: backslash and newline separated by space
+   20 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vgldcb6_v_u32_m.c:21:35: warning: backslash and newline separated by space
+   21 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vgldcb6_v_u32_m.c:22:40: warning: backslash and newline separated by space
+   22 |              a[i] = random(threshold); \
+      |                                         
+vgldcb6_v_u32_m.c:23:27: warning: backslash and newline separated by space
+   23 |              b[i] = a[i]; \
+      |                            
+vgldcb6_v_u32_m.c:29:6: warning: no previous prototype for 'vgldcb6_v_u32_m_golden' [-Wmissing-prototypes]
+   29 | void vgldcb6_v_u32_m_golden(bool16_t *mask,uint32_t maskoff,uint32_t *base,int32_t index,uint32_t exp_result[][ELE_NUM]) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+vgldcb6_v_u32_m.c: In function 'vgldcb6_v_u32_m_golden':
+vgldcb6_v_u32_m.c:29:39: warning: unused parameter 'mask' [-Wunused-parameter]
+   29 | void vgldcb6_v_u32_m_golden(bool16_t *mask,uint32_t maskoff,uint32_t *base,int32_t index,uint32_t exp_result[][ELE_NUM]) {
+      |                             ~~~~~~~~~~^~~~
+vgldcb6_v_u32_m.c:29:53: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   29 | void vgldcb6_v_u32_m_golden(bool16_t *mask,uint32_t maskoff,uint32_t *base,int32_t index,uint32_t exp_result[][ELE_NUM]) {
+      |                                            ~~~~~~~~~^~~~~~~
+vgldcb6_v_u32_m.c:29:84: warning: unused parameter 'index' [-Wunused-parameter]
+   29 | void vgldcb6_v_u32_m_golden(bool16_t *mask,uint32_t maskoff,uint32_t *base,int32_t index,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                            ~~~~~~~~^~~~~
+vgldcb6_v_u32_m.c: In function 'main':
+vgldcb6_v_u32_m.c:54:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   54 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+      |     ^~~~~~~~~~~~~~
+      |     data_init_scalar
+vgldcb6_v_u32_m.c:22:15: error: subscripted value is neither array nor pointer nor vector
+   22 |              a[i] = random(threshold); \
+      |               ^
+vgldcb6_v_u32_m.c:55:5: note: in expansion of macro 'data_init'
+   55 |     data_init(maskoff, exp_maskoff, 16*6, 0xffffffff);
+      |     ^~~~~~~~~
+vgldcb6_v_u32_m.c:23:22: error: subscripted value is neither array nor pointer nor vector
+   23 |              b[i] = a[i]; \
+      |                      ^
+vgldcb6_v_u32_m.c:55:5: note: in expansion of macro 'data_init'
+   55 |     data_init(maskoff, exp_maskoff, 16*6, 0xffffffff);
+      |     ^~~~~~~~~
+vgldcb6_v_u32_m.c:66:28: warning: passing argument 1 of 'vgldcb6_v_u32_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   66 |     vgldcb6_v_u32_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
+      |                            ^~~~~~~~
+      |                            |
+      |                            uint64_t * {aka long long unsigned int *}
+vgldcb6_v_u32_m.c:29:39: note: expected 'bool16_t *' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
+   29 | void vgldcb6_v_u32_m_golden(bool16_t *mask,uint32_t maskoff,uint32_t *base,int32_t index,uint32_t exp_result[][ELE_NUM]) {
+      |                             ~~~~~~~~~~^~~~
+vgldcb6_v_u32_m.c:66:37: warning: passing argument 2 of 'vgldcb6_v_u32_m_golden' makes integer from pointer without a cast [-Wint-conversion]
+   66 |     vgldcb6_v_u32_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
+      |                                     ^~~~~~~~~~~
+      |                                     |
+      |                                     uint32_t * {aka long unsigned int *}
+vgldcb6_v_u32_m.c:29:53: note: expected 'uint32_t' {aka 'long unsigned int'} but argument is of type 'uint32_t *' {aka 'long unsigned int *'}
+   29 | void vgldcb6_v_u32_m_golden(bool16_t *mask,uint32_t maskoff,uint32_t *base,int32_t index,uint32_t exp_result[][ELE_NUM]) {
+      |                                            ~~~~~~~~~^~~~~~~
+vgldcb6_v_u32_m.c:66:58: warning: passing argument 4 of 'vgldcb6_v_u32_m_golden' makes integer from pointer without a cast [-Wint-conversion]
+   66 |     vgldcb6_v_u32_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
+      |                                                          ^~~~~~~~~
+      |                                                          |
+      |                                                          int32_t * {aka long int *}
+vgldcb6_v_u32_m.c:29:84: note: expected 'int32_t' {aka 'long int'} but argument is of type 'int32_t *' {aka 'long int *'}
+   29 | void vgldcb6_v_u32_m_golden(bool16_t *mask,uint32_t maskoff,uint32_t *base,int32_t index,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                            ~~~~~~~~^~~~~
+vgldcb6_v_u32_m.c:66:68: warning: passing argument 5 of 'vgldcb6_v_u32_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   66 |     vgldcb6_v_u32_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
+      |                                                                    ^~~~~~~~~~
+      |                                                                    |
+      |                                                                    uint32_t * {aka long unsigned int *}
+vgldcb6_v_u32_m.c:29:99: note: expected 'uint32_t (*)[16]' {aka 'long unsigned int (*)[16]'} but argument is of type 'uint32_t *' {aka 'long unsigned int *'}
+   29 | void vgldcb6_v_u32_m_golden(bool16_t *mask,uint32_t maskoff,uint32_t *base,int32_t index,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                                          ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vgldcb6_v_u32_m.c:75:76: warning: format '%x' expects argument of type 'unsigned int', but argument 6 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   75 |                 printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
+      |                                                                           ~^                                         ~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                            |                                                   |
+      |                                                                            unsigned int                                        uint32_t {aka long unsigned int}
+      |                                                                           %lx
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb6_v_u32_m.o] Error 1
+make: *** [bare] Error 2
+======================================================================
+
+ target	:	deccription
+****************************
+ bare	:	build application on baremental case. param: type=app-type app=app-name
+
+ rbb	:	run bare-app on beak. (build it firstly if modified) param: APP_TYPE=type APP_NAME=app-name , bp=beak-param
+
+ clean		:	delete objects generated by make
+****************************
+
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vgldcb6_v_u32_m"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+    CC vgldcb6_v_u32_m.c
+Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb6_v_u32_m.o' failed
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+Makefile:37: recipe for target 'bare' failed

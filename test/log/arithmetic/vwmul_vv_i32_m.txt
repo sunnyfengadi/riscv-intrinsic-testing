@@ -1,0 +1,92 @@
+vwmul_vv_i32_m.c:10:2: warning: multi-line comment [-Wcomment]
+   10 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vwmul_vv_i32_m.c:12:44: warning: backslash and newline separated by space
+   12 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vwmul_vv_i32_m.c:14:40: warning: backslash and newline separated by space
+   14 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vwmul_vv_i32_m.c:15:35: warning: backslash and newline separated by space
+   15 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vwmul_vv_i32_m.c:16:40: warning: backslash and newline separated by space
+   16 |              a[i] = random(threshold); \
+      |                                         
+vwmul_vv_i32_m.c:17:27: warning: backslash and newline separated by space
+   17 |              b[i] = a[i]; \
+      |                            
+vwmul_vv_i32_m.c:23:6: warning: no previous prototype for 'vwmul_vv_i32_m_golden' [-Wmissing-prototypes]
+   23 | void vwmul_vv_i32_m_golden(bool16_t mask,int64_t *maskoff,int32_t *a,int32_t *b,int64_t *exp_result) {
+      |      ^~~~~~~~~~~~~~~~~~~~~
+vwmul_vv_i32_m.c: In function 'vwmul_vv_i32_m_golden':
+vwmul_vv_i32_m.c:25:25: error: 'TODO' undeclared (first use in this function)
+   25 |         exp_result[i] = TODO;
+      |                         ^~~~
+vwmul_vv_i32_m.c:25:25: note: each undeclared identifier is reported only once for each function it appears in
+vwmul_vv_i32_m.c:23:37: warning: unused parameter 'mask' [-Wunused-parameter]
+   23 | void vwmul_vv_i32_m_golden(bool16_t mask,int64_t *maskoff,int32_t *a,int32_t *b,int64_t *exp_result) {
+      |                            ~~~~~~~~~^~~~
+vwmul_vv_i32_m.c:23:51: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   23 | void vwmul_vv_i32_m_golden(bool16_t mask,int64_t *maskoff,int32_t *a,int32_t *b,int64_t *exp_result) {
+      |                                          ~~~~~~~~~^~~~~~~
+vwmul_vv_i32_m.c:23:68: warning: unused parameter 'a' [-Wunused-parameter]
+   23 | void vwmul_vv_i32_m_golden(bool16_t mask,int64_t *maskoff,int32_t *a,int32_t *b,int64_t *exp_result) {
+      |                                                           ~~~~~~~~~^
+vwmul_vv_i32_m.c:23:79: warning: unused parameter 'b' [-Wunused-parameter]
+   23 | void vwmul_vv_i32_m_golden(bool16_t mask,int64_t *maskoff,int32_t *a,int32_t *b,int64_t *exp_result) {
+      |                                                                      ~~~~~~~~~^
+vwmul_vv_i32_m.c: In function 'main':
+vwmul_vv_i32_m.c:43:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   43 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+      |     ^~~~~~~~~~~~~~
+      |     data_init_scalar
+vwmul_vv_i32_m.c:16:15: error: subscripted value is neither array nor pointer nor vector
+   16 |              a[i] = random(threshold); \
+      |               ^
+vwmul_vv_i32_m.c:44:5: note: in expansion of macro 'data_init'
+   44 |     data_init(maskoff, exp_maskoff, 8*2, 0xffffffffffffffff);
+      |     ^~~~~~~~~
+vwmul_vv_i32_m.c:17:22: error: subscripted value is neither array nor pointer nor vector
+   17 |              b[i] = a[i]; \
+      |                      ^
+vwmul_vv_i32_m.c:44:5: note: in expansion of macro 'data_init'
+   44 |     data_init(maskoff, exp_maskoff, 8*2, 0xffffffffffffffff);
+      |     ^~~~~~~~~
+vwmul_vv_i32_m.c:49:27: error: incompatible type for argument 1 of 'vwmul_vv_i32_m_golden'
+   49 |     vwmul_vv_i32_m_golden(exp_mask,exp_maskoff,exp_a,exp_b,exp_result);
+      |                           ^~~~~~~~
+      |                           |
+      |                           uint64_t * {aka long long unsigned int *}
+vwmul_vv_i32_m.c:23:37: note: expected 'bool16_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
+   23 | void vwmul_vv_i32_m_golden(bool16_t mask,int64_t *maskoff,int32_t *a,int32_t *b,int64_t *exp_result) {
+      |                            ~~~~~~~~~^~~~
+vwmul_vv_i32_m.c:56:35: error: subscripted value is neither array nor pointer nor vector
+   56 |         if(exp_result[i] != result[i]) {
+      |                                   ^
+vwmul_vv_i32_m.c:57:79: error: subscripted value is neither array nor pointer nor vector
+   57 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+      |                                                                               ^
+vwmul_vv_i32_m.c:40:17: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+   40 |     int64x8x2_t result = {0};
+      |                 ^~~~~~
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwmul_vv_i32_m.o] Error 1
+make: *** [bare] Error 2
+======================================================================
+
+ target	:	deccription
+****************************
+ bare	:	build application on baremental case. param: type=app-type app=app-name
+
+ rbb	:	run bare-app on beak. (build it firstly if modified) param: APP_TYPE=type APP_NAME=app-name , bp=beak-param
+
+ clean		:	delete objects generated by make
+****************************
+
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vwmul_vv_i32_m"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+    CC vwmul_vv_i32_m.c
+Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwmul_vv_i32_m.o' failed
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+Makefile:37: recipe for target 'bare' failed

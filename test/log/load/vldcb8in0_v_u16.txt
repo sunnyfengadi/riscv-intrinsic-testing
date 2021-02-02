@@ -1,40 +1,53 @@
-vldcb8in0_v_u16.c:4:5: warning: function declaration isn't a prototype [-Wstrict-prototypes]
-    4 | int main() {
-      |     ^~~~
+vldcb8in0_v_u16.c:16:2: warning: multi-line comment [-Wcomment]
+   16 |  //#define data_init_bool(a, b, n, threshold) \
+      |  ^
+vldcb8in0_v_u16.c:18:44: warning: backslash and newline separated by space
+   18 |  #define data_init_scalar(a, b, threshold) \
+      |                                             
+vldcb8in0_v_u16.c:20:40: warning: backslash and newline separated by space
+   20 |  #define data_init(a, b, n, threshold) \
+      |                                         
+vldcb8in0_v_u16.c:21:35: warning: backslash and newline separated by space
+   21 |      for(int i = 0; i < n; i++) { \
+      |                                    
+vldcb8in0_v_u16.c:22:40: warning: backslash and newline separated by space
+   22 |              a[i] = random(threshold); \
+      |                                         
+vldcb8in0_v_u16.c:23:27: warning: backslash and newline separated by space
+   23 |              b[i] = a[i]; \
+      |                            
+vldcb8in0_v_u16.c:29:6: warning: no previous prototype for 'vldcb8in0_v_u16_golden' [-Wmissing-prototypes]
+   29 | void vldcb8in0_v_u16_golden(uint16_t *base,uint32_t *imm,uint16_t exp_result[][ELE_NUM]) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+vldcb8in0_v_u16.c: In function 'vldcb8in0_v_u16_golden':
+vldcb8in0_v_u16.c:29:54: warning: unused parameter 'imm' [-Wunused-parameter]
+   29 | void vldcb8in0_v_u16_golden(uint16_t *base,uint32_t *imm,uint16_t exp_result[][ELE_NUM]) {
+      |                                            ~~~~~~~~~~^~~
 vldcb8in0_v_u16.c: In function 'main':
-vldcb8in0_v_u16.c:27:40: warning: format '%u' expects argument of type 'unsigned int', but argument 2 has type 'long unsigned int' [-Wformat=]
-   27 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                       ~^              ~~~~
-      |                                        |              |
-      |                                        unsigned int   long unsigned int
-      |                                       %lu
-vldcb8in0_v_u16.c:27:45: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'long unsigned int' [-Wformat=]
-   27 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                            ~^              ~~~~~
-      |                                             |              |
-      |                                             unsigned int   long unsigned int
-      |                                            %lu
-vldcb8in0_v_u16.c:27:50: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'long unsigned int' [-Wformat=]
-   27 |     printf("cycles \t= stop-start \t= %u - %u = %u\n",stop,start,stop-start);
-      |                                                 ~^               ~~~~~~~~~~
-      |                                                  |                   |
-      |                                                  unsigned int        long unsigned int
-      |                                                 %lu
-vldcb8in0_v_u16.c:15:9: warning: unused variable 'element_width' [-Wunused-variable]
-   15 |     int element_width = 16/8;
-      |         ^~~~~~~~~~~~~
-vldcb8in0_v_u16.c:10:14: warning: unused variable 'imm' [-Wunused-variable]
-   10 |     uint32_t imm = 0;
+vldcb8in0_v_u16.c:60:37: warning: passing argument 2 of 'vldcb8in0_v_u16_golden' makes pointer from integer without a cast [-Wint-conversion]
+   60 |     vldcb8in0_v_u16_golden(exp_base,exp_imm,exp_result);
+      |                                     ^~~~~~~
+      |                                     |
+      |                                     uint32_t {aka long unsigned int}
+vldcb8in0_v_u16.c:29:54: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t' {aka 'long unsigned int'}
+   29 | void vldcb8in0_v_u16_golden(uint16_t *base,uint32_t *imm,uint16_t exp_result[][ELE_NUM]) {
+      |                                            ~~~~~~~~~~^~~
+vldcb8in0_v_u16.c:60:45: warning: passing argument 3 of 'vldcb8in0_v_u16_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   60 |     vldcb8in0_v_u16_golden(exp_base,exp_imm,exp_result);
+      |                                             ^~~~~~~~~~
+      |                                             |
+      |                                             uint16_t * {aka short unsigned int *}
+vldcb8in0_v_u16.c:29:67: note: expected 'uint16_t (*)[32]' {aka 'short unsigned int (*)[32]'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+   29 | void vldcb8in0_v_u16_golden(uint16_t *base,uint32_t *imm,uint16_t exp_result[][ELE_NUM]) {
+      |                                                          ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vldcb8in0_v_u16.c:43:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   43 |     uint32_t imm;
       |              ^~~
 soc_mode = 0 progsize = 2 
-binary file = /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb8in0_v_u16.elf
-debug_data_start=0x380
-debug_progbuf_start=0x374
-debug_abstract_start=0x360
-debug_vdata_start=0x390
-Start Loading Kernel @ Fri Jan  8 04:06:04 2021
+binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb8in0_v_u16.elf
+Start Loading Kernel @ Tue Feb  2 14:52:13 2021
 
-Start Setting Reset PC for orv32 @ Fri Jan  8 04:06:04 2021
+Start Setting Reset PC for orv32 @ Tue Feb  2 14:52:13 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================
@@ -48,16 +61,268 @@ Start Setting Reset PC for orv32 @ Fri Jan  8 04:06:04 2021
  clean		:	delete objects generated by make
 ****************************
 
-/home/test/Risc-v/riscv-intrinsic-testing/scripts/gorun.sh /home/test/Risc-v/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vldcb8in0_v_u16"
-~/Risc-v/riscv-intrinsic-testing/test ~/Risc-v/riscv-intrinsic-testing
-make[1]: Entering directory '/home/test/Risc-v/riscv-intrinsic-testing/test'
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/scripts/gorun.sh /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test "make -j4 APP_TYPE=test APP_NAME=vldcb8in0_v_u16"
+~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
+make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vldcb8in0_v_u16.c
 Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb8in0_v_u16.elf /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb8in0_v_u16.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
-Completed /home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb8in0_v_u16.elf
-make[1]: Leaving directory '/home/test/Risc-v/riscv-intrinsic-testing/test'
-~/Risc-v/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/Risc-v/riscv-intrinsic-testing/bin/test/vldcb8in0_v_u16.elf ++load_pk
-cycles 	= stop-start 	= 0 - 0 = 0
-result={.val[0]={1,9,17,25,17,25,33,41,33,41,49,57,49,57,65,73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[1]={2,10,18,26,18,26,34,42,34,42,50,58,50,58,66,74,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[2]={3,11,19,27,19,27,35,43,35,43,51,59,51,59,67,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[3]={4,12,20,28,20,28,36,44,36,44,52,60,52,60,68,76,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[4]={5,13,21,29,21,29,37,45,37,45,53,61,53,61,69,77,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[5]={6,14,22,30,22,30,38,46,38,46,54,62,54,62,70,78,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[6]={7,15,23,31,23,31,39,47,39,47,55,63,55,63,71,79,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},.val[7]={8,16,24,32,24,32,40,48,40,48,56,64,56,64,72,80,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}}
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb8in0_v_u16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb8in0_v_u16.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb8in0_v_u16.elf
+make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
+~/workspace/risc-v/rivai/riscv-intrinsic-testing
+/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb8in0_v_u16.elf ++load_pk
+Failed: result.val[0][1] = cd80, exp_result[1] = 73f1
+Failed: result.val[0][2] = 41fc, exp_result[2] = a3a7
+Failed: result.val[0][3] = 782c, exp_result[3] = 6b17
+Failed: result.val[0][4] = 8b74, exp_result[4] = a3a7
+Failed: result.val[0][5] = 7eb1, exp_result[5] = 6b17
+Failed: result.val[0][6] = 9a03, exp_result[6] = d921
+Failed: result.val[0][7] = aa01, exp_result[7] = d9ec
+Failed: result.val[0][8] = 73f1, exp_result[8] = d921
+Failed: result.val[0][9] = c2aa, exp_result[9] = d9ec
+Failed: result.val[0][10] = c0cc, exp_result[10] = 5f23
+Failed: result.val[0][11] = 8b7, exp_result[11] = c681
+Failed: result.val[0][12] = 15cf, exp_result[12] = 5f23
+Failed: result.val[0][13] = e3d5, exp_result[13] = c681
+Failed: result.val[0][14] = bf7f, exp_result[14] = 5515
+Failed: result.val[0][15] = 7aba, exp_result[15] = 549c
+Failed: result.val[0][16] = a3a7, exp_result[16] = 0
+Failed: result.val[0][17] = 14b5, exp_result[17] = 0
+Failed: result.val[0][18] = d40c, exp_result[18] = 0
+Failed: result.val[0][19] = b123, exp_result[19] = 0
+Failed: result.val[0][20] = 9c4c, exp_result[20] = 0
+Failed: result.val[0][21] = 6bff, exp_result[21] = 0
+Failed: result.val[0][22] = 3815, exp_result[22] = 0
+Failed: result.val[0][23] = 4aae, exp_result[23] = 0
+Failed: result.val[0][24] = 6b17, exp_result[24] = 0
+Failed: result.val[0][25] = 63c7, exp_result[25] = 0
+Failed: result.val[0][26] = 1ef9, exp_result[26] = 0
+Failed: result.val[0][27] = 92d3, exp_result[27] = 0
+Failed: result.val[0][28] = 2fe8, exp_result[28] = 0
+Failed: result.val[0][29] = 8a6a, exp_result[29] = 0
+Failed: result.val[0][30] = 4da9, exp_result[30] = 0
+Failed: result.val[0][31] = 7d75, exp_result[31] = 0
+Failed: result.val[1][0] = d921, exp_result[32] = cd80
+Failed: result.val[1][1] = a527, exp_result[33] = c2aa
+Failed: result.val[1][2] = 8796, exp_result[34] = 14b5
+Failed: result.val[1][3] = f857, exp_result[35] = 63c7
+Failed: result.val[1][4] = 2921, exp_result[36] = 14b5
+Failed: result.val[1][5] = 7733, exp_result[37] = 63c7
+Failed: result.val[1][6] = 124, exp_result[38] = a527
+Failed: result.val[1][7] = ee6a, exp_result[39] = 3b61
+Failed: result.val[1][8] = d9ec, exp_result[40] = a527
+Failed: result.val[1][10] = bf9a, exp_result[42] = dd46
+Failed: result.val[1][11] = ed36, exp_result[43] = 6875
+Failed: result.val[1][12] = 5ede, exp_result[44] = dd46
+Failed: result.val[1][13] = 3b61, exp_result[45] = 6875
+Failed: result.val[1][14] = 730e, exp_result[46] = a16
+Failed: result.val[1][15] = faa2, exp_result[47] = 5b85
+Failed: result.val[1][16] = 5f23, exp_result[48] = 0
+Failed: result.val[1][17] = dd46, exp_result[49] = 0
+Failed: result.val[1][18] = 2a62, exp_result[50] = 0
+Failed: result.val[1][19] = 8628, exp_result[51] = 0
+Failed: result.val[1][20] = fd83, exp_result[52] = 0
+Failed: result.val[1][21] = 55f, exp_result[53] = 0
+Failed: result.val[1][22] = c1ce, exp_result[54] = 0
+Failed: result.val[1][23] = f843, exp_result[55] = 0
+Failed: result.val[1][24] = c681, exp_result[56] = 0
+Failed: result.val[1][25] = 6875, exp_result[57] = 0
+Failed: result.val[1][26] = 311d, exp_result[58] = 0
+Failed: result.val[1][27] = b260, exp_result[59] = 0
+Failed: result.val[1][28] = 238b, exp_result[60] = 0
+Failed: result.val[1][29] = 57d0, exp_result[61] = 0
+Failed: result.val[1][30] = c3e0, exp_result[62] = 0
+Failed: result.val[1][31] = f3c5, exp_result[63] = 0
+Failed: result.val[2][0] = 5515, exp_result[64] = 41fc
+Failed: result.val[2][1] = a16, exp_result[65] = c0cc
+Failed: result.val[2][2] = daa4, exp_result[66] = d40c
+Failed: result.val[2][3] = b651, exp_result[67] = 1ef9
+Failed: result.val[2][4] = 66a3, exp_result[68] = d40c
+Failed: result.val[2][5] = c296, exp_result[69] = 1ef9
+Failed: result.val[2][6] = faa9, exp_result[70] = 8796
+Failed: result.val[2][7] = f78, exp_result[71] = bf9a
+Failed: result.val[2][8] = 549c, exp_result[72] = 8796
+Failed: result.val[2][9] = 5b85, exp_result[73] = bf9a
+Failed: result.val[2][10] = 8595, exp_result[74] = 2a62
+Failed: result.val[2][11] = 59c8, exp_result[75] = 311d
+Failed: result.val[2][12] = 9800, exp_result[76] = 2a62
+Failed: result.val[2][13] = f4eb, exp_result[77] = 311d
+Failed: result.val[2][14] = 2f13, exp_result[78] = daa4
+Failed: result.val[2][15] = fea, exp_result[79] = 8595
+Failed: result.val[2][16] = ef93, exp_result[80] = 0
+Failed: result.val[2][17] = a559, exp_result[81] = 0
+Failed: result.val[2][18] = a66b, exp_result[82] = 0
+Failed: result.val[2][19] = 8034, exp_result[83] = 0
+Failed: result.val[2][20] = e620, exp_result[84] = 0
+Failed: result.val[2][21] = 57e0, exp_result[85] = 0
+Failed: result.val[2][22] = 89ed, exp_result[86] = 0
+Failed: result.val[2][23] = e348, exp_result[87] = 0
+Failed: result.val[2][24] = d2bb, exp_result[88] = 0
+Failed: result.val[2][25] = 212f, exp_result[89] = 0
+Failed: result.val[2][26] = d316, exp_result[90] = 0
+Failed: result.val[2][27] = 4f77, exp_result[91] = 0
+Failed: result.val[2][28] = 795a, exp_result[92] = 0
+Failed: result.val[2][29] = 3f34, exp_result[93] = 0
+Failed: result.val[2][30] = c378, exp_result[94] = 0
+Failed: result.val[2][31] = 9148, exp_result[95] = 0
+Failed: result.val[3][0] = 4ff6, exp_result[96] = 782c
+Failed: result.val[3][1] = a588, exp_result[97] = 8b7
+Failed: result.val[3][2] = a0d0, exp_result[98] = b123
+Failed: result.val[3][3] = ed4a, exp_result[99] = 92d3
+Failed: result.val[3][4] = f651, exp_result[100] = b123
+Failed: result.val[3][5] = 9481, exp_result[101] = 92d3
+Failed: result.val[3][6] = cb3f, exp_result[102] = f857
+Failed: result.val[3][7] = b7e6, exp_result[103] = ed36
+Failed: result.val[3][8] = 8716, exp_result[104] = f857
+Failed: result.val[3][9] = 2adb, exp_result[105] = ed36
+Failed: result.val[3][10] = a66d, exp_result[106] = 8628
+Failed: result.val[3][11] = 7e0e, exp_result[107] = b260
+Failed: result.val[3][12] = a21f, exp_result[108] = 8628
+Failed: result.val[3][13] = 9d0e, exp_result[109] = b260
+Failed: result.val[3][14] = a722, exp_result[110] = b651
+Failed: result.val[3][15] = 5504, exp_result[111] = 59c8
+Failed: result.val[3][16] = 813a, exp_result[112] = 0
+Failed: result.val[3][17] = b7e2, exp_result[113] = 0
+Failed: result.val[3][18] = ad8b, exp_result[114] = 0
+Failed: result.val[3][19] = aacd, exp_result[115] = 0
+Failed: result.val[3][20] = b72d, exp_result[116] = 0
+Failed: result.val[3][21] = 407a, exp_result[117] = 0
+Failed: result.val[3][22] = 68d6, exp_result[118] = 0
+Failed: result.val[3][23] = 98dc, exp_result[119] = 0
+Failed: result.val[3][24] = 702c, exp_result[120] = 0
+Failed: result.val[3][25] = 46ed, exp_result[121] = 0
+Failed: result.val[3][26] = 81ea, exp_result[122] = 0
+Failed: result.val[3][27] = 8c72, exp_result[123] = 0
+Failed: result.val[3][28] = c4e0, exp_result[124] = 0
+Failed: result.val[3][29] = 1617, exp_result[125] = 0
+Failed: result.val[3][30] = c5c6, exp_result[126] = 0
+Failed: result.val[3][31] = 1f52, exp_result[127] = 0
+Failed: result.val[4][0] = 3e41, exp_result[128] = 8b74
+Failed: result.val[4][1] = 5f9, exp_result[129] = 15cf
+Failed: result.val[4][2] = d31b, exp_result[130] = 9c4c
+Failed: result.val[4][3] = 9bfc, exp_result[131] = 2fe8
+Failed: result.val[4][4] = cf7c, exp_result[132] = 9c4c
+Failed: result.val[4][5] = b52c, exp_result[133] = 2fe8
+Failed: result.val[4][6] = 875, exp_result[134] = 2921
+Failed: result.val[4][7] = e0d0, exp_result[135] = 5ede
+Failed: result.val[4][8] = ad50, exp_result[136] = 2921
+Failed: result.val[4][9] = 6fbe, exp_result[137] = 5ede
+Failed: result.val[4][10] = b5e3, exp_result[138] = fd83
+Failed: result.val[4][11] = 6434, exp_result[139] = 238b
+Failed: result.val[4][12] = 3717, exp_result[140] = fd83
+Failed: result.val[4][13] = 73f8, exp_result[141] = 238b
+Failed: result.val[4][14] = 6430, exp_result[142] = 66a3
+Failed: result.val[4][15] = 9c5c, exp_result[143] = 9800
+Failed: result.val[4][16] = c3be, exp_result[144] = 0
+Failed: result.val[4][17] = b949, exp_result[145] = 0
+Failed: result.val[4][18] = 3ef1, exp_result[146] = 0
+Failed: result.val[4][19] = b8bf, exp_result[147] = 0
+Failed: result.val[4][20] = 14f6, exp_result[148] = 0
+Failed: result.val[4][21] = b02d, exp_result[149] = 0
+Failed: result.val[4][22] = 14e8, exp_result[150] = 0
+Failed: result.val[4][23] = 3665, exp_result[151] = 0
+Failed: result.val[4][24] = 6a99, exp_result[152] = 0
+Failed: result.val[4][25] = 9463, exp_result[153] = 0
+Failed: result.val[4][26] = 4612, exp_result[154] = 0
+Failed: result.val[4][27] = 759c, exp_result[155] = 0
+Failed: result.val[4][28] = 45b3, exp_result[156] = 0
+Failed: result.val[4][29] = 8e9e, exp_result[157] = 0
+Failed: result.val[4][30] = dca9, exp_result[158] = 0
+Failed: result.val[4][31] = f9b, exp_result[159] = 0
+Failed: result.val[5][0] = ead1, exp_result[160] = 7eb1
+Failed: result.val[5][1] = 52f, exp_result[161] = e3d5
+Failed: result.val[5][2] = 5a0a, exp_result[162] = 6bff
+Failed: result.val[5][3] = 24b5, exp_result[163] = 8a6a
+Failed: result.val[5][4] = 14a7, exp_result[164] = 6bff
+Failed: result.val[5][5] = 9655, exp_result[165] = 8a6a
+Failed: result.val[5][6] = 6d65, exp_result[166] = 7733
+Failed: result.val[5][7] = 8769, exp_result[167] = 3b61
+Failed: result.val[5][8] = 24cc, exp_result[168] = 7733
+Failed: result.val[5][9] = bd02, exp_result[169] = 3b61
+Failed: result.val[5][10] = 3270, exp_result[170] = 55f
+Failed: result.val[5][11] = b5f9, exp_result[171] = 57d0
+Failed: result.val[5][12] = cb43, exp_result[172] = 55f
+Failed: result.val[5][13] = bc04, exp_result[173] = 57d0
+Failed: result.val[5][14] = 96e0, exp_result[174] = c296
+Failed: result.val[5][15] = 353, exp_result[175] = f4eb
+Failed: result.val[5][16] = 4c11, exp_result[176] = 0
+Failed: result.val[5][17] = 55c4, exp_result[177] = 0
+Failed: result.val[5][18] = 6305, exp_result[178] = 0
+Failed: result.val[5][19] = 60db, exp_result[179] = 0
+Failed: result.val[5][20] = 46a5, exp_result[180] = 0
+Failed: result.val[5][21] = 6db, exp_result[181] = 0
+Failed: result.val[5][22] = ba1, exp_result[182] = 0
+Failed: result.val[5][23] = c958, exp_result[183] = 0
+Failed: result.val[5][24] = 112c, exp_result[184] = 0
+Failed: result.val[5][25] = a925, exp_result[185] = 0
+Failed: result.val[5][26] = e6f2, exp_result[186] = 0
+Failed: result.val[5][27] = 208d, exp_result[187] = 0
+Failed: result.val[5][28] = 7f99, exp_result[188] = 0
+Failed: result.val[5][29] = e7db, exp_result[189] = 0
+Failed: result.val[5][30] = 2105, exp_result[190] = 0
+Failed: result.val[5][31] = 44fa, exp_result[191] = 0
+Failed: result.val[6][0] = 61ac, exp_result[192] = 9a03
+Failed: result.val[6][1] = 94d0, exp_result[193] = bf7f
+Failed: result.val[6][2] = 891b, exp_result[194] = 3815
+Failed: result.val[6][3] = e240, exp_result[195] = 4da9
+Failed: result.val[6][4] = eb, exp_result[196] = 3815
+Failed: result.val[6][5] = 2b68, exp_result[197] = 4da9
+Failed: result.val[6][6] = 38c, exp_result[198] = 124
+Failed: result.val[6][7] = b562, exp_result[199] = 730e
+Failed: result.val[6][8] = 96b9, exp_result[200] = 124
+Failed: result.val[6][9] = fdfc, exp_result[201] = 730e
+Failed: result.val[6][10] = 5873, exp_result[202] = c1ce
+Failed: result.val[6][11] = adf2, exp_result[203] = c3e0
+Failed: result.val[6][12] = 2599, exp_result[204] = c1ce
+Failed: result.val[6][13] = e47f, exp_result[205] = c3e0
+Failed: result.val[6][14] = f40b, exp_result[206] = faa9
+Failed: result.val[6][15] = f537, exp_result[207] = 2f13
+Failed: result.val[6][16] = 3691, exp_result[208] = 0
+Failed: result.val[6][17] = 102, exp_result[209] = 0
+Failed: result.val[6][18] = 8555, exp_result[210] = 0
+Failed: result.val[6][19] = 4e2d, exp_result[211] = 0
+Failed: result.val[6][20] = 894d, exp_result[212] = 0
+Failed: result.val[6][21] = 9e93, exp_result[213] = 0
+Failed: result.val[6][22] = 6875, exp_result[214] = 0
+Failed: result.val[6][23] = 31fc, exp_result[215] = 0
+Failed: result.val[6][24] = 3e25, exp_result[216] = 0
+Failed: result.val[6][25] = 837, exp_result[217] = 0
+Failed: result.val[6][26] = 7936, exp_result[218] = 0
+Failed: result.val[6][27] = 5d90, exp_result[219] = 0
+Failed: result.val[6][28] = c23c, exp_result[220] = 0
+Failed: result.val[6][29] = 9178, exp_result[221] = 0
+Failed: result.val[6][30] = ad56, exp_result[222] = 0
+Failed: result.val[6][31] = c737, exp_result[223] = 0
+Failed: result.val[7][0] = d3b8, exp_result[224] = aa01
+Failed: result.val[7][1] = 1317, exp_result[225] = 7aba
+Failed: result.val[7][2] = 392d, exp_result[226] = 4aae
+Failed: result.val[7][3] = bc43, exp_result[227] = 7d75
+Failed: result.val[7][4] = e1ca, exp_result[228] = 4aae
+Failed: result.val[7][5] = a3f, exp_result[229] = 7d75
+Failed: result.val[7][6] = eee9, exp_result[230] = ee6a
+Failed: result.val[7][7] = 80fc, exp_result[231] = faa2
+Failed: result.val[7][8] = f79b, exp_result[232] = ee6a
+Failed: result.val[7][9] = 3545, exp_result[233] = faa2
+Failed: result.val[7][10] = 41be, exp_result[234] = f843
+Failed: result.val[7][11] = 2c04, exp_result[235] = f3c5
+Failed: result.val[7][12] = d2fd, exp_result[236] = f843
+Failed: result.val[7][13] = f80a, exp_result[237] = f3c5
+Failed: result.val[7][14] = b1a5, exp_result[238] = f78
+Failed: result.val[7][15] = 96b9, exp_result[239] = fea
+Failed: result.val[7][16] = 7861, exp_result[240] = 0
+Failed: result.val[7][17] = 1cbc, exp_result[241] = 0
+Failed: result.val[7][18] = f70a, exp_result[242] = 0
+Failed: result.val[7][19] = 4511, exp_result[243] = 0
+Failed: result.val[7][20] = e0, exp_result[244] = 0
+Failed: result.val[7][21] = be9a, exp_result[245] = 0
+Failed: result.val[7][22] = 5cab, exp_result[246] = 0
+Failed: result.val[7][23] = f2ff, exp_result[247] = 0
+Failed: result.val[7][24] = 3dc3, exp_result[248] = 0
+Failed: result.val[7][25] = f69f, exp_result[249] = 0
+Failed: result.val[7][26] = 962d, exp_result[250] = 0
+Failed: result.val[7][27] = 44ee, exp_result[251] = 0
+Failed: result.val[7][28] = f694, exp_result[252] = 0
+Failed: result.val[7][29] = f7f4, exp_result[253] = 0
+Failed: result.val[7][30] = b22, exp_result[254] = 0
+Failed: result.val[7][31] = 9b37, exp_result[255] = 0
 TEST FAILED!

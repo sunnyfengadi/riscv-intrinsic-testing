@@ -145,7 +145,6 @@ def move(node, variable):
     
     if '_m' not in node['Intrinsic_Name']:
         if split_type[1] == 'v' and split_type[2] == 'x':
-            print(variable)
             oper = variable[0]
         if split_type[1] == 'v' and split_type[2] == 'i':  # imm: fix it as 3
             oper = '3'
@@ -158,7 +157,7 @@ def SetGoldenFunction(node, elenum, typebit, apitype):
     variableList = []
     expInput = ''
     
-    operator = 'TODO'
+    operator = 'Operator Line --- TODO'
     line1 = ['#pragma GCC push_options', 
              '#pragma GCC optimize("O0")',
              '__attribute__((noinline, noclone))']

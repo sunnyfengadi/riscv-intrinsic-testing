@@ -120,19 +120,30 @@ def shift(node, variable):
     return lines
 
 def mac(node, variable): # a+b*c
-    lines = '     for (int i = 0; i < ELE_NUM; i++) {\n'
     oper = 'TODO'
     for item in OPERATOR_3.items():
         ret = re.match(item[1],node['Intrinsic_Name'])
         if ret:
             operator = item[0].split(',')
-            if 'Neg' in node['Intrinsic_Type']:
-                oper = operator[0]+ '(' + variable[1] + '[i]' + operator[1] + variable[2]+'[i])'+ operator[2] + variable[0] + '[i]'
+            if 'vw' in node['Intrinsic_Name']:
+                lines = '//widden to do '
+                pass
+                # print('vw2: match:',node['Intrinsic_Name'],item)
+                # lines = '     for (int i = 0; i < COMBO_NUM; i++) {\n'
+                # lines += '        for (int j = 0; j < ELE_NUM; j++) {\n'
+                # oper = operator[0]+ '(' + variable[1] + '[i*ELE_NUM+j]' + operator[1] + variable[2]+'[i*ELE_NUM+j])'+ operator[2] + variable[0] + '[i][j]'
+                # lines += '        exp_result[i] = ' + oper + ';\n'
+                # lines += '      }\n'
+                # lines += '  }\n'
             else:
-                oper = variable[1]+'[i]'+ operator[0] + variable[2] + '[i]' + operator[1]  + variable[0] + '[i]'
+                lines = '     for (int i = 0; i < ELE_NUM; i++) {\n'
+                if re.match('vs?nm(sac)?(sub)?q?_vv_[iu][13][62]_?h?l?p?',node['Intrinsic_Name']): #Neg
+                    oper = operator[0]+ '(' + variable[1] + '[i]' + operator[1] + variable[2]+'[i])'+ operator[2] + variable[0] + '[i]'
+                else:
+                    oper = variable[1]+'[i]'+ operator[0] + variable[2] + '[i]' + operator[1]  + variable[0] + '[i]'
             
-    lines += '        exp_result[i] = ' + oper + ';\n'
-    lines += '  }\n'
+                lines += '        exp_result[i] = ' + oper + ';\n'
+                lines += '  }\n'
     return lines
 
 def compare(node, variable):

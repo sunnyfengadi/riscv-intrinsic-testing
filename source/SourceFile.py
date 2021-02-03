@@ -208,7 +208,7 @@ def sourceHandler(typeList):
         
         #for arithmetic, mac, reduction, permutation, conversion
         if 'Arithmetic:' in nodes['Intrinsic_Type'] and '64' not in nodes['Intrinsic_Name']: commonFile(nodes, 'arithmetic')
-        if 'Mac:' in nodes['Intrinsic_Type']: commonFile(nodes, 'mac')
+        if 'Mac:' in nodes['Intrinsic_Type'] and '64' not in nodes['Output_Type']: commonFile(nodes, 'mac')
         if 'Reduction:' in nodes['Intrinsic_Type']: commonFile(nodes, 'reduction')
         if 'Permutation:' in nodes['Intrinsic_Type']: commonFile(nodes, 'permutation')
         if 'Conversion:' in nodes['Intrinsic_Type']: commonFile(nodes, 'conversion')

@@ -71,12 +71,12 @@ Build Failed API name:
 Test API=mac
 --------------------
 Total test api: 80
-Test Pass number: 0
-Test Fail number: 16
+Test Pass number: 16
+Test Fail number: 0
 Build Pass number: 0
 Build Fail number: 64
 
-Test Failed API name: 
+Test Passed API name: 
  	['vmacc_vv_i16.c', 'vnmsub_vv_i16.c', 'vnmsub_vv_i32.c', 'vnmsac_vv_i32.c', 'vmsub_vv_u32.c', 'vnmsub_vv_u16.c', 'vmsub_vv_i16.c', 'vmsub_vv_u16.c', 'vnmsac_vv_i16.c', 'vmacc_vv_i32.c', 'vnmsac_vv_u32.c', 'vmsub_vv_i32.c', 'vmacc_vv_u32.c', 'vnmsac_vv_u16.c', 'vmacc_vv_u16.c', 'vnmsub_vv_u32.c']
 
 Build Failed API name: 
@@ -125,15 +125,12 @@ Test API=compare
 --------------------
 Total test api: 96
 Test Pass number: 0
-Test Fail number: 48
+Test Fail number: 0
 Build Pass number: 0
-Build Fail number: 48
-
-Test Failed API name: 
- 	['vcmpge_vx_i16.c', 'vcmplt_vx_i32.c', 'vcmpeq_vv_u16.c', 'vcmplt_vx_i16.c', 'vcmple_vx_i32.c', 'vcmpeq_vx_i16.c', 'vcmpeq_vx_u32.c', 'vcmple_vv_i16.c', 'vcmplt_vv_u32.c', 'vcmpne_vv_u32.c', 'vcmpgt_vx_i32.c', 'vcmpgt_vx_u16.c', 'vcmpgt_vx_i16.c', 'vcmple_vx_i16.c', 'vcmple_vx_u16.c', 'vcmpne_vx_u16.c', 'vcmpeq_vx_u16.c', 'vcmplt_vv_i32.c', 'vcmpne_vv_i16.c', 'vcmpgt_vx_u32.c', 'vcmpne_vx_i16.c', 'vcmpge_vv_i16.c', 'vcmple_vx_u32.c', 'vcmpgt_vv_i32.c', 'vcmpge_vx_i32.c', 'vcmplt_vv_u16.c', 'vcmpge_vv_u16.c', 'vcmple_vv_i32.c', 'vcmpeq_vv_i32.c', 'vcmpeq_vv_i16.c', 'vcmpge_vv_i32.c', 'vcmpne_vx_i32.c', 'vcmpeq_vx_i32.c', 'vcmple_vv_u16.c', 'vcmpge_vv_u32.c', 'vcmpne_vv_i32.c', 'vcmpge_vx_u32.c', 'vcmple_vv_u32.c', 'vcmpgt_vv_i16.c', 'vcmpgt_vv_u16.c', 'vcmpeq_vv_u32.c', 'vcmpne_vv_u16.c', 'vcmplt_vx_u16.c', 'vcmplt_vx_u32.c', 'vcmpge_vx_u16.c', 'vcmplt_vv_i16.c', 'vcmpne_vx_u32.c', 'vcmpgt_vv_u32.c']
+Build Fail number: 96
 
 Build Failed API name: 
- 	['vcmple_vx_u16_m.c', 'vcmpge_vv_i16_m.c', 'vcmple_vv_i16_m.c', 'vcmpgt_vx_i32_m.c', 'vcmpge_vx_i32_m.c', 'vcmpeq_vv_u16_m.c', 'vcmplt_vv_i16_m.c', 'vcmpgt_vv_i32_m.c', 'vcmpne_vx_i16_m.c', 'vcmpge_vx_u32_m.c', 'vcmplt_vv_i32_m.c', 'vcmplt_vv_u16_m.c', 'vcmpne_vv_u32_m.c', 'vcmpgt_vx_u32_m.c', 'vcmpne_vx_u32_m.c', 'vcmpge_vx_u16_m.c', 'vcmpge_vv_u32_m.c', 'vcmpgt_vx_u16_m.c', 'vcmpeq_vv_i16_m.c', 'vcmpeq_vv_u32_m.c', 'vcmpeq_vx_u16_m.c', 'vcmplt_vx_i32_m.c', 'vcmple_vv_i32_m.c', 'vcmpeq_vx_i32_m.c', 'vcmpne_vx_i32_m.c', 'vcmple_vv_u32_m.c', 'vcmpne_vx_u16_m.c', 'vcmplt_vv_u32_m.c', 'vcmplt_vx_u32_m.c', 'vcmpeq_vv_i32_m.c', 'vcmple_vv_u16_m.c', 'vcmpge_vv_u16_m.c', 'vcmpge_vv_i32_m.c', 'vcmpeq_vx_u32_m.c', 'vcmpgt_vv_u16_m.c', 'vcmpgt_vv_u32_m.c', 'vcmpge_vx_i16_m.c', 'vcmple_vx_u32_m.c', 'vcmplt_vx_i16_m.c', 'vcmpne_vv_i32_m.c', 'vcmpeq_vx_i16_m.c', 'vcmpne_vv_i16_m.c', 'vcmpgt_vx_i16_m.c', 'vcmpne_vv_u16_m.c', 'vcmple_vx_i16_m.c', 'vcmple_vx_i32_m.c', 'vcmpgt_vv_i16_m.c', 'vcmplt_vx_u16_m.c']
+ 	['vcmpge_vx_i16.c', 'vcmplt_vx_i32.c', 'vcmpeq_vv_u16.c', 'vcmplt_vx_i16.c', 'vcmple_vx_i32.c', 'vcmpeq_vx_i16.c', 'vcmpeq_vx_u32.c', 'vcmple_vv_i16.c', 'vcmple_vx_u16_m.c', 'vcmpge_vv_i16_m.c', 'vcmplt_vv_u32.c', 'vcmple_vv_i16_m.c', 'vcmpgt_vx_i32_m.c', 'vcmpge_vx_i32_m.c', 'vcmpeq_vv_u16_m.c', 'vcmpne_vv_u32.c', 'vcmpgt_vx_i32.c', 'vcmplt_vv_i16_m.c', 'vcmpgt_vv_i32_m.c', 'vcmpgt_vx_u16.c', 'vcmpgt_vx_i16.c', 'vcmple_vx_i16.c', 'vcmpne_vx_i16_m.c', 'vcmple_vx_u16.c', 'vcmpne_vx_u16.c', 'vcmpge_vx_u32_m.c', 'vcmpeq_vx_u16.c', 'vcmplt_vv_i32.c', 'vcmpne_vv_i16.c', 'vcmplt_vv_i32_m.c', 'vcmplt_vv_u16_m.c', 'vcmpgt_vx_u32.c', 'vcmpne_vv_u32_m.c', 'vcmpgt_vx_u32_m.c', 'vcmpne_vx_u32_m.c', 'vcmpge_vx_u16_m.c', 'vcmpge_vv_u32_m.c', 'vcmpgt_vx_u16_m.c', 'vcmpeq_vv_i16_m.c', 'vcmpeq_vv_u32_m.c', 'vcmpne_vx_i16.c', 'vcmpge_vv_i16.c', 'vcmpeq_vx_u16_m.c', 'vcmple_vx_u32.c', 'vcmpgt_vv_i32.c', 'vcmplt_vx_i32_m.c', 'vcmple_vv_i32_m.c', 'vcmpge_vx_i32.c', 'vcmpeq_vx_i32_m.c', 'vcmpne_vx_i32_m.c', 'vcmplt_vv_u16.c', 'vcmpge_vv_u16.c', 'vcmple_vv_u32_m.c', 'vcmple_vv_i32.c', 'vcmpeq_vv_i32.c', 'vcmpeq_vv_i16.c', 'vcmpge_vv_i32.c', 'vcmpne_vx_i32.c', 'vcmpne_vx_u16_m.c', 'vcmplt_vv_u32_m.c', 'vcmplt_vx_u32_m.c', 'vcmpeq_vx_i32.c', 'vcmple_vv_u16.c', 'vcmpeq_vv_i32_m.c', 'vcmpge_vv_u32.c', 'vcmple_vv_u16_m.c', 'vcmpge_vv_u16_m.c', 'vcmpge_vv_i32_m.c', 'vcmpeq_vx_u32_m.c', 'vcmpne_vv_i32.c', 'vcmpge_vx_u32.c', 'vcmple_vv_u32.c', 'vcmpgt_vv_i16.c', 'vcmpgt_vv_u16_m.c', 'vcmpgt_vv_u32_m.c', 'vcmpgt_vv_u16.c', 'vcmpeq_vv_u32.c', 'vcmpge_vx_i16_m.c', 'vcmple_vx_u32_m.c', 'vcmpne_vv_u16.c', 'vcmplt_vx_u16.c', 'vcmplt_vx_i16_m.c', 'vcmplt_vx_u32.c', 'vcmpne_vv_i32_m.c', 'vcmpeq_vx_i16_m.c', 'vcmpge_vx_u16.c', 'vcmpne_vv_i16_m.c', 'vcmpgt_vx_i16_m.c', 'vcmplt_vv_i16.c', 'vcmpne_vx_u32.c', 'vcmpne_vv_u16_m.c', 'vcmple_vx_i16_m.c', 'vcmple_vx_i32_m.c', 'vcmpgt_vv_u32.c', 'vcmpgt_vv_i16_m.c', 'vcmplt_vx_u16_m.c']
 
 Test API=reduction
 --------------------
@@ -149,16 +146,13 @@ Build Failed API name:
 Test API=logic
 --------------------
 Total test api: 56
-Test Pass number: 24
-Test Fail number: 4
+Test Pass number: 28
+Test Fail number: 0
 Build Pass number: 0
 Build Fail number: 28
 
 Test Passed API name: 
- 	['vand_vx_u16.c', 'vand_vv_u32.c', 'vand_vx_i16.c', 'vor_vx_i16.c', 'vor_vv_u16.c', 'vxor_vx_i16.c', 'vand_vx_i32.c', 'vxor_vx_u16.c', 'vand_vv_u16.c', 'vor_vx_u32.c', 'vxor_vv_i32.c', 'vxor_vx_i32.c', 'vxor_vv_u16.c', 'vxor_vv_u32.c', 'vand_vv_i32.c', 'vor_vv_u32.c', 'vand_vx_u32.c', 'vor_vx_u16.c', 'vxor_vv_i16.c', 'vand_vv_i16.c', 'vor_vv_i16.c', 'vxor_vx_u32.c', 'vor_vv_i32.c', 'vor_vx_i32.c']
-
-Test Failed API name: 
- 	['vnot_v_i16.c', 'vnot_v_u16.c', 'vnot_v_i32.c', 'vnot_v_u32.c']
+ 	['vand_vx_u16.c', 'vand_vv_u32.c', 'vnot_v_i16.c', 'vand_vx_i16.c', 'vnot_v_u16.c', 'vor_vx_i16.c', 'vor_vv_u16.c', 'vxor_vx_i16.c', 'vand_vx_i32.c', 'vxor_vx_u16.c', 'vand_vv_u16.c', 'vor_vx_u32.c', 'vxor_vv_i32.c', 'vxor_vx_i32.c', 'vxor_vv_u16.c', 'vxor_vv_u32.c', 'vand_vv_i32.c', 'vor_vv_u32.c', 'vnot_v_i32.c', 'vand_vx_u32.c', 'vor_vx_u16.c', 'vxor_vv_i16.c', 'vnot_v_u32.c', 'vand_vv_i16.c', 'vor_vv_i16.c', 'vxor_vx_u32.c', 'vor_vv_i32.c', 'vor_vx_i32.c']
 
 Build Failed API name: 
  	['vnot_v_u16_m.c', 'vor_vv_i16_m.c', 'vand_vv_u16_m.c', 'vxor_vv_u32_m.c', 'vxor_vx_u16_m.c', 'vor_vv_i32_m.c', 'vor_vv_u32_m.c', 'vor_vx_i16_m.c', 'vxor_vv_i16_m.c', 'vxor_vv_u16_m.c', 'vxor_vx_i32_m.c', 'vnot_v_i32_m.c', 'vxor_vx_i16_m.c', 'vand_vv_i16_m.c', 'vand_vx_i16_m.c', 'vor_vx_i32_m.c', 'vor_vx_u16_m.c', 'vand_vv_i32_m.c', 'vnot_v_i16_m.c', 'vxor_vv_i32_m.c', 'vxor_vx_u32_m.c', 'vor_vx_u32_m.c', 'vor_vv_u16_m.c', 'vand_vx_i32_m.c', 'vnot_v_u32_m.c', 'vand_vx_u32_m.c', 'vand_vv_u32_m.c', 'vand_vx_u16_m.c']
@@ -166,8 +160,8 @@ Build Failed API name:
 Test API=Summary of all
 --------------------
 Total test api: 1289
-Test Pass number: 102
-Test Fail number: 192
+Test Pass number: 122
+Test Fail number: 124
 Build Pass number: 0
-Build Fail number: 995
+Build Fail number: 1043
 

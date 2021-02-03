@@ -48,20 +48,23 @@ def loadFile(node):
 
     MacroLines = SetMacro(typeBit, elementNum, comboNum, 'load')
     DataInitDefinitionLines = SetDataInitDefinition()
-    goldenLines = SetLoadGoldenFunction(node, elementNum, typeBit)
+    goldenLines = SetGoldenFunction(node, elementNum, typeBit, 'load')
     paraLines = getInputParameters(parameters, elementNum, comboNum)
     resultLine = SetResultLine(node,typeBit)
-    DataInitLines = DataInit(node,parameters,typeBit, 'load')
+    DataInitLines = DataInit(node,parameters,typeBit,elementNum,'load')
     vwrcsrLines = getVwrCsr()
     runLines = getRunlines(parameters, apiName, 'load' )
     
     goldenLines = MacroLines + DataInitDefinitionLines + goldenLines
     paraLines += resultLine + DataInitLines + vwrcsrLines + runLines
 
-    if comboNum != '1':
-        tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][2]
-    else: tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1]
-        
+    for item in INTRINSIC_TYPE_MAP.items():
+        ret = re.match(item[0],node['Intrinsic_Name'])
+        if ret:
+            if comboNum != '1':
+                tailFile = item[1][2]
+            else: tailFile = item[1][1]
+            
     writeFile(apiFile, goldenLines, paraLines, tailFile)
 
 def storeFile(node):
@@ -82,17 +85,20 @@ def storeFile(node):
     goldenLines = SetGoldenFunction(node, elementNum, typeBit, 'store')
     paraLines = getInputParameters(parameters, elementNum, comboNum)
     resultLine = SetResultLine(node,typeBit)
-    DataInitLines = DataInit(node,parameters,typeBit, 'store')
+    DataInitLines = DataInit(node,parameters,typeBit,elementNum,'store')
     vwrcsrLines = getVwrCsr()
     runLines = getRunlines(parameters, apiName, 'store')
 
     goldenLines = MacroLines + DataInitDefinitionLines + goldenLines
     paraLines += resultLine + DataInitLines + vwrcsrLines + runLines
     
-    if comboNum != '1':
-        tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][2]
-    else: tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1]
-    
+    for item in INTRINSIC_TYPE_MAP.items():
+        ret = re.match(item[0],node['Intrinsic_Name'])
+        if ret:
+            if comboNum != '1':
+                tailFile = item[1][2]
+            else: tailFile = item[1][1]
+
     writeFile(apiFile, goldenLines, paraLines, tailFile)
     
 def iirFile(node):
@@ -115,17 +121,20 @@ def iirFile(node):
     goldenLines = SetGoldenFunction(node, elementNum, typeBit, 'iir')
     paraLines = getInputParameters(parameters, elementNum, comboNum)
     resultLine = SetResultLine(node,typeBit)
-    DataInitLines = DataInit(node,parameters,typeBit, 'iir')
+    DataInitLines = DataInit(node,parameters,typeBit, elementNum, 'iir')
     vwrcsrLines = getVwrCsr()
     runLines = getRunlines(parameters, apiName, 'iir')
 
     goldenLines = MacroLines + DataInitDefinitionLines + goldenLines
     paraLines += resultLine + DataInitLines + vwrcsrLines + runLines
     
-    if comboNum != '1':
-        tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][2]
-    else: tailFile = INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1]
-        
+    for item in INTRINSIC_TYPE_MAP.items():
+        ret = re.match(item[0],node['Intrinsic_Name'])
+        if ret:
+            if comboNum != '1':
+                tailFile = item[1][2]
+            else: tailFile = item[1][1]
+
     writeFile(apiFile, goldenLines, paraLines, tailFile)
     
 def commonFile(node, apitype):
@@ -160,13 +169,18 @@ def commonFile(node, apitype):
     goldenLines = SetGoldenFunction(node, elementNum, typeBit, apitype)
     paraLines = getInputParameters(parameters, elementNum, comboNum)
     resultLine = SetResultLine(node,typeBit)
-    DataInitLines = DataInit(node,parameters,typeBit, apitype)
+    DataInitLines = DataInit(node,parameters,typeBit,elementNum, apitype)
     runLines = getRunlines(parameters, apiName, apitype )
     
     goldenLines = MacroLines + DataInitDefinitionLines + goldenLines
     paraLines += resultLine + DataInitLines + runLines
 
-    writeFile(apiFile, goldenLines, paraLines, INTRINSIC_TYPE_MAP[node['Intrinsic_Type']][1])
+    for item in INTRINSIC_TYPE_MAP.items():
+        ret = re.match(item[0], node['Intrinsic_Name'])
+        if ret:
+            tailFile = item[1][1]
+
+    writeFile(apiFile, goldenLines, paraLines, tailFile)
 
 
 ###########################################################################################

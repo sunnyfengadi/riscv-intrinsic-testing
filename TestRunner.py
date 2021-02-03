@@ -85,9 +85,9 @@ def runTest(apitype, apiname):
     if 'PASSED' in p.stderr: 
         if os.path.exists(os.path.join(BIN_PATH, apiname +'.elf')):
             copyAction(BIN_PATH, os.path.join( ELF_PATH, apitype), apiname +'.elf')
-        if 'TEST PASSED!' in p.stdout:
+        if 'TEST PASSED' in p.stdout:
             testResult = 'test_passed'
-        elif 'TEST FAILED!' in p.stdout:
+        elif 'TEST FAILED' in p.stdout:
             testResult = 'test_failed'
         else:
             testResult = 'build_passed'

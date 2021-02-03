@@ -88,7 +88,7 @@ def getInputParameters(inputDict, elementnum, combonum):
                         expInputLine += '[' + str(eleNum)+'];'
                     elif(len(split_input) == 3): # int16x32x2_t int16x32x2_t
                         comboNum = re.sub("\D", "", split_input[2])
-                        expInputLine += '[' + str(eleNum)+'*'+str(comboNum) +'];'
+                        expInputLine += '[' + str(comboNum) +'][' + str(eleNum)+ '];'
             expInput.append(expInputLine)
 
     return inputList + expInput
@@ -163,14 +163,22 @@ def SetDataInitDefinition():
     lines.append(' \
 #define random(threshold) rand()%threshold \n \
 //#define data_init_bool(a, b, n, threshold) \\ \n \
-    //	a = b = 1; \n \
+//	a = b = 1;\n \
 #define data_init_scalar(a, b, threshold) \\ \n \
-    a = b = random(threshold); \n \
-#define data_init(a, b, n, threshold) \\ \n \
-    for(int i = 0; i < n; i++) { \\ \n \
-            a[i] = random(threshold); \\ \n \
-            b[i] = a[i]; \\ \n \
-        }')
+  a = b = random(threshold);\n \
+#define data_init(a, b, n, threshold) \\\n \
+  for(int i = 0; i < n; i++) { \\\n \
+    a[i] = random(threshold); \\\n \
+    b[i] = a[i]; \\\n \
+  }\n \
+#define data_init_matrix(a, b, m, n, threshold) \\\n \
+  for(int i = 0; i < m; i++) { \\\n \
+    for(int j = 0; j < n; j++) { \\\n \
+      a.val[i][j] = random(threshold); \\\n \
+      b[i][j] = a.val[i][j]; \\\n \
+    } \\\n \
+  }\n '
+)
     
     lines.append('')
 
@@ -186,10 +194,10 @@ def SetResultLine(node,typebit):
         if 'bool' in node['Output_Type']: #bool8_t bool8x2_t
             eleNum = re.sub("\D", "", split_output[0])
             if (len(split_output) == 1): #bool8_t
-                expResultLine = 'uint'+ typebit + '_t' + ' exp_result['+str(eleNum)+'] = {0};'
+                expResultLine = 'uint64_t' + ' exp_result['+str(eleNum)+'] = {0};'
             elif (len(split_output) == 2): #bool8x2_t
                 comboNum = re.sub("\D", "", split_output[1])
-                expResultLine = 'uint'+ typebit + '_t' + ' exp_result['+str(eleNum)+'*'+str(comboNum) +'] = {0};'
+                expResultLine = 'uint64_t' + ' exp_result['+str(comboNum)+']['+str(eleNum) +'] = {0};'
         else:
             if (len(split_output) == 1): # int16_t int32_t
                 expResultLine = node['Output_Type'] + ' exp_result;'
@@ -199,14 +207,14 @@ def SetResultLine(node,typebit):
             elif (len(split_output) == 3): # int16x32x2_t int16x32x3_t
                 eleNum = re.sub("\D", "", split_output[1])
                 comboNum = re.sub("\D", "", split_output[2])
-                expResultLine = split_output[0] + '_t' + ' exp_result['+str(eleNum)+'*'+str(comboNum) +'] = {0};'
+                expResultLine = split_output[0] + '_t' + ' exp_result['+str(comboNum)+']['+str(eleNum) +'] = {0};'
 
         lines.append(node['Output_Type'] + ' result = {0};')
         lines.append(expResultLine)
 
     return lines
 
-def DataInit(node,inputDict,typebit,apitype):
+def DataInit(node,inputDict,typebit,eleNum,apitype):
     dataInit = ['']
     for i in range(1,8):
         if inputDict['Input_'+str(i)+'_Type']:
@@ -220,13 +228,15 @@ def DataInit(node,inputDict,typebit,apitype):
                     data_init_str += ', '+ str(eleNum)
                 elif (len(split_input) == 2): #bool8x2_t
                     comboNum = re.sub("\D", "", split_input[1])
-                    data_init_str += ', '+ str(eleNum)+'*'+str(comboNum)
+                    data_init_str += ', '+ str(eleNum)+','+str(comboNum)
             else:
                 if (len(split_input) == 1): #int8_t
                     typebit = re.sub("\D", "", split_input[0])
                     if 'imm' in inputDict['Input_'+str(i)+'_Variable']:
                         if apitype == 'load':
                             data_init_str = 'imm = exp_imm = 8; // imm and exp_imm do not need to call data_init'
+                        elif apitype == 'shift':
+                            data_init_str = 'imm = exp_imm = rand()%'+str(eleNum)+'; // imm and exp_imm do not need to call data_init'
                         else:
                             data_init_str = 'imm = exp_imm = 0; // imm and exp_imm do not need to call data_init'
                     elif 'base' in inputDict['Input_'+str(i)+'_Variable']:
@@ -236,7 +246,7 @@ def DataInit(node,inputDict,typebit,apitype):
                     else:
                         ret = re.match('vmv_x_v_[iu][13][62]_?m?',node['Intrinsic_Name'])
                         if ret:
-                            data_init_str = 'b = exp_b = rand()%16 // b and exp_b should be in the range[0,16)'
+                            data_init_str = 'b = exp_b = rand()%'+str(eleNum)+' // b and exp_b should be in the range[0,16)'
                         else:
                             data_init_str = 'data_init_scalar(' + \
                                     inputDict['Input_'+str(i)+'_Variable'] + \
@@ -244,14 +254,18 @@ def DataInit(node,inputDict,typebit,apitype):
                 else: #int32x16_t int32x16x2_t
                     typebit = re.sub("\D", "", split_input[0])
                     eleNum = re.sub("\D", "", split_input[1])
-                    data_init_str = 'data_init(' + \
-                                    inputDict['Input_'+str(i)+'_Variable']+ \
-                                    ', exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip()
+
                     if (len(split_input) == 2): # int16x32_t int16x32_t
-                        data_init_str += ', '+ str(eleNum)
+                        data_init_str = 'data_init(' + \
+                                        inputDict['Input_'+str(i)+'_Variable']+ \
+                                        ', exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip() + \
+                                        ', ' + str(eleNum)
                     elif(len(split_input) == 3): # int16x32x2_t int16x32x2_t
                         comboNum = re.sub("\D", "", split_input[2])
-                        data_init_str += ', '+ str(eleNum)+'*'+str(comboNum)
+                        data_init_str = 'data_init_matrix(' + \
+                                        inputDict['Input_'+str(i)+'_Variable']+ \
+                                        ', exp_'+inputDict['Input_'+ str(i)+'_Variable'].rstrip() + \
+                                        ', ' + str(eleNum) +', '+str(comboNum)
 
             if (typebit == '8'):  data_init_str += ', 0xff);'
             elif (typebit == '16'):  data_init_str += ', 0xffff);'

@@ -4,71 +4,47 @@ vwmul_vx_u16_m.c:10:2: warning: multi-line comment [-Wcomment]
 vwmul_vx_u16_m.c:12:44: warning: backslash and newline separated by space
    12 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vwmul_vx_u16_m.c:14:40: warning: backslash and newline separated by space
-   14 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vwmul_vx_u16_m.c:15:35: warning: backslash and newline separated by space
-   15 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vwmul_vx_u16_m.c:16:40: warning: backslash and newline separated by space
-   16 |              a[i] = random(threshold); \
-      |                                         
-vwmul_vx_u16_m.c:17:27: warning: backslash and newline separated by space
-   17 |              b[i] = a[i]; \
-      |                            
-vwmul_vx_u16_m.c:23:6: warning: no previous prototype for 'vwmul_vx_u16_m_golden' [-Wmissing-prototypes]
-   23 | void vwmul_vx_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint16_t b,uint32_t *exp_result) {
+vwmul_vx_u16_m.c:31:6: warning: no previous prototype for 'vwmul_vx_u16_m_golden' [-Wmissing-prototypes]
+   31 | void vwmul_vx_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint16_t b,uint32_t exp_result[][ELE_NUM]) {
       |      ^~~~~~~~~~~~~~~~~~~~~
 vwmul_vx_u16_m.c: In function 'vwmul_vx_u16_m_golden':
-vwmul_vx_u16_m.c:25:25: error: 'TODO' undeclared (first use in this function)
-   25 |         exp_result[i] = TODO;
+vwmul_vx_u16_m.c:33:25: error: 'TODO' undeclared (first use in this function)
+   33 |         exp_result[i] = TODO;
       |                         ^~~~
-vwmul_vx_u16_m.c:25:25: note: each undeclared identifier is reported only once for each function it appears in
-vwmul_vx_u16_m.c:23:37: warning: unused parameter 'mask' [-Wunused-parameter]
-   23 | void vwmul_vx_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint16_t b,uint32_t *exp_result) {
-      |                            ~~~~~~~~~^~~~
-vwmul_vx_u16_m.c:23:52: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   23 | void vwmul_vx_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint16_t b,uint32_t *exp_result) {
-      |                                          ~~~~~~~~~~^~~~~~~
-vwmul_vx_u16_m.c:23:70: warning: unused parameter 'a' [-Wunused-parameter]
-   23 | void vwmul_vx_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint16_t b,uint32_t *exp_result) {
-      |                                                            ~~~~~~~~~~^
-vwmul_vx_u16_m.c:23:81: warning: unused parameter 'b' [-Wunused-parameter]
-   23 | void vwmul_vx_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint16_t b,uint32_t *exp_result) {
-      |                                                                        ~~~~~~~~~^
+vwmul_vx_u16_m.c:33:25: note: each undeclared identifier is reported only once for each function it appears in
+vwmul_vx_u16_m.c:31:38: warning: unused parameter 'mask' [-Wunused-parameter]
+   31 | void vwmul_vx_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint16_t b,uint32_t exp_result[][ELE_NUM]) {
+      |                            ~~~~~~~~~~^~~~
+vwmul_vx_u16_m.c:31:52: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   31 | void vwmul_vx_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint16_t b,uint32_t exp_result[][ELE_NUM]) {
+      |                                           ~~~~~~~~~^~~~~~~~~~~~~~
+vwmul_vx_u16_m.c:31:77: warning: unused parameter 'a' [-Wunused-parameter]
+   31 | void vwmul_vx_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint16_t b,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                   ~~~~~~~~~~^
+vwmul_vx_u16_m.c:31:88: warning: unused parameter 'b' [-Wunused-parameter]
+   31 | void vwmul_vx_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint16_t b,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                               ~~~~~~~~~^
 vwmul_vx_u16_m.c: In function 'main':
-vwmul_vx_u16_m.c:43:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   43 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vwmul_vx_u16_m.c:53:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   53 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vwmul_vx_u16_m.c:16:15: error: subscripted value is neither array nor pointer nor vector
-   16 |              a[i] = random(threshold); \
-      |               ^
-vwmul_vx_u16_m.c:44:5: note: in expansion of macro 'data_init'
-   44 |     data_init(maskoff, exp_maskoff, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vwmul_vx_u16_m.c:17:22: error: subscripted value is neither array nor pointer nor vector
-   17 |              b[i] = a[i]; \
-      |                      ^
-vwmul_vx_u16_m.c:44:5: note: in expansion of macro 'data_init'
-   44 |     data_init(maskoff, exp_maskoff, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vwmul_vx_u16_m.c:49:27: error: incompatible type for argument 1 of 'vwmul_vx_u16_m_golden'
-   49 |     vwmul_vx_u16_m_golden(exp_mask,exp_maskoff,exp_a,exp_b,exp_result);
-      |                           ^~~~~~~~
-      |                           |
-      |                           uint64_t * {aka long long unsigned int *}
-vwmul_vx_u16_m.c:23:37: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   23 | void vwmul_vx_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint16_t b,uint32_t *exp_result) {
-      |                            ~~~~~~~~~^~~~
-vwmul_vx_u16_m.c:56:35: error: subscripted value is neither array nor pointer nor vector
-   56 |         if(exp_result[i] != result[i]) {
+vwmul_vx_u16_m.c:59:60: warning: passing argument 5 of 'vwmul_vx_u16_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   59 |     vwmul_vx_u16_m_golden(exp_mask,exp_maskoff,exp_a,exp_b,exp_result);
+      |                                                            ^~~~~~~~~~
+      |                                                            |
+      |                                                            uint32_t (*)[16] {aka long unsigned int (*)[16]}
+vwmul_vx_u16_m.c:31:99: note: expected 'uint32_t (*)[32]' {aka 'long unsigned int (*)[32]'} but argument is of type 'uint32_t (*)[16]' {aka 'long unsigned int (*)[16]'}
+   31 | void vwmul_vx_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint16_t b,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                                          ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vwmul_vx_u16_m.c:66:35: error: subscripted value is neither array nor pointer nor vector
+   66 |         if(exp_result[i] != result[i]) {
       |                                   ^
-vwmul_vx_u16_m.c:57:79: error: subscripted value is neither array nor pointer nor vector
-   57 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vwmul_vx_u16_m.c:67:79: error: subscripted value is neither array nor pointer nor vector
+   67 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                                               ^
-vwmul_vx_u16_m.c:40:19: warning: variable 'result' set but not used [-Wunused-but-set-variable]
-   40 |     uint32x16x2_t result = {0};
+vwmul_vx_u16_m.c:50:19: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+   50 |     uint32x16x2_t result = {0};
       |                   ^~~~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwmul_vx_u16_m.o] Error 1
 make: *** [bare] Error 2

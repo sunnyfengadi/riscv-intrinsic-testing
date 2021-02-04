@@ -4,30 +4,30 @@ vwmul_vx_u16.c:10:2: warning: multi-line comment [-Wcomment]
 vwmul_vx_u16.c:12:44: warning: backslash and newline separated by space
    12 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vwmul_vx_u16.c:14:40: warning: backslash and newline separated by space
-   14 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vwmul_vx_u16.c:15:35: warning: backslash and newline separated by space
-   15 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vwmul_vx_u16.c:16:40: warning: backslash and newline separated by space
-   16 |              a[i] = random(threshold); \
-      |                                         
-vwmul_vx_u16.c:17:27: warning: backslash and newline separated by space
-   17 |              b[i] = a[i]; \
-      |                            
-vwmul_vx_u16.c:23:6: warning: no previous prototype for 'vwmul_vx_u16_golden' [-Wmissing-prototypes]
-   23 | void vwmul_vx_u16_golden(uint16_t *a,uint16_t b,uint32_t *exp_result) {
+vwmul_vx_u16.c:31:6: warning: no previous prototype for 'vwmul_vx_u16_golden' [-Wmissing-prototypes]
+   31 | void vwmul_vx_u16_golden(uint16_t *a,uint16_t b,uint32_t exp_result[][ELE_NUM]) {
       |      ^~~~~~~~~~~~~~~~~~~
+vwmul_vx_u16.c: In function 'vwmul_vx_u16_golden':
+vwmul_vx_u16.c:33:23: error: assignment to expression with array type
+   33 |         exp_result[i] = a[i]*b;
+      |                       ^
 vwmul_vx_u16.c: In function 'main':
-vwmul_vx_u16.c:50:35: error: subscripted value is neither array nor pointer nor vector
-   50 |         if(exp_result[i] != result[i]) {
+vwmul_vx_u16.c:53:37: warning: passing argument 3 of 'vwmul_vx_u16_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   53 |     vwmul_vx_u16_golden(exp_a,exp_b,exp_result);
+      |                                     ^~~~~~~~~~
+      |                                     |
+      |                                     uint32_t (*)[16] {aka long unsigned int (*)[16]}
+vwmul_vx_u16.c:31:58: note: expected 'uint32_t (*)[32]' {aka 'long unsigned int (*)[32]'} but argument is of type 'uint32_t (*)[16]' {aka 'long unsigned int (*)[16]'}
+   31 | void vwmul_vx_u16_golden(uint16_t *a,uint16_t b,uint32_t exp_result[][ELE_NUM]) {
+      |                                                 ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vwmul_vx_u16.c:60:35: error: subscripted value is neither array nor pointer nor vector
+   60 |         if(exp_result[i] != result[i]) {
       |                                   ^
-vwmul_vx_u16.c:51:79: error: subscripted value is neither array nor pointer nor vector
-   51 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vwmul_vx_u16.c:61:79: error: subscripted value is neither array nor pointer nor vector
+   61 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                                               ^
-vwmul_vx_u16.c:36:19: warning: variable 'result' set but not used [-Wunused-but-set-variable]
-   36 |     uint32x16x2_t result = {0};
+vwmul_vx_u16.c:46:19: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+   46 |     uint32x16x2_t result = {0};
       |                   ^~~~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwmul_vx_u16.o] Error 1
 make: *** [bare] Error 2

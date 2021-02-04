@@ -4,34 +4,18 @@ vcsr_i_i16.c:9:2: warning: multi-line comment [-Wcomment]
 vcsr_i_i16.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vcsr_i_i16.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vcsr_i_i16.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vcsr_i_i16.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vcsr_i_i16.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vcsr_i_i16.c:22:6: warning: no previous prototype for 'vcsr_i_i16_golden' [-Wmissing-prototypes]
-   22 | void vcsr_i_i16_golden(int16_t *a,uint32_t imm,int16_t *exp_result) {
+vcsr_i_i16.c:30:6: warning: no previous prototype for 'vcsr_i_i16_golden' [-Wmissing-prototypes]
+   30 | void vcsr_i_i16_golden(int16_t *a,uint32_t imm,int16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~
-vcsr_i_i16.c: In function 'vcsr_i_i16_golden':
-vcsr_i_i16.c:22:44: warning: unused parameter 'imm' [-Wunused-parameter]
-   22 | void vcsr_i_i16_golden(int16_t *a,uint32_t imm,int16_t *exp_result) {
-      |                                   ~~~~~~~~~^~~
 vcsr_i_i16.c: In function 'main':
-vcsr_i_i16.c:31:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
-   31 |     uint32_t imm;
+vcsr_i_i16.c:41:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   41 |     uint32_t imm;
       |              ^~~
 soc_mode = 0 progsize = 2 
 binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcsr_i_i16.elf
-Start Loading Kernel @ Tue Feb  2 14:55:29 2021
+Start Loading Kernel @ Thu Feb  4 18:51:06 2021
 
-Start Setting Reset PC for orv32 @ Tue Feb  2 14:55:29 2021
+Start Setting Reset PC for orv32 @ Thu Feb  4 18:51:06 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================
@@ -50,41 +34,41 @@ Start Setting Reset PC for orv32 @ Tue Feb  2 14:55:29 2021
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vcsr_i_i16.c
 Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcsr_i_i16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcsr_i_i16.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcsr_i_i16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcsr_i_i16.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
 Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcsr_i_i16.elf
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcsr_i_i16.elf ++load_pk
-Failed: result[0] = 4c7f, exp_result[0] = 98f
-Failed: result[1] = ffffcd80, exp_result[1] = fffff9b0
-Failed: result[2] = 41fc, exp_result[2] = 83f
-Failed: result[3] = 782c, exp_result[3] = f05
-Failed: result[4] = ffff8b74, exp_result[4] = fffff16e
-Failed: result[5] = 7eb1, exp_result[5] = fd6
-Failed: result[6] = ffff9a03, exp_result[6] = fffff340
-Failed: result[7] = ffffaa01, exp_result[7] = fffff540
-Failed: result[8] = 73f1, exp_result[8] = e7e
-Failed: result[9] = ffffc2aa, exp_result[9] = fffff855
-Failed: result[10] = ffffc0cc, exp_result[10] = fffff819
-Failed: result[11] = 8b7, exp_result[11] = 116
-Failed: result[12] = 15cf, exp_result[12] = 2b9
-Failed: result[13] = ffffe3d5, exp_result[13] = fffffc7a
-Failed: result[14] = ffffbf7f, exp_result[14] = fffff7ef
-Failed: result[15] = 7aba, exp_result[15] = f57
-Failed: result[16] = ffffa3a7, exp_result[16] = fffff474
-Failed: result[17] = 14b5, exp_result[17] = 296
-Failed: result[18] = ffffd40c, exp_result[18] = fffffa81
-Failed: result[19] = ffffb123, exp_result[19] = fffff624
-Failed: result[20] = ffff9c4c, exp_result[20] = fffff389
-Failed: result[21] = 6bff, exp_result[21] = d7f
-Failed: result[22] = 3815, exp_result[22] = 702
-Failed: result[23] = 4aae, exp_result[23] = 955
-Failed: result[24] = 6b17, exp_result[24] = d62
-Failed: result[25] = 63c7, exp_result[25] = c78
-Failed: result[26] = 1ef9, exp_result[26] = 3df
-Failed: result[27] = ffff92d3, exp_result[27] = fffff25a
-Failed: result[28] = 2fe8, exp_result[28] = 5fd
-Failed: result[29] = ffff8a6a, exp_result[29] = fffff14d
-Failed: result[30] = 4da9, exp_result[30] = 9b5
-Failed: result[31] = 7d75, exp_result[31] = fae
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcsr_i_i16.elf ++load_pk
+Failed: result[0] = 4c7f, exp_result[0] = 0
+Failed: result[1] = ffffcd80, exp_result[1] = ffffffff
+Failed: result[2] = 41fc, exp_result[2] = 0
+Failed: result[3] = 782c, exp_result[3] = 0
+Failed: result[4] = ffff8b74, exp_result[4] = ffffffff
+Failed: result[5] = 7eb1, exp_result[5] = 0
+Failed: result[6] = ffff9a03, exp_result[6] = ffffffff
+Failed: result[7] = ffffaa01, exp_result[7] = ffffffff
+Failed: result[8] = 73f1, exp_result[8] = 0
+Failed: result[9] = ffffc2aa, exp_result[9] = ffffffff
+Failed: result[10] = ffffc0cc, exp_result[10] = ffffffff
+Failed: result[11] = 8b7, exp_result[11] = 0
+Failed: result[12] = 15cf, exp_result[12] = 0
+Failed: result[13] = ffffe3d5, exp_result[13] = ffffffff
+Failed: result[14] = ffffbf7f, exp_result[14] = ffffffff
+Failed: result[15] = 7aba, exp_result[15] = 0
+Failed: result[16] = ffffa3a7, exp_result[16] = ffffffff
+Failed: result[17] = 14b5, exp_result[17] = 0
+Failed: result[18] = ffffd40c, exp_result[18] = ffffffff
+Failed: result[19] = ffffb123, exp_result[19] = ffffffff
+Failed: result[20] = ffff9c4c, exp_result[20] = ffffffff
+Failed: result[21] = 6bff, exp_result[21] = 0
+Failed: result[22] = 3815, exp_result[22] = 0
+Failed: result[23] = 4aae, exp_result[23] = 0
+Failed: result[24] = 6b17, exp_result[24] = 0
+Failed: result[25] = 63c7, exp_result[25] = 0
+Failed: result[26] = 1ef9, exp_result[26] = 0
+Failed: result[27] = ffff92d3, exp_result[27] = ffffffff
+Failed: result[28] = 2fe8, exp_result[28] = 0
+Failed: result[29] = ffff8a6a, exp_result[29] = ffffffff
+Failed: result[30] = 4da9, exp_result[30] = 0
+Failed: result[31] = 7d75, exp_result[31] = 0
 TEST FAILED!

@@ -4,51 +4,71 @@ vrdotp_vv_u16.c:9:2: warning: multi-line comment [-Wcomment]
 vrdotp_vv_u16.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vrdotp_vv_u16.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vrdotp_vv_u16.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vrdotp_vv_u16.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vrdotp_vv_u16.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vrdotp_vv_u16.c:22:6: warning: no previous prototype for 'vrdotp_vv_u16_golden' [-Wmissing-prototypes]
-   22 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
+vrdotp_vv_u16.c:30:6: warning: no previous prototype for 'vrdotp_vv_u16_golden' [-Wmissing-prototypes]
+   30 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~
 vrdotp_vv_u16.c: In function 'vrdotp_vv_u16_golden':
-vrdotp_vv_u16.c:24:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   24 | Operator Line --- TODO
+vrdotp_vv_u16.c:31:1: error: unknown type name 'Operator'
+   31 | Operator Line --- TODO
       | ^~~~~~~~
-      | perror
-vrdotp_vv_u16.c:24:1: note: each undeclared identifier is reported only once for each function it appears in
-vrdotp_vv_u16.c:24:9: error: expected ';' before 'Line'
-   24 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vrdotp_vv_u16.c:22:37: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
-      |                           ~~~~~~~~~~^
-vrdotp_vv_u16.c:22:49: warning: unused parameter 'b' [-Wunused-parameter]
-   22 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
-      |                                       ~~~~~~~~~~^
-vrdotp_vv_u16.c:22:61: warning: unused parameter 'c' [-Wunused-parameter]
-   22 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
-      |                                                   ~~~~~~~~~~^
-vrdotp_vv_u16.c:22:73: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   22 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
-      |                                                               ~~~~~~~~~~^~~~~~~~~~
+vrdotp_vv_u16.c:31:15: error: expected '=', ',', ';', 'asm' or '__attribute__' before '--' token
+   31 | Operator Line --- TODO
+      |               ^~
+vrdotp_vv_u16.c:35:5: warning: 'main' is normally a non-static function [-Wmain]
+   35 | int main(void) {
+      |     ^~~~
 vrdotp_vv_u16.c: In function 'main':
-vrdotp_vv_u16.c:48:14: error: too many arguments to function 'vrdotp_vv_u16'
-   48 |     result = vrdotp_vv_u16(a,b,c);
+vrdotp_vv_u16.c:37:17: warning: declaration of 'a' shadows a parameter [-Wshadow]
+   37 |     uint16x32_t a;
+      |                 ^
+vrdotp_vv_u16.c:30:37: note: shadowed declaration is here
+   30 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
+      |                           ~~~~~~~~~~^
+vrdotp_vv_u16.c:38:17: warning: declaration of 'b' shadows a parameter [-Wshadow]
+   38 |     uint16x32_t b;
+      |                 ^
+vrdotp_vv_u16.c:30:49: note: shadowed declaration is here
+   30 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
+      |                                       ~~~~~~~~~~^
+vrdotp_vv_u16.c:39:17: warning: declaration of 'c' shadows a parameter [-Wshadow]
+   39 |     uint16x32_t c;
+      |                 ^
+vrdotp_vv_u16.c:30:61: note: shadowed declaration is here
+   30 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
+      |                                                   ~~~~~~~~~~^
+vrdotp_vv_u16.c:45:14: warning: declaration of 'exp_result' shadows a parameter [-Wshadow]
+   45 |     uint16_t exp_result[32] = {0};
+      |              ^~~~~~~~~~
+vrdotp_vv_u16.c:30:73: note: shadowed declaration is here
+   30 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
+      |                                                               ~~~~~~~~~~^~~~~~~~~~
+vrdotp_vv_u16.c:55:14: error: too many arguments to function 'vrdotp_vv_u16'
+   55 |     result = vrdotp_vv_u16(a,b,c);
       |              ^~~~~~~~~~~~~
 In file included from vrdotp_vv_u16.c:4:
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:1942:1: note: declared here
- 1942 | __RUGRATS_DOTP_VV_OP (rdotp, u, uint, uint, 16, 16, 32)
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:1930:1: note: declared here
+ 1930 | __RUGRATS_DOTP_VV_OP (rdotp, u, uint, uint, 16, 16, 32)
       | ^~~~~~~~~~~~~~~~~~~~
+vrdotp_vv_u16.c: In function 'vrdotp_vv_u16_golden':
+vrdotp_vv_u16.c:75:1: error: expected declaration or statement at end of input
+   75 | }
+      | ^
+vrdotp_vv_u16.c:30:37: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
+      |                           ~~~~~~~~~~^
+vrdotp_vv_u16.c:30:49: warning: unused parameter 'b' [-Wunused-parameter]
+   30 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
+      |                                       ~~~~~~~~~~^
+vrdotp_vv_u16.c:30:61: warning: unused parameter 'c' [-Wunused-parameter]
+   30 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
+      |                                                   ~~~~~~~~~~^
+vrdotp_vv_u16.c:30:73: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   30 | void vrdotp_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *c,uint16_t *exp_result) {
+      |                                                               ~~~~~~~~~~^~~~~~~~~~
+At top level:
+vrdotp_vv_u16.c:35:5: warning: 'main' defined but not used [-Wunused-function]
+   35 | int main(void) {
+      |     ^~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vrdotp_vv_u16.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

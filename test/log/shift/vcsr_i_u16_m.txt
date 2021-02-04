@@ -4,62 +4,39 @@ vcsr_i_u16_m.c:9:2: warning: multi-line comment [-Wcomment]
 vcsr_i_u16_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vcsr_i_u16_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vcsr_i_u16_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vcsr_i_u16_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vcsr_i_u16_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vcsr_i_u16_m.c:22:6: warning: no previous prototype for 'vcsr_i_u16_m_golden' [-Wmissing-prototypes]
-   22 | void vcsr_i_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
+vcsr_i_u16_m.c:30:6: warning: no previous prototype for 'vcsr_i_u16_m_golden' [-Wmissing-prototypes]
+   30 | void vcsr_i_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~
 vcsr_i_u16_m.c: In function 'vcsr_i_u16_m_golden':
-vcsr_i_u16_m.c:22:50: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   22 | void vcsr_i_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
-      |                                        ~~~~~~~~~~^~~~~~~
-vcsr_i_u16_m.c:22:68: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vcsr_i_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
-      |                                                          ~~~~~~~~~~^
-vcsr_i_u16_m.c:22:79: warning: unused parameter 'imm' [-Wunused-parameter]
-   22 | void vcsr_i_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
-      |                                                                      ~~~~~~~~~^~~
+vcsr_i_u16_m.c:30:51: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   30 | void vcsr_i_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
+      |                                         ~~~~~~~~~~^~~~~~~
+vcsr_i_u16_m.c:30:69: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vcsr_i_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
+      |                                                           ~~~~~~~~~~^
 vcsr_i_u16_m.c: In function 'main':
-vcsr_i_u16_m.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   42 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vcsr_i_u16_m.c:52:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   52 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vcsr_i_u16_m.c:48:25: error: incompatible type for argument 1 of 'vcsr_i_u16_m_golden'
-   48 |     vcsr_i_u16_m_golden(exp_mask,exp_maskoff,exp_a,exp_imm,exp_result);
-      |                         ^~~~~~~~
-      |                         |
-      |                         uint64_t * {aka long long unsigned int *}
-vcsr_i_u16_m.c:22:35: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vcsr_i_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
-      |                          ~~~~~~~~~^~~~
-vcsr_i_u16_m.c:51:40: error: incompatible type for argument 3 of 'vcsr_i_u16_m'
-   51 |     result = vcsr_i_u16_m(mask,maskoff,a,0);
+vcsr_i_u16_m.c:61:40: error: incompatible type for argument 3 of 'vcsr_i_u16_m'
+   61 |     result = vcsr_i_u16_m(mask,maskoff,a,0);
       |                                        ^
       |                                        |
       |                                        uint16x32_t
 In file included from vcsr_i_u16_m.c:4:
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:1704:1: note: expected 'uint32_t' {aka 'const long unsigned int'} but argument is of type 'uint16x32_t'
- 1704 | __RUGRATS_I_OP (csr, u, uint, uint, 16, 32, 32)
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:1692:1: note: expected 'uint32_t' {aka 'const long unsigned int'} but argument is of type 'uint16x32_t'
+ 1692 | __RUGRATS_I_OP (csr, u, uint, uint, 16, 32, 32)
       | ^~~~~~~~~~~~~~
-vcsr_i_u16_m.c:51:14: error: too many arguments to function 'vcsr_i_u16_m'
-   51 |     result = vcsr_i_u16_m(mask,maskoff,a,0);
+vcsr_i_u16_m.c:61:14: error: too many arguments to function 'vcsr_i_u16_m'
+   61 |     result = vcsr_i_u16_m(mask,maskoff,a,0);
       |              ^~~~~~~~~~~~
 In file included from vcsr_i_u16_m.c:4:
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:1704:1: note: declared here
- 1704 | __RUGRATS_I_OP (csr, u, uint, uint, 16, 32, 32)
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:1692:1: note: declared here
+ 1692 | __RUGRATS_I_OP (csr, u, uint, uint, 16, 32, 32)
       | ^~~~~~~~~~~~~~
-vcsr_i_u16_m.c:33:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
-   33 |     uint32_t imm;
+vcsr_i_u16_m.c:43:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   43 |     uint32_t imm;
       |              ^~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcsr_i_u16_m.o] Error 1
 make: *** [bare] Error 2

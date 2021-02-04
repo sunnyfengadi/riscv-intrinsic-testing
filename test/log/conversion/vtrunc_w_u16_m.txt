@@ -4,68 +4,68 @@ vtrunc_w_u16_m.c:9:2: warning: multi-line comment [-Wcomment]
 vtrunc_w_u16_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vtrunc_w_u16_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vtrunc_w_u16_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vtrunc_w_u16_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vtrunc_w_u16_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vtrunc_w_u16_m.c:22:6: warning: no previous prototype for 'vtrunc_w_u16_m_golden' [-Wmissing-prototypes]
-   22 | void vtrunc_w_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint32_t *a,uint16_t *exp_result) {
+vtrunc_w_u16_m.c:30:6: warning: no previous prototype for 'vtrunc_w_u16_m_golden' [-Wmissing-prototypes]
+   30 | void vtrunc_w_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint32_t a[2][16],uint16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~~
 vtrunc_w_u16_m.c: In function 'vtrunc_w_u16_m_golden':
-vtrunc_w_u16_m.c:24:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   24 | Operator Line --- TODO
+vtrunc_w_u16_m.c:31:1: error: unknown type name 'Operator'
+   31 | Operator Line --- TODO
       | ^~~~~~~~
-      | perror
-vtrunc_w_u16_m.c:24:1: note: each undeclared identifier is reported only once for each function it appears in
-vtrunc_w_u16_m.c:24:9: error: expected ';' before 'Line'
-   24 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vtrunc_w_u16_m.c:22:37: warning: unused parameter 'mask' [-Wunused-parameter]
-   22 | void vtrunc_w_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint32_t *a,uint16_t *exp_result) {
-      |                            ~~~~~~~~~^~~~
-vtrunc_w_u16_m.c:22:52: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   22 | void vtrunc_w_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint32_t *a,uint16_t *exp_result) {
-      |                                          ~~~~~~~~~~^~~~~~~
-vtrunc_w_u16_m.c:22:70: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vtrunc_w_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint32_t *a,uint16_t *exp_result) {
-      |                                                            ~~~~~~~~~~^
-vtrunc_w_u16_m.c:22:82: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   22 | void vtrunc_w_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint32_t *a,uint16_t *exp_result) {
-      |                                                                        ~~~~~~~~~~^~~~~~~~~~
+vtrunc_w_u16_m.c:31:15: error: expected '=', ',', ';', 'asm' or '__attribute__' before '--' token
+   31 | Operator Line --- TODO
+      |               ^~
+vtrunc_w_u16_m.c:35:5: warning: 'main' is normally a non-static function [-Wmain]
+   35 | int main(void) {
+      |     ^~~~
 vtrunc_w_u16_m.c: In function 'main':
-vtrunc_w_u16_m.c:40:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   40 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vtrunc_w_u16_m.c:37:14: warning: declaration of 'mask' shadows a parameter [-Wshadow]
+   37 |     bool32_t mask;
+      |              ^~~~
+vtrunc_w_u16_m.c:30:38: note: shadowed declaration is here
+   30 | void vtrunc_w_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint32_t a[2][16],uint16_t *exp_result) {
+      |                            ~~~~~~~~~~^~~~
+vtrunc_w_u16_m.c:38:17: warning: declaration of 'maskoff' shadows a parameter [-Wshadow]
+   38 |     uint16x32_t maskoff;
+      |                 ^~~~~~~
+vtrunc_w_u16_m.c:30:53: note: shadowed declaration is here
+   30 | void vtrunc_w_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint32_t a[2][16],uint16_t *exp_result) {
+      |                                           ~~~~~~~~~~^~~~~~~
+vtrunc_w_u16_m.c:39:19: warning: declaration of 'a' shadows a parameter [-Wshadow]
+   39 |     uint32x16x2_t a;
+      |                   ^
+vtrunc_w_u16_m.c:30:70: note: shadowed declaration is here
+   30 | void vtrunc_w_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint32_t a[2][16],uint16_t *exp_result) {
+      |                                                             ~~~~~~~~~^~~~~~~~
+vtrunc_w_u16_m.c:45:14: warning: declaration of 'exp_result' shadows a parameter [-Wshadow]
+   45 |     uint16_t exp_result[32] = {0};
+      |              ^~~~~~~~~~
+vtrunc_w_u16_m.c:30:89: note: shadowed declaration is here
+   30 | void vtrunc_w_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint32_t a[2][16],uint16_t *exp_result) {
+      |                                                                               ~~~~~~~~~~^~~~~~~~~~
+vtrunc_w_u16_m.c:47:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   47 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vtrunc_w_u16_m.c:15:15: error: subscripted value is neither array nor pointer nor vector
-   15 |              a[i] = random(threshold); \
-      |               ^
-vtrunc_w_u16_m.c:42:5: note: in expansion of macro 'data_init'
-   42 |     data_init(a, exp_a, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vtrunc_w_u16_m.c:16:22: error: subscripted value is neither array nor pointer nor vector
-   16 |              b[i] = a[i]; \
-      |                      ^
-vtrunc_w_u16_m.c:42:5: note: in expansion of macro 'data_init'
-   42 |     data_init(a, exp_a, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vtrunc_w_u16_m.c:45:27: error: incompatible type for argument 1 of 'vtrunc_w_u16_m_golden'
-   45 |     vtrunc_w_u16_m_golden(exp_mask,exp_maskoff,exp_a,exp_result);
-      |                           ^~~~~~~~
-      |                           |
-      |                           uint64_t * {aka long long unsigned int *}
-vtrunc_w_u16_m.c:22:37: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vtrunc_w_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint32_t *a,uint16_t *exp_result) {
-      |                            ~~~~~~~~~^~~~
+vtrunc_w_u16_m.c: In function 'vtrunc_w_u16_m_golden':
+vtrunc_w_u16_m.c:75:1: error: expected declaration or statement at end of input
+   75 | }
+      | ^
+vtrunc_w_u16_m.c:30:38: warning: unused parameter 'mask' [-Wunused-parameter]
+   30 | void vtrunc_w_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint32_t a[2][16],uint16_t *exp_result) {
+      |                            ~~~~~~~~~~^~~~
+vtrunc_w_u16_m.c:30:53: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   30 | void vtrunc_w_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint32_t a[2][16],uint16_t *exp_result) {
+      |                                           ~~~~~~~~~~^~~~~~~
+vtrunc_w_u16_m.c:30:70: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vtrunc_w_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint32_t a[2][16],uint16_t *exp_result) {
+      |                                                             ~~~~~~~~~^~~~~~~~
+vtrunc_w_u16_m.c:30:89: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   30 | void vtrunc_w_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint32_t a[2][16],uint16_t *exp_result) {
+      |                                                                               ~~~~~~~~~~^~~~~~~~~~
+At top level:
+vtrunc_w_u16_m.c:35:5: warning: 'main' defined but not used [-Wunused-function]
+   35 | int main(void) {
+      |     ^~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vtrunc_w_u16_m.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

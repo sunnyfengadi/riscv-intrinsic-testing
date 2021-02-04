@@ -4,39 +4,27 @@ vmv_v_x_u64.c:9:2: warning: multi-line comment [-Wcomment]
 vmv_v_x_u64.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vmv_v_x_u64.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vmv_v_x_u64.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vmv_v_x_u64.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vmv_v_x_u64.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vmv_v_x_u64.c:22:6: warning: no previous prototype for 'vmv_v_x_u64_golden' [-Wmissing-prototypes]
-   22 | void vmv_v_x_u64_golden(uint64_t a,uint64_t *exp_result) {
+vmv_v_x_u64.c:30:6: warning: no previous prototype for 'vmv_v_x_u64_golden' [-Wmissing-prototypes]
+   30 | void vmv_v_x_u64_golden(uint64_t a,uint64_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~
 vmv_v_x_u64.c: In function 'main':
-vmv_v_x_u64.c:47:43: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'long long unsigned int' [-Wformat=]
-   47 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vmv_v_x_u64.c:57:43: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'long long unsigned int' [-Wformat=]
+   57 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                          ~^                             ~~~~~~~~~
       |                                           |                                   |
       |                                           unsigned int                        long long unsigned int
       |                                          %llx
-vmv_v_x_u64.c:47:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint64_t' {aka 'long long unsigned int'} [-Wformat=]
-   47 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vmv_v_x_u64.c:57:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint64_t' {aka 'long long unsigned int'} [-Wformat=]
+   57 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
       |                                                                unsigned int                     uint64_t {aka long long unsigned int}
       |                                                               %llx
 soc_mode = 0 progsize = 2 
 binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmv_v_x_u64.elf
-Start Loading Kernel @ Tue Feb  2 14:56:23 2021
+Start Loading Kernel @ Thu Feb  4 18:52:01 2021
 
-Start Setting Reset PC for orv32 @ Tue Feb  2 14:56:23 2021
+Start Setting Reset PC for orv32 @ Thu Feb  4 18:52:01 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================
@@ -55,9 +43,9 @@ Start Setting Reset PC for orv32 @ Tue Feb  2 14:56:23 2021
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vmv_v_x_u64.c
 Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmv_v_x_u64.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmv_v_x_u64.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmv_v_x_u64.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmv_v_x_u64.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
 Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmv_v_x_u64.elf
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmv_v_x_u64.elf ++load_pk
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmv_v_x_u64.elf ++load_pk
 TEST PASSED!

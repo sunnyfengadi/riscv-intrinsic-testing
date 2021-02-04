@@ -4,48 +4,28 @@ vssll_vx_i32_m.c:9:2: warning: multi-line comment [-Wcomment]
 vssll_vx_i32_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vssll_vx_i32_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vssll_vx_i32_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vssll_vx_i32_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vssll_vx_i32_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vssll_vx_i32_m.c:22:6: warning: no previous prototype for 'vssll_vx_i32_m_golden' [-Wmissing-prototypes]
-   22 | void vssll_vx_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,uint32_t b,int32_t *exp_result) {
+vssll_vx_i32_m.c:30:6: warning: no previous prototype for 'vssll_vx_i32_m_golden' [-Wmissing-prototypes]
+   30 | void vssll_vx_i32_m_golden(uint64_t *mask,int32_t *maskoff,int32_t *a,uint32_t b,int32_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~~
 vssll_vx_i32_m.c: In function 'vssll_vx_i32_m_golden':
-vssll_vx_i32_m.c:24:32: error: invalid operands to binary << (have 'int' and 'int32_t *' {aka 'long int *'})
-   24 |         exp_result[i] = mask[i]<<maskoff;
+vssll_vx_i32_m.c:32:32: error: invalid operands to binary << (have 'uint64_t' {aka 'long long unsigned int'} and 'int32_t *' {aka 'long int *'})
+   32 |         exp_result[i] = mask[i]<<maskoff;
       |                         ~~~~~~~^~
       |                             |
-      |                             _Bool
-vssll_vx_i32_m.c:22:68: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vssll_vx_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,uint32_t b,int32_t *exp_result) {
-      |                                                           ~~~~~~~~~^
-vssll_vx_i32_m.c:22:79: warning: unused parameter 'b' [-Wunused-parameter]
-   22 | void vssll_vx_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,uint32_t b,int32_t *exp_result) {
-      |                                                                      ~~~~~~~~~^
+      |                             uint64_t {aka long long unsigned int}
+vssll_vx_i32_m.c:30:69: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vssll_vx_i32_m_golden(uint64_t *mask,int32_t *maskoff,int32_t *a,uint32_t b,int32_t *exp_result) {
+      |                                                            ~~~~~~~~~^
+vssll_vx_i32_m.c:30:80: warning: unused parameter 'b' [-Wunused-parameter]
+   30 | void vssll_vx_i32_m_golden(uint64_t *mask,int32_t *maskoff,int32_t *a,uint32_t b,int32_t *exp_result) {
+      |                                                                       ~~~~~~~~~^
 vssll_vx_i32_m.c: In function 'main':
-vssll_vx_i32_m.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   42 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+vssll_vx_i32_m.c:52:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   52 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vssll_vx_i32_m.c:48:27: error: incompatible type for argument 1 of 'vssll_vx_i32_m_golden'
-   48 |     vssll_vx_i32_m_golden(exp_mask,exp_maskoff,exp_a,exp_b,exp_result);
-      |                           ^~~~~~~~
-      |                           |
-      |                           uint64_t * {aka long long unsigned int *}
-vssll_vx_i32_m.c:22:37: note: expected 'bool16_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vssll_vx_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,uint32_t b,int32_t *exp_result) {
-      |                            ~~~~~~~~~^~~~
-vssll_vx_i32_m.c:56:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'int32_t' {aka 'long int'} [-Wformat=]
-   56 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vssll_vx_i32_m.c:66:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   66 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
       |                                                                unsigned int                     int32_t {aka long int}

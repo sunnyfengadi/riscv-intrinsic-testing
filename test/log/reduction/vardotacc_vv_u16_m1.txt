@@ -4,65 +4,83 @@ vardotacc_vv_u16_m1.c:9:2: warning: multi-line comment [-Wcomment]
 vardotacc_vv_u16_m1.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vardotacc_vv_u16_m1.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vardotacc_vv_u16_m1.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vardotacc_vv_u16_m1.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vardotacc_vv_u16_m1.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vardotacc_vv_u16_m1.c:22:6: warning: no previous prototype for 'vardotacc_vv_u16_m1_golden' [-Wmissing-prototypes]
-   22 | void vardotacc_vv_u16_m1_golden(bool16_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+vardotacc_vv_u16_m1.c:30:6: warning: no previous prototype for 'vardotacc_vv_u16_m1_golden' [-Wmissing-prototypes]
+   30 | void vardotacc_vv_u16_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
 vardotacc_vv_u16_m1.c: In function 'vardotacc_vv_u16_m1_golden':
-vardotacc_vv_u16_m1.c:24:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   24 | Operator Line --- TODO
+vardotacc_vv_u16_m1.c:31:1: error: unknown type name 'Operator'
+   31 | Operator Line --- TODO
       | ^~~~~~~~
-      | perror
-vardotacc_vv_u16_m1.c:24:1: note: each undeclared identifier is reported only once for each function it appears in
-vardotacc_vv_u16_m1.c:24:9: error: expected ';' before 'Line'
-   24 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vardotacc_vv_u16_m1.c:22:42: warning: unused parameter 'dst_mask' [-Wunused-parameter]
-   22 | void vardotacc_vv_u16_m1_golden(bool16_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
-      |                                 ~~~~~~~~~^~~~~~~~
-vardotacc_vv_u16_m1.c:22:61: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vardotacc_vv_u16_m1_golden(bool16_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
-      |                                                   ~~~~~~~~~~^
-vardotacc_vv_u16_m1.c:22:73: warning: unused parameter 'b' [-Wunused-parameter]
-   22 | void vardotacc_vv_u16_m1_golden(bool16_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
-      |                                                               ~~~~~~~~~~^
-vardotacc_vv_u16_m1.c:22:85: warning: unused parameter 'c' [-Wunused-parameter]
-   22 | void vardotacc_vv_u16_m1_golden(bool16_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
-      |                                                                           ~~~~~~~~~~^
-vardotacc_vv_u16_m1.c:22:97: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   22 | void vardotacc_vv_u16_m1_golden(bool16_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
-      |                                                                                       ~~~~~~~~~~^~~~~~~~~~
+vardotacc_vv_u16_m1.c:31:15: error: expected '=', ',', ';', 'asm' or '__attribute__' before '--' token
+   31 | Operator Line --- TODO
+      |               ^~
+vardotacc_vv_u16_m1.c:35:5: warning: 'main' is normally a non-static function [-Wmain]
+   35 | int main(void) {
+      |     ^~~~
 vardotacc_vv_u16_m1.c: In function 'main':
-vardotacc_vv_u16_m1.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   42 |     data_init_bool(dst_mask, exp_dst_mask, 16, 0xffff);
+vardotacc_vv_u16_m1.c:37:14: warning: declaration of 'dst_mask' shadows a parameter [-Wshadow]
+   37 |     bool16_t dst_mask;
+      |              ^~~~~~~~
+vardotacc_vv_u16_m1.c:30:43: note: shadowed declaration is here
+   30 | void vardotacc_vv_u16_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+      |                                 ~~~~~~~~~~^~~~~~~~
+vardotacc_vv_u16_m1.c:38:17: warning: declaration of 'a' shadows a parameter [-Wshadow]
+   38 |     uint32x16_t a;
+      |                 ^
+vardotacc_vv_u16_m1.c:30:62: note: shadowed declaration is here
+   30 | void vardotacc_vv_u16_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+      |                                                    ~~~~~~~~~~^
+vardotacc_vv_u16_m1.c:39:17: warning: declaration of 'b' shadows a parameter [-Wshadow]
+   39 |     uint16x32_t b;
+      |                 ^
+vardotacc_vv_u16_m1.c:30:74: note: shadowed declaration is here
+   30 | void vardotacc_vv_u16_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+      |                                                                ~~~~~~~~~~^
+vardotacc_vv_u16_m1.c:40:17: warning: declaration of 'c' shadows a parameter [-Wshadow]
+   40 |     uint16x32_t c;
+      |                 ^
+vardotacc_vv_u16_m1.c:30:86: note: shadowed declaration is here
+   30 | void vardotacc_vv_u16_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+      |                                                                            ~~~~~~~~~~^
+vardotacc_vv_u16_m1.c:47:14: warning: declaration of 'exp_result' shadows a parameter [-Wshadow]
+   47 |     uint32_t exp_result[16] = {0};
+      |              ^~~~~~~~~~
+vardotacc_vv_u16_m1.c:30:98: note: shadowed declaration is here
+   30 | void vardotacc_vv_u16_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+      |                                                                                        ~~~~~~~~~~^~~~~~~~~~
+vardotacc_vv_u16_m1.c:49:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   49 |     data_init_bool(dst_mask, exp_dst_mask, 16, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vardotacc_vv_u16_m1.c:48:32: error: incompatible type for argument 1 of 'vardotacc_vv_u16_m1_golden'
-   48 |     vardotacc_vv_u16_m1_golden(exp_dst_mask,exp_a,exp_b,exp_c,exp_result);
-      |                                ^~~~~~~~~~~~
-      |                                |
-      |                                uint64_t * {aka long long unsigned int *}
-vardotacc_vv_u16_m1.c:22:42: note: expected 'bool16_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vardotacc_vv_u16_m1_golden(bool16_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
-      |                                 ~~~~~~~~~^~~~~~~~
-vardotacc_vv_u16_m1.c:56:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   56 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vardotacc_vv_u16_m1.c:63:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   63 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
       |                                                                unsigned int                     uint32_t {aka long unsigned int}
       |                                                               %lx
+vardotacc_vv_u16_m1.c: In function 'vardotacc_vv_u16_m1_golden':
+vardotacc_vv_u16_m1.c:78:1: error: expected declaration or statement at end of input
+   78 | }
+      | ^
+vardotacc_vv_u16_m1.c:30:43: warning: unused parameter 'dst_mask' [-Wunused-parameter]
+   30 | void vardotacc_vv_u16_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+      |                                 ~~~~~~~~~~^~~~~~~~
+vardotacc_vv_u16_m1.c:30:62: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vardotacc_vv_u16_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+      |                                                    ~~~~~~~~~~^
+vardotacc_vv_u16_m1.c:30:74: warning: unused parameter 'b' [-Wunused-parameter]
+   30 | void vardotacc_vv_u16_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+      |                                                                ~~~~~~~~~~^
+vardotacc_vv_u16_m1.c:30:86: warning: unused parameter 'c' [-Wunused-parameter]
+   30 | void vardotacc_vv_u16_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+      |                                                                            ~~~~~~~~~~^
+vardotacc_vv_u16_m1.c:30:98: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   30 | void vardotacc_vv_u16_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+      |                                                                                        ~~~~~~~~~~^~~~~~~~~~
+At top level:
+vardotacc_vv_u16_m1.c:35:5: warning: 'main' defined but not used [-Wunused-function]
+   35 | int main(void) {
+      |     ^~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vardotacc_vv_u16_m1.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

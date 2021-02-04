@@ -8,21 +8,28 @@ extern void abort(void);
 
  #define random(threshold) rand()%threshold 
  //#define data_init_bool(a, b, n, threshold) \ 
-     //	a = b = 1; 
+ //	a = b = 1;
  #define data_init_scalar(a, b, threshold) \ 
-     a = b = random(threshold); 
- #define data_init(a, b, n, threshold) \ 
-     for(int i = 0; i < n; i++) { \ 
-             a[i] = random(threshold); \ 
-             b[i] = a[i]; \ 
-         }
+   a = b = random(threshold);
+ #define data_init(a, b, n, threshold) \
+   for(int i = 0; i < n; i++) { \
+     a[i] = random(threshold); \
+     b[i] = a[i]; \
+   }
+ #define data_init_matrix(a, b, m, n, threshold) \
+   for(int i = 0; i < m; i++) { \
+     for(int j = 0; j < n; j++) { \
+       a.val[i][j] = random(threshold); \
+       b[i][j] = a.val[i][j]; \
+     } \
+   }
+ 
 
 #pragma GCC push_options
 #pragma GCC optimize("O0")
 __attribute__((noinline, noclone))
-void vwmacc_vv_u16_m_golden(bool32_t mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
-    for (int i = 0; i < ELE_NUM; i++)
-        exp_result[i] = (mask[i]*a[i])+b[i];
+void vwmacc_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+//widden to do 
 }
 #pragma GCC pop_options
 
@@ -33,15 +40,15 @@ int main(void) {
     uint16x32_t b;
     uint16x32_t c;
     uint64_t exp_mask[32];
-    uint32_t exp_a[16*2];
+    uint32_t exp_a[2][16];
     uint16_t exp_b[32];
     uint16_t exp_c[32];
 
     uint32x16x2_t result = {0};
-    uint32_t exp_result[16*2] = {0};
+    uint32_t exp_result[2][16] = {0};
 
     data_init_bool(mask, exp_mask, 32, 0xffff);
-    data_init(a, exp_a, 16*2, 0xffffffff);
+    data_init_matrix(a, exp_a, 16, 2, 0xffffffff);
     data_init(b, exp_b, 32, 0xffff);
     data_init(c, exp_c, 32, 0xffff);
 
@@ -51,12 +58,14 @@ int main(void) {
     //Get Intrinsic result
     result = vwmacc_vv_u16_m(mask,a,b,c);
 
-    //compare result
-    for(int i = 0; i < ELE_NUM; i++) {
-        if(exp_result[i] != result[i]) {
-            printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
-            //abort();
-            error = 1;
+    // Compare Result
+    for(int i = 0; i < COMBO_NUM; i++) {
+        for(int j = 0; j < ELE_NUM; j++) {
+            if(exp_result[i][j] != result.val[i][j]) {
+                printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
+                //abort();
+                error = 1;
+            }
         }
     }
 

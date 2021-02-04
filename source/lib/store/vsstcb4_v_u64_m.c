@@ -14,20 +14,27 @@ extern void abort(void);
 
  #define random(threshold) rand()%threshold 
  //#define data_init_bool(a, b, n, threshold) \ 
-     //	a = b = 1; 
+ //	a = b = 1;
  #define data_init_scalar(a, b, threshold) \ 
-     a = b = random(threshold); 
- #define data_init(a, b, n, threshold) \ 
-     for(int i = 0; i < n; i++) { \ 
-             a[i] = random(threshold); \ 
-             b[i] = a[i]; \ 
-         }
+   a = b = random(threshold);
+ #define data_init(a, b, n, threshold) \
+   for(int i = 0; i < n; i++) { \
+     a[i] = random(threshold); \
+     b[i] = a[i]; \
+   }
+ #define data_init_matrix(a, b, m, n, threshold) \
+   for(int i = 0; i < m; i++) { \
+     for(int j = 0; j < n; j++) { \
+       a.val[i][j] = random(threshold); \
+       b[i][j] = a.val[i][j]; \
+     } \
+   }
+ 
 
 #pragma GCC push_options
 #pragma GCC optimize("O0")
 __attribute__((noinline, noclone))
-void vsstcb4_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,void *exp_result) {
-    for (int i = 0; i < ELE_NUM; i++)
+void vsstcb4_v_u64_m_golden(uint64_t *mask,uint64_t *base,uint64_t value[4][8],) {
 Operator Line --- TODO
 }
 #pragma GCC pop_options
@@ -39,12 +46,12 @@ int main(void) {
     uint64x8x4_t value;
     uint64_t exp_mask[8];
     uint64_t exp_base[ELE_NUM*COMBO_NUM];
-    uint64_t exp_value[8*4];
+    uint64_t exp_value[4][8];
 
 
     data_init_bool(mask, exp_mask, 8, 0xffffffffffffffff);
     //base here is output, do not need to call data_init, 0xffffffffffffffff);
-    data_init(value, exp_value, 8*4, 0xffffffffffffffff);
+    data_init_matrix(value, exp_value, 8, 4, 0xffffffffffffffff);
 
     vwr_csr(RUGRATS_VMELEMENTSTRIDE, ELE_STRIDE);
     vwr_csr(RUGRATS_VMCOMBOSTRIDE, COMBO_STRIDE);

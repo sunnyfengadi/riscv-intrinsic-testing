@@ -4,33 +4,21 @@ vnot_v_u32.c:9:2: warning: multi-line comment [-Wcomment]
 vnot_v_u32.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vnot_v_u32.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vnot_v_u32.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vnot_v_u32.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vnot_v_u32.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vnot_v_u32.c:22:6: warning: no previous prototype for 'vnot_v_u32_golden' [-Wmissing-prototypes]
-   22 | void vnot_v_u32_golden(uint32_t *a,uint32_t *exp_result) {
+vnot_v_u32.c:30:6: warning: no previous prototype for 'vnot_v_u32_golden' [-Wmissing-prototypes]
+   30 | void vnot_v_u32_golden(uint32_t *a,uint32_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~
 vnot_v_u32.c: In function 'main':
-vnot_v_u32.c:47:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   47 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vnot_v_u32.c:57:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   57 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
       |                                                                unsigned int                     uint32_t {aka long unsigned int}
       |                                                               %lx
 soc_mode = 0 progsize = 2 
 binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnot_v_u32.elf
-Start Loading Kernel @ Tue Feb  2 14:59:42 2021
+Start Loading Kernel @ Thu Feb  4 18:55:13 2021
 
-Start Setting Reset PC for orv32 @ Tue Feb  2 14:59:42 2021
+Start Setting Reset PC for orv32 @ Thu Feb  4 18:55:13 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================
@@ -49,25 +37,9 @@ Start Setting Reset PC for orv32 @ Tue Feb  2 14:59:42 2021
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vnot_v_u32.c
 Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnot_v_u32.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnot_v_u32.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnot_v_u32.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnot_v_u32.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
 Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnot_v_u32.elf
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnot_v_u32.elf ++load_pk
-Failed: result[0] = a7ae0bd2, exp_result[0] = 0
-Failed: result[1] = bf4e7330, exp_result[1] = 0
-Failed: result[2] = b44a09b9, exp_result[2] = 0
-Failed: result[3] = b8fcced6, exp_result[3] = 0
-Failed: result[4] = cf8fa4fb, exp_result[4] = 0
-Failed: result[5] = df02a24b, exp_result[5] = 0
-Failed: result[6] = e5748087, exp_result[6] = 0
-Failed: result[7] = afd6a627, exp_result[7] = 0
-Failed: result[8] = d476b797, exp_result[8] = 0
-Failed: result[9] = 93fca958, exp_result[9] = 0
-Failed: result[10] = f7324800, exp_result[10] = 0
-Failed: result[11] = cb882bc0, exp_result[11] = 0
-Failed: result[12] = 8f5c5ad4, exp_result[12] = 0
-Failed: result[13] = d71b450e, exp_result[13] = 0
-Failed: result[14] = 827cbe03, exp_result[14] = 0
-Failed: result[15] = f51e9026, exp_result[15] = 0
-TEST FAILED!
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnot_v_u32.elf ++load_pk
+TEST PASSED!

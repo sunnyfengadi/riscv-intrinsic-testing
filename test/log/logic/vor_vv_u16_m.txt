@@ -4,51 +4,31 @@ vor_vv_u16_m.c:9:2: warning: multi-line comment [-Wcomment]
 vor_vv_u16_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vor_vv_u16_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vor_vv_u16_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vor_vv_u16_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vor_vv_u16_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vor_vv_u16_m.c:22:6: warning: no previous prototype for 'vor_vv_u16_m_golden' [-Wmissing-prototypes]
-   22 | void vor_vv_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint16_t *b,uint16_t *exp_result) {
+vor_vv_u16_m.c:30:6: warning: no previous prototype for 'vor_vv_u16_m_golden' [-Wmissing-prototypes]
+   30 | void vor_vv_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *a,uint16_t *b,uint16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~
 vor_vv_u16_m.c: In function 'vor_vv_u16_m_golden':
-vor_vv_u16_m.c:24:25: error: 'TODO' undeclared (first use in this function)
-   24 |         exp_result[i] = TODO;
+vor_vv_u16_m.c:32:25: error: 'TODO' undeclared (first use in this function)
+   32 |         exp_result[i] = TODO;
       |                         ^~~~
-vor_vv_u16_m.c:24:25: note: each undeclared identifier is reported only once for each function it appears in
-vor_vv_u16_m.c:22:35: warning: unused parameter 'mask' [-Wunused-parameter]
-   22 | void vor_vv_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint16_t *b,uint16_t *exp_result) {
-      |                          ~~~~~~~~~^~~~
-vor_vv_u16_m.c:22:50: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   22 | void vor_vv_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint16_t *b,uint16_t *exp_result) {
-      |                                        ~~~~~~~~~~^~~~~~~
-vor_vv_u16_m.c:22:68: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vor_vv_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint16_t *b,uint16_t *exp_result) {
-      |                                                          ~~~~~~~~~~^
-vor_vv_u16_m.c:22:80: warning: unused parameter 'b' [-Wunused-parameter]
-   22 | void vor_vv_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint16_t *b,uint16_t *exp_result) {
-      |                                                                      ~~~~~~~~~~^
+vor_vv_u16_m.c:32:25: note: each undeclared identifier is reported only once for each function it appears in
+vor_vv_u16_m.c:30:36: warning: unused parameter 'mask' [-Wunused-parameter]
+   30 | void vor_vv_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *a,uint16_t *b,uint16_t *exp_result) {
+      |                          ~~~~~~~~~~^~~~
+vor_vv_u16_m.c:30:51: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   30 | void vor_vv_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *a,uint16_t *b,uint16_t *exp_result) {
+      |                                         ~~~~~~~~~~^~~~~~~
+vor_vv_u16_m.c:30:69: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vor_vv_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *a,uint16_t *b,uint16_t *exp_result) {
+      |                                                           ~~~~~~~~~~^
+vor_vv_u16_m.c:30:81: warning: unused parameter 'b' [-Wunused-parameter]
+   30 | void vor_vv_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *a,uint16_t *b,uint16_t *exp_result) {
+      |                                                                       ~~~~~~~~~~^
 vor_vv_u16_m.c: In function 'main':
-vor_vv_u16_m.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   42 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vor_vv_u16_m.c:52:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   52 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vor_vv_u16_m.c:48:25: error: incompatible type for argument 1 of 'vor_vv_u16_m_golden'
-   48 |     vor_vv_u16_m_golden(exp_mask,exp_maskoff,exp_a,exp_b,exp_result);
-      |                         ^~~~~~~~
-      |                         |
-      |                         uint64_t * {aka long long unsigned int *}
-vor_vv_u16_m.c:22:35: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vor_vv_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint16_t *b,uint16_t *exp_result) {
-      |                          ~~~~~~~~~^~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vor_vv_u16_m.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

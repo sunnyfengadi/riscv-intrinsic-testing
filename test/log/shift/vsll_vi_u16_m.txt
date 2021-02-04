@@ -4,48 +4,31 @@ vsll_vi_u16_m.c:9:2: warning: multi-line comment [-Wcomment]
 vsll_vi_u16_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vsll_vi_u16_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vsll_vi_u16_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vsll_vi_u16_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vsll_vi_u16_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vsll_vi_u16_m.c:22:6: warning: no previous prototype for 'vsll_vi_u16_m_golden' [-Wmissing-prototypes]
-   22 | void vsll_vi_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
+vsll_vi_u16_m.c:30:6: warning: no previous prototype for 'vsll_vi_u16_m_golden' [-Wmissing-prototypes]
+   30 | void vsll_vi_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~
 vsll_vi_u16_m.c: In function 'vsll_vi_u16_m_golden':
-vsll_vi_u16_m.c:22:51: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   22 | void vsll_vi_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
-      |                                         ~~~~~~~~~~^~~~~~~
-vsll_vi_u16_m.c:22:69: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vsll_vi_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
-      |                                                           ~~~~~~~~~~^
-vsll_vi_u16_m.c:22:80: warning: unused parameter 'imm' [-Wunused-parameter]
-   22 | void vsll_vi_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
-      |                                                                       ~~~~~~~~~^~~
+vsll_vi_u16_m.c:30:52: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   30 | void vsll_vi_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
+      |                                          ~~~~~~~~~~^~~~~~~
+vsll_vi_u16_m.c:30:70: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vsll_vi_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
+      |                                                            ~~~~~~~~~~^
 vsll_vi_u16_m.c: In function 'main':
-vsll_vi_u16_m.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   42 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vsll_vi_u16_m.c:52:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   52 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vsll_vi_u16_m.c:48:26: error: incompatible type for argument 1 of 'vsll_vi_u16_m_golden'
-   48 |     vsll_vi_u16_m_golden(exp_mask,exp_maskoff,exp_a,exp_imm,exp_result);
-      |                          ^~~~~~~~
-      |                          |
-      |                          uint64_t * {aka long long unsigned int *}
-vsll_vi_u16_m.c:22:36: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vsll_vi_u16_m_golden(bool32_t mask,uint16_t *maskoff,uint16_t *a,uint32_t imm,uint16_t *exp_result) {
-      |                           ~~~~~~~~~^~~~
-vsll_vi_u16_m.c:33:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
-   33 |     uint32_t imm;
+vsll_vi_u16_m.c:43:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   43 |     uint32_t imm;
       |              ^~~
-make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsll_vi_u16_m.o] Error 1
+vsll_vi_u16_m.c:52:5: warning: 'mask' is used uninitialized in this function [-Wuninitialized]
+   52 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/../lib/gcc/riscv32-rivai-elf/10.2.1/../../../../riscv32-rivai-elf/bin/ld: /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsll_vi_u16_m.o: in function `main':
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test/vsll_vi_u16_m.c:52: undefined reference to `data_init_bool'
+collect2: error: ld returned 1 exit status
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsll_vi_u16_m.elf] Error 1
 make: *** [bare] Error 2
 ======================================================================
 
@@ -62,6 +45,8 @@ make: *** [bare] Error 2
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vsll_vi_u16_m.c
-Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsll_vi_u16_m.o' failed
+Linking....
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsll_vi_u16_m.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsll_vi_u16_m.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+Makefile:85: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsll_vi_u16_m.elf' failed
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 Makefile:37: recipe for target 'bare' failed

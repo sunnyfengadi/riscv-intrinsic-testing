@@ -14,19 +14,27 @@ extern void abort(void);
 
  #define random(threshold) rand()%threshold 
  //#define data_init_bool(a, b, n, threshold) \ 
-     //	a = b = 1; 
+ //	a = b = 1;
  #define data_init_scalar(a, b, threshold) \ 
-     a = b = random(threshold); 
- #define data_init(a, b, n, threshold) \ 
-     for(int i = 0; i < n; i++) { \ 
-             a[i] = random(threshold); \ 
-             b[i] = a[i]; \ 
-         }
+   a = b = random(threshold);
+ #define data_init(a, b, n, threshold) \
+   for(int i = 0; i < n; i++) { \
+     a[i] = random(threshold); \
+     b[i] = a[i]; \
+   }
+ #define data_init_matrix(a, b, m, n, threshold) \
+   for(int i = 0; i < m; i++) { \
+     for(int j = 0; j < n; j++) { \
+       a.val[i][j] = random(threshold); \
+       b[i][j] = a.val[i][j]; \
+     } \
+   }
+ 
 
 #pragma GCC push_options
 #pragma GCC optimize("O0")
 __attribute__((noinline, noclone))
-void vgldcb5_v_i64_m_golden(bool8_t *mask,int64_t maskoff,int64_t *base,int64_t index,int64_t exp_result[][ELE_NUM]) {
+void vgldcb5_v_i64_m_golden(uint64_t *mask,int64_t maskoff[5][8],int64_t *base,int64_t *index,int64_t exp_result[][ELE_NUM]) {
      for(int i=0; i<COMBO_NUM; i++){
          for(int j=0; j<GROUP_NUM; j++){
              for(int k=0; k<GROUP_DEPTH/ELE_WIDTH; k++){
@@ -44,15 +52,15 @@ int main(void) {
     int64_t base[ELE_NUM*COMBO_NUM];
     int64x8_t index;
     uint64_t exp_mask[8];
-    int64_t exp_maskoff[8*5];
+    int64_t exp_maskoff[5][8];
     int64_t exp_base[ELE_NUM*COMBO_NUM];
     int64_t exp_index[8];
 
     int64x8x5_t result = {0};
-    int64_t exp_result[8*5] = {0};
+    int64_t exp_result[5][8] = {0};
 
     data_init_bool(mask, exp_mask, 8, 0xffffffffffffffff);
-    data_init(maskoff, exp_maskoff, 8*5, 0xffffffffffffffff);
+    data_init_matrix(maskoff, exp_maskoff, 8, 5, 0xffffffffffffffff);
     data_init(base, exp_base, ELE_NUM*COMBO_NUM, 0xffffffffffffffff);
     data_init(index, exp_index, 8, 0xffffffffffffffff);
 
@@ -68,11 +76,11 @@ int main(void) {
     //Get Intrinsic result
     result = vgldcb5_v_i64_m(mask,maskoff,base,index);
 
-    //Compare Result
+    // Compare Result
     for(int i = 0; i < COMBO_NUM; i++) {
         for(int j = 0; j < ELE_NUM; j++) {
-            if(exp_result[i*ELE_NUM+j] != result.val[i][j]) {
-                printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
+            if(exp_result[i][j] != result.val[i][j]) {
+                printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
                 //abort();
                 error = 1;
             }

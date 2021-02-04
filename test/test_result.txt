@@ -72,15 +72,18 @@ Test API=mac
 --------------------
 Total test api: 80
 Test Pass number: 16
-Test Fail number: 0
+Test Fail number: 7
 Build Pass number: 0
-Build Fail number: 64
+Build Fail number: 57
 
 Test Passed API name: 
  	['vmacc_vv_i16.c', 'vnmsub_vv_i16.c', 'vnmsub_vv_i32.c', 'vnmsac_vv_i32.c', 'vmsub_vv_u32.c', 'vnmsub_vv_u16.c', 'vmsub_vv_i16.c', 'vmsub_vv_u16.c', 'vnmsac_vv_i16.c', 'vmacc_vv_i32.c', 'vnmsac_vv_u32.c', 'vmsub_vv_i32.c', 'vmacc_vv_u32.c', 'vnmsac_vv_u16.c', 'vmacc_vv_u16.c', 'vnmsub_vv_u32.c']
 
+Test Failed API name: 
+ 	['vwnmsub_vv_i16.c', 'vwnmsac_vv_u16.c', 'vwmsub_vv_u16.c', 'vwmacc_vv_i16.c', 'vwmacc_vv_u16.c', 'vwmsub_vv_i16.c', 'vwnmsac_vv_i16.c']
+
 Build Failed API name: 
- 	['vwnmsac_vv_u32_m.c', 'vmacc_vv_i16_m.c', 'vsmsubq_vv_i32.c', 'vnmsac_vv_i16_m.c', 'vwsmsubq_vv_i32.c', 'vwnmsub_vv_u16.c', 'vwmsub_vv_i16_m.c', 'vwsnmsacq_vv_i32.c', 'vsmaccq_vv_i32_m.c', 'vwnmsub_vv_i32.c', 'vwmsub_vv_u32.c', 'vwnmsub_vv_i16.c', 'vwnmsac_vv_u16.c', 'vnmsub_vv_i16_m.c', 'vwmacc_vv_u32.c', 'vwmsub_vv_u16.c', 'vwmacc_vv_i16.c', 'vwmsub_vv_i32.c', 'vwnmsub_vv_u32.c', 'vwmsub_vv_u32_m.c', 'vwnmsub_vv_u16_m.c', 'vwmacc_vv_u32_m.c', 'vwnmsac_vv_u32.c', 'vwsnmsubq_vv_i32.c', 'vsnmsacq_vv_i32_m.c', 'vwnmsub_vv_u32_m.c', 'vwmacc_vv_u16_m.c', 'vmacc_vv_i32_m.c', 'vmacc_vv_u32_m.c', 'vmacc_vv_u16_m.c', 'vmsub_vv_u32_m.c', 'vwmsub_vv_u16_m.c', 'vwmacc_vv_i32_m.c', 'vsnmsubq_vv_i32.c', 'vwmacc_vv_u16.c', 'vsmsubq_vv_i32_m.c', 'vwmacc_vv_i32.c', 'vwmsub_vv_i32_m.c', 'vmsub_vv_i16_m.c', 'vwnmsac_vv_i32_m.c', 'vnmsac_vv_i32_m.c', 'vsnmsubq_vv_i32_m.c', 'vwnmsac_vv_i16_m.c', 'vwmsub_vv_i16.c', 'vwsnmsacq_vv_i32_m.c', 'vwnmsub_vv_i32_m.c', 'vnmsub_vv_u32_m.c', 'vwmacc_vv_i16_m.c', 'vwnmsub_vv_i16_m.c', 'vwsmaccq_vv_i32.c', 'vnmsub_vv_i32_m.c', 'vwsmaccq_vv_i32_m.c', 'vnmsac_vv_u16_m.c', 'vsmaccq_vv_i32.c', 'vwnmsac_vv_u16_m.c', 'vmsub_vv_i32_m.c', 'vsnmsacq_vv_i32.c', 'vnmsub_vv_u16_m.c', 'vnmsac_vv_u32_m.c', 'vwnmsac_vv_i32.c', 'vwsnmsubq_vv_i32_m.c', 'vwnmsac_vv_i16.c', 'vwsmsubq_vv_i32_m.c', 'vmsub_vv_u16_m.c']
+ 	['vwnmsac_vv_u32_m.c', 'vmacc_vv_i16_m.c', 'vsmsubq_vv_i32.c', 'vnmsac_vv_i16_m.c', 'vwsmsubq_vv_i32.c', 'vwnmsub_vv_u16.c', 'vwmsub_vv_i16_m.c', 'vwsnmsacq_vv_i32.c', 'vsmaccq_vv_i32_m.c', 'vwnmsub_vv_i32.c', 'vwmsub_vv_u32.c', 'vnmsub_vv_i16_m.c', 'vwmacc_vv_u32.c', 'vwmsub_vv_i32.c', 'vwnmsub_vv_u32.c', 'vwmsub_vv_u32_m.c', 'vwnmsub_vv_u16_m.c', 'vwmacc_vv_u32_m.c', 'vwnmsac_vv_u32.c', 'vwsnmsubq_vv_i32.c', 'vsnmsacq_vv_i32_m.c', 'vwnmsub_vv_u32_m.c', 'vwmacc_vv_u16_m.c', 'vmacc_vv_i32_m.c', 'vmacc_vv_u32_m.c', 'vmacc_vv_u16_m.c', 'vmsub_vv_u32_m.c', 'vwmsub_vv_u16_m.c', 'vwmacc_vv_i32_m.c', 'vsnmsubq_vv_i32.c', 'vsmsubq_vv_i32_m.c', 'vwmacc_vv_i32.c', 'vwmsub_vv_i32_m.c', 'vmsub_vv_i16_m.c', 'vwnmsac_vv_i32_m.c', 'vnmsac_vv_i32_m.c', 'vsnmsubq_vv_i32_m.c', 'vwnmsac_vv_i16_m.c', 'vwsnmsacq_vv_i32_m.c', 'vwnmsub_vv_i32_m.c', 'vnmsub_vv_u32_m.c', 'vwmacc_vv_i16_m.c', 'vwnmsub_vv_i16_m.c', 'vwsmaccq_vv_i32.c', 'vnmsub_vv_i32_m.c', 'vwsmaccq_vv_i32_m.c', 'vnmsac_vv_u16_m.c', 'vsmaccq_vv_i32.c', 'vwnmsac_vv_u16_m.c', 'vmsub_vv_i32_m.c', 'vsnmsacq_vv_i32.c', 'vnmsub_vv_u16_m.c', 'vnmsac_vv_u32_m.c', 'vwnmsac_vv_i32.c', 'vwsnmsubq_vv_i32_m.c', 'vwsmsubq_vv_i32_m.c', 'vmsub_vv_u16_m.c']
 
 Test API=move
 --------------------
@@ -161,7 +164,7 @@ Test API=Summary of all
 --------------------
 Total test api: 1289
 Test Pass number: 122
-Test Fail number: 124
+Test Fail number: 131
 Build Pass number: 0
-Build Fail number: 1043
+Build Fail number: 1036
 

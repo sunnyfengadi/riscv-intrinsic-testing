@@ -4,37 +4,46 @@ vrmax_v_i16.c:9:2: warning: multi-line comment [-Wcomment]
 vrmax_v_i16.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vrmax_v_i16.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vrmax_v_i16.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vrmax_v_i16.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vrmax_v_i16.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vrmax_v_i16.c:22:6: warning: no previous prototype for 'vrmax_v_i16_golden' [-Wmissing-prototypes]
-   22 | void vrmax_v_i16_golden(int16_t *a,int16_t *exp_result) {
+vrmax_v_i16.c:30:6: warning: no previous prototype for 'vrmax_v_i16_golden' [-Wmissing-prototypes]
+   30 | void vrmax_v_i16_golden(int16_t *a,int16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~
 vrmax_v_i16.c: In function 'vrmax_v_i16_golden':
-vrmax_v_i16.c:24:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   24 | Operator Line --- TODO
+vrmax_v_i16.c:31:1: error: unknown type name 'Operator'
+   31 | Operator Line --- TODO
       | ^~~~~~~~
-      | perror
-vrmax_v_i16.c:24:1: note: each undeclared identifier is reported only once for each function it appears in
-vrmax_v_i16.c:24:9: error: expected ';' before 'Line'
-   24 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vrmax_v_i16.c:22:34: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vrmax_v_i16_golden(int16_t *a,int16_t *exp_result) {
+vrmax_v_i16.c:31:15: error: expected '=', ',', ';', 'asm' or '__attribute__' before '--' token
+   31 | Operator Line --- TODO
+      |               ^~
+vrmax_v_i16.c:35:5: warning: 'main' is normally a non-static function [-Wmain]
+   35 | int main(void) {
+      |     ^~~~
+vrmax_v_i16.c: In function 'main':
+vrmax_v_i16.c:37:16: warning: declaration of 'a' shadows a parameter [-Wshadow]
+   37 |     int16x32_t a;
+      |                ^
+vrmax_v_i16.c:30:34: note: shadowed declaration is here
+   30 | void vrmax_v_i16_golden(int16_t *a,int16_t *exp_result) {
       |                         ~~~~~~~~~^
-vrmax_v_i16.c:22:45: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   22 | void vrmax_v_i16_golden(int16_t *a,int16_t *exp_result) {
+vrmax_v_i16.c:41:13: warning: declaration of 'exp_result' shadows a parameter [-Wshadow]
+   41 |     int16_t exp_result[32] = {0};
+      |             ^~~~~~~~~~
+vrmax_v_i16.c:30:45: note: shadowed declaration is here
+   30 | void vrmax_v_i16_golden(int16_t *a,int16_t *exp_result) {
       |                                    ~~~~~~~~~^~~~~~~~~~
+vrmax_v_i16.c: In function 'vrmax_v_i16_golden':
+vrmax_v_i16.c:69:1: error: expected declaration or statement at end of input
+   69 | }
+      | ^
+vrmax_v_i16.c:30:34: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vrmax_v_i16_golden(int16_t *a,int16_t *exp_result) {
+      |                         ~~~~~~~~~^
+vrmax_v_i16.c:30:45: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   30 | void vrmax_v_i16_golden(int16_t *a,int16_t *exp_result) {
+      |                                    ~~~~~~~~~^~~~~~~~~~
+At top level:
+vrmax_v_i16.c:35:5: warning: 'main' defined but not used [-Wunused-function]
+   35 | int main(void) {
+      |     ^~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vrmax_v_i16.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

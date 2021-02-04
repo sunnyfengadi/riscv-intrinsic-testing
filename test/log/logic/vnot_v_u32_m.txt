@@ -4,50 +4,30 @@ vnot_v_u32_m.c:9:2: warning: multi-line comment [-Wcomment]
 vnot_v_u32_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vnot_v_u32_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vnot_v_u32_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vnot_v_u32_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vnot_v_u32_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vnot_v_u32_m.c:22:6: warning: no previous prototype for 'vnot_v_u32_m_golden' [-Wmissing-prototypes]
-   22 | void vnot_v_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t *exp_result) {
+vnot_v_u32_m.c:30:6: warning: no previous prototype for 'vnot_v_u32_m_golden' [-Wmissing-prototypes]
+   30 | void vnot_v_u32_m_golden(uint64_t *mask,uint32_t *maskoff,uint32_t *a,uint32_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~
 vnot_v_u32_m.c: In function 'vnot_v_u32_m_golden':
-vnot_v_u32_m.c:24:25: error: 'TODO' undeclared (first use in this function)
-   24 |         exp_result[i] = TODO;
+vnot_v_u32_m.c:32:25: error: 'TODO' undeclared (first use in this function)
+   32 |         exp_result[i] = TODO;
       |                         ^~~~
-vnot_v_u32_m.c:24:25: note: each undeclared identifier is reported only once for each function it appears in
-vnot_v_u32_m.c:22:35: warning: unused parameter 'mask' [-Wunused-parameter]
-   22 | void vnot_v_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t *exp_result) {
-      |                          ~~~~~~~~~^~~~
-vnot_v_u32_m.c:22:50: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   22 | void vnot_v_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t *exp_result) {
-      |                                        ~~~~~~~~~~^~~~~~~
-vnot_v_u32_m.c:22:68: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vnot_v_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t *exp_result) {
-      |                                                          ~~~~~~~~~~^
+vnot_v_u32_m.c:32:25: note: each undeclared identifier is reported only once for each function it appears in
+vnot_v_u32_m.c:30:36: warning: unused parameter 'mask' [-Wunused-parameter]
+   30 | void vnot_v_u32_m_golden(uint64_t *mask,uint32_t *maskoff,uint32_t *a,uint32_t *exp_result) {
+      |                          ~~~~~~~~~~^~~~
+vnot_v_u32_m.c:30:51: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   30 | void vnot_v_u32_m_golden(uint64_t *mask,uint32_t *maskoff,uint32_t *a,uint32_t *exp_result) {
+      |                                         ~~~~~~~~~~^~~~~~~
+vnot_v_u32_m.c:30:69: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vnot_v_u32_m_golden(uint64_t *mask,uint32_t *maskoff,uint32_t *a,uint32_t *exp_result) {
+      |                                                           ~~~~~~~~~~^
 vnot_v_u32_m.c: In function 'main':
-vnot_v_u32_m.c:40:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   40 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+vnot_v_u32_m.c:50:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   50 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vnot_v_u32_m.c:45:25: error: incompatible type for argument 1 of 'vnot_v_u32_m_golden'
-   45 |     vnot_v_u32_m_golden(exp_mask,exp_maskoff,exp_a,exp_result);
-      |                         ^~~~~~~~
-      |                         |
-      |                         uint64_t * {aka long long unsigned int *}
-vnot_v_u32_m.c:22:35: note: expected 'bool16_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vnot_v_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t *exp_result) {
-      |                          ~~~~~~~~~^~~~
-vnot_v_u32_m.c:53:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   53 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vnot_v_u32_m.c:63:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   63 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
       |                                                                unsigned int                     uint32_t {aka long unsigned int}

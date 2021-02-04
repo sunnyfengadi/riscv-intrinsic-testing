@@ -4,53 +4,33 @@ vadd_vv_i32_m.c:9:2: warning: multi-line comment [-Wcomment]
 vadd_vv_i32_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vadd_vv_i32_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vadd_vv_i32_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vadd_vv_i32_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vadd_vv_i32_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vadd_vv_i32_m.c:22:6: warning: no previous prototype for 'vadd_vv_i32_m_golden' [-Wmissing-prototypes]
-   22 | void vadd_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,int32_t *exp_result) {
+vadd_vv_i32_m.c:30:6: warning: no previous prototype for 'vadd_vv_i32_m_golden' [-Wmissing-prototypes]
+   30 | void vadd_vv_i32_m_golden(uint64_t *mask,int32_t *maskoff,int32_t *a,int32_t *b,int32_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~
 vadd_vv_i32_m.c: In function 'vadd_vv_i32_m_golden':
-vadd_vv_i32_m.c:24:25: error: 'TODO' undeclared (first use in this function)
-   24 |         exp_result[i] = TODO;
+vadd_vv_i32_m.c:32:25: error: 'TODO' undeclared (first use in this function)
+   32 |         exp_result[i] = TODO;
       |                         ^~~~
-vadd_vv_i32_m.c:24:25: note: each undeclared identifier is reported only once for each function it appears in
-vadd_vv_i32_m.c:22:36: warning: unused parameter 'mask' [-Wunused-parameter]
-   22 | void vadd_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,int32_t *exp_result) {
-      |                           ~~~~~~~~~^~~~
-vadd_vv_i32_m.c:22:50: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   22 | void vadd_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,int32_t *exp_result) {
-      |                                         ~~~~~~~~~^~~~~~~
-vadd_vv_i32_m.c:22:67: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vadd_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,int32_t *exp_result) {
-      |                                                          ~~~~~~~~~^
-vadd_vv_i32_m.c:22:78: warning: unused parameter 'b' [-Wunused-parameter]
-   22 | void vadd_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,int32_t *exp_result) {
-      |                                                                     ~~~~~~~~~^
+vadd_vv_i32_m.c:32:25: note: each undeclared identifier is reported only once for each function it appears in
+vadd_vv_i32_m.c:30:37: warning: unused parameter 'mask' [-Wunused-parameter]
+   30 | void vadd_vv_i32_m_golden(uint64_t *mask,int32_t *maskoff,int32_t *a,int32_t *b,int32_t *exp_result) {
+      |                           ~~~~~~~~~~^~~~
+vadd_vv_i32_m.c:30:51: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   30 | void vadd_vv_i32_m_golden(uint64_t *mask,int32_t *maskoff,int32_t *a,int32_t *b,int32_t *exp_result) {
+      |                                          ~~~~~~~~~^~~~~~~
+vadd_vv_i32_m.c:30:68: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vadd_vv_i32_m_golden(uint64_t *mask,int32_t *maskoff,int32_t *a,int32_t *b,int32_t *exp_result) {
+      |                                                           ~~~~~~~~~^
+vadd_vv_i32_m.c:30:79: warning: unused parameter 'b' [-Wunused-parameter]
+   30 | void vadd_vv_i32_m_golden(uint64_t *mask,int32_t *maskoff,int32_t *a,int32_t *b,int32_t *exp_result) {
+      |                                                                      ~~~~~~~~~^
 vadd_vv_i32_m.c: In function 'main':
-vadd_vv_i32_m.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   42 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+vadd_vv_i32_m.c:52:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   52 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vadd_vv_i32_m.c:48:26: error: incompatible type for argument 1 of 'vadd_vv_i32_m_golden'
-   48 |     vadd_vv_i32_m_golden(exp_mask,exp_maskoff,exp_a,exp_b,exp_result);
-      |                          ^~~~~~~~
-      |                          |
-      |                          uint64_t * {aka long long unsigned int *}
-vadd_vv_i32_m.c:22:36: note: expected 'bool16_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vadd_vv_i32_m_golden(bool16_t mask,int32_t *maskoff,int32_t *a,int32_t *b,int32_t *exp_result) {
-      |                           ~~~~~~~~~^~~~
-vadd_vv_i32_m.c:56:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'int32_t' {aka 'long int'} [-Wformat=]
-   56 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vadd_vv_i32_m.c:66:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   66 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
       |                                                                unsigned int                     int32_t {aka long int}

@@ -4,82 +4,90 @@ vextend_v_u16_m.c:10:2: warning: multi-line comment [-Wcomment]
 vextend_v_u16_m.c:12:44: warning: backslash and newline separated by space
    12 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vextend_v_u16_m.c:14:40: warning: backslash and newline separated by space
-   14 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vextend_v_u16_m.c:15:35: warning: backslash and newline separated by space
-   15 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vextend_v_u16_m.c:16:40: warning: backslash and newline separated by space
-   16 |              a[i] = random(threshold); \
-      |                                         
-vextend_v_u16_m.c:17:27: warning: backslash and newline separated by space
-   17 |              b[i] = a[i]; \
-      |                            
-vextend_v_u16_m.c:23:6: warning: no previous prototype for 'vextend_v_u16_m_golden' [-Wmissing-prototypes]
-   23 | void vextend_v_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint32_t *exp_result) {
+vextend_v_u16_m.c:31:6: warning: no previous prototype for 'vextend_v_u16_m_golden' [-Wmissing-prototypes]
+   31 | void vextend_v_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint32_t exp_result[][ELE_NUM]) {
       |      ^~~~~~~~~~~~~~~~~~~~~~
 vextend_v_u16_m.c: In function 'vextend_v_u16_m_golden':
-vextend_v_u16_m.c:25:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   25 | Operator Line --- TODO
+vextend_v_u16_m.c:32:1: error: unknown type name 'Operator'
+   32 | Operator Line --- TODO
       | ^~~~~~~~
-      | perror
-vextend_v_u16_m.c:25:1: note: each undeclared identifier is reported only once for each function it appears in
-vextend_v_u16_m.c:25:9: error: expected ';' before 'Line'
-   25 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vextend_v_u16_m.c:23:38: warning: unused parameter 'mask' [-Wunused-parameter]
-   23 | void vextend_v_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint32_t *exp_result) {
-      |                             ~~~~~~~~~^~~~
-vextend_v_u16_m.c:23:53: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   23 | void vextend_v_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint32_t *exp_result) {
-      |                                           ~~~~~~~~~~^~~~~~~
-vextend_v_u16_m.c:23:71: warning: unused parameter 'a' [-Wunused-parameter]
-   23 | void vextend_v_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint32_t *exp_result) {
-      |                                                             ~~~~~~~~~~^
-vextend_v_u16_m.c:23:83: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   23 | void vextend_v_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint32_t *exp_result) {
-      |                                                                         ~~~~~~~~~~^~~~~~~~~~
+vextend_v_u16_m.c:32:15: error: expected '=', ',', ';', 'asm' or '__attribute__' before '--' token
+   32 | Operator Line --- TODO
+      |               ^~
+vextend_v_u16_m.c:36:5: warning: 'main' is normally a non-static function [-Wmain]
+   36 | int main(void) {
+      |     ^~~~
 vextend_v_u16_m.c: In function 'main':
-vextend_v_u16_m.c:41:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   41 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vextend_v_u16_m.c:38:14: warning: declaration of 'mask' shadows a parameter [-Wshadow]
+   38 |     bool32_t mask;
+      |              ^~~~
+vextend_v_u16_m.c:31:39: note: shadowed declaration is here
+   31 | void vextend_v_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint32_t exp_result[][ELE_NUM]) {
+      |                             ~~~~~~~~~~^~~~
+vextend_v_u16_m.c:39:19: warning: declaration of 'maskoff' shadows a parameter [-Wshadow]
+   39 |     uint32x16x2_t maskoff;
+      |                   ^~~~~~~
+vextend_v_u16_m.c:31:53: note: shadowed declaration is here
+   31 | void vextend_v_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint32_t exp_result[][ELE_NUM]) {
+      |                                            ~~~~~~~~~^~~~~~~~~~~~~~
+vextend_v_u16_m.c:40:17: warning: declaration of 'a' shadows a parameter [-Wshadow]
+   40 |     uint16x32_t a;
+      |                 ^
+vextend_v_u16_m.c:31:78: note: shadowed declaration is here
+   31 | void vextend_v_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                    ~~~~~~~~~~^
+vextend_v_u16_m.c:46:14: warning: declaration of 'exp_result' shadows a parameter [-Wshadow]
+   46 |     uint32_t exp_result[2][16] = {0};
+      |              ^~~~~~~~~~
+vextend_v_u16_m.c:31:89: note: shadowed declaration is here
+   31 | void vextend_v_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                                ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vextend_v_u16_m.c:48:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   48 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vextend_v_u16_m.c:16:15: error: subscripted value is neither array nor pointer nor vector
-   16 |              a[i] = random(threshold); \
-      |               ^
-vextend_v_u16_m.c:42:5: note: in expansion of macro 'data_init'
-   42 |     data_init(maskoff, exp_maskoff, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vextend_v_u16_m.c:17:22: error: subscripted value is neither array nor pointer nor vector
-   17 |              b[i] = a[i]; \
-      |                      ^
-vextend_v_u16_m.c:42:5: note: in expansion of macro 'data_init'
-   42 |     data_init(maskoff, exp_maskoff, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vextend_v_u16_m.c:46:28: error: incompatible type for argument 1 of 'vextend_v_u16_m_golden'
-   46 |     vextend_v_u16_m_golden(exp_mask,exp_maskoff,exp_a,exp_result);
-      |                            ^~~~~~~~
-      |                            |
-      |                            uint64_t * {aka long long unsigned int *}
-vextend_v_u16_m.c:23:38: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   23 | void vextend_v_u16_m_golden(bool32_t mask,uint32_t *maskoff,uint16_t *a,uint32_t *exp_result) {
-      |                             ~~~~~~~~~^~~~
-vextend_v_u16_m.c:49:14: warning: implicit declaration of function 'vextend_v_u16_m'; did you mean 'vext_v_u16_m'? [-Wimplicit-function-declaration]
-   49 |     result = vextend_v_u16_m(mask,maskoff,a);
+vextend_v_u16_m.c:53:55: warning: passing argument 4 of 'vextend_v_u16_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   53 |     vextend_v_u16_m_golden(exp_mask,exp_maskoff,exp_a,exp_result);
+      |                                                       ^~~~~~~~~~
+      |                                                       |
+      |                                                       uint32_t (*)[16] {aka long unsigned int (*)[16]}
+vextend_v_u16_m.c:31:89: note: expected 'uint32_t (*)[32]' {aka 'long unsigned int (*)[32]'} but argument is of type 'uint32_t (*)[16]' {aka 'long unsigned int (*)[16]'}
+   31 | void vextend_v_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                                ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vextend_v_u16_m.c:56:14: warning: implicit declaration of function 'vextend_v_u16_m'; did you mean 'vext_v_u16_m'? [-Wimplicit-function-declaration]
+   56 |     result = vextend_v_u16_m(mask,maskoff,a);
       |              ^~~~~~~~~~~~~~~
       |              vext_v_u16_m
-vextend_v_u16_m.c:49:14: error: incompatible types when assigning to type 'uint32x16x2_t' from type 'int'
-vextend_v_u16_m.c:53:35: error: subscripted value is neither array nor pointer nor vector
-   53 |         if(exp_result[i] != result[i]) {
+vextend_v_u16_m.c:56:14: error: incompatible types when assigning to type 'uint32x16x2_t' from type 'int'
+vextend_v_u16_m.c:60:35: error: subscripted value is neither array nor pointer nor vector
+   60 |         if(exp_result[i] != result[i]) {
       |                                   ^
-vextend_v_u16_m.c:54:79: error: subscripted value is neither array nor pointer nor vector
-   54 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vextend_v_u16_m.c:61:79: error: subscripted value is neither array nor pointer nor vector
+   61 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                                               ^
-vextend_v_u16_m.c:38:19: warning: variable 'result' set but not used [-Wunused-but-set-variable]
-   38 |     uint32x16x2_t result = {0};
+vextend_v_u16_m.c:45:19: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+   45 |     uint32x16x2_t result = {0};
       |                   ^~~~~~
+vextend_v_u16_m.c: In function 'vextend_v_u16_m_golden':
+vextend_v_u16_m.c:76:1: error: expected declaration or statement at end of input
+   76 | }
+      | ^
+vextend_v_u16_m.c:31:39: warning: unused parameter 'mask' [-Wunused-parameter]
+   31 | void vextend_v_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint32_t exp_result[][ELE_NUM]) {
+      |                             ~~~~~~~~~~^~~~
+vextend_v_u16_m.c:31:53: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   31 | void vextend_v_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint32_t exp_result[][ELE_NUM]) {
+      |                                            ~~~~~~~~~^~~~~~~~~~~~~~
+vextend_v_u16_m.c:31:78: warning: unused parameter 'a' [-Wunused-parameter]
+   31 | void vextend_v_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                    ~~~~~~~~~~^
+vextend_v_u16_m.c:31:89: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   31 | void vextend_v_u16_m_golden(uint64_t *mask,uint32_t maskoff[2][16],uint16_t *a,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                                ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+At top level:
+vextend_v_u16_m.c:36:5: warning: 'main' defined but not used [-Wunused-function]
+   36 | int main(void) {
+      |     ^~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vextend_v_u16_m.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

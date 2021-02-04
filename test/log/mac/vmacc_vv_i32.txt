@@ -4,33 +4,21 @@ vmacc_vv_i32.c:9:2: warning: multi-line comment [-Wcomment]
 vmacc_vv_i32.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vmacc_vv_i32.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vmacc_vv_i32.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vmacc_vv_i32.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vmacc_vv_i32.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vmacc_vv_i32.c:22:6: warning: no previous prototype for 'vmacc_vv_i32_golden' [-Wmissing-prototypes]
-   22 | void vmacc_vv_i32_golden(int32_t *a,int32_t *b,int32_t *c,int32_t *exp_result) {
+vmacc_vv_i32.c:30:6: warning: no previous prototype for 'vmacc_vv_i32_golden' [-Wmissing-prototypes]
+   30 | void vmacc_vv_i32_golden(int32_t *a,int32_t *b,int32_t *c,int32_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~
 vmacc_vv_i32.c: In function 'main':
-vmacc_vv_i32.c:53:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'int32_t' {aka 'long int'} [-Wformat=]
-   53 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vmacc_vv_i32.c:63:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   63 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
       |                                                                unsigned int                     int32_t {aka long int}
       |                                                               %lx
 soc_mode = 0 progsize = 2 
 binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i32.elf
-Start Loading Kernel @ Tue Feb  2 14:55:58 2021
+Start Loading Kernel @ Thu Feb  4 18:51:36 2021
 
-Start Setting Reset PC for orv32 @ Tue Feb  2 14:55:58 2021
+Start Setting Reset PC for orv32 @ Thu Feb  4 18:51:36 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================
@@ -49,25 +37,9 @@ Start Setting Reset PC for orv32 @ Tue Feb  2 14:55:58 2021
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vmacc_vv_i32.c
 Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i32.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i32.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i32.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i32.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
 Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i32.elf
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i32.elf ++load_pk
-Failed: result[0] = b30416f9, exp_result[0] = e98f02d0
-Failed: result[1] = 9a0b5f8f, exp_result[1] = a7fa7a6a
-Failed: result[2] = cd511d19, exp_result[2] = d340b171
-Failed: result[3] = 4698bac9, exp_result[3] = 80bd2344
-Failed: result[4] = faa2f04c, exp_result[4] = f7242f3c
-Failed: result[5] = ad144636, exp_result[5] = 7ea8c7a
-Failed: result[6] = 585690b0, exp_result[6] = efbcd206
-Failed: result[7] = ca2c59a8, exp_result[7] = d3fb6774
-Failed: result[8] = edf120f4, exp_result[8] = f8255d33
-Failed: result[9] = e53a23f2, exp_result[9] = 33540c4e
-Failed: result[10] = 263f590d, exp_result[10] = da78fb41
-Failed: result[11] = 4b9fa1df, exp_result[11] = cf9a9fc
-Failed: result[12] = 89d3e4bb, exp_result[12] = c3ebcad0
-Failed: result[13] = e0a9b7e8, exp_result[13] = 978ca838
-Failed: result[14] = 29ffb93b, exp_result[14] = a3b419fd
-Failed: result[15] = ee22ba78, exp_result[15] = bd030330
-TEST FAILED!
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i32.elf ++load_pk
+TEST PASSED!

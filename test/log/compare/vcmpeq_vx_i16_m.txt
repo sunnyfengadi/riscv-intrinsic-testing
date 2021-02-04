@@ -4,60 +4,40 @@ vcmpeq_vx_i16_m.c:9:2: warning: multi-line comment [-Wcomment]
 vcmpeq_vx_i16_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vcmpeq_vx_i16_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vcmpeq_vx_i16_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vcmpeq_vx_i16_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vcmpeq_vx_i16_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vcmpeq_vx_i16_m.c:22:6: warning: no previous prototype for 'vcmpeq_vx_i16_m_golden' [-Wmissing-prototypes]
-   22 | void vcmpeq_vx_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t b,uint16_t *exp_result) {
+vcmpeq_vx_i16_m.c:30:6: warning: no previous prototype for 'vcmpeq_vx_i16_m_golden' [-Wmissing-prototypes]
+   30 | void vcmpeq_vx_i16_m_golden(uint64_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~~~
 vcmpeq_vx_i16_m.c: In function 'vcmpeq_vx_i16_m_golden':
-vcmpeq_vx_i16_m.c:24:25: error: 'TODO' undeclared (first use in this function)
-   24 |         exp_result[i] = TODO;
+vcmpeq_vx_i16_m.c:32:25: error: 'TODO' undeclared (first use in this function)
+   32 |         exp_result[i] = TODO;
       |                         ^~~~
-vcmpeq_vx_i16_m.c:24:25: note: each undeclared identifier is reported only once for each function it appears in
-vcmpeq_vx_i16_m.c:22:38: warning: unused parameter 'mask' [-Wunused-parameter]
-   22 | void vcmpeq_vx_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t b,uint16_t *exp_result) {
-      |                             ~~~~~~~~~^~~~
-vcmpeq_vx_i16_m.c:22:52: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   22 | void vcmpeq_vx_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t b,uint16_t *exp_result) {
-      |                                           ~~~~~~~~~^~~~~~~
-vcmpeq_vx_i16_m.c:22:69: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vcmpeq_vx_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t b,uint16_t *exp_result) {
-      |                                                            ~~~~~~~~~^
-vcmpeq_vx_i16_m.c:22:79: warning: unused parameter 'b' [-Wunused-parameter]
-   22 | void vcmpeq_vx_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t b,uint16_t *exp_result) {
-      |                                                                       ~~~~~~~~^
+vcmpeq_vx_i16_m.c:32:25: note: each undeclared identifier is reported only once for each function it appears in
 vcmpeq_vx_i16_m.c: In function 'main':
-vcmpeq_vx_i16_m.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   42 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vcmpeq_vx_i16_m.c:52:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   52 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vcmpeq_vx_i16_m.c:48:28: error: incompatible type for argument 1 of 'vcmpeq_vx_i16_m_golden'
-   48 |     vcmpeq_vx_i16_m_golden(exp_mask,exp_maskoff,exp_a,exp_b,exp_result);
-      |                            ^~~~~~~~
-      |                            |
-      |                            uint64_t * {aka long long unsigned int *}
-vcmpeq_vx_i16_m.c:22:38: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vcmpeq_vx_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t b,uint16_t *exp_result) {
-      |                             ~~~~~~~~~^~~~
-vcmpeq_vx_i16_m.c:51:35: error: incompatible type for argument 2 of 'vcmpeq_vx_i16_m'
-   51 |     result = vcmpeq_vx_i16_m(mask,maskoff,a,b);
+vcmpeq_vx_i16_m.c:58:5: error: too many arguments to function 'vcmpeq_vx_i16_m_golden'
+   58 |     vcmpeq_vx_i16_m_golden(exp_mask,exp_maskoff,exp_a,exp_b,exp_result);
+      |     ^~~~~~~~~~~~~~~~~~~~~~
+vcmpeq_vx_i16_m.c:30:6: note: declared here
+   30 | void vcmpeq_vx_i16_m_golden(uint64_t *exp_result) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~
+vcmpeq_vx_i16_m.c:61:35: error: incompatible type for argument 2 of 'vcmpeq_vx_i16_m'
+   61 |     result = vcmpeq_vx_i16_m(mask,maskoff,a,b);
       |                                   ^~~~~~~
       |                                   |
       |                                   int16x32_t
 In file included from vcmpeq_vx_i16_m.c:4:
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2656:1: note: expected 'bool32_t' but argument is of type 'int16x32_t'
- 2656 | __RUGRATS_CMP_VX_OP (cmpeq, i, int, int, 16, 16, 32)
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2644:1: note: expected 'bool32_t' but argument is of type 'int16x32_t'
+ 2644 | __RUGRATS_CMP_VX_OP (cmpeq, i, int, int, 16, 16, 32)
       | ^~~~~~~~~~~~~~~~~~~
+vcmpeq_vx_i16_m.c:66:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint64_t' {aka 'long long unsigned int'} [-Wformat=]
+   66 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+      |                                                               ~^                      ~~~~~~~~~~~~~
+      |                                                                |                                |
+      |                                                                unsigned int                     uint64_t {aka long long unsigned int}
+      |                                                               %llx
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpeq_vx_i16_m.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

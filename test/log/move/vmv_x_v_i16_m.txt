@@ -4,67 +4,49 @@ vmv_x_v_i16_m.c:9:2: warning: multi-line comment [-Wcomment]
 vmv_x_v_i16_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vmv_x_v_i16_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vmv_x_v_i16_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vmv_x_v_i16_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vmv_x_v_i16_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vmv_x_v_i16_m.c:22:6: warning: no previous prototype for 'vmv_x_v_i16_m_golden' [-Wmissing-prototypes]
-   22 | void vmv_x_v_i16_m_golden(bool32_t mask,int16_t *a,uint32_t b,int16_t *exp_result) {
+vmv_x_v_i16_m.c:30:6: warning: function declaration isn't a prototype [-Wstrict-prototypes]
+   30 | void vmv_x_v_i16_m_golden(uint64_t *mask,int16_t *a,uint32_t b,int16_t exp_result;) {
       |      ^~~~~~~~~~~~~~~~~~~~
 vmv_x_v_i16_m.c: In function 'vmv_x_v_i16_m_golden':
-vmv_x_v_i16_m.c:24:25: error: 'TODO' undeclared (first use in this function)
-   24 |         exp_result[i] = TODO;
+vmv_x_v_i16_m.c:32:9: error: 'exp_result' undeclared (first use in this function)
+   32 |         exp_result[i] = TODO;
+      |         ^~~~~~~~~~
+vmv_x_v_i16_m.c:32:9: note: each undeclared identifier is reported only once for each function it appears in
+vmv_x_v_i16_m.c:32:25: error: 'TODO' undeclared (first use in this function)
+   32 |         exp_result[i] = TODO;
       |                         ^~~~
-vmv_x_v_i16_m.c:24:25: note: each undeclared identifier is reported only once for each function it appears in
-vmv_x_v_i16_m.c:22:36: warning: unused parameter 'mask' [-Wunused-parameter]
-   22 | void vmv_x_v_i16_m_golden(bool32_t mask,int16_t *a,uint32_t b,int16_t *exp_result) {
-      |                           ~~~~~~~~~^~~~
-vmv_x_v_i16_m.c:22:50: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vmv_x_v_i16_m_golden(bool32_t mask,int16_t *a,uint32_t b,int16_t *exp_result) {
-      |                                         ~~~~~~~~~^
-vmv_x_v_i16_m.c:22:61: warning: unused parameter 'b' [-Wunused-parameter]
-   22 | void vmv_x_v_i16_m_golden(bool32_t mask,int16_t *a,uint32_t b,int16_t *exp_result) {
-      |                                                    ~~~~~~~~~^
 vmv_x_v_i16_m.c: In function 'main':
-vmv_x_v_i16_m.c:40:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   40 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vmv_x_v_i16_m.c:50:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   50 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vmv_x_v_i16_m.c:42:26: error: expected ';' before 'vmv_x_v_i16_m_golden'
-   42 |     b = exp_b = rand()%16 // b and exp_b should be in the range[0,16), 0xffffffff);
+vmv_x_v_i16_m.c:52:26: error: expected ';' before 'vmv_x_v_i16_m_golden'
+   52 |     b = exp_b = rand()%32 // b and exp_b should be in the range[0,16), 0xffffffff);
       |                          ^
       |                          ;
 ......
-   45 |     vmv_x_v_i16_m_golden(exp_mask,exp_a,exp_b,exp_result);
+   55 |     vmv_x_v_i16_m_golden(exp_mask,exp_a,exp_b,exp_result);
       |     ~~~~~~~~~~~~~~~~~~~~  
-vmv_x_v_i16_m.c:52:22: error: subscripted value is neither array nor pointer nor vector
-   52 |         if(exp_result[i] != result[i]) {
+vmv_x_v_i16_m.c:62:22: error: subscripted value is neither array nor pointer nor vector
+   62 |         if(exp_result[i] != result[i]) {
       |                      ^
-vmv_x_v_i16_m.c:52:35: error: subscripted value is neither array nor pointer nor vector
-   52 |         if(exp_result[i] != result[i]) {
+vmv_x_v_i16_m.c:62:35: error: subscripted value is neither array nor pointer nor vector
+   62 |         if(exp_result[i] != result[i]) {
       |                                   ^
-vmv_x_v_i16_m.c:53:79: error: subscripted value is neither array nor pointer nor vector
-   53 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vmv_x_v_i16_m.c:63:79: error: subscripted value is neither array nor pointer nor vector
+   63 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                                               ^
-vmv_x_v_i16_m.c:53:97: error: subscripted value is neither array nor pointer nor vector
-   53 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vmv_x_v_i16_m.c:63:97: error: subscripted value is neither array nor pointer nor vector
+   63 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                                                                 ^
-vmv_x_v_i16_m.c:38:13: warning: variable 'exp_result' set but not used [-Wunused-but-set-variable]
-   38 |     int16_t exp_result;
+vmv_x_v_i16_m.c:48:13: warning: variable 'exp_result' set but not used [-Wunused-but-set-variable]
+   48 |     int16_t exp_result;
       |             ^~~~~~~~~~
-vmv_x_v_i16_m.c:37:13: warning: variable 'result' set but not used [-Wunused-but-set-variable]
-   37 |     int16_t result = {0};
+vmv_x_v_i16_m.c:47:13: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+   47 |     int16_t result = {0};
       |             ^~~~~~
-vmv_x_v_i16_m.c:34:13: warning: variable 'exp_a' set but not used [-Wunused-but-set-variable]
-   34 |     int16_t exp_a[32];
+vmv_x_v_i16_m.c:44:13: warning: variable 'exp_a' set but not used [-Wunused-but-set-variable]
+   44 |     int16_t exp_a[32];
       |             ^~~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmv_x_v_i16_m.o] Error 1
 make: *** [bare] Error 2

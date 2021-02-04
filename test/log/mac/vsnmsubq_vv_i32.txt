@@ -4,29 +4,17 @@ vsnmsubq_vv_i32.c:9:2: warning: multi-line comment [-Wcomment]
 vsnmsubq_vv_i32.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vsnmsubq_vv_i32.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vsnmsubq_vv_i32.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vsnmsubq_vv_i32.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vsnmsubq_vv_i32.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vsnmsubq_vv_i32.c:22:6: warning: no previous prototype for 'vsnmsubq_vv_i32_golden' [-Wmissing-prototypes]
-   22 | void vsnmsubq_vv_i32_golden(int32_t *a,int32_t *b,int32_t *c,int32_t *exp_result) {
+vsnmsubq_vv_i32.c:30:6: warning: no previous prototype for 'vsnmsubq_vv_i32_golden' [-Wmissing-prototypes]
+   30 | void vsnmsubq_vv_i32_golden(int32_t *a,int32_t *b,int32_t *c,int32_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~~~
 vsnmsubq_vv_i32.c: In function 'main':
-vsnmsubq_vv_i32.c:48:14: warning: implicit declaration of function 'vsnmsubq_vv_i32'; did you mean 'vwsnmsubq_vv_i32'? [-Wimplicit-function-declaration]
-   48 |     result = vsnmsubq_vv_i32(a,b,c);
+vsnmsubq_vv_i32.c:58:14: warning: implicit declaration of function 'vsnmsubq_vv_i32'; did you mean 'vwsnmsubq_vv_i32'? [-Wimplicit-function-declaration]
+   58 |     result = vsnmsubq_vv_i32(a,b,c);
       |              ^~~~~~~~~~~~~~~
       |              vwsnmsubq_vv_i32
-vsnmsubq_vv_i32.c:48:14: error: incompatible types when assigning to type 'int32x16_t' from type 'int'
-vsnmsubq_vv_i32.c:53:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'int32_t' {aka 'long int'} [-Wformat=]
-   53 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vsnmsubq_vv_i32.c:58:14: error: incompatible types when assigning to type 'int32x16_t' from type 'int'
+vsnmsubq_vv_i32.c:63:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   63 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
       |                                                                unsigned int                     int32_t {aka long int}

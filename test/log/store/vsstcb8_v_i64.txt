@@ -4,61 +4,20 @@ vsstcb8_v_i64.c:16:2: warning: multi-line comment [-Wcomment]
 vsstcb8_v_i64.c:18:44: warning: backslash and newline separated by space
    18 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vsstcb8_v_i64.c:20:40: warning: backslash and newline separated by space
-   20 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vsstcb8_v_i64.c:21:35: warning: backslash and newline separated by space
-   21 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vsstcb8_v_i64.c:22:40: warning: backslash and newline separated by space
-   22 |              a[i] = random(threshold); \
-      |                                         
-vsstcb8_v_i64.c:23:27: warning: backslash and newline separated by space
-   23 |              b[i] = a[i]; \
-      |                            
-vsstcb8_v_i64.c:29:6: warning: no previous prototype for 'vsstcb8_v_i64_golden' [-Wmissing-prototypes]
-   29 | void vsstcb8_v_i64_golden(int64_t base[],int64_t *index,int64_t *value,void *exp_result) {
-      |      ^~~~~~~~~~~~~~~~~~~~
-vsstcb8_v_i64.c: In function 'vsstcb8_v_i64_golden':
-vsstcb8_v_i64.c:31:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   31 | Operator Line --- TODO
-      | ^~~~~~~~
-      | perror
-vsstcb8_v_i64.c:31:1: note: each undeclared identifier is reported only once for each function it appears in
-vsstcb8_v_i64.c:31:9: error: expected ';' before 'Line'
-   31 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vsstcb8_v_i64.c:29:35: warning: unused parameter 'base' [-Wunused-parameter]
-   29 | void vsstcb8_v_i64_golden(int64_t base[],int64_t *index,int64_t *value,void *exp_result) {
-      |                           ~~~~~~~~^~~~~~
-vsstcb8_v_i64.c:29:51: warning: unused parameter 'index' [-Wunused-parameter]
-   29 | void vsstcb8_v_i64_golden(int64_t base[],int64_t *index,int64_t *value,void *exp_result) {
-      |                                          ~~~~~~~~~^~~~~
-vsstcb8_v_i64.c:29:66: warning: unused parameter 'value' [-Wunused-parameter]
-   29 | void vsstcb8_v_i64_golden(int64_t base[],int64_t *index,int64_t *value,void *exp_result) {
-      |                                                         ~~~~~~~~~^~~~~
-vsstcb8_v_i64.c:29:78: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   29 | void vsstcb8_v_i64_golden(int64_t base[],int64_t *index,int64_t *value,void *exp_result) {
-      |                                                                        ~~~~~~^~~~~~~~~~
+vsstcb8_v_i64.c:37:76: error: expected declaration specifiers or '...' before ')' token
+   37 | void vsstcb8_v_i64_golden(int64_t *base,int64_t *index,int64_t value[8][8],) {
+      |                                                                            ^
 vsstcb8_v_i64.c: In function 'main':
-vsstcb8_v_i64.c:22:15: error: subscripted value is neither array nor pointer nor vector
-   22 |              a[i] = random(threshold); \
-      |               ^
-vsstcb8_v_i64.c:47:5: note: in expansion of macro 'data_init'
-   47 |     data_init(value, exp_value, 8*8, 0xffffffffffffffff);
-      |     ^~~~~~~~~
-vsstcb8_v_i64.c:23:22: error: subscripted value is neither array nor pointer nor vector
-   23 |              b[i] = a[i]; \
-      |                      ^
-vsstcb8_v_i64.c:47:5: note: in expansion of macro 'data_init'
-   47 |     data_init(value, exp_value, 8*8, 0xffffffffffffffff);
-      |     ^~~~~~~~~
-vsstcb8_v_i64.c:56:55: error: 'exp_result' undeclared (first use in this function)
-   56 |     vsstcb8_v_i64_golden(exp_base,exp_index,exp_value,exp_result);
+vsstcb8_v_i64.c:63:5: warning: implicit declaration of function 'vsstcb8_v_i64_golden'; did you mean 'vsstcb8_v_i64_m'? [-Wimplicit-function-declaration]
+   63 |     vsstcb8_v_i64_golden(exp_base,exp_index,exp_value,exp_result);
+      |     ^~~~~~~~~~~~~~~~~~~~
+      |     vsstcb8_v_i64_m
+vsstcb8_v_i64.c:63:55: error: 'exp_result' undeclared (first use in this function)
+   63 |     vsstcb8_v_i64_golden(exp_base,exp_index,exp_value,exp_result);
       |                                                       ^~~~~~~~~~
-vsstcb8_v_i64.c:62:9: error: 'i' undeclared (first use in this function)
-   62 |     for(i=0;i<ELE_NUM*COMBO_NUM;i++) {
+vsstcb8_v_i64.c:63:55: note: each undeclared identifier is reported only once for each function it appears in
+vsstcb8_v_i64.c:69:9: error: 'i' undeclared (first use in this function)
+   69 |     for(i=0;i<ELE_NUM*COMBO_NUM;i++) {
       |         ^
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsstcb8_v_i64.o] Error 1
 make: *** [bare] Error 2

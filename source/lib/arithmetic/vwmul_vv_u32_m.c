@@ -8,21 +8,31 @@ extern void abort(void);
 
  #define random(threshold) rand()%threshold 
  //#define data_init_bool(a, b, n, threshold) \ 
-     //	a = b = 1; 
+ //	a = b = 1;
  #define data_init_scalar(a, b, threshold) \ 
-     a = b = random(threshold); 
- #define data_init(a, b, n, threshold) \ 
-     for(int i = 0; i < n; i++) { \ 
-             a[i] = random(threshold); \ 
-             b[i] = a[i]; \ 
-         }
+   a = b = random(threshold);
+ #define data_init(a, b, n, threshold) \
+   for(int i = 0; i < n; i++) { \
+     a[i] = random(threshold); \
+     b[i] = a[i]; \
+   }
+ #define data_init_matrix(a, b, m, n, threshold) \
+   for(int i = 0; i < m; i++) { \
+     for(int j = 0; j < n; j++) { \
+       a.val[i][j] = random(threshold); \
+       b[i][j] = a.val[i][j]; \
+     } \
+   }
+ 
 
 #pragma GCC push_options
 #pragma GCC optimize("O0")
 __attribute__((noinline, noclone))
-void vwmul_vv_u32_m_golden(bool16_t mask,uint64_t *maskoff,uint32_t *a,uint32_t *b,uint64_t *exp_result) {
-    for (int i = 0; i < ELE_NUM; i++)
+void vwmul_vv_u32_m_golden(uint64_t *mask,uint64_t maskoff[2][8],uint32_t *a,uint32_t *b,uint64_t exp_result[][ELE_NUM]) {
+     for (int i = 0; i < ELE_NUM; i++) {
         exp_result[i] = TODO;
+  }
+
 }
 #pragma GCC pop_options
 
@@ -33,15 +43,15 @@ int main(void) {
     uint32x16_t a;
     uint32x16_t b;
     uint64_t exp_mask[16];
-    uint64_t exp_maskoff[8*2];
+    uint64_t exp_maskoff[2][8];
     uint32_t exp_a[16];
     uint32_t exp_b[16];
 
     uint64x8x2_t result = {0};
-    uint64_t exp_result[8*2] = {0};
+    uint64_t exp_result[2][8] = {0};
 
     data_init_bool(mask, exp_mask, 16, 0xffffffff);
-    data_init(maskoff, exp_maskoff, 8*2, 0xffffffffffffffff);
+    data_init_matrix(maskoff, exp_maskoff, 8, 2, 0xffffffffffffffff);
     data_init(a, exp_a, 16, 0xffffffff);
     data_init(b, exp_b, 16, 0xffffffff);
 

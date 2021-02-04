@@ -4,39 +4,25 @@ vnmsub_vv_i16_m.c:9:2: warning: multi-line comment [-Wcomment]
 vnmsub_vv_i16_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vnmsub_vv_i16_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vnmsub_vv_i16_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vnmsub_vv_i16_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vnmsub_vv_i16_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vnmsub_vv_i16_m.c:22:6: warning: no previous prototype for 'vnmsub_vv_i16_m_golden' [-Wmissing-prototypes]
-   22 | void vnmsub_vv_i16_m_golden(bool32_t mask,int16_t *a,int16_t *b,int16_t *c,int16_t *exp_result) {
+vnmsub_vv_i16_m.c:30:6: warning: no previous prototype for 'vnmsub_vv_i16_m_golden' [-Wmissing-prototypes]
+   30 | void vnmsub_vv_i16_m_golden(uint64_t *mask,int16_t *a,int16_t *b,int16_t *c,int16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~~~
 vnmsub_vv_i16_m.c: In function 'vnmsub_vv_i16_m_golden':
-vnmsub_vv_i16_m.c:22:74: warning: unused parameter 'c' [-Wunused-parameter]
-   22 | void vnmsub_vv_i16_m_golden(bool32_t mask,int16_t *a,int16_t *b,int16_t *c,int16_t *exp_result) {
-      |                                                                 ~~~~~~~~~^
+vnmsub_vv_i16_m.c:30:75: warning: unused parameter 'c' [-Wunused-parameter]
+   30 | void vnmsub_vv_i16_m_golden(uint64_t *mask,int16_t *a,int16_t *b,int16_t *c,int16_t *exp_result) {
+      |                                                                  ~~~~~~~~~^
 vnmsub_vv_i16_m.c: In function 'main':
-vnmsub_vv_i16_m.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   42 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vnmsub_vv_i16_m.c:52:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   52 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vnmsub_vv_i16_m.c:48:28: error: incompatible type for argument 1 of 'vnmsub_vv_i16_m_golden'
-   48 |     vnmsub_vv_i16_m_golden(exp_mask,exp_a,exp_b,exp_c,exp_result);
-      |                            ^~~~~~~~
-      |                            |
-      |                            uint64_t * {aka long long unsigned int *}
-vnmsub_vv_i16_m.c:22:38: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vnmsub_vv_i16_m_golden(bool32_t mask,int16_t *a,int16_t *b,int16_t *c,int16_t *exp_result) {
-      |                             ~~~~~~~~~^~~~
-make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnmsub_vv_i16_m.o] Error 1
+vnmsub_vv_i16_m.c:52:5: warning: 'mask' is used uninitialized in this function [-Wuninitialized]
+   52 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/../lib/gcc/riscv32-rivai-elf/10.2.1/../../../../riscv32-rivai-elf/bin/ld: /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnmsub_vv_i16_m.o: in function `main':
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test/vnmsub_vv_i16_m.c:52: undefined reference to `data_init_bool'
+collect2: error: ld returned 1 exit status
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnmsub_vv_i16_m.elf] Error 1
 make: *** [bare] Error 2
 ======================================================================
 
@@ -53,6 +39,8 @@ make: *** [bare] Error 2
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vnmsub_vv_i16_m.c
-Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnmsub_vv_i16_m.o' failed
+Linking....
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnmsub_vv_i16_m.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnmsub_vv_i16_m.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+Makefile:85: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vnmsub_vv_i16_m.elf' failed
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 Makefile:37: recipe for target 'bare' failed

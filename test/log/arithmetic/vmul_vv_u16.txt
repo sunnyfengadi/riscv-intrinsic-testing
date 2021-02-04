@@ -4,26 +4,14 @@ vmul_vv_u16.c:9:2: warning: multi-line comment [-Wcomment]
 vmul_vv_u16.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vmul_vv_u16.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vmul_vv_u16.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vmul_vv_u16.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vmul_vv_u16.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vmul_vv_u16.c:22:6: warning: no previous prototype for 'vmul_vv_u16_golden' [-Wmissing-prototypes]
-   22 | void vmul_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *exp_result) {
+vmul_vv_u16.c:30:6: warning: no previous prototype for 'vmul_vv_u16_golden' [-Wmissing-prototypes]
+   30 | void vmul_vv_u16_golden(uint16_t *a,uint16_t *b,uint16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~
 soc_mode = 0 progsize = 2 
 binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmul_vv_u16.elf
-Start Loading Kernel @ Tue Feb  2 14:47:18 2021
+Start Loading Kernel @ Thu Feb  4 18:42:10 2021
 
-Start Setting Reset PC for orv32 @ Tue Feb  2 14:47:18 2021
+Start Setting Reset PC for orv32 @ Thu Feb  4 18:42:10 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================
@@ -42,9 +30,9 @@ Start Setting Reset PC for orv32 @ Tue Feb  2 14:47:18 2021
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vmul_vv_u16.c
 Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmul_vv_u16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmul_vv_u16.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmul_vv_u16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmul_vv_u16.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
 Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmul_vv_u16.elf
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmul_vv_u16.elf ++load_pk
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmul_vv_u16.elf ++load_pk
 TEST PASSED!

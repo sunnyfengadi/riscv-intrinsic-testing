@@ -4,96 +4,58 @@ vldcb3in0_v_u64_m.c:16:2: warning: multi-line comment [-Wcomment]
 vldcb3in0_v_u64_m.c:18:44: warning: backslash and newline separated by space
    18 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vldcb3in0_v_u64_m.c:20:40: warning: backslash and newline separated by space
-   20 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vldcb3in0_v_u64_m.c:21:35: warning: backslash and newline separated by space
-   21 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vldcb3in0_v_u64_m.c:22:40: warning: backslash and newline separated by space
-   22 |              a[i] = random(threshold); \
-      |                                         
-vldcb3in0_v_u64_m.c:23:27: warning: backslash and newline separated by space
-   23 |              b[i] = a[i]; \
-      |                            
-vldcb3in0_v_u64_m.c:29:6: warning: no previous prototype for 'vldcb3in0_v_u64_m_golden' [-Wmissing-prototypes]
-   29 | void vldcb3in0_v_u64_m_golden(bool8_t *mask,uint64_t maskoff,uint64_t *base,uint32_t *imm,uint64_t exp_result[][ELE_NUM]) {
+vldcb3in0_v_u64_m.c:37:6: warning: no previous prototype for 'vldcb3in0_v_u64_m_golden' [-Wmissing-prototypes]
+   37 | void vldcb3in0_v_u64_m_golden(uint64_t *mask,uint64_t maskoff[3][8],uint64_t *base,uint32_t imm,uint64_t exp_result[][ELE_NUM]) {
       |      ^~~~~~~~~~~~~~~~~~~~~~~~
 vldcb3in0_v_u64_m.c: In function 'vldcb3in0_v_u64_m_golden':
-vldcb3in0_v_u64_m.c:29:40: warning: unused parameter 'mask' [-Wunused-parameter]
-   29 | void vldcb3in0_v_u64_m_golden(bool8_t *mask,uint64_t maskoff,uint64_t *base,uint32_t *imm,uint64_t exp_result[][ELE_NUM]) {
-      |                               ~~~~~~~~~^~~~
-vldcb3in0_v_u64_m.c:29:54: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   29 | void vldcb3in0_v_u64_m_golden(bool8_t *mask,uint64_t maskoff,uint64_t *base,uint32_t *imm,uint64_t exp_result[][ELE_NUM]) {
-      |                                             ~~~~~~~~~^~~~~~~
-vldcb3in0_v_u64_m.c:29:87: warning: unused parameter 'imm' [-Wunused-parameter]
-   29 | void vldcb3in0_v_u64_m_golden(bool8_t *mask,uint64_t maskoff,uint64_t *base,uint32_t *imm,uint64_t exp_result[][ELE_NUM]) {
-      |                                                                             ~~~~~~~~~~^~~
+vldcb3in0_v_u64_m.c:37:41: warning: unused parameter 'mask' [-Wunused-parameter]
+   37 | void vldcb3in0_v_u64_m_golden(uint64_t *mask,uint64_t maskoff[3][8],uint64_t *base,uint32_t imm,uint64_t exp_result[][ELE_NUM]) {
+      |                               ~~~~~~~~~~^~~~
+vldcb3in0_v_u64_m.c:37:55: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   37 | void vldcb3in0_v_u64_m_golden(uint64_t *mask,uint64_t maskoff[3][8],uint64_t *base,uint32_t imm,uint64_t exp_result[][ELE_NUM]) {
+      |                                              ~~~~~~~~~^~~~~~~~~~~~~
+vldcb3in0_v_u64_m.c:37:93: warning: unused parameter 'imm' [-Wunused-parameter]
+   37 | void vldcb3in0_v_u64_m_golden(uint64_t *mask,uint64_t maskoff[3][8],uint64_t *base,uint32_t imm,uint64_t exp_result[][ELE_NUM]) {
+      |                                                                                    ~~~~~~~~~^~~
 vldcb3in0_v_u64_m.c: In function 'main':
-vldcb3in0_v_u64_m.c:54:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   54 |     data_init_bool(mask, exp_mask, 8, 0xffffffffffffffff);
+vldcb3in0_v_u64_m.c:62:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   62 |     data_init_bool(mask, exp_mask, 8, 0xffffffffffffffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vldcb3in0_v_u64_m.c:22:15: error: subscripted value is neither array nor pointer nor vector
-   22 |              a[i] = random(threshold); \
-      |               ^
-vldcb3in0_v_u64_m.c:55:5: note: in expansion of macro 'data_init'
-   55 |     data_init(maskoff, exp_maskoff, 8*3, 0xffffffffffffffff);
-      |     ^~~~~~~~~
-vldcb3in0_v_u64_m.c:23:22: error: subscripted value is neither array nor pointer nor vector
-   23 |              b[i] = a[i]; \
-      |                      ^
-vldcb3in0_v_u64_m.c:55:5: note: in expansion of macro 'data_init'
-   55 |     data_init(maskoff, exp_maskoff, 8*3, 0xffffffffffffffff);
-      |     ^~~~~~~~~
-vldcb3in0_v_u64_m.c:66:30: warning: passing argument 1 of 'vldcb3in0_v_u64_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
-   66 |     vldcb3in0_v_u64_m_golden(exp_mask,exp_maskoff,exp_base,exp_imm,exp_result);
-      |                              ^~~~~~~~
-      |                              |
-      |                              uint64_t * {aka long long unsigned int *}
-vldcb3in0_v_u64_m.c:29:40: note: expected 'bool8_t *' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   29 | void vldcb3in0_v_u64_m_golden(bool8_t *mask,uint64_t maskoff,uint64_t *base,uint32_t *imm,uint64_t exp_result[][ELE_NUM]) {
-      |                               ~~~~~~~~~^~~~
-vldcb3in0_v_u64_m.c:66:39: warning: passing argument 2 of 'vldcb3in0_v_u64_m_golden' makes integer from pointer without a cast [-Wint-conversion]
-   66 |     vldcb3in0_v_u64_m_golden(exp_mask,exp_maskoff,exp_base,exp_imm,exp_result);
-      |                                       ^~~~~~~~~~~
-      |                                       |
-      |                                       uint64_t * {aka long long unsigned int *}
-vldcb3in0_v_u64_m.c:29:54: note: expected 'uint64_t' {aka 'long long unsigned int'} but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   29 | void vldcb3in0_v_u64_m_golden(bool8_t *mask,uint64_t maskoff,uint64_t *base,uint32_t *imm,uint64_t exp_result[][ELE_NUM]) {
-      |                                             ~~~~~~~~~^~~~~~~
-vldcb3in0_v_u64_m.c:66:60: warning: passing argument 4 of 'vldcb3in0_v_u64_m_golden' makes pointer from integer without a cast [-Wint-conversion]
-   66 |     vldcb3in0_v_u64_m_golden(exp_mask,exp_maskoff,exp_base,exp_imm,exp_result);
-      |                                                            ^~~~~~~
-      |                                                            |
-      |                                                            uint32_t {aka long unsigned int}
-vldcb3in0_v_u64_m.c:29:87: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t' {aka 'long unsigned int'}
-   29 | void vldcb3in0_v_u64_m_golden(bool8_t *mask,uint64_t maskoff,uint64_t *base,uint32_t *imm,uint64_t exp_result[][ELE_NUM]) {
-      |                                                                             ~~~~~~~~~~^~~
-vldcb3in0_v_u64_m.c:66:68: warning: passing argument 5 of 'vldcb3in0_v_u64_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
-   66 |     vldcb3in0_v_u64_m_golden(exp_mask,exp_maskoff,exp_base,exp_imm,exp_result);
-      |                                                                    ^~~~~~~~~~
-      |                                                                    |
-      |                                                                    uint64_t * {aka long long unsigned int *}
-vldcb3in0_v_u64_m.c:29:100: note: expected 'uint64_t (*)[8]' {aka 'long long unsigned int (*)[8]'} but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   29 | void vldcb3in0_v_u64_m_golden(bool8_t *mask,uint64_t maskoff,uint64_t *base,uint32_t *imm,uint64_t exp_result[][ELE_NUM]) {
-      |                                                                                           ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
-vldcb3in0_v_u64_m.c:75:55: warning: format '%x' expects argument of type 'unsigned int', but argument 4 has type 'long long unsigned int' [-Wformat=]
-   75 |                 printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
-      |                                                      ~^                               ~~~~~~~~~~~~~~~~
-      |                                                       |                                            |
-      |                                                       unsigned int                                 long long unsigned int
-      |                                                      %llx
-vldcb3in0_v_u64_m.c:75:76: warning: format '%x' expects argument of type 'unsigned int', but argument 6 has type 'uint64_t' {aka 'long long unsigned int'} [-Wformat=]
-   75 |                 printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
-      |                                                                           ~^                                         ~~~~~~~~~~~~~~~~~~~~~~~
-      |                                                                            |                                                   |
-      |                                                                            unsigned int                                        uint64_t {aka long long unsigned int}
-      |                                                                           %llx
-vldcb3in0_v_u64_m.c:45:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
-   45 |     uint32_t imm;
+vldcb3in0_v_u64_m.c:83:55: warning: format '%d' expects argument of type 'int', but argument 4 has type 'long long unsigned int' [-Wformat=]
+   83 |                 printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
+      |                                                      ~^                                   ~~~~~~~~~~~~~~~~
+      |                                                       |                                                |
+      |                                                       int                                              long long unsigned int
+      |                                                      %lld
+vldcb3in0_v_u64_m.c:83:80: warning: format '%d' expects argument of type 'int', but argument 7 has type 'uint64_t' {aka 'long long unsigned int'} [-Wformat=]
+   83 |                 printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
+      |                                                                               ~^                                 ~~~~~~~~~~~~~~~~
+      |                                                                                |                                              |
+      |                                                                                int                                            uint64_t {aka long long unsigned int}
+      |                                                                               %lld
+vldcb3in0_v_u64_m.c:53:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   53 |     uint32_t imm;
       |              ^~~
-make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb3in0_v_u64_m.o] Error 1
+vldcb3in0_v_u64_m.c:62:5: warning: 'mask' is used uninitialized in this function [-Wuninitialized]
+   62 |     data_init_bool(mask, exp_mask, 8, 0xffffffffffffffff);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+vldcb3in0_v_u64_m.c:28:20: warning: iteration 3 invokes undefined behavior [-Waggressive-loop-optimizations]
+   28 |        a.val[i][j] = random(threshold); \
+      |                    ^
+vldcb3in0_v_u64_m.c:63:5: note: in expansion of macro 'data_init_matrix'
+   63 |     data_init_matrix(maskoff, exp_maskoff, 8, 3, 0xffffffffffffffff);
+      |     ^~~~~~~~~~~~~~~~
+vldcb3in0_v_u64_m.c:26:4: note: within this loop
+   26 |    for(int i = 0; i < m; i++) { \
+      |    ^~~
+vldcb3in0_v_u64_m.c:63:5: note: in expansion of macro 'data_init_matrix'
+   63 |     data_init_matrix(maskoff, exp_maskoff, 8, 3, 0xffffffffffffffff);
+      |     ^~~~~~~~~~~~~~~~
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/../lib/gcc/riscv32-rivai-elf/10.2.1/../../../../riscv32-rivai-elf/bin/ld: /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb3in0_v_u64_m.o: in function `main':
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test/vldcb3in0_v_u64_m.c:62: undefined reference to `data_init_bool'
+collect2: error: ld returned 1 exit status
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb3in0_v_u64_m.elf] Error 1
 make: *** [bare] Error 2
 ======================================================================
 
@@ -110,6 +72,8 @@ make: *** [bare] Error 2
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vldcb3in0_v_u64_m.c
-Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb3in0_v_u64_m.o' failed
+Linking....
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb3in0_v_u64_m.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb3in0_v_u64_m.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+Makefile:85: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb3in0_v_u64_m.elf' failed
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 Makefile:37: recipe for target 'bare' failed

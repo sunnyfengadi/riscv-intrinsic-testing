@@ -4,79 +4,27 @@ vstcb5in0_v_u64_m.c:16:2: warning: multi-line comment [-Wcomment]
 vstcb5in0_v_u64_m.c:18:44: warning: backslash and newline separated by space
    18 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vstcb5in0_v_u64_m.c:20:40: warning: backslash and newline separated by space
-   20 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vstcb5in0_v_u64_m.c:21:35: warning: backslash and newline separated by space
-   21 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vstcb5in0_v_u64_m.c:22:40: warning: backslash and newline separated by space
-   22 |              a[i] = random(threshold); \
-      |                                         
-vstcb5in0_v_u64_m.c:23:27: warning: backslash and newline separated by space
-   23 |              b[i] = a[i]; \
-      |                            
-vstcb5in0_v_u64_m.c:29:6: warning: no previous prototype for 'vstcb5in0_v_u64_m_golden' [-Wmissing-prototypes]
-   29 | void vstcb5in0_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,uint32_t imm,void *exp_result) {
-      |      ^~~~~~~~~~~~~~~~~~~~~~~~
-vstcb5in0_v_u64_m.c: In function 'vstcb5in0_v_u64_m_golden':
-vstcb5in0_v_u64_m.c:31:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   31 | Operator Line --- TODO
-      | ^~~~~~~~
-      | perror
-vstcb5in0_v_u64_m.c:31:1: note: each undeclared identifier is reported only once for each function it appears in
-vstcb5in0_v_u64_m.c:31:9: error: expected ';' before 'Line'
-   31 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vstcb5in0_v_u64_m.c:29:39: warning: unused parameter 'mask' [-Wunused-parameter]
-   29 | void vstcb5in0_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,uint32_t imm,void *exp_result) {
-      |                               ~~~~~~~~^~~~
-vstcb5in0_v_u64_m.c:29:53: warning: unused parameter 'base' [-Wunused-parameter]
-   29 | void vstcb5in0_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,uint32_t imm,void *exp_result) {
-      |                                            ~~~~~~~~~^~~~~~
-vstcb5in0_v_u64_m.c:29:70: warning: unused parameter 'value' [-Wunused-parameter]
-   29 | void vstcb5in0_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,uint32_t imm,void *exp_result) {
-      |                                                            ~~~~~~~~~~^~~~~
-vstcb5in0_v_u64_m.c:29:85: warning: unused parameter 'imm' [-Wunused-parameter]
-   29 | void vstcb5in0_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,uint32_t imm,void *exp_result) {
-      |                                                                            ~~~~~~~~~^~~
-vstcb5in0_v_u64_m.c:29:95: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   29 | void vstcb5in0_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,uint32_t imm,void *exp_result) {
-      |                                                                                         ~~~~~~^~~~~~~~~~
+vstcb5in0_v_u64_m.c:37:95: error: expected declaration specifiers or '...' before ')' token
+   37 | void vstcb5in0_v_u64_m_golden(uint64_t *mask,uint64_t *base,uint64_t value[5][8],uint32_t imm,) {
+      |                                                                                               ^
 vstcb5in0_v_u64_m.c: In function 'main':
-vstcb5in0_v_u64_m.c:47:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   47 |     data_init_bool(mask, exp_mask, 8, 0xffffffffffffffff);
+vstcb5in0_v_u64_m.c:54:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   54 |     data_init_bool(mask, exp_mask, 8, 0xffffffffffffffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vstcb5in0_v_u64_m.c:22:15: error: subscripted value is neither array nor pointer nor vector
-   22 |              a[i] = random(threshold); \
-      |               ^
-vstcb5in0_v_u64_m.c:49:5: note: in expansion of macro 'data_init'
-   49 |     data_init(value, exp_value, 8*5, 0xffffffffffffffff);
-      |     ^~~~~~~~~
-vstcb5in0_v_u64_m.c:23:22: error: subscripted value is neither array nor pointer nor vector
-   23 |              b[i] = a[i]; \
-      |                      ^
-vstcb5in0_v_u64_m.c:49:5: note: in expansion of macro 'data_init'
-   49 |     data_init(value, exp_value, 8*5, 0xffffffffffffffff);
-      |     ^~~~~~~~~
-vstcb5in0_v_u64_m.c:59:66: error: 'exp_result' undeclared (first use in this function)
-   59 |     vstcb5in0_v_u64_m_golden(exp_mask,exp_base,exp_value,exp_imm,exp_result);
+vstcb5in0_v_u64_m.c:66:5: warning: implicit declaration of function 'vstcb5in0_v_u64_m_golden'; did you mean 'vstcb5in0_v_u64_m'? [-Wimplicit-function-declaration]
+   66 |     vstcb5in0_v_u64_m_golden(exp_mask,exp_base,exp_value,exp_imm,exp_result);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~
+      |     vstcb5in0_v_u64_m
+vstcb5in0_v_u64_m.c:66:66: error: 'exp_result' undeclared (first use in this function)
+   66 |     vstcb5in0_v_u64_m_golden(exp_mask,exp_base,exp_value,exp_imm,exp_result);
       |                                                                  ^~~~~~~~~~
-vstcb5in0_v_u64_m.c:59:30: error: incompatible type for argument 1 of 'vstcb5in0_v_u64_m_golden'
-   59 |     vstcb5in0_v_u64_m_golden(exp_mask,exp_base,exp_value,exp_imm,exp_result);
-      |                              ^~~~~~~~
-      |                              |
-      |                              uint64_t * {aka long long unsigned int *}
-vstcb5in0_v_u64_m.c:29:39: note: expected 'bool8_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   29 | void vstcb5in0_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,uint32_t imm,void *exp_result) {
-      |                               ~~~~~~~~^~~~
-vstcb5in0_v_u64_m.c:65:9: error: 'i' undeclared (first use in this function)
-   65 |     for(i=0;i<ELE_NUM*COMBO_NUM;i++) {
+vstcb5in0_v_u64_m.c:66:66: note: each undeclared identifier is reported only once for each function it appears in
+vstcb5in0_v_u64_m.c:72:9: error: 'i' undeclared (first use in this function)
+   72 |     for(i=0;i<ELE_NUM*COMBO_NUM;i++) {
       |         ^
-vstcb5in0_v_u64_m.c:40:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
-   40 |     uint32_t imm;
+vstcb5in0_v_u64_m.c:47:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   47 |     uint32_t imm;
       |              ^~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vstcb5in0_v_u64_m.o] Error 1
 make: *** [bare] Error 2

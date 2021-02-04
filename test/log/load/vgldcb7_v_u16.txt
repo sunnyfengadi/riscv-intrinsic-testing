@@ -4,47 +4,18 @@ vgldcb7_v_u16.c:16:2: warning: multi-line comment [-Wcomment]
 vgldcb7_v_u16.c:18:44: warning: backslash and newline separated by space
    18 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vgldcb7_v_u16.c:20:40: warning: backslash and newline separated by space
-   20 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vgldcb7_v_u16.c:21:35: warning: backslash and newline separated by space
-   21 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vgldcb7_v_u16.c:22:40: warning: backslash and newline separated by space
-   22 |              a[i] = random(threshold); \
-      |                                         
-vgldcb7_v_u16.c:23:27: warning: backslash and newline separated by space
-   23 |              b[i] = a[i]; \
-      |                            
-vgldcb7_v_u16.c:29:6: warning: no previous prototype for 'vgldcb7_v_u16_golden' [-Wmissing-prototypes]
-   29 | void vgldcb7_v_u16_golden(uint16_t *base,int16_t index,uint16_t exp_result[][ELE_NUM]) {
+vgldcb7_v_u16.c:37:6: warning: no previous prototype for 'vgldcb7_v_u16_golden' [-Wmissing-prototypes]
+   37 | void vgldcb7_v_u16_golden(uint16_t *base,int16_t *index,uint16_t exp_result[][ELE_NUM]) {
       |      ^~~~~~~~~~~~~~~~~~~~
 vgldcb7_v_u16.c: In function 'vgldcb7_v_u16_golden':
-vgldcb7_v_u16.c:29:50: warning: unused parameter 'index' [-Wunused-parameter]
-   29 | void vgldcb7_v_u16_golden(uint16_t *base,int16_t index,uint16_t exp_result[][ELE_NUM]) {
-      |                                          ~~~~~~~~^~~~~
-vgldcb7_v_u16.c: In function 'main':
-vgldcb7_v_u16.c:60:35: warning: passing argument 2 of 'vgldcb7_v_u16_golden' makes integer from pointer without a cast [-Wint-conversion]
-   60 |     vgldcb7_v_u16_golden(exp_base,exp_index,exp_result);
-      |                                   ^~~~~~~~~
-      |                                   |
-      |                                   int16_t * {aka short int *}
-vgldcb7_v_u16.c:29:50: note: expected 'int16_t' {aka 'short int'} but argument is of type 'int16_t *' {aka 'short int *'}
-   29 | void vgldcb7_v_u16_golden(uint16_t *base,int16_t index,uint16_t exp_result[][ELE_NUM]) {
-      |                                          ~~~~~~~~^~~~~
-vgldcb7_v_u16.c:60:45: warning: passing argument 3 of 'vgldcb7_v_u16_golden' from incompatible pointer type [-Wincompatible-pointer-types]
-   60 |     vgldcb7_v_u16_golden(exp_base,exp_index,exp_result);
-      |                                             ^~~~~~~~~~
-      |                                             |
-      |                                             uint16_t * {aka short unsigned int *}
-vgldcb7_v_u16.c:29:65: note: expected 'uint16_t (*)[32]' {aka 'short unsigned int (*)[32]'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
-   29 | void vgldcb7_v_u16_golden(uint16_t *base,int16_t index,uint16_t exp_result[][ELE_NUM]) {
-      |                                                        ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vgldcb7_v_u16.c:37:51: warning: unused parameter 'index' [-Wunused-parameter]
+   37 | void vgldcb7_v_u16_golden(uint16_t *base,int16_t *index,uint16_t exp_result[][ELE_NUM]) {
+      |                                          ~~~~~~~~~^~~~~
 soc_mode = 0 progsize = 2 
 binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb7_v_u16.elf
-Start Loading Kernel @ Tue Feb  2 14:50:04 2021
+Start Loading Kernel @ Thu Feb  4 18:45:14 2021
 
-Start Setting Reset PC for orv32 @ Tue Feb  2 14:50:04 2021
+Start Setting Reset PC for orv32 @ Thu Feb  4 18:45:14 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================
@@ -63,156 +34,156 @@ Start Setting Reset PC for orv32 @ Tue Feb  2 14:50:04 2021
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vgldcb7_v_u16.c
 Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb7_v_u16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb7_v_u16.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb7_v_u16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb7_v_u16.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
 Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb7_v_u16.elf
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb7_v_u16.elf ++load_pk
-Failed: result.val[0][0] = 0, exp_result[0] = 4c7f
-Failed: result.val[0][1] = 0, exp_result[1] = aa01
-Failed: result.val[0][2] = 0, exp_result[2] = bf7f
-Failed: result.val[0][3] = 0, exp_result[3] = 6bff
-Failed: result.val[0][4] = 0, exp_result[4] = bf7f
-Failed: result.val[0][5] = 0, exp_result[5] = 6bff
-Failed: result.val[0][6] = 0, exp_result[6] = 2fe8
-Failed: result.val[0][7] = 0, exp_result[7] = f857
-Failed: result.val[0][8] = abab, exp_result[8] = 2fe8
-Failed: result.val[0][9] = 0, exp_result[9] = f857
-Failed: result.val[0][10] = 0, exp_result[10] = bf9a
-Failed: result.val[0][11] = 0, exp_result[11] = dd46
-Failed: result.val[0][12] = 0, exp_result[12] = bf9a
-Failed: result.val[0][13] = abab, exp_result[13] = dd46
-Failed: result.val[0][14] = 0, exp_result[14] = c681
-Failed: result.val[0][15] = 0, exp_result[15] = f3c5
-Failed: result.val[0][18] = abab, exp_result[18] = 0
-Failed: result.val[0][20] = 813a, exp_result[20] = 0
-Failed: result.val[0][25] = abab, exp_result[25] = 0
-Failed: result.val[0][28] = abab, exp_result[28] = 0
-Failed: result.val[0][29] = abab, exp_result[29] = 0
-Failed: result.val[1][0] = 0, exp_result[32] = cd80
-Failed: result.val[1][1] = 0, exp_result[33] = 73f1
-Failed: result.val[1][2] = 0, exp_result[34] = 7aba
-Failed: result.val[1][3] = 0, exp_result[35] = 3815
-Failed: result.val[1][4] = 0, exp_result[36] = 7aba
-Failed: result.val[1][5] = 0, exp_result[37] = 3815
-Failed: result.val[1][6] = 0, exp_result[38] = 8a6a
-Failed: result.val[1][7] = 0, exp_result[39] = 2921
-Failed: result.val[1][8] = abab, exp_result[40] = 8a6a
-Failed: result.val[1][9] = 0, exp_result[41] = 2921
-Failed: result.val[1][10] = 0, exp_result[42] = ed36
-Failed: result.val[1][11] = 0, exp_result[43] = 2a62
-Failed: result.val[1][12] = 0, exp_result[44] = ed36
-Failed: result.val[1][13] = abab, exp_result[45] = 2a62
-Failed: result.val[1][14] = 0, exp_result[46] = 6875
-Failed: result.val[1][15] = 0, exp_result[47] = 5515
-Failed: result.val[1][18] = abab, exp_result[50] = 0
-Failed: result.val[1][20] = b7e2, exp_result[52] = 0
-Failed: result.val[1][25] = abab, exp_result[57] = 0
-Failed: result.val[1][28] = abab, exp_result[60] = 0
-Failed: result.val[1][29] = abab, exp_result[61] = 0
-Failed: result.val[2][0] = 0, exp_result[64] = 41fc
-Failed: result.val[2][1] = 0, exp_result[65] = c2aa
-Failed: result.val[2][2] = 0, exp_result[66] = a3a7
-Failed: result.val[2][3] = 0, exp_result[67] = 4aae
-Failed: result.val[2][4] = 0, exp_result[68] = a3a7
-Failed: result.val[2][5] = 0, exp_result[69] = 4aae
-Failed: result.val[2][6] = 0, exp_result[70] = 4da9
-Failed: result.val[2][7] = 0, exp_result[71] = 7733
-Failed: result.val[2][8] = abab, exp_result[72] = 4da9
-Failed: result.val[2][9] = 0, exp_result[73] = 7733
-Failed: result.val[2][10] = 0, exp_result[74] = 5ede
-Failed: result.val[2][11] = 0, exp_result[75] = 8628
-Failed: result.val[2][12] = 0, exp_result[76] = 5ede
-Failed: result.val[2][13] = abab, exp_result[77] = 8628
-Failed: result.val[2][14] = 0, exp_result[78] = 311d
-Failed: result.val[2][15] = 0, exp_result[79] = a16
-Failed: result.val[2][18] = abab, exp_result[82] = 0
-Failed: result.val[2][20] = ad8b, exp_result[84] = 0
-Failed: result.val[2][25] = abab, exp_result[89] = 0
-Failed: result.val[2][28] = abab, exp_result[92] = 0
-Failed: result.val[2][29] = abab, exp_result[93] = 0
-Failed: result.val[3][0] = 0, exp_result[96] = 782c
-Failed: result.val[3][1] = 0, exp_result[97] = c0cc
-Failed: result.val[3][2] = 0, exp_result[98] = 14b5
-Failed: result.val[3][3] = 0, exp_result[99] = 6b17
-Failed: result.val[3][4] = 0, exp_result[100] = 14b5
-Failed: result.val[3][5] = 0, exp_result[101] = 6b17
-Failed: result.val[3][6] = 0, exp_result[102] = 7d75
-Failed: result.val[3][7] = 0, exp_result[103] = 124
-Failed: result.val[3][8] = abab, exp_result[104] = 7d75
-Failed: result.val[3][9] = 0, exp_result[105] = 124
-Failed: result.val[3][10] = 0, exp_result[106] = 3b61
-Failed: result.val[3][11] = 0, exp_result[107] = fd83
-Failed: result.val[3][12] = 0, exp_result[108] = 3b61
-Failed: result.val[3][13] = abab, exp_result[109] = fd83
-Failed: result.val[3][14] = 0, exp_result[110] = b260
-Failed: result.val[3][15] = 0, exp_result[111] = daa4
-Failed: result.val[3][18] = abab, exp_result[114] = 0
-Failed: result.val[3][20] = aacd, exp_result[116] = 0
-Failed: result.val[3][25] = abab, exp_result[121] = 0
-Failed: result.val[3][28] = abab, exp_result[124] = 0
-Failed: result.val[3][29] = abab, exp_result[125] = 0
-Failed: result.val[4][0] = 0, exp_result[128] = 8b74
-Failed: result.val[4][1] = 0, exp_result[129] = 8b7
-Failed: result.val[4][2] = 0, exp_result[130] = d40c
-Failed: result.val[4][3] = 0, exp_result[131] = 63c7
-Failed: result.val[4][4] = 0, exp_result[132] = d40c
-Failed: result.val[4][5] = 0, exp_result[133] = 63c7
-Failed: result.val[4][6] = 0, exp_result[134] = d921
-Failed: result.val[4][7] = 0, exp_result[135] = ee6a
-Failed: result.val[4][8] = abab, exp_result[136] = d921
-Failed: result.val[4][9] = 0, exp_result[137] = ee6a
-Failed: result.val[4][10] = 0, exp_result[138] = 730e
-Failed: result.val[4][11] = 0, exp_result[139] = 55f
-Failed: result.val[4][12] = 0, exp_result[140] = 730e
-Failed: result.val[4][13] = abab, exp_result[141] = 55f
-Failed: result.val[4][14] = 0, exp_result[142] = 238b
-Failed: result.val[4][15] = 0, exp_result[143] = b651
-Failed: result.val[4][18] = abab, exp_result[146] = 0
-Failed: result.val[4][20] = b72d, exp_result[148] = 0
-Failed: result.val[4][25] = abab, exp_result[153] = 0
-Failed: result.val[4][28] = abab, exp_result[156] = 0
-Failed: result.val[4][29] = abab, exp_result[157] = 0
-Failed: result.val[5][0] = 0, exp_result[160] = 7eb1
-Failed: result.val[5][1] = 0, exp_result[161] = 15cf
-Failed: result.val[5][2] = 0, exp_result[162] = b123
-Failed: result.val[5][3] = 0, exp_result[163] = 1ef9
-Failed: result.val[5][4] = 0, exp_result[164] = b123
-Failed: result.val[5][5] = 0, exp_result[165] = 1ef9
-Failed: result.val[5][6] = 0, exp_result[166] = a527
-Failed: result.val[5][7] = 0, exp_result[167] = d9ec
-Failed: result.val[5][8] = abab, exp_result[168] = a527
-Failed: result.val[5][9] = 0, exp_result[169] = d9ec
-Failed: result.val[5][10] = 0, exp_result[170] = faa2
-Failed: result.val[5][11] = 0, exp_result[171] = c1ce
-Failed: result.val[5][12] = 0, exp_result[172] = faa2
-Failed: result.val[5][13] = abab, exp_result[173] = c1ce
-Failed: result.val[5][14] = 0, exp_result[174] = 57d0
-Failed: result.val[5][15] = 0, exp_result[175] = 66a3
-Failed: result.val[5][18] = abab, exp_result[178] = 0
-Failed: result.val[5][20] = 407a, exp_result[180] = 0
-Failed: result.val[5][25] = abab, exp_result[185] = 0
-Failed: result.val[5][28] = abab, exp_result[188] = 0
-Failed: result.val[5][29] = abab, exp_result[189] = 0
-Failed: result.val[6][0] = 0, exp_result[192] = 9a03
-Failed: result.val[6][1] = 0, exp_result[193] = e3d5
-Failed: result.val[6][2] = 0, exp_result[194] = 9c4c
-Failed: result.val[6][3] = 0, exp_result[195] = 92d3
-Failed: result.val[6][4] = 0, exp_result[196] = 9c4c
-Failed: result.val[6][5] = 0, exp_result[197] = 92d3
-Failed: result.val[6][6] = 0, exp_result[198] = 8796
-Failed: result.val[6][7] = 0, exp_result[199] = 3b61
-Failed: result.val[6][8] = abab, exp_result[200] = 8796
-Failed: result.val[6][9] = 0, exp_result[201] = 3b61
-Failed: result.val[6][10] = 0, exp_result[202] = 5f23
-Failed: result.val[6][11] = 0, exp_result[203] = f843
-Failed: result.val[6][12] = 0, exp_result[204] = 5f23
-Failed: result.val[6][13] = abab, exp_result[205] = f843
-Failed: result.val[6][14] = 0, exp_result[206] = c3e0
-Failed: result.val[6][15] = 0, exp_result[207] = c296
-Failed: result.val[6][18] = abab, exp_result[210] = 0
-Failed: result.val[6][20] = 68d6, exp_result[212] = 0
-Failed: result.val[6][25] = abab, exp_result[217] = 0
-Failed: result.val[6][28] = abab, exp_result[220] = 0
-Failed: result.val[6][29] = abab, exp_result[221] = 0
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb7_v_u16.elf ++load_pk
+Failed: result.val[0][0] = 0, exp_result[0][0] = 19583
+Failed: result.val[0][1] = 0, exp_result[0][1] = 43521
+Failed: result.val[0][2] = 0, exp_result[0][2] = 49023
+Failed: result.val[0][3] = 0, exp_result[0][3] = 27647
+Failed: result.val[0][4] = 0, exp_result[0][4] = 49023
+Failed: result.val[0][5] = 0, exp_result[0][5] = 27647
+Failed: result.val[0][6] = 0, exp_result[0][6] = 12264
+Failed: result.val[0][7] = 0, exp_result[0][7] = 63575
+Failed: result.val[0][8] = 43947, exp_result[0][8] = 12264
+Failed: result.val[0][9] = 0, exp_result[0][9] = 63575
+Failed: result.val[0][10] = 0, exp_result[0][10] = 49050
+Failed: result.val[0][11] = 0, exp_result[0][11] = 56646
+Failed: result.val[0][12] = 0, exp_result[0][12] = 49050
+Failed: result.val[0][13] = 43947, exp_result[0][13] = 56646
+Failed: result.val[0][14] = 0, exp_result[0][14] = 50817
+Failed: result.val[0][15] = 0, exp_result[0][15] = 62405
+Failed: result.val[0][18] = 43947, exp_result[0][18] = 0
+Failed: result.val[0][20] = 33082, exp_result[0][20] = 0
+Failed: result.val[0][25] = 43947, exp_result[0][25] = 0
+Failed: result.val[0][28] = 43947, exp_result[0][28] = 0
+Failed: result.val[0][29] = 43947, exp_result[0][29] = 0
+Failed: result.val[1][0] = 0, exp_result[1][0] = 52608
+Failed: result.val[1][1] = 0, exp_result[1][1] = 29681
+Failed: result.val[1][2] = 0, exp_result[1][2] = 31418
+Failed: result.val[1][3] = 0, exp_result[1][3] = 14357
+Failed: result.val[1][4] = 0, exp_result[1][4] = 31418
+Failed: result.val[1][5] = 0, exp_result[1][5] = 14357
+Failed: result.val[1][6] = 0, exp_result[1][6] = 35434
+Failed: result.val[1][7] = 0, exp_result[1][7] = 10529
+Failed: result.val[1][8] = 43947, exp_result[1][8] = 35434
+Failed: result.val[1][9] = 0, exp_result[1][9] = 10529
+Failed: result.val[1][10] = 0, exp_result[1][10] = 60726
+Failed: result.val[1][11] = 0, exp_result[1][11] = 10850
+Failed: result.val[1][12] = 0, exp_result[1][12] = 60726
+Failed: result.val[1][13] = 43947, exp_result[1][13] = 10850
+Failed: result.val[1][14] = 0, exp_result[1][14] = 26741
+Failed: result.val[1][15] = 0, exp_result[1][15] = 21781
+Failed: result.val[1][18] = 43947, exp_result[1][18] = 0
+Failed: result.val[1][20] = 47074, exp_result[1][20] = 0
+Failed: result.val[1][25] = 43947, exp_result[1][25] = 0
+Failed: result.val[1][28] = 43947, exp_result[1][28] = 0
+Failed: result.val[1][29] = 43947, exp_result[1][29] = 0
+Failed: result.val[2][0] = 0, exp_result[2][0] = 16892
+Failed: result.val[2][1] = 0, exp_result[2][1] = 49834
+Failed: result.val[2][2] = 0, exp_result[2][2] = 41895
+Failed: result.val[2][3] = 0, exp_result[2][3] = 19118
+Failed: result.val[2][4] = 0, exp_result[2][4] = 41895
+Failed: result.val[2][5] = 0, exp_result[2][5] = 19118
+Failed: result.val[2][6] = 0, exp_result[2][6] = 19881
+Failed: result.val[2][7] = 0, exp_result[2][7] = 30515
+Failed: result.val[2][8] = 43947, exp_result[2][8] = 19881
+Failed: result.val[2][9] = 0, exp_result[2][9] = 30515
+Failed: result.val[2][10] = 0, exp_result[2][10] = 24286
+Failed: result.val[2][11] = 0, exp_result[2][11] = 34344
+Failed: result.val[2][12] = 0, exp_result[2][12] = 24286
+Failed: result.val[2][13] = 43947, exp_result[2][13] = 34344
+Failed: result.val[2][14] = 0, exp_result[2][14] = 12573
+Failed: result.val[2][15] = 0, exp_result[2][15] = 2582
+Failed: result.val[2][18] = 43947, exp_result[2][18] = 0
+Failed: result.val[2][20] = 44427, exp_result[2][20] = 0
+Failed: result.val[2][25] = 43947, exp_result[2][25] = 0
+Failed: result.val[2][28] = 43947, exp_result[2][28] = 0
+Failed: result.val[2][29] = 43947, exp_result[2][29] = 0
+Failed: result.val[3][0] = 0, exp_result[3][0] = 30764
+Failed: result.val[3][1] = 0, exp_result[3][1] = 49356
+Failed: result.val[3][2] = 0, exp_result[3][2] = 5301
+Failed: result.val[3][3] = 0, exp_result[3][3] = 27415
+Failed: result.val[3][4] = 0, exp_result[3][4] = 5301
+Failed: result.val[3][5] = 0, exp_result[3][5] = 27415
+Failed: result.val[3][6] = 0, exp_result[3][6] = 32117
+Failed: result.val[3][7] = 0, exp_result[3][7] = 292
+Failed: result.val[3][8] = 43947, exp_result[3][8] = 32117
+Failed: result.val[3][9] = 0, exp_result[3][9] = 292
+Failed: result.val[3][10] = 0, exp_result[3][10] = 15201
+Failed: result.val[3][11] = 0, exp_result[3][11] = 64899
+Failed: result.val[3][12] = 0, exp_result[3][12] = 15201
+Failed: result.val[3][13] = 43947, exp_result[3][13] = 64899
+Failed: result.val[3][14] = 0, exp_result[3][14] = 45664
+Failed: result.val[3][15] = 0, exp_result[3][15] = 55972
+Failed: result.val[3][18] = 43947, exp_result[3][18] = 0
+Failed: result.val[3][20] = 43725, exp_result[3][20] = 0
+Failed: result.val[3][25] = 43947, exp_result[3][25] = 0
+Failed: result.val[3][28] = 43947, exp_result[3][28] = 0
+Failed: result.val[3][29] = 43947, exp_result[3][29] = 0
+Failed: result.val[4][0] = 0, exp_result[4][0] = 35700
+Failed: result.val[4][1] = 0, exp_result[4][1] = 2231
+Failed: result.val[4][2] = 0, exp_result[4][2] = 54284
+Failed: result.val[4][3] = 0, exp_result[4][3] = 25543
+Failed: result.val[4][4] = 0, exp_result[4][4] = 54284
+Failed: result.val[4][5] = 0, exp_result[4][5] = 25543
+Failed: result.val[4][6] = 0, exp_result[4][6] = 55585
+Failed: result.val[4][7] = 0, exp_result[4][7] = 61034
+Failed: result.val[4][8] = 43947, exp_result[4][8] = 55585
+Failed: result.val[4][9] = 0, exp_result[4][9] = 61034
+Failed: result.val[4][10] = 0, exp_result[4][10] = 29454
+Failed: result.val[4][11] = 0, exp_result[4][11] = 1375
+Failed: result.val[4][12] = 0, exp_result[4][12] = 29454
+Failed: result.val[4][13] = 43947, exp_result[4][13] = 1375
+Failed: result.val[4][14] = 0, exp_result[4][14] = 9099
+Failed: result.val[4][15] = 0, exp_result[4][15] = 46673
+Failed: result.val[4][18] = 43947, exp_result[4][18] = 0
+Failed: result.val[4][20] = 46893, exp_result[4][20] = 0
+Failed: result.val[4][25] = 43947, exp_result[4][25] = 0
+Failed: result.val[4][28] = 43947, exp_result[4][28] = 0
+Failed: result.val[4][29] = 43947, exp_result[4][29] = 0
+Failed: result.val[5][0] = 0, exp_result[5][0] = 32433
+Failed: result.val[5][1] = 0, exp_result[5][1] = 5583
+Failed: result.val[5][2] = 0, exp_result[5][2] = 45347
+Failed: result.val[5][3] = 0, exp_result[5][3] = 7929
+Failed: result.val[5][4] = 0, exp_result[5][4] = 45347
+Failed: result.val[5][5] = 0, exp_result[5][5] = 7929
+Failed: result.val[5][6] = 0, exp_result[5][6] = 42279
+Failed: result.val[5][7] = 0, exp_result[5][7] = 55788
+Failed: result.val[5][8] = 43947, exp_result[5][8] = 42279
+Failed: result.val[5][9] = 0, exp_result[5][9] = 55788
+Failed: result.val[5][10] = 0, exp_result[5][10] = 64162
+Failed: result.val[5][11] = 0, exp_result[5][11] = 49614
+Failed: result.val[5][12] = 0, exp_result[5][12] = 64162
+Failed: result.val[5][13] = 43947, exp_result[5][13] = 49614
+Failed: result.val[5][14] = 0, exp_result[5][14] = 22480
+Failed: result.val[5][15] = 0, exp_result[5][15] = 26275
+Failed: result.val[5][18] = 43947, exp_result[5][18] = 0
+Failed: result.val[5][20] = 16506, exp_result[5][20] = 0
+Failed: result.val[5][25] = 43947, exp_result[5][25] = 0
+Failed: result.val[5][28] = 43947, exp_result[5][28] = 0
+Failed: result.val[5][29] = 43947, exp_result[5][29] = 0
+Failed: result.val[6][0] = 0, exp_result[6][0] = 39427
+Failed: result.val[6][1] = 0, exp_result[6][1] = 58325
+Failed: result.val[6][2] = 0, exp_result[6][2] = 40012
+Failed: result.val[6][3] = 0, exp_result[6][3] = 37587
+Failed: result.val[6][4] = 0, exp_result[6][4] = 40012
+Failed: result.val[6][5] = 0, exp_result[6][5] = 37587
+Failed: result.val[6][6] = 0, exp_result[6][6] = 34710
+Failed: result.val[6][7] = 0, exp_result[6][7] = 15201
+Failed: result.val[6][8] = 43947, exp_result[6][8] = 34710
+Failed: result.val[6][9] = 0, exp_result[6][9] = 15201
+Failed: result.val[6][10] = 0, exp_result[6][10] = 24355
+Failed: result.val[6][11] = 0, exp_result[6][11] = 63555
+Failed: result.val[6][12] = 0, exp_result[6][12] = 24355
+Failed: result.val[6][13] = 43947, exp_result[6][13] = 63555
+Failed: result.val[6][14] = 0, exp_result[6][14] = 50144
+Failed: result.val[6][15] = 0, exp_result[6][15] = 49814
+Failed: result.val[6][18] = 43947, exp_result[6][18] = 0
+Failed: result.val[6][20] = 26838, exp_result[6][20] = 0
+Failed: result.val[6][25] = 43947, exp_result[6][25] = 0
+Failed: result.val[6][28] = 43947, exp_result[6][28] = 0
+Failed: result.val[6][29] = 43947, exp_result[6][29] = 0
 TEST FAILED!

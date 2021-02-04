@@ -7,20 +7,27 @@ extern void abort(void);
 
  #define random(threshold) rand()%threshold 
  //#define data_init_bool(a, b, n, threshold) \ 
-     //	a = b = 1; 
+ //	a = b = 1;
  #define data_init_scalar(a, b, threshold) \ 
-     a = b = random(threshold); 
- #define data_init(a, b, n, threshold) \ 
-     for(int i = 0; i < n; i++) { \ 
-             a[i] = random(threshold); \ 
-             b[i] = a[i]; \ 
-         }
+   a = b = random(threshold);
+ #define data_init(a, b, n, threshold) \
+   for(int i = 0; i < n; i++) { \
+     a[i] = random(threshold); \
+     b[i] = a[i]; \
+   }
+ #define data_init_matrix(a, b, m, n, threshold) \
+   for(int i = 0; i < m; i++) { \
+     for(int j = 0; j < n; j++) { \
+       a.val[i][j] = random(threshold); \
+       b[i][j] = a.val[i][j]; \
+     } \
+   }
+ 
 
 #pragma GCC push_options
 #pragma GCC optimize("O0")
 __attribute__((noinline, noclone))
-void vtrunc_w_u16_golden(uint32_t *a,uint16_t *exp_result) {
-    for (int i = 0; i < ELE_NUM; i++)
+void vtrunc_w_u16_golden(uint32_t a[2][16],uint16_t *exp_result) {
 Operator Line --- TODO
 }
 #pragma GCC pop_options
@@ -28,12 +35,12 @@ Operator Line --- TODO
 int main(void) {
     int error = 0;
     uint32x16x2_t a;
-    uint32_t exp_a[16*2];
+    uint32_t exp_a[2][16];
 
     uint16x32_t result = {0};
     uint16_t exp_result[32] = {0};
 
-    data_init(a, exp_a, 16*2, 0xffffffff);
+    data_init_matrix(a, exp_a, 16, 2, 0xffffffff);
 
     //Get golden result
     vtrunc_w_u16_golden(exp_a,exp_result);

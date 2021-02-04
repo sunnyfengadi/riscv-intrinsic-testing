@@ -4,89 +4,40 @@ vsstcb3_v_u64_m.c:16:2: warning: multi-line comment [-Wcomment]
 vsstcb3_v_u64_m.c:18:44: warning: backslash and newline separated by space
    18 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vsstcb3_v_u64_m.c:20:40: warning: backslash and newline separated by space
-   20 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vsstcb3_v_u64_m.c:21:35: warning: backslash and newline separated by space
-   21 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vsstcb3_v_u64_m.c:22:40: warning: backslash and newline separated by space
-   22 |              a[i] = random(threshold); \
-      |                                         
-vsstcb3_v_u64_m.c:23:27: warning: backslash and newline separated by space
-   23 |              b[i] = a[i]; \
-      |                            
-vsstcb3_v_u64_m.c:29:6: warning: no previous prototype for 'vsstcb3_v_u64_m_golden' [-Wmissing-prototypes]
-   29 | void vsstcb3_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,void *exp_result) {
-      |      ^~~~~~~~~~~~~~~~~~~~~~
-vsstcb3_v_u64_m.c: In function 'vsstcb3_v_u64_m_golden':
-vsstcb3_v_u64_m.c:31:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   31 | Operator Line --- TODO
-      | ^~~~~~~~
-      | perror
-vsstcb3_v_u64_m.c:31:1: note: each undeclared identifier is reported only once for each function it appears in
-vsstcb3_v_u64_m.c:31:9: error: expected ';' before 'Line'
-   31 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vsstcb3_v_u64_m.c:29:37: warning: unused parameter 'mask' [-Wunused-parameter]
-   29 | void vsstcb3_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,void *exp_result) {
-      |                             ~~~~~~~~^~~~
-vsstcb3_v_u64_m.c:29:51: warning: unused parameter 'base' [-Wunused-parameter]
-   29 | void vsstcb3_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,void *exp_result) {
-      |                                          ~~~~~~~~~^~~~~~
-vsstcb3_v_u64_m.c:29:68: warning: unused parameter 'value' [-Wunused-parameter]
-   29 | void vsstcb3_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,void *exp_result) {
-      |                                                          ~~~~~~~~~~^~~~~
-vsstcb3_v_u64_m.c:29:80: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   29 | void vsstcb3_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,void *exp_result) {
-      |                                                                          ~~~~~~^~~~~~~~~~
+vsstcb3_v_u64_m.c:37:80: error: expected declaration specifiers or '...' before ')' token
+   37 | void vsstcb3_v_u64_m_golden(uint64_t *mask,uint64_t *base,uint64_t value[3][8],) {
+      |                                                                                ^
 vsstcb3_v_u64_m.c: In function 'main':
-vsstcb3_v_u64_m.c:45:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   45 |     data_init_bool(mask, exp_mask, 8, 0xffffffffffffffff);
+vsstcb3_v_u64_m.c:52:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   52 |     data_init_bool(mask, exp_mask, 8, 0xffffffffffffffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vsstcb3_v_u64_m.c:22:15: error: subscripted value is neither array nor pointer nor vector
-   22 |              a[i] = random(threshold); \
-      |               ^
-vsstcb3_v_u64_m.c:47:5: note: in expansion of macro 'data_init'
-   47 |     data_init(value, exp_value, 8*3, 0xffffffffffffffff);
-      |     ^~~~~~~~~
-vsstcb3_v_u64_m.c:23:22: error: subscripted value is neither array nor pointer nor vector
-   23 |              b[i] = a[i]; \
-      |                      ^
-vsstcb3_v_u64_m.c:47:5: note: in expansion of macro 'data_init'
-   47 |     data_init(value, exp_value, 8*3, 0xffffffffffffffff);
-      |     ^~~~~~~~~
-vsstcb3_v_u64_m.c:56:56: error: 'exp_result' undeclared (first use in this function)
-   56 |     vsstcb3_v_u64_m_golden(exp_mask,exp_base,exp_value,exp_result);
+vsstcb3_v_u64_m.c:63:5: warning: implicit declaration of function 'vsstcb3_v_u64_m_golden'; did you mean 'vsstcb3_v_u64_m'? [-Wimplicit-function-declaration]
+   63 |     vsstcb3_v_u64_m_golden(exp_mask,exp_base,exp_value,exp_result);
+      |     ^~~~~~~~~~~~~~~~~~~~~~
+      |     vsstcb3_v_u64_m
+vsstcb3_v_u64_m.c:63:56: error: 'exp_result' undeclared (first use in this function)
+   63 |     vsstcb3_v_u64_m_golden(exp_mask,exp_base,exp_value,exp_result);
       |                                                        ^~~~~~~~~~
-vsstcb3_v_u64_m.c:56:28: error: incompatible type for argument 1 of 'vsstcb3_v_u64_m_golden'
-   56 |     vsstcb3_v_u64_m_golden(exp_mask,exp_base,exp_value,exp_result);
-      |                            ^~~~~~~~
-      |                            |
-      |                            uint64_t * {aka long long unsigned int *}
-vsstcb3_v_u64_m.c:29:37: note: expected 'bool8_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   29 | void vsstcb3_v_u64_m_golden(bool8_t mask,uint64_t base[],uint64_t *value,void *exp_result) {
-      |                             ~~~~~~~~^~~~
-vsstcb3_v_u64_m.c:59:31: error: incompatible type for argument 3 of 'vsstcb3_v_u64_m'
-   59 |     vsstcb3_v_u64_m(mask,base,value);
+vsstcb3_v_u64_m.c:63:56: note: each undeclared identifier is reported only once for each function it appears in
+vsstcb3_v_u64_m.c:66:31: error: incompatible type for argument 3 of 'vsstcb3_v_u64_m'
+   66 |     vsstcb3_v_u64_m(mask,base,value);
       |                               ^~~~~
       |                               |
       |                               uint64x8x3_t
 In file included from vsstcb3_v_u64_m.c:4:
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:911:1: note: expected 'int64x8_t' but argument is of type 'uint64x8x3_t'
-  911 | __RUGRATS_SCATTER_STORE (u, uint, 64, 8)
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:899:1: note: expected 'int64x8_t' but argument is of type 'uint64x8x3_t'
+  899 | __RUGRATS_SCATTER_STORE (u, uint, 64, 8)
       | ^~~~~~~~~~~~~~~~~~~~~~~
-vsstcb3_v_u64_m.c:59:5: error: too few arguments to function 'vsstcb3_v_u64_m'
-   59 |     vsstcb3_v_u64_m(mask,base,value);
+vsstcb3_v_u64_m.c:66:5: error: too few arguments to function 'vsstcb3_v_u64_m'
+   66 |     vsstcb3_v_u64_m(mask,base,value);
       |     ^~~~~~~~~~~~~~~
 In file included from vsstcb3_v_u64_m.c:4:
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:911:1: note: declared here
-  911 | __RUGRATS_SCATTER_STORE (u, uint, 64, 8)
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:899:1: note: declared here
+  899 | __RUGRATS_SCATTER_STORE (u, uint, 64, 8)
       | ^~~~~~~~~~~~~~~~~~~~~~~
-vsstcb3_v_u64_m.c:62:9: error: 'i' undeclared (first use in this function)
-   62 |     for(i=0;i<ELE_NUM*COMBO_NUM;i++) {
+vsstcb3_v_u64_m.c:69:9: error: 'i' undeclared (first use in this function)
+   69 |     for(i=0;i<ELE_NUM*COMBO_NUM;i++) {
       |         ^
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsstcb3_v_u64_m.o] Error 1
 make: *** [bare] Error 2

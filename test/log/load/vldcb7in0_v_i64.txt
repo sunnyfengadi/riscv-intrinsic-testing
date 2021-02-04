@@ -4,62 +4,34 @@ vldcb7in0_v_i64.c:16:2: warning: multi-line comment [-Wcomment]
 vldcb7in0_v_i64.c:18:44: warning: backslash and newline separated by space
    18 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vldcb7in0_v_i64.c:20:40: warning: backslash and newline separated by space
-   20 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vldcb7in0_v_i64.c:21:35: warning: backslash and newline separated by space
-   21 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vldcb7in0_v_i64.c:22:40: warning: backslash and newline separated by space
-   22 |              a[i] = random(threshold); \
-      |                                         
-vldcb7in0_v_i64.c:23:27: warning: backslash and newline separated by space
-   23 |              b[i] = a[i]; \
-      |                            
-vldcb7in0_v_i64.c:29:6: warning: no previous prototype for 'vldcb7in0_v_i64_golden' [-Wmissing-prototypes]
-   29 | void vldcb7in0_v_i64_golden(int64_t *base,uint32_t *imm,int64_t exp_result[][ELE_NUM]) {
+vldcb7in0_v_i64.c:37:6: warning: no previous prototype for 'vldcb7in0_v_i64_golden' [-Wmissing-prototypes]
+   37 | void vldcb7in0_v_i64_golden(int64_t *base,uint32_t imm,int64_t exp_result[][ELE_NUM]) {
       |      ^~~~~~~~~~~~~~~~~~~~~~
 vldcb7in0_v_i64.c: In function 'vldcb7in0_v_i64_golden':
-vldcb7in0_v_i64.c:29:53: warning: unused parameter 'imm' [-Wunused-parameter]
-   29 | void vldcb7in0_v_i64_golden(int64_t *base,uint32_t *imm,int64_t exp_result[][ELE_NUM]) {
-      |                                           ~~~~~~~~~~^~~
+vldcb7in0_v_i64.c:37:52: warning: unused parameter 'imm' [-Wunused-parameter]
+   37 | void vldcb7in0_v_i64_golden(int64_t *base,uint32_t imm,int64_t exp_result[][ELE_NUM]) {
+      |                                           ~~~~~~~~~^~~
 vldcb7in0_v_i64.c: In function 'main':
-vldcb7in0_v_i64.c:60:37: warning: passing argument 2 of 'vldcb7in0_v_i64_golden' makes pointer from integer without a cast [-Wint-conversion]
-   60 |     vldcb7in0_v_i64_golden(exp_base,exp_imm,exp_result);
-      |                                     ^~~~~~~
-      |                                     |
-      |                                     uint32_t {aka long unsigned int}
-vldcb7in0_v_i64.c:29:53: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t' {aka 'long unsigned int'}
-   29 | void vldcb7in0_v_i64_golden(int64_t *base,uint32_t *imm,int64_t exp_result[][ELE_NUM]) {
-      |                                           ~~~~~~~~~~^~~
-vldcb7in0_v_i64.c:60:45: warning: passing argument 3 of 'vldcb7in0_v_i64_golden' from incompatible pointer type [-Wincompatible-pointer-types]
-   60 |     vldcb7in0_v_i64_golden(exp_base,exp_imm,exp_result);
-      |                                             ^~~~~~~~~~
-      |                                             |
-      |                                             int64_t * {aka long long int *}
-vldcb7in0_v_i64.c:29:65: note: expected 'int64_t (*)[8]' {aka 'long long int (*)[8]'} but argument is of type 'int64_t *' {aka 'long long int *'}
-   29 | void vldcb7in0_v_i64_golden(int64_t *base,uint32_t *imm,int64_t exp_result[][ELE_NUM]) {
-      |                                                         ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
-vldcb7in0_v_i64.c:69:55: warning: format '%x' expects argument of type 'unsigned int', but argument 4 has type 'long long int' [-Wformat=]
-   69 |                 printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
-      |                                                      ~^                               ~~~~~~~~~~~~~~~~
-      |                                                       |                                            |
-      |                                                       unsigned int                                 long long int
-      |                                                      %llx
-vldcb7in0_v_i64.c:69:76: warning: format '%x' expects argument of type 'unsigned int', but argument 6 has type 'int64_t' {aka 'long long int'} [-Wformat=]
-   69 |                 printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
-      |                                                                           ~^                                         ~~~~~~~~~~~~~~~~~~~~~~~
-      |                                                                            |                                                   |
-      |                                                                            unsigned int                                        int64_t {aka long long int}
-      |                                                                           %llx
-vldcb7in0_v_i64.c:43:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
-   43 |     uint32_t imm;
+vldcb7in0_v_i64.c:77:55: warning: format '%d' expects argument of type 'int', but argument 4 has type 'long long int' [-Wformat=]
+   77 |                 printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
+      |                                                      ~^                                   ~~~~~~~~~~~~~~~~
+      |                                                       |                                                |
+      |                                                       int                                              long long int
+      |                                                      %lld
+vldcb7in0_v_i64.c:77:80: warning: format '%d' expects argument of type 'int', but argument 7 has type 'int64_t' {aka 'long long int'} [-Wformat=]
+   77 |                 printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
+      |                                                                               ~^                                 ~~~~~~~~~~~~~~~~
+      |                                                                                |                                              |
+      |                                                                                int                                            int64_t {aka long long int}
+      |                                                                               %lld
+vldcb7in0_v_i64.c:51:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   51 |     uint32_t imm;
       |              ^~~
 soc_mode = 0 progsize = 2 
 binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb7in0_v_i64.elf
-Start Loading Kernel @ Tue Feb  2 14:52:39 2021
+Start Loading Kernel @ Thu Feb  4 18:47:57 2021
 
-Start Setting Reset PC for orv32 @ Tue Feb  2 14:52:39 2021
+Start Setting Reset PC for orv32 @ Thu Feb  4 18:47:57 2021
 
 ======================================================================
 
@@ -77,63 +49,63 @@ Start Setting Reset PC for orv32 @ Tue Feb  2 14:52:39 2021
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vldcb7in0_v_i64.c
 Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb7in0_v_i64.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb7in0_v_i64.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb7in0_v_i64.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb7in0_v_i64.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
 Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb7in0_v_i64.elf
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb7in0_v_i64.elf ++load_pk
-Failed: result.val[0][1] = 0, exp_result[1085377743] = 0
-Failed: result.val[0][2] = 1, exp_result[1270216262] = 0
-Failed: result.val[0][3] = 1, exp_result[1191391529] = 0
-Failed: result.val[0][4] = 1, exp_result[812669700] = 0
-Failed: result.val[0][5] = 1, exp_result[553475508] = 0
-Failed: result.val[0][6] = 1, exp_result[445349752] = 0
-Failed: result.val[0][7] = 1, exp_result[1344887256] = 0
-Failed: result.val[1][0] = 1, exp_result[730417256] = 0
-Failed: result.val[1][1] = 1, exp_result[1812158119] = 0
-Failed: result.val[1][2] = 1, exp_result[147699711] = 0
-Failed: result.val[1][3] = 1, exp_result[880268351] = 0
-Failed: result.val[1][4] = 1, exp_result[1889772843] = 0
-Failed: result.val[1][5] = 1, exp_result[686078705] = 0
-Failed: result.val[1][6] = 1, exp_result[2105754108] = 0
-Failed: result.val[1][7] = 1, exp_result[182546393] = 0
-Failed: result.val[2][0] = 1, exp_result[1949118330] = 0
-Failed: result.val[2][1] = 1, exp_result[220137366] = 0
-Failed: result.val[2][2] = 1, exp_result[1979932169] = 0
-Failed: result.val[2][3] = 1, exp_result[1089957932] = 0
-Failed: result.val[2][4] = 1, exp_result[1873226917] = 0
-Failed: result.val[2][5] = 1, exp_result[715669847] = 0
-Failed: result.val[2][6] = 1, exp_result[1486937972] = 0
-Failed: result.val[2][7] = 1, exp_result[1196032868] = 0
-Failed: result.val[3][0] = 1, exp_result[777206980] = 0
-Failed: result.val[3][1] = 1, exp_result[68706223] = 0
-Failed: result.val[3][2] = 1, exp_result[1843638549] = 0
-Failed: result.val[3][3] = 1, exp_result[212567592] = 0
-Failed: result.val[3][4] = 1, exp_result[1883488164] = 0
-Failed: result.val[3][5] = 1, exp_result[964776169] = 0
-Failed: result.val[3][6] = 1, exp_result[928126551] = 0
-Failed: result.val[3][7] = 1, exp_result[1301950427] = 0
-Failed: result.val[4][0] = 1, exp_result[1992516190] = 0
-Failed: result.val[4][1] = 1, exp_result[1426542624] = 0
-Failed: result.val[4][2] = 1, exp_result[849040635] = 0
-Failed: result.val[4][3] = 1, exp_result[941604920] = 0
-Failed: result.val[4][4] = 1, exp_result[1400427944] = 0
-Failed: result.val[4][5] = 1, exp_result[1994719310] = 0
-Failed: result.val[4][6] = 1, exp_result[2038269862] = 0
-Failed: result.val[5][0] = 1, exp_result[1280937363] = 0
-Failed: result.val[5][1] = 1, exp_result[1681643301] = 0
-Failed: result.val[5][2] = 1, exp_result[725914710] = 0
-Failed: result.val[5][3] = 1, exp_result[1729267236] = 0
-Failed: result.val[5][4] = 1, exp_result[2023351876] = 0
-Failed: result.val[5][5] = 1, exp_result[142750431] = 0
-Failed: result.val[5][6] = 1, exp_result[1840579929] = 0
-Failed: result.val[5][7] = 1, exp_result[2098560397] = 0
-Failed: result.val[6][0] = 1, exp_result[1910500675] = 0
-Failed: result.val[6][1] = 1, exp_result[1170970491] = 0
-Failed: result.val[6][2] = 1, exp_result[1856224190] = 0
-Failed: result.val[6][3] = 1, exp_result[983059344] = 0
-Failed: result.val[6][4] = 1, exp_result[1718458134] = 0
-Failed: result.val[6][5] = 1, exp_result[1876268425] = 0
-Failed: result.val[6][6] = 1, exp_result[1764841629] = 0
-Failed: result.val[6][7] = 1, exp_result[398844030] = 0
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vldcb7in0_v_i64.elf ++load_pk
+Failed: result.val[0][1] = 0, exp_result[1085377743][0] = 0
+Failed: result.val[0][2] = 1, exp_result[1270216262][0] = 0
+Failed: result.val[0][3] = 1, exp_result[1191391529][0] = 0
+Failed: result.val[0][4] = 1, exp_result[812669700][0] = 0
+Failed: result.val[0][5] = 1, exp_result[553475508][0] = 0
+Failed: result.val[0][6] = 1, exp_result[445349752][0] = 0
+Failed: result.val[0][7] = 1, exp_result[1344887256][0] = 0
+Failed: result.val[1][0] = 1, exp_result[730417256][0] = 1
+Failed: result.val[1][1] = 1, exp_result[1812158119][0] = 1
+Failed: result.val[1][2] = 1, exp_result[147699711][0] = 1
+Failed: result.val[1][3] = 1, exp_result[880268351][0] = 1
+Failed: result.val[1][4] = 1, exp_result[1889772843][0] = 1
+Failed: result.val[1][5] = 1, exp_result[686078705][0] = 1
+Failed: result.val[1][6] = 1, exp_result[2105754108][0] = 1
+Failed: result.val[1][7] = 1, exp_result[182546393][0] = 1
+Failed: result.val[2][0] = 1, exp_result[1949118330][0] = 2
+Failed: result.val[2][1] = 1, exp_result[220137366][0] = 2
+Failed: result.val[2][2] = 1, exp_result[1979932169][0] = 2
+Failed: result.val[2][3] = 1, exp_result[1089957932][0] = 2
+Failed: result.val[2][4] = 1, exp_result[1873226917][0] = 2
+Failed: result.val[2][5] = 1, exp_result[715669847][0] = 2
+Failed: result.val[2][6] = 1, exp_result[1486937972][0] = 2
+Failed: result.val[2][7] = 1, exp_result[1196032868][0] = 2
+Failed: result.val[3][0] = 1, exp_result[777206980][0] = 3
+Failed: result.val[3][1] = 1, exp_result[68706223][0] = 3
+Failed: result.val[3][2] = 1, exp_result[1843638549][0] = 3
+Failed: result.val[3][3] = 1, exp_result[212567592][0] = 3
+Failed: result.val[3][4] = 1, exp_result[1883488164][0] = 3
+Failed: result.val[3][5] = 1, exp_result[964776169][0] = 3
+Failed: result.val[3][6] = 1, exp_result[928126551][0] = 3
+Failed: result.val[3][7] = 1, exp_result[1301950427][0] = 3
+Failed: result.val[4][0] = 1, exp_result[1992516190][0] = 4
+Failed: result.val[4][1] = 1, exp_result[1426542624][0] = 4
+Failed: result.val[4][2] = 1, exp_result[849040635][0] = 4
+Failed: result.val[4][3] = 1, exp_result[941604920][0] = 4
+Failed: result.val[4][4] = 1, exp_result[1400427944][0] = 4
+Failed: result.val[4][5] = 1, exp_result[1994719310][0] = 4
+Failed: result.val[4][6] = 1, exp_result[2038269862][0] = 4
+Failed: result.val[5][0] = 1, exp_result[1280937363][0] = 5
+Failed: result.val[5][1] = 1, exp_result[1681643301][0] = 5
+Failed: result.val[5][2] = 1, exp_result[725914710][0] = 5
+Failed: result.val[5][3] = 1, exp_result[1729267236][0] = 5
+Failed: result.val[5][4] = 1, exp_result[2023351876][0] = 5
+Failed: result.val[5][5] = 1, exp_result[142750431][0] = 5
+Failed: result.val[5][6] = 1, exp_result[1840579929][0] = 5
+Failed: result.val[5][7] = 1, exp_result[2098560397][0] = 5
+Failed: result.val[6][0] = 1, exp_result[1910500675][0] = 6
+Failed: result.val[6][1] = 1, exp_result[1170970491][0] = 6
+Failed: result.val[6][2] = 1, exp_result[1856224190][0] = 6
+Failed: result.val[6][3] = 1, exp_result[983059344][0] = 6
+Failed: result.val[6][4] = 1, exp_result[1718458134][0] = 6
+Failed: result.val[6][5] = 1, exp_result[1876268425][0] = 6
+Failed: result.val[6][6] = 1, exp_result[1764841629][0] = 6
+Failed: result.val[6][7] = 1, exp_result[398844030][0] = 6
 TEST FAILED!

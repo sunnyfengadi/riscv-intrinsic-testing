@@ -4,60 +4,69 @@ vwmsub_vv_u16_m.c:10:2: warning: multi-line comment [-Wcomment]
 vwmsub_vv_u16_m.c:12:44: warning: backslash and newline separated by space
    12 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vwmsub_vv_u16_m.c:14:40: warning: backslash and newline separated by space
-   14 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vwmsub_vv_u16_m.c:15:35: warning: backslash and newline separated by space
-   15 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vwmsub_vv_u16_m.c:16:40: warning: backslash and newline separated by space
-   16 |              a[i] = random(threshold); \
-      |                                         
-vwmsub_vv_u16_m.c:17:27: warning: backslash and newline separated by space
-   17 |              b[i] = a[i]; \
-      |                            
-vwmsub_vv_u16_m.c:23:6: warning: no previous prototype for 'vwmsub_vv_u16_m_golden' [-Wmissing-prototypes]
-   23 | void vwmsub_vv_u16_m_golden(bool32_t mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+vwmsub_vv_u16_m.c:31:6: warning: no previous prototype for 'vwmsub_vv_u16_m_golden' [-Wmissing-prototypes]
+   31 | void vwmsub_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
       |      ^~~~~~~~~~~~~~~~~~~~~~
 vwmsub_vv_u16_m.c: In function 'vwmsub_vv_u16_m_golden':
-vwmsub_vv_u16_m.c:23:77: warning: unused parameter 'c' [-Wunused-parameter]
-   23 | void vwmsub_vv_u16_m_golden(bool32_t mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
-      |                                                                   ~~~~~~~~~~^
+vwmsub_vv_u16_m.c:31:39: warning: unused parameter 'mask' [-Wunused-parameter]
+   31 | void vwmsub_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                             ~~~~~~~~~~^~~~
+vwmsub_vv_u16_m.c:31:53: warning: unused parameter 'a' [-Wunused-parameter]
+   31 | void vwmsub_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                            ~~~~~~~~~^~~~~~~~
+vwmsub_vv_u16_m.c:31:72: warning: unused parameter 'b' [-Wunused-parameter]
+   31 | void vwmsub_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                                              ~~~~~~~~~~^
+vwmsub_vv_u16_m.c:31:84: warning: unused parameter 'c' [-Wunused-parameter]
+   31 | void vwmsub_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                          ~~~~~~~~~~^
+vwmsub_vv_u16_m.c:31:95: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   31 | void vwmsub_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                                      ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
 vwmsub_vv_u16_m.c: In function 'main':
-vwmsub_vv_u16_m.c:43:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   43 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vwmsub_vv_u16_m.c:50:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   50 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vwmsub_vv_u16_m.c:16:15: error: subscripted value is neither array nor pointer nor vector
-   16 |              a[i] = random(threshold); \
-      |               ^
-vwmsub_vv_u16_m.c:44:5: note: in expansion of macro 'data_init'
-   44 |     data_init(a, exp_a, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vwmsub_vv_u16_m.c:17:22: error: subscripted value is neither array nor pointer nor vector
-   17 |              b[i] = a[i]; \
-      |                      ^
-vwmsub_vv_u16_m.c:44:5: note: in expansion of macro 'data_init'
-   44 |     data_init(a, exp_a, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vwmsub_vv_u16_m.c:49:28: error: incompatible type for argument 1 of 'vwmsub_vv_u16_m_golden'
-   49 |     vwmsub_vv_u16_m_golden(exp_mask,exp_a,exp_b,exp_c,exp_result);
-      |                            ^~~~~~~~
-      |                            |
-      |                            uint64_t * {aka long long unsigned int *}
-vwmsub_vv_u16_m.c:23:38: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   23 | void vwmsub_vv_u16_m_golden(bool32_t mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
-      |                             ~~~~~~~~~^~~~
-vwmsub_vv_u16_m.c:56:35: error: subscripted value is neither array nor pointer nor vector
-   56 |         if(exp_result[i] != result[i]) {
-      |                                   ^
-vwmsub_vv_u16_m.c:57:79: error: subscripted value is neither array nor pointer nor vector
-   57 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
-      |                                                                               ^
-vwmsub_vv_u16_m.c:40:19: warning: variable 'result' set but not used [-Wunused-but-set-variable]
-   40 |     uint32x16x2_t result = {0};
-      |                   ^~~~~~
-make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwmsub_vv_u16_m.o] Error 1
+vwmsub_vv_u16_m.c:56:55: warning: passing argument 5 of 'vwmsub_vv_u16_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   56 |     vwmsub_vv_u16_m_golden(exp_mask,exp_a,exp_b,exp_c,exp_result);
+      |                                                       ^~~~~~~~~~
+      |                                                       |
+      |                                                       uint32_t (*)[16] {aka long unsigned int (*)[16]}
+vwmsub_vv_u16_m.c:31:95: note: expected 'uint32_t (*)[32]' {aka 'long unsigned int (*)[32]'} but argument is of type 'uint32_t (*)[16]' {aka 'long unsigned int (*)[16]'}
+   31 | void vwmsub_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                                      ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vwmsub_vv_u16_m.c:65:80: warning: format '%d' expects argument of type 'int', but argument 7 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   65 |                 printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
+      |                                                                               ~^                                 ~~~~~~~~~~~~~~~~
+      |                                                                                |                                              |
+      |                                                                                int                                            uint32_t {aka long unsigned int}
+      |                                                                               %ld
+vwmsub_vv_u16_m.c:50:5: warning: 'mask' is used uninitialized in this function [-Wuninitialized]
+   50 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+vwmsub_vv_u16_m.c:64:29: warning: iteration 16 invokes undefined behavior [-Waggressive-loop-optimizations]
+   64 |             if(exp_result[i][j] != result.val[i][j]) {
+      |                ~~~~~~~~~~~~~^~~
+vwmsub_vv_u16_m.c:63:9: note: within this loop
+   63 |         for(int j = 0; j < ELE_NUM; j++) {
+      |         ^~~
+vwmsub_vv_u16_m.c:22:20: warning: iteration 2 invokes undefined behavior [-Waggressive-loop-optimizations]
+   22 |        a.val[i][j] = random(threshold); \
+      |                    ^
+vwmsub_vv_u16_m.c:51:5: note: in expansion of macro 'data_init_matrix'
+   51 |     data_init_matrix(a, exp_a, 16, 2, 0xffffffff);
+      |     ^~~~~~~~~~~~~~~~
+vwmsub_vv_u16_m.c:20:4: note: within this loop
+   20 |    for(int i = 0; i < m; i++) { \
+      |    ^~~
+vwmsub_vv_u16_m.c:51:5: note: in expansion of macro 'data_init_matrix'
+   51 |     data_init_matrix(a, exp_a, 16, 2, 0xffffffff);
+      |     ^~~~~~~~~~~~~~~~
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/../lib/gcc/riscv32-rivai-elf/10.2.1/../../../../riscv32-rivai-elf/bin/ld: /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwmsub_vv_u16_m.o: in function `main':
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test/vwmsub_vv_u16_m.c:50: undefined reference to `data_init_bool'
+collect2: error: ld returned 1 exit status
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwmsub_vv_u16_m.elf] Error 1
 make: *** [bare] Error 2
 ======================================================================
 
@@ -74,6 +83,8 @@ make: *** [bare] Error 2
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vwmsub_vv_u16_m.c
-Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwmsub_vv_u16_m.o' failed
+Linking....
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwmsub_vv_u16_m.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwmsub_vv_u16_m.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+Makefile:85: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwmsub_vv_u16_m.elf' failed
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 Makefile:37: recipe for target 'bare' failed

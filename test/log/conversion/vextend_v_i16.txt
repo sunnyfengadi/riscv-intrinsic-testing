@@ -4,52 +4,68 @@ vextend_v_i16.c:10:2: warning: multi-line comment [-Wcomment]
 vextend_v_i16.c:12:44: warning: backslash and newline separated by space
    12 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vextend_v_i16.c:14:40: warning: backslash and newline separated by space
-   14 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vextend_v_i16.c:15:35: warning: backslash and newline separated by space
-   15 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vextend_v_i16.c:16:40: warning: backslash and newline separated by space
-   16 |              a[i] = random(threshold); \
-      |                                         
-vextend_v_i16.c:17:27: warning: backslash and newline separated by space
-   17 |              b[i] = a[i]; \
-      |                            
-vextend_v_i16.c:23:6: warning: no previous prototype for 'vextend_v_i16_golden' [-Wmissing-prototypes]
-   23 | void vextend_v_i16_golden(int16_t *a,int32_t *exp_result) {
+vextend_v_i16.c:31:6: warning: no previous prototype for 'vextend_v_i16_golden' [-Wmissing-prototypes]
+   31 | void vextend_v_i16_golden(int16_t *a,int32_t exp_result[][ELE_NUM]) {
       |      ^~~~~~~~~~~~~~~~~~~~
 vextend_v_i16.c: In function 'vextend_v_i16_golden':
-vextend_v_i16.c:25:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   25 | Operator Line --- TODO
+vextend_v_i16.c:32:1: error: unknown type name 'Operator'
+   32 | Operator Line --- TODO
       | ^~~~~~~~
-      | perror
-vextend_v_i16.c:25:1: note: each undeclared identifier is reported only once for each function it appears in
-vextend_v_i16.c:25:9: error: expected ';' before 'Line'
-   25 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vextend_v_i16.c:23:36: warning: unused parameter 'a' [-Wunused-parameter]
-   23 | void vextend_v_i16_golden(int16_t *a,int32_t *exp_result) {
-      |                           ~~~~~~~~~^
-vextend_v_i16.c:23:47: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   23 | void vextend_v_i16_golden(int16_t *a,int32_t *exp_result) {
-      |                                      ~~~~~~~~~^~~~~~~~~~
+vextend_v_i16.c:32:15: error: expected '=', ',', ';', 'asm' or '__attribute__' before '--' token
+   32 | Operator Line --- TODO
+      |               ^~
+vextend_v_i16.c:36:5: warning: 'main' is normally a non-static function [-Wmain]
+   36 | int main(void) {
+      |     ^~~~
 vextend_v_i16.c: In function 'main':
-vextend_v_i16.c:43:14: warning: implicit declaration of function 'vextend_v_i16'; did you mean 'vext_v_i16'? [-Wimplicit-function-declaration]
-   43 |     result = vextend_v_i16(a);
+vextend_v_i16.c:38:16: warning: declaration of 'a' shadows a parameter [-Wshadow]
+   38 |     int16x32_t a;
+      |                ^
+vextend_v_i16.c:31:36: note: shadowed declaration is here
+   31 | void vextend_v_i16_golden(int16_t *a,int32_t exp_result[][ELE_NUM]) {
+      |                           ~~~~~~~~~^
+vextend_v_i16.c:42:13: warning: declaration of 'exp_result' shadows a parameter [-Wshadow]
+   42 |     int32_t exp_result[2][16] = {0};
+      |             ^~~~~~~~~~
+vextend_v_i16.c:31:46: note: shadowed declaration is here
+   31 | void vextend_v_i16_golden(int16_t *a,int32_t exp_result[][ELE_NUM]) {
+      |                                      ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vextend_v_i16.c:47:32: warning: passing argument 2 of 'vextend_v_i16_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   47 |     vextend_v_i16_golden(exp_a,exp_result);
+      |                                ^~~~~~~~~~
+      |                                |
+      |                                int32_t (*)[16] {aka long int (*)[16]}
+vextend_v_i16.c:31:46: note: expected 'int32_t (*)[32]' {aka 'long int (*)[32]'} but argument is of type 'int32_t (*)[16]' {aka 'long int (*)[16]'}
+   31 | void vextend_v_i16_golden(int16_t *a,int32_t exp_result[][ELE_NUM]) {
+      |                                      ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vextend_v_i16.c:50:14: warning: implicit declaration of function 'vextend_v_i16'; did you mean 'vext_v_i16'? [-Wimplicit-function-declaration]
+   50 |     result = vextend_v_i16(a);
       |              ^~~~~~~~~~~~~
       |              vext_v_i16
-vextend_v_i16.c:43:14: error: incompatible types when assigning to type 'int32x16x2_t' from type 'int'
-vextend_v_i16.c:47:35: error: subscripted value is neither array nor pointer nor vector
-   47 |         if(exp_result[i] != result[i]) {
+vextend_v_i16.c:50:14: error: incompatible types when assigning to type 'int32x16x2_t' from type 'int'
+vextend_v_i16.c:54:35: error: subscripted value is neither array nor pointer nor vector
+   54 |         if(exp_result[i] != result[i]) {
       |                                   ^
-vextend_v_i16.c:48:79: error: subscripted value is neither array nor pointer nor vector
-   48 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vextend_v_i16.c:55:79: error: subscripted value is neither array nor pointer nor vector
+   55 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                                               ^
-vextend_v_i16.c:34:18: warning: variable 'result' set but not used [-Wunused-but-set-variable]
-   34 |     int32x16x2_t result = {0};
+vextend_v_i16.c:41:18: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+   41 |     int32x16x2_t result = {0};
       |                  ^~~~~~
+vextend_v_i16.c: In function 'vextend_v_i16_golden':
+vextend_v_i16.c:70:1: error: expected declaration or statement at end of input
+   70 | }
+      | ^
+vextend_v_i16.c:31:36: warning: unused parameter 'a' [-Wunused-parameter]
+   31 | void vextend_v_i16_golden(int16_t *a,int32_t exp_result[][ELE_NUM]) {
+      |                           ~~~~~~~~~^
+vextend_v_i16.c:31:46: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   31 | void vextend_v_i16_golden(int16_t *a,int32_t exp_result[][ELE_NUM]) {
+      |                                      ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+At top level:
+vextend_v_i16.c:36:5: warning: 'main' defined but not used [-Wunused-function]
+   36 | int main(void) {
+      |     ^~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vextend_v_i16.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

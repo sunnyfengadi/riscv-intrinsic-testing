@@ -4,63 +4,27 @@ vgldcb1_v_u16_m.c:16:2: warning: multi-line comment [-Wcomment]
 vgldcb1_v_u16_m.c:18:44: warning: backslash and newline separated by space
    18 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vgldcb1_v_u16_m.c:20:40: warning: backslash and newline separated by space
-   20 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vgldcb1_v_u16_m.c:21:35: warning: backslash and newline separated by space
-   21 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vgldcb1_v_u16_m.c:22:40: warning: backslash and newline separated by space
-   22 |              a[i] = random(threshold); \
-      |                                         
-vgldcb1_v_u16_m.c:23:27: warning: backslash and newline separated by space
-   23 |              b[i] = a[i]; \
-      |                            
-vgldcb1_v_u16_m.c:29:6: warning: no previous prototype for 'vgldcb1_v_u16_m_golden' [-Wmissing-prototypes]
-   29 | void vgldcb1_v_u16_m_golden(bool32_t *mask,uint16_t maskoff,uint16_t *base,int16_t index,uint16_t *exp_result) {
+vgldcb1_v_u16_m.c:37:6: warning: no previous prototype for 'vgldcb1_v_u16_m_golden' [-Wmissing-prototypes]
+   37 | void vgldcb1_v_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *base,int16_t *index,uint16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~~~
 vgldcb1_v_u16_m.c: In function 'vgldcb1_v_u16_m_golden':
-vgldcb1_v_u16_m.c:33:31: error: subscripted value is neither array nor pointer nor vector
-   33 |                  exp_result[i][j*GROUP_DEPTH/ELE_WIDTH+k] = base[i*COMBO_STRIDE/ELE_WIDTH+ j*GROUP_STRIDE/ELE_WIDTH + k*ELE_STRIDE/ELE_WIDTH];
+vgldcb1_v_u16_m.c:41:31: error: subscripted value is neither array nor pointer nor vector
+   41 |                  exp_result[i][j*GROUP_DEPTH/ELE_WIDTH+k] = base[i*COMBO_STRIDE/ELE_WIDTH+ j*GROUP_STRIDE/ELE_WIDTH + k*ELE_STRIDE/ELE_WIDTH];
       |                               ^
-vgldcb1_v_u16_m.c:29:39: warning: unused parameter 'mask' [-Wunused-parameter]
-   29 | void vgldcb1_v_u16_m_golden(bool32_t *mask,uint16_t maskoff,uint16_t *base,int16_t index,uint16_t *exp_result) {
+vgldcb1_v_u16_m.c:37:39: warning: unused parameter 'mask' [-Wunused-parameter]
+   37 | void vgldcb1_v_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *base,int16_t *index,uint16_t *exp_result) {
       |                             ~~~~~~~~~~^~~~
-vgldcb1_v_u16_m.c:29:53: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   29 | void vgldcb1_v_u16_m_golden(bool32_t *mask,uint16_t maskoff,uint16_t *base,int16_t index,uint16_t *exp_result) {
-      |                                            ~~~~~~~~~^~~~~~~
-vgldcb1_v_u16_m.c:29:84: warning: unused parameter 'index' [-Wunused-parameter]
-   29 | void vgldcb1_v_u16_m_golden(bool32_t *mask,uint16_t maskoff,uint16_t *base,int16_t index,uint16_t *exp_result) {
-      |                                                                            ~~~~~~~~^~~~~
+vgldcb1_v_u16_m.c:37:54: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   37 | void vgldcb1_v_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *base,int16_t *index,uint16_t *exp_result) {
+      |                                            ~~~~~~~~~~^~~~~~~
+vgldcb1_v_u16_m.c:37:86: warning: unused parameter 'index' [-Wunused-parameter]
+   37 | void vgldcb1_v_u16_m_golden(uint64_t *mask,uint16_t *maskoff,uint16_t *base,int16_t *index,uint16_t *exp_result) {
+      |                                                                             ~~~~~~~~~^~~~~
 vgldcb1_v_u16_m.c: In function 'main':
-vgldcb1_v_u16_m.c:54:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   54 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vgldcb1_v_u16_m.c:62:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   62 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vgldcb1_v_u16_m.c:66:28: warning: passing argument 1 of 'vgldcb1_v_u16_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
-   66 |     vgldcb1_v_u16_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
-      |                            ^~~~~~~~
-      |                            |
-      |                            uint64_t * {aka long long unsigned int *}
-vgldcb1_v_u16_m.c:29:39: note: expected 'bool32_t *' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   29 | void vgldcb1_v_u16_m_golden(bool32_t *mask,uint16_t maskoff,uint16_t *base,int16_t index,uint16_t *exp_result) {
-      |                             ~~~~~~~~~~^~~~
-vgldcb1_v_u16_m.c:66:37: warning: passing argument 2 of 'vgldcb1_v_u16_m_golden' makes integer from pointer without a cast [-Wint-conversion]
-   66 |     vgldcb1_v_u16_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
-      |                                     ^~~~~~~~~~~
-      |                                     |
-      |                                     uint16_t * {aka short unsigned int *}
-vgldcb1_v_u16_m.c:29:53: note: expected 'uint16_t' {aka 'short unsigned int'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
-   29 | void vgldcb1_v_u16_m_golden(bool32_t *mask,uint16_t maskoff,uint16_t *base,int16_t index,uint16_t *exp_result) {
-      |                                            ~~~~~~~~~^~~~~~~
-vgldcb1_v_u16_m.c:66:58: warning: passing argument 4 of 'vgldcb1_v_u16_m_golden' makes integer from pointer without a cast [-Wint-conversion]
-   66 |     vgldcb1_v_u16_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
-      |                                                          ^~~~~~~~~
-      |                                                          |
-      |                                                          int16_t * {aka short int *}
-vgldcb1_v_u16_m.c:29:84: note: expected 'int16_t' {aka 'short int'} but argument is of type 'int16_t *' {aka 'short int *'}
-   29 | void vgldcb1_v_u16_m_golden(bool32_t *mask,uint16_t maskoff,uint16_t *base,int16_t index,uint16_t *exp_result) {
-      |                                                                            ~~~~~~~~^~~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb1_v_u16_m.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

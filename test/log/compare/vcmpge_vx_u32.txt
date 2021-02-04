@@ -4,35 +4,40 @@ vcmpge_vx_u32.c:9:2: warning: multi-line comment [-Wcomment]
 vcmpge_vx_u32.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vcmpge_vx_u32.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vcmpge_vx_u32.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vcmpge_vx_u32.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vcmpge_vx_u32.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vcmpge_vx_u32.c:22:6: warning: no previous prototype for 'vcmpge_vx_u32_golden' [-Wmissing-prototypes]
-   22 | void vcmpge_vx_u32_golden(uint32_t *a,uint32_t b,uint32_t *exp_result) {
+vcmpge_vx_u32.c:30:6: warning: no previous prototype for 'vcmpge_vx_u32_golden' [-Wmissing-prototypes]
+   30 | void vcmpge_vx_u32_golden(uint64_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~
+vcmpge_vx_u32.c: In function 'vcmpge_vx_u32_golden':
+vcmpge_vx_u32.c:32:26: error: 'a' undeclared (first use in this function)
+   32 |         exp_result[i] = (a[i]>=b);
+      |                          ^
+vcmpge_vx_u32.c:32:26: note: each undeclared identifier is reported only once for each function it appears in
+vcmpge_vx_u32.c:32:32: error: 'b' undeclared (first use in this function)
+   32 |         exp_result[i] = (a[i]>=b);
+      |                                ^
 vcmpge_vx_u32.c: In function 'main':
-vcmpge_vx_u32.c:50:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   50 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vcmpge_vx_u32.c:52:26: warning: passing argument 1 of 'vcmpge_vx_u32_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   52 |     vcmpge_vx_u32_golden(exp_a,exp_b,exp_result);
+      |                          ^~~~~
+      |                          |
+      |                          uint32_t * {aka long unsigned int *}
+vcmpge_vx_u32.c:30:37: note: expected 'uint64_t *' {aka 'long long unsigned int *'} but argument is of type 'uint32_t *' {aka 'long unsigned int *'}
+   30 | void vcmpge_vx_u32_golden(uint64_t *exp_result) {
+      |                           ~~~~~~~~~~^~~~~~~~~~
+vcmpge_vx_u32.c:52:5: error: too many arguments to function 'vcmpge_vx_u32_golden'
+   52 |     vcmpge_vx_u32_golden(exp_a,exp_b,exp_result);
+      |     ^~~~~~~~~~~~~~~~~~~~
+vcmpge_vx_u32.c:30:6: note: declared here
+   30 | void vcmpge_vx_u32_golden(uint64_t *exp_result) {
+      |      ^~~~~~~~~~~~~~~~~~~~
+vcmpge_vx_u32.c:60:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint64_t' {aka 'long long unsigned int'} [-Wformat=]
+   60 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
-      |                                                                unsigned int                     uint32_t {aka long unsigned int}
-      |                                                               %lx
-soc_mode = 0 progsize = 2 
-binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpge_vx_u32.elf
-Start Loading Kernel @ Tue Feb  2 14:58:43 2021
-
-Start Setting Reset PC for orv32 @ Tue Feb  2 14:58:43 2021
-
-*** PASSED *** (tohost = 0)
+      |                                                                unsigned int                     uint64_t {aka long long unsigned int}
+      |                                                               %llx
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpge_vx_u32.o] Error 1
+make: *** [bare] Error 2
 ======================================================================
 
  target	:	deccription
@@ -48,19 +53,6 @@ Start Setting Reset PC for orv32 @ Tue Feb  2 14:58:43 2021
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vcmpge_vx_u32.c
-Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpge_vx_u32.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpge_vx_u32.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
-Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpge_vx_u32.elf
+Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpge_vx_u32.o' failed
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
-~/workspace/risc-v/rivai/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpge_vx_u32.elf ++load_pk
-Failed: result[7] = 1, exp_result[7] = 0
-Failed: result[8] = 2d, exp_result[8] = 0
-Failed: result[9] = f4, exp_result[9] = 0
-Failed: result[10] = 51, exp_result[10] = 0
-Failed: result[11] = 58, exp_result[11] = 0
-Failed: result[12] = cf, exp_result[12] = 0
-Failed: result[13] = 8c, exp_result[13] = 0
-Failed: result[14] = b1, exp_result[14] = 1
-Failed: result[15] = 40, exp_result[15] = 0
-TEST FAILED!
+Makefile:37: recipe for target 'bare' failed

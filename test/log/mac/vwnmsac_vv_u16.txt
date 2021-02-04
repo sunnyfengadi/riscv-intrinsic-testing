@@ -4,45 +4,62 @@ vwnmsac_vv_u16.c:10:2: warning: multi-line comment [-Wcomment]
 vwnmsac_vv_u16.c:12:44: warning: backslash and newline separated by space
    12 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vwnmsac_vv_u16.c:14:40: warning: backslash and newline separated by space
-   14 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vwnmsac_vv_u16.c:15:35: warning: backslash and newline separated by space
-   15 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vwnmsac_vv_u16.c:16:40: warning: backslash and newline separated by space
-   16 |              a[i] = random(threshold); \
-      |                                         
-vwnmsac_vv_u16.c:17:27: warning: backslash and newline separated by space
-   17 |              b[i] = a[i]; \
-      |                            
-vwnmsac_vv_u16.c:23:6: warning: no previous prototype for 'vwnmsac_vv_u16_golden' [-Wmissing-prototypes]
-   23 | void vwnmsac_vv_u16_golden(uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+vwnmsac_vv_u16.c:31:6: warning: no previous prototype for 'vwnmsac_vv_u16_golden' [-Wmissing-prototypes]
+   31 | void vwnmsac_vv_u16_golden(uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
       |      ^~~~~~~~~~~~~~~~~~~~~
+vwnmsac_vv_u16.c: In function 'vwnmsac_vv_u16_golden':
+vwnmsac_vv_u16.c:31:37: warning: unused parameter 'a' [-Wunused-parameter]
+   31 | void vwnmsac_vv_u16_golden(uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                            ~~~~~~~~~^~~~~~~~
+vwnmsac_vv_u16.c:31:56: warning: unused parameter 'b' [-Wunused-parameter]
+   31 | void vwnmsac_vv_u16_golden(uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                              ~~~~~~~~~~^
+vwnmsac_vv_u16.c:31:68: warning: unused parameter 'c' [-Wunused-parameter]
+   31 | void vwnmsac_vv_u16_golden(uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                                          ~~~~~~~~~~^
+vwnmsac_vv_u16.c:31:79: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   31 | void vwnmsac_vv_u16_golden(uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                      ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
 vwnmsac_vv_u16.c: In function 'main':
-vwnmsac_vv_u16.c:16:15: error: subscripted value is neither array nor pointer nor vector
-   16 |              a[i] = random(threshold); \
-      |               ^
-vwnmsac_vv_u16.c:41:5: note: in expansion of macro 'data_init'
-   41 |     data_init(a, exp_a, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vwnmsac_vv_u16.c:17:22: error: subscripted value is neither array nor pointer nor vector
-   17 |              b[i] = a[i]; \
-      |                      ^
-vwnmsac_vv_u16.c:41:5: note: in expansion of macro 'data_init'
-   41 |     data_init(a, exp_a, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vwnmsac_vv_u16.c:53:35: error: subscripted value is neither array nor pointer nor vector
-   53 |         if(exp_result[i] != result[i]) {
-      |                                   ^
-vwnmsac_vv_u16.c:54:79: error: subscripted value is neither array nor pointer nor vector
-   54 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
-      |                                                                               ^
-vwnmsac_vv_u16.c:38:19: warning: variable 'result' set but not used [-Wunused-but-set-variable]
-   38 |     uint32x16x2_t result = {0};
-      |                   ^~~~~~
-make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwnmsac_vv_u16.o] Error 1
-make: *** [bare] Error 2
+vwnmsac_vv_u16.c:53:45: warning: passing argument 4 of 'vwnmsac_vv_u16_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   53 |     vwnmsac_vv_u16_golden(exp_a,exp_b,exp_c,exp_result);
+      |                                             ^~~~~~~~~~
+      |                                             |
+      |                                             uint32_t (*)[16] {aka long unsigned int (*)[16]}
+vwnmsac_vv_u16.c:31:79: note: expected 'uint32_t (*)[32]' {aka 'long unsigned int (*)[32]'} but argument is of type 'uint32_t (*)[16]' {aka 'long unsigned int (*)[16]'}
+   31 | void vwnmsac_vv_u16_golden(uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                      ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vwnmsac_vv_u16.c:62:80: warning: format '%d' expects argument of type 'int', but argument 7 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   62 |                 printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
+      |                                                                               ~^                                 ~~~~~~~~~~~~~~~~
+      |                                                                                |                                              |
+      |                                                                                int                                            uint32_t {aka long unsigned int}
+      |                                                                               %ld
+vwnmsac_vv_u16.c:61:29: warning: iteration 16 invokes undefined behavior [-Waggressive-loop-optimizations]
+   61 |             if(exp_result[i][j] != result.val[i][j]) {
+      |                ~~~~~~~~~~~~~^~~
+vwnmsac_vv_u16.c:60:9: note: within this loop
+   60 |         for(int j = 0; j < ELE_NUM; j++) {
+      |         ^~~
+vwnmsac_vv_u16.c:22:20: warning: iteration 2 invokes undefined behavior [-Waggressive-loop-optimizations]
+   22 |        a.val[i][j] = random(threshold); \
+      |                    ^
+vwnmsac_vv_u16.c:48:5: note: in expansion of macro 'data_init_matrix'
+   48 |     data_init_matrix(a, exp_a, 16, 2, 0xffffffff);
+      |     ^~~~~~~~~~~~~~~~
+vwnmsac_vv_u16.c:20:4: note: within this loop
+   20 |    for(int i = 0; i < m; i++) { \
+      |    ^~~
+vwnmsac_vv_u16.c:48:5: note: in expansion of macro 'data_init_matrix'
+   48 |     data_init_matrix(a, exp_a, 16, 2, 0xffffffff);
+      |     ^~~~~~~~~~~~~~~~
+soc_mode = 0 progsize = 2 
+binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwnmsac_vv_u16.elf
+Start Loading Kernel @ Thu Feb  4 18:51:25 2021
+
+Start Setting Reset PC for orv32 @ Thu Feb  4 18:51:25 2021
+
+*** PASSED *** (tohost = 0)
 ======================================================================
 
  target	:	deccription
@@ -58,6 +75,71 @@ make: *** [bare] Error 2
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vwnmsac_vv_u16.c
-Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwnmsac_vv_u16.o' failed
+Linking....
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwnmsac_vv_u16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwnmsac_vv_u16.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwnmsac_vv_u16.elf
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
-Makefile:37: recipe for target 'bare' failed
+~/workspace/risc-v/rivai/riscv-intrinsic-testing
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwnmsac_vv_u16.elf ++load_pk
+Failed: result.val[0][0] = -1210634376, exp_result[0][0] = 812669700
+Failed: result.val[0][1] = -109062795, exp_result[0][1] = 553475508
+Failed: result.val[0][2] = -1942788120, exp_result[0][2] = 0
+Failed: result.val[0][3] = 1327731321, exp_result[0][3] = 0
+Failed: result.val[0][4] = -276649475, exp_result[0][4] = 0
+Failed: result.val[0][5] = -1520074210, exp_result[0][5] = 0
+Failed: result.val[0][6] = -18737348, exp_result[0][6] = 0
+Failed: result.val[0][7] = -241694640, exp_result[0][7] = 0
+Failed: result.val[0][8] = -1208368080, exp_result[0][8] = 0
+Failed: result.val[0][9] = -356144229, exp_result[0][9] = 0
+Failed: result.val[0][10] = -1677362850, exp_result[0][10] = 0
+Failed: result.val[0][11] = -1395726384, exp_result[0][11] = 0
+Failed: result.val[0][12] = -945016832, exp_result[0][12] = 0
+Failed: result.val[0][13] = -953087499, exp_result[0][13] = 0
+Failed: result.val[0][14] = -354950154, exp_result[0][14] = 0
+Failed: result.val[0][15] = -261395988, exp_result[0][15] = 0
+Failed: result.val[0][16] = -1493653459, exp_result[0][16] = 445349752
+Failed: result.val[0][17] = 1897211347, exp_result[0][17] = 1344887256
+Failed: result.val[0][18] = -462242550, exp_result[0][18] = 0
+Failed: result.val[0][19] = -1127170080, exp_result[0][19] = 0
+Failed: result.val[0][20] = 471637408, exp_result[0][20] = 0
+Failed: result.val[0][21] = -30932000, exp_result[0][21] = 0
+Failed: result.val[0][22] = -1751820726, exp_result[0][22] = 0
+Failed: result.val[0][23] = 597083176, exp_result[0][23] = 0
+Failed: result.val[0][24] = 1553542597, exp_result[0][24] = 0
+Failed: result.val[0][25] = -227164795, exp_result[0][25] = 0
+Failed: result.val[0][26] = -679419774, exp_result[0][26] = 0
+Failed: result.val[0][27] = -928942752, exp_result[0][27] = 0
+Failed: result.val[0][28] = -282669534, exp_result[0][28] = 0
+Failed: result.val[0][29] = -363726400, exp_result[0][29] = 0
+Failed: result.val[0][30] = 1785761536, exp_result[0][30] = 0
+Failed: result.val[0][31] = 1974000536, exp_result[0][31] = 0
+Failed: result.val[1][0] = -1493653459, exp_result[1][0] = 445349752
+Failed: result.val[1][1] = 1897211347, exp_result[1][1] = 1344887256
+Failed: result.val[1][2] = -462242550, exp_result[1][2] = 0
+Failed: result.val[1][3] = -1127170080, exp_result[1][3] = 0
+Failed: result.val[1][4] = 471637408, exp_result[1][4] = 0
+Failed: result.val[1][5] = -30932000, exp_result[1][5] = 0
+Failed: result.val[1][6] = -1751820726, exp_result[1][6] = 0
+Failed: result.val[1][7] = 597083176, exp_result[1][7] = 0
+Failed: result.val[1][8] = 1553542597, exp_result[1][8] = 0
+Failed: result.val[1][9] = -227164795, exp_result[1][9] = 0
+Failed: result.val[1][10] = -679419774, exp_result[1][10] = 0
+Failed: result.val[1][11] = -928942752, exp_result[1][11] = 0
+Failed: result.val[1][12] = -282669534, exp_result[1][12] = 0
+Failed: result.val[1][13] = -363726400, exp_result[1][13] = 0
+Failed: result.val[1][14] = 1785761536, exp_result[1][14] = 0
+Failed: result.val[1][15] = 1974000536, exp_result[1][15] = 0
+Failed: result.val[1][16] = 1481765933, exp_result[1][16] = 730417256
+Failed: result.val[1][17] = 1085377743, exp_result[1][17] = 1812158119
+Failed: result.val[1][18] = -1414812757, exp_result[1][18] = 0
+Failed: result.val[1][19] = -1414812757, exp_result[1][19] = 0
+Failed: result.val[1][20] = -1414812757, exp_result[1][20] = 0
+Failed: result.val[1][21] = -1414812757, exp_result[1][21] = 0
+Failed: result.val[1][22] = -1414812757, exp_result[1][22] = 0
+Failed: result.val[1][23] = -1414812757, exp_result[1][23] = 0
+Failed: result.val[1][24] = -1414812757, exp_result[1][24] = 0
+Failed: result.val[1][25] = -1414812757, exp_result[1][25] = 0
+Failed: result.val[1][26] = -1414812757, exp_result[1][26] = 0
+Failed: result.val[1][27] = -1414812757, exp_result[1][27] = -2147480274
+Failed: result.val[1][31] = -1414812757, exp_result[1][31] = -2147483308
+TEST FAILED!

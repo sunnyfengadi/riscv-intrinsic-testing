@@ -4,52 +4,23 @@ vstcb1in0_v_i16.c:16:2: warning: multi-line comment [-Wcomment]
 vstcb1in0_v_i16.c:18:44: warning: backslash and newline separated by space
    18 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vstcb1in0_v_i16.c:20:40: warning: backslash and newline separated by space
-   20 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vstcb1in0_v_i16.c:21:35: warning: backslash and newline separated by space
-   21 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vstcb1in0_v_i16.c:22:40: warning: backslash and newline separated by space
-   22 |              a[i] = random(threshold); \
-      |                                         
-vstcb1in0_v_i16.c:23:27: warning: backslash and newline separated by space
-   23 |              b[i] = a[i]; \
-      |                            
-vstcb1in0_v_i16.c:29:6: warning: no previous prototype for 'vstcb1in0_v_i16_golden' [-Wmissing-prototypes]
-   29 | void vstcb1in0_v_i16_golden(int16_t base[],int16_t *value,uint32_t imm,void *exp_result) {
-      |      ^~~~~~~~~~~~~~~~~~~~~~
-vstcb1in0_v_i16.c: In function 'vstcb1in0_v_i16_golden':
-vstcb1in0_v_i16.c:31:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   31 | Operator Line --- TODO
-      | ^~~~~~~~
-      | perror
-vstcb1in0_v_i16.c:31:1: note: each undeclared identifier is reported only once for each function it appears in
-vstcb1in0_v_i16.c:31:9: error: expected ';' before 'Line'
-   31 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vstcb1in0_v_i16.c:29:37: warning: unused parameter 'base' [-Wunused-parameter]
-   29 | void vstcb1in0_v_i16_golden(int16_t base[],int16_t *value,uint32_t imm,void *exp_result) {
-      |                             ~~~~~~~~^~~~~~
-vstcb1in0_v_i16.c:29:53: warning: unused parameter 'value' [-Wunused-parameter]
-   29 | void vstcb1in0_v_i16_golden(int16_t base[],int16_t *value,uint32_t imm,void *exp_result) {
-      |                                            ~~~~~~~~~^~~~~
-vstcb1in0_v_i16.c:29:68: warning: unused parameter 'imm' [-Wunused-parameter]
-   29 | void vstcb1in0_v_i16_golden(int16_t base[],int16_t *value,uint32_t imm,void *exp_result) {
-      |                                                           ~~~~~~~~~^~~
-vstcb1in0_v_i16.c:29:78: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   29 | void vstcb1in0_v_i16_golden(int16_t base[],int16_t *value,uint32_t imm,void *exp_result) {
-      |                                                                        ~~~~~~^~~~~~~~~~
+vstcb1in0_v_i16.c:37:71: error: expected declaration specifiers or '...' before ')' token
+   37 | void vstcb1in0_v_i16_golden(int16_t *base,int16_t *value,uint32_t imm,) {
+      |                                                                       ^
 vstcb1in0_v_i16.c: In function 'main':
-vstcb1in0_v_i16.c:56:55: error: 'exp_result' undeclared (first use in this function)
-   56 |     vstcb1in0_v_i16_golden(exp_base,exp_value,exp_imm,exp_result);
+vstcb1in0_v_i16.c:63:5: warning: implicit declaration of function 'vstcb1in0_v_i16_golden'; did you mean 'vstcb1in0_v_i16_m'? [-Wimplicit-function-declaration]
+   63 |     vstcb1in0_v_i16_golden(exp_base,exp_value,exp_imm,exp_result);
+      |     ^~~~~~~~~~~~~~~~~~~~~~
+      |     vstcb1in0_v_i16_m
+vstcb1in0_v_i16.c:63:55: error: 'exp_result' undeclared (first use in this function)
+   63 |     vstcb1in0_v_i16_golden(exp_base,exp_value,exp_imm,exp_result);
       |                                                       ^~~~~~~~~~
-vstcb1in0_v_i16.c:62:9: error: 'i' undeclared (first use in this function)
-   62 |     for(i=0;i<ELE_NUM;i++) {
+vstcb1in0_v_i16.c:63:55: note: each undeclared identifier is reported only once for each function it appears in
+vstcb1in0_v_i16.c:69:9: error: 'i' undeclared (first use in this function)
+   69 |     for(i=0;i<ELE_NUM;i++) {
       |         ^
-vstcb1in0_v_i16.c:39:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
-   39 |     uint32_t imm;
+vstcb1in0_v_i16.c:46:14: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   46 |     uint32_t imm;
       |              ^~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vstcb1in0_v_i16.o] Error 1
 make: *** [bare] Error 2

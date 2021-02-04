@@ -4,53 +4,33 @@ vwadd_ww_u32_m.c:9:2: warning: multi-line comment [-Wcomment]
 vwadd_ww_u32_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vwadd_ww_u32_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vwadd_ww_u32_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vwadd_ww_u32_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vwadd_ww_u32_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vwadd_ww_u32_m.c:22:6: warning: no previous prototype for 'vwadd_ww_u32_m_golden' [-Wmissing-prototypes]
-   22 | void vwadd_ww_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t *b,uint32_t *exp_result) {
+vwadd_ww_u32_m.c:30:6: warning: no previous prototype for 'vwadd_ww_u32_m_golden' [-Wmissing-prototypes]
+   30 | void vwadd_ww_u32_m_golden(uint64_t *mask,uint32_t *maskoff,uint32_t *a,uint32_t *b,uint32_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~~
 vwadd_ww_u32_m.c: In function 'vwadd_ww_u32_m_golden':
-vwadd_ww_u32_m.c:24:25: error: 'TODO' undeclared (first use in this function)
-   24 |         exp_result[i] = TODO;
+vwadd_ww_u32_m.c:32:25: error: 'TODO' undeclared (first use in this function)
+   32 |         exp_result[i] = TODO;
       |                         ^~~~
-vwadd_ww_u32_m.c:24:25: note: each undeclared identifier is reported only once for each function it appears in
-vwadd_ww_u32_m.c:22:37: warning: unused parameter 'mask' [-Wunused-parameter]
-   22 | void vwadd_ww_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t *b,uint32_t *exp_result) {
-      |                            ~~~~~~~~~^~~~
-vwadd_ww_u32_m.c:22:52: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   22 | void vwadd_ww_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t *b,uint32_t *exp_result) {
-      |                                          ~~~~~~~~~~^~~~~~~
-vwadd_ww_u32_m.c:22:70: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vwadd_ww_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t *b,uint32_t *exp_result) {
-      |                                                            ~~~~~~~~~~^
-vwadd_ww_u32_m.c:22:82: warning: unused parameter 'b' [-Wunused-parameter]
-   22 | void vwadd_ww_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t *b,uint32_t *exp_result) {
-      |                                                                        ~~~~~~~~~~^
+vwadd_ww_u32_m.c:32:25: note: each undeclared identifier is reported only once for each function it appears in
+vwadd_ww_u32_m.c:30:38: warning: unused parameter 'mask' [-Wunused-parameter]
+   30 | void vwadd_ww_u32_m_golden(uint64_t *mask,uint32_t *maskoff,uint32_t *a,uint32_t *b,uint32_t *exp_result) {
+      |                            ~~~~~~~~~~^~~~
+vwadd_ww_u32_m.c:30:53: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   30 | void vwadd_ww_u32_m_golden(uint64_t *mask,uint32_t *maskoff,uint32_t *a,uint32_t *b,uint32_t *exp_result) {
+      |                                           ~~~~~~~~~~^~~~~~~
+vwadd_ww_u32_m.c:30:71: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vwadd_ww_u32_m_golden(uint64_t *mask,uint32_t *maskoff,uint32_t *a,uint32_t *b,uint32_t *exp_result) {
+      |                                                             ~~~~~~~~~~^
+vwadd_ww_u32_m.c:30:83: warning: unused parameter 'b' [-Wunused-parameter]
+   30 | void vwadd_ww_u32_m_golden(uint64_t *mask,uint32_t *maskoff,uint32_t *a,uint32_t *b,uint32_t *exp_result) {
+      |                                                                         ~~~~~~~~~~^
 vwadd_ww_u32_m.c: In function 'main':
-vwadd_ww_u32_m.c:42:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   42 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+vwadd_ww_u32_m.c:52:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   52 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vwadd_ww_u32_m.c:48:27: error: incompatible type for argument 1 of 'vwadd_ww_u32_m_golden'
-   48 |     vwadd_ww_u32_m_golden(exp_mask,exp_maskoff,exp_a,exp_b,exp_result);
-      |                           ^~~~~~~~
-      |                           |
-      |                           uint64_t * {aka long long unsigned int *}
-vwadd_ww_u32_m.c:22:37: note: expected 'bool16_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vwadd_ww_u32_m_golden(bool16_t mask,uint32_t *maskoff,uint32_t *a,uint32_t *b,uint32_t *exp_result) {
-      |                            ~~~~~~~~~^~~~
-vwadd_ww_u32_m.c:56:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   56 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vwadd_ww_u32_m.c:66:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   66 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
       |                                                                unsigned int                     uint32_t {aka long unsigned int}

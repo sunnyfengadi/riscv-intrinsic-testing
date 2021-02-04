@@ -4,65 +4,77 @@ vrmin_v_i16_m.c:9:2: warning: multi-line comment [-Wcomment]
 vrmin_v_i16_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vrmin_v_i16_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vrmin_v_i16_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vrmin_v_i16_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vrmin_v_i16_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vrmin_v_i16_m.c:22:6: warning: no previous prototype for 'vrmin_v_i16_m_golden' [-Wmissing-prototypes]
-   22 | void vrmin_v_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
+vrmin_v_i16_m.c:30:6: warning: no previous prototype for 'vrmin_v_i16_m_golden' [-Wmissing-prototypes]
+   30 | void vrmin_v_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~
 vrmin_v_i16_m.c: In function 'vrmin_v_i16_m_golden':
-vrmin_v_i16_m.c:24:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   24 | Operator Line --- TODO
+vrmin_v_i16_m.c:31:1: error: unknown type name 'Operator'
+   31 | Operator Line --- TODO
       | ^~~~~~~~
-      | perror
-vrmin_v_i16_m.c:24:1: note: each undeclared identifier is reported only once for each function it appears in
-vrmin_v_i16_m.c:24:9: error: expected ';' before 'Line'
-   24 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vrmin_v_i16_m.c:22:36: warning: unused parameter 'mask' [-Wunused-parameter]
-   22 | void vrmin_v_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
-      |                           ~~~~~~~~~^~~~
-vrmin_v_i16_m.c:22:50: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   22 | void vrmin_v_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
-      |                                         ~~~~~~~~~^~~~~~~
-vrmin_v_i16_m.c:22:67: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vrmin_v_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
-      |                                                          ~~~~~~~~~^
-vrmin_v_i16_m.c:22:78: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   22 | void vrmin_v_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
-      |                                                                     ~~~~~~~~~^~~~~~~~~~
+vrmin_v_i16_m.c:31:15: error: expected '=', ',', ';', 'asm' or '__attribute__' before '--' token
+   31 | Operator Line --- TODO
+      |               ^~
+vrmin_v_i16_m.c:35:5: warning: 'main' is normally a non-static function [-Wmain]
+   35 | int main(void) {
+      |     ^~~~
 vrmin_v_i16_m.c: In function 'main':
-vrmin_v_i16_m.c:40:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   40 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vrmin_v_i16_m.c:37:14: warning: declaration of 'mask' shadows a parameter [-Wshadow]
+   37 |     bool32_t mask;
+      |              ^~~~
+vrmin_v_i16_m.c:30:37: note: shadowed declaration is here
+   30 | void vrmin_v_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
+      |                           ~~~~~~~~~~^~~~
+vrmin_v_i16_m.c:38:16: warning: declaration of 'maskoff' shadows a parameter [-Wshadow]
+   38 |     int16x32_t maskoff;
+      |                ^~~~~~~
+vrmin_v_i16_m.c:30:51: note: shadowed declaration is here
+   30 | void vrmin_v_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
+      |                                          ~~~~~~~~~^~~~~~~
+vrmin_v_i16_m.c:39:16: warning: declaration of 'a' shadows a parameter [-Wshadow]
+   39 |     int16x32_t a;
+      |                ^
+vrmin_v_i16_m.c:30:68: note: shadowed declaration is here
+   30 | void vrmin_v_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
+      |                                                           ~~~~~~~~~^
+vrmin_v_i16_m.c:45:13: warning: declaration of 'exp_result' shadows a parameter [-Wshadow]
+   45 |     int16_t exp_result[32] = {0};
+      |             ^~~~~~~~~~
+vrmin_v_i16_m.c:30:79: note: shadowed declaration is here
+   30 | void vrmin_v_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
+      |                                                                      ~~~~~~~~~^~~~~~~~~~
+vrmin_v_i16_m.c:47:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   47 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vrmin_v_i16_m.c:45:26: error: incompatible type for argument 1 of 'vrmin_v_i16_m_golden'
-   45 |     vrmin_v_i16_m_golden(exp_mask,exp_maskoff,exp_a,exp_result);
-      |                          ^~~~~~~~
-      |                          |
-      |                          uint64_t * {aka long long unsigned int *}
-vrmin_v_i16_m.c:22:36: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vrmin_v_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
-      |                           ~~~~~~~~~^~~~
-vrmin_v_i16_m.c:48:28: error: incompatible type for argument 1 of 'vrmin_v_i16_m'
-   48 |     result = vrmin_v_i16_m(mask,maskoff,a);
+vrmin_v_i16_m.c:55:28: error: incompatible type for argument 1 of 'vrmin_v_i16_m'
+   55 |     result = vrmin_v_i16_m(mask,maskoff,a);
       |                            ^~~~
       |                            |
       |                            bool32_t
 In file included from vrmin_v_i16_m.c:4:
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:1930:1: note: expected 'bool32x2_t' but argument is of type 'bool32_t'
- 1930 | __RUGRATS_REDUC_V_OP (rmin, i, int, 16, 32)
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:1918:1: note: expected 'bool32x2_t' but argument is of type 'bool32_t'
+ 1918 | __RUGRATS_REDUC_V_OP (rmin, i, int, 16, 32)
       | ^~~~~~~~~~~~~~~~~~~~
+vrmin_v_i16_m.c: In function 'vrmin_v_i16_m_golden':
+vrmin_v_i16_m.c:75:1: error: expected declaration or statement at end of input
+   75 | }
+      | ^
+vrmin_v_i16_m.c:30:37: warning: unused parameter 'mask' [-Wunused-parameter]
+   30 | void vrmin_v_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
+      |                           ~~~~~~~~~~^~~~
+vrmin_v_i16_m.c:30:51: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   30 | void vrmin_v_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
+      |                                          ~~~~~~~~~^~~~~~~
+vrmin_v_i16_m.c:30:68: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vrmin_v_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
+      |                                                           ~~~~~~~~~^
+vrmin_v_i16_m.c:30:79: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   30 | void vrmin_v_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t *a,int16_t *exp_result) {
+      |                                                                      ~~~~~~~~~^~~~~~~~~~
+At top level:
+vrmin_v_i16_m.c:35:5: warning: 'main' defined but not used [-Wunused-function]
+   35 | int main(void) {
+      |     ^~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vrmin_v_i16_m.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

@@ -4,28 +4,40 @@ vcmpeq_vx_i16.c:9:2: warning: multi-line comment [-Wcomment]
 vcmpeq_vx_i16.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vcmpeq_vx_i16.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vcmpeq_vx_i16.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vcmpeq_vx_i16.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vcmpeq_vx_i16.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vcmpeq_vx_i16.c:22:6: warning: no previous prototype for 'vcmpeq_vx_i16_golden' [-Wmissing-prototypes]
-   22 | void vcmpeq_vx_i16_golden(int16_t *a,int16_t b,uint16_t *exp_result) {
+vcmpeq_vx_i16.c:30:6: warning: no previous prototype for 'vcmpeq_vx_i16_golden' [-Wmissing-prototypes]
+   30 | void vcmpeq_vx_i16_golden(uint64_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~
-soc_mode = 0 progsize = 2 
-binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpeq_vx_i16.elf
-Start Loading Kernel @ Tue Feb  2 14:58:14 2021
-
-Start Setting Reset PC for orv32 @ Tue Feb  2 14:58:14 2021
-
-*** PASSED *** (tohost = 0)
+vcmpeq_vx_i16.c: In function 'vcmpeq_vx_i16_golden':
+vcmpeq_vx_i16.c:32:26: error: 'a' undeclared (first use in this function)
+   32 |         exp_result[i] = (a[i]==b);
+      |                          ^
+vcmpeq_vx_i16.c:32:26: note: each undeclared identifier is reported only once for each function it appears in
+vcmpeq_vx_i16.c:32:32: error: 'b' undeclared (first use in this function)
+   32 |         exp_result[i] = (a[i]==b);
+      |                                ^
+vcmpeq_vx_i16.c: In function 'main':
+vcmpeq_vx_i16.c:52:26: warning: passing argument 1 of 'vcmpeq_vx_i16_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   52 |     vcmpeq_vx_i16_golden(exp_a,exp_b,exp_result);
+      |                          ^~~~~
+      |                          |
+      |                          int16_t * {aka short int *}
+vcmpeq_vx_i16.c:30:37: note: expected 'uint64_t *' {aka 'long long unsigned int *'} but argument is of type 'int16_t *' {aka 'short int *'}
+   30 | void vcmpeq_vx_i16_golden(uint64_t *exp_result) {
+      |                           ~~~~~~~~~~^~~~~~~~~~
+vcmpeq_vx_i16.c:52:5: error: too many arguments to function 'vcmpeq_vx_i16_golden'
+   52 |     vcmpeq_vx_i16_golden(exp_a,exp_b,exp_result);
+      |     ^~~~~~~~~~~~~~~~~~~~
+vcmpeq_vx_i16.c:30:6: note: declared here
+   30 | void vcmpeq_vx_i16_golden(uint64_t *exp_result) {
+      |      ^~~~~~~~~~~~~~~~~~~~
+vcmpeq_vx_i16.c:60:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint64_t' {aka 'long long unsigned int'} [-Wformat=]
+   60 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+      |                                                               ~^                      ~~~~~~~~~~~~~
+      |                                                                |                                |
+      |                                                                unsigned int                     uint64_t {aka long long unsigned int}
+      |                                                               %llx
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpeq_vx_i16.o] Error 1
+make: *** [bare] Error 2
 ======================================================================
 
  target	:	deccription
@@ -41,34 +53,6 @@ Start Setting Reset PC for orv32 @ Tue Feb  2 14:58:14 2021
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vcmpeq_vx_i16.c
-Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpeq_vx_i16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpeq_vx_i16.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
-Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpeq_vx_i16.elf
+Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpeq_vx_i16.o' failed
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
-~/workspace/risc-v/rivai/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vcmpeq_vx_i16.elf ++load_pk
-Failed: result[8] = 7f, exp_result[8] = 0
-Failed: result[9] = 4c, exp_result[9] = 0
-Failed: result[10] = 80, exp_result[10] = 0
-Failed: result[11] = cd, exp_result[11] = 0
-Failed: result[12] = fc, exp_result[12] = 0
-Failed: result[13] = 41, exp_result[13] = 0
-Failed: result[14] = 2c, exp_result[14] = 0
-Failed: result[15] = 78, exp_result[15] = 0
-Failed: result[16] = 74, exp_result[16] = 0
-Failed: result[17] = 8b, exp_result[17] = 0
-Failed: result[18] = b1, exp_result[18] = 0
-Failed: result[19] = 7e, exp_result[19] = 0
-Failed: result[20] = 3, exp_result[20] = 0
-Failed: result[21] = 9a, exp_result[21] = 0
-Failed: result[22] = 1, exp_result[22] = 0
-Failed: result[23] = aa, exp_result[23] = 0
-Failed: result[24] = f1, exp_result[24] = 0
-Failed: result[25] = 73, exp_result[25] = 0
-Failed: result[26] = aa, exp_result[26] = 0
-Failed: result[27] = c2, exp_result[27] = 0
-Failed: result[28] = cc, exp_result[28] = 0
-Failed: result[29] = c0, exp_result[29] = 0
-Failed: result[30] = b7, exp_result[30] = 0
-Failed: result[31] = 8, exp_result[31] = 0
-TEST FAILED!
+Makefile:37: recipe for target 'bare' failed

@@ -4,50 +4,30 @@ vmv_v_i_i16_m.c:9:2: warning: multi-line comment [-Wcomment]
 vmv_v_i_i16_m.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vmv_v_i_i16_m.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vmv_v_i_i16_m.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vmv_v_i_i16_m.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vmv_v_i_i16_m.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vmv_v_i_i16_m.c:22:6: warning: no previous prototype for 'vmv_v_i_i16_m_golden' [-Wmissing-prototypes]
-   22 | void vmv_v_i_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t imm,int16_t *exp_result) {
+vmv_v_i_i16_m.c:30:6: warning: no previous prototype for 'vmv_v_i_i16_m_golden' [-Wmissing-prototypes]
+   30 | void vmv_v_i_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t imm,int16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~
 vmv_v_i_i16_m.c: In function 'vmv_v_i_i16_m_golden':
-vmv_v_i_i16_m.c:24:25: error: 'TODO' undeclared (first use in this function)
-   24 |         exp_result[i] = TODO;
+vmv_v_i_i16_m.c:32:25: error: 'TODO' undeclared (first use in this function)
+   32 |         exp_result[i] = TODO;
       |                         ^~~~
-vmv_v_i_i16_m.c:24:25: note: each undeclared identifier is reported only once for each function it appears in
-vmv_v_i_i16_m.c:22:36: warning: unused parameter 'mask' [-Wunused-parameter]
-   22 | void vmv_v_i_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t imm,int16_t *exp_result) {
-      |                           ~~~~~~~~~^~~~
-vmv_v_i_i16_m.c:22:50: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   22 | void vmv_v_i_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t imm,int16_t *exp_result) {
-      |                                         ~~~~~~~~~^~~~~~~
-vmv_v_i_i16_m.c:22:66: warning: unused parameter 'imm' [-Wunused-parameter]
-   22 | void vmv_v_i_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t imm,int16_t *exp_result) {
-      |                                                          ~~~~~~~~^~~
+vmv_v_i_i16_m.c:32:25: note: each undeclared identifier is reported only once for each function it appears in
+vmv_v_i_i16_m.c:30:37: warning: unused parameter 'mask' [-Wunused-parameter]
+   30 | void vmv_v_i_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t imm,int16_t *exp_result) {
+      |                           ~~~~~~~~~~^~~~
+vmv_v_i_i16_m.c:30:51: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   30 | void vmv_v_i_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t imm,int16_t *exp_result) {
+      |                                          ~~~~~~~~~^~~~~~~
+vmv_v_i_i16_m.c:30:67: warning: unused parameter 'imm' [-Wunused-parameter]
+   30 | void vmv_v_i_i16_m_golden(uint64_t *mask,int16_t *maskoff,int16_t imm,int16_t *exp_result) {
+      |                                                           ~~~~~~~~^~~
 vmv_v_i_i16_m.c: In function 'main':
-vmv_v_i_i16_m.c:40:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   40 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vmv_v_i_i16_m.c:50:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   50 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vmv_v_i_i16_m.c:45:26: error: incompatible type for argument 1 of 'vmv_v_i_i16_m_golden'
-   45 |     vmv_v_i_i16_m_golden(exp_mask,exp_maskoff,exp_imm,exp_result);
-      |                          ^~~~~~~~
-      |                          |
-      |                          uint64_t * {aka long long unsigned int *}
-vmv_v_i_i16_m.c:22:36: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vmv_v_i_i16_m_golden(bool32_t mask,int16_t *maskoff,int16_t imm,int16_t *exp_result) {
-      |                           ~~~~~~~~~^~~~
-vmv_v_i_i16_m.c:32:13: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
-   32 |     int16_t imm;
+vmv_v_i_i16_m.c:42:13: warning: variable 'imm' set but not used [-Wunused-but-set-variable]
+   42 |     int16_t imm;
       |             ^~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmv_v_i_i16_m.o] Error 1
 make: *** [bare] Error 2

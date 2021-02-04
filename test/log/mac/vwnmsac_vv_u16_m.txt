@@ -4,59 +4,67 @@ vwnmsac_vv_u16_m.c:10:2: warning: multi-line comment [-Wcomment]
 vwnmsac_vv_u16_m.c:12:44: warning: backslash and newline separated by space
    12 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vwnmsac_vv_u16_m.c:14:40: warning: backslash and newline separated by space
-   14 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vwnmsac_vv_u16_m.c:15:35: warning: backslash and newline separated by space
-   15 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vwnmsac_vv_u16_m.c:16:40: warning: backslash and newline separated by space
-   16 |              a[i] = random(threshold); \
-      |                                         
-vwnmsac_vv_u16_m.c:17:27: warning: backslash and newline separated by space
-   17 |              b[i] = a[i]; \
-      |                            
-vwnmsac_vv_u16_m.c:23:6: warning: no previous prototype for 'vwnmsac_vv_u16_m_golden' [-Wmissing-prototypes]
-   23 | void vwnmsac_vv_u16_m_golden(bool32_t mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
+vwnmsac_vv_u16_m.c:31:6: warning: no previous prototype for 'vwnmsac_vv_u16_m_golden' [-Wmissing-prototypes]
+   31 | void vwnmsac_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
       |      ^~~~~~~~~~~~~~~~~~~~~~~
 vwnmsac_vv_u16_m.c: In function 'vwnmsac_vv_u16_m_golden':
-vwnmsac_vv_u16_m.c:23:78: warning: unused parameter 'c' [-Wunused-parameter]
-   23 | void vwnmsac_vv_u16_m_golden(bool32_t mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
-      |                                                                    ~~~~~~~~~~^
+vwnmsac_vv_u16_m.c:31:40: warning: unused parameter 'mask' [-Wunused-parameter]
+   31 | void vwnmsac_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                              ~~~~~~~~~~^~~~
+vwnmsac_vv_u16_m.c:31:54: warning: unused parameter 'a' [-Wunused-parameter]
+   31 | void vwnmsac_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                             ~~~~~~~~~^~~~~~~~
+vwnmsac_vv_u16_m.c:31:73: warning: unused parameter 'b' [-Wunused-parameter]
+   31 | void vwnmsac_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                                               ~~~~~~~~~~^
+vwnmsac_vv_u16_m.c:31:85: warning: unused parameter 'c' [-Wunused-parameter]
+   31 | void vwnmsac_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                           ~~~~~~~~~~^
+vwnmsac_vv_u16_m.c:31:96: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   31 | void vwnmsac_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                                       ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
 vwnmsac_vv_u16_m.c: In function 'main':
-vwnmsac_vv_u16_m.c:43:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   43 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+vwnmsac_vv_u16_m.c:50:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   50 |     data_init_bool(mask, exp_mask, 32, 0xffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vwnmsac_vv_u16_m.c:16:15: error: subscripted value is neither array nor pointer nor vector
-   16 |              a[i] = random(threshold); \
-      |               ^
-vwnmsac_vv_u16_m.c:44:5: note: in expansion of macro 'data_init'
-   44 |     data_init(a, exp_a, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vwnmsac_vv_u16_m.c:17:22: error: subscripted value is neither array nor pointer nor vector
-   17 |              b[i] = a[i]; \
-      |                      ^
-vwnmsac_vv_u16_m.c:44:5: note: in expansion of macro 'data_init'
-   44 |     data_init(a, exp_a, 16*2, 0xffffffff);
-      |     ^~~~~~~~~
-vwnmsac_vv_u16_m.c:49:29: error: incompatible type for argument 1 of 'vwnmsac_vv_u16_m_golden'
-   49 |     vwnmsac_vv_u16_m_golden(exp_mask,exp_a,exp_b,exp_c,exp_result);
-      |                             ^~~~~~~~
-      |                             |
-      |                             uint64_t * {aka long long unsigned int *}
-vwnmsac_vv_u16_m.c:23:39: note: expected 'bool32_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   23 | void vwnmsac_vv_u16_m_golden(bool32_t mask,uint32_t *a,uint16_t *b,uint16_t *c,uint32_t *exp_result) {
-      |                              ~~~~~~~~~^~~~
-vwnmsac_vv_u16_m.c:56:35: error: subscripted value is neither array nor pointer nor vector
-   56 |         if(exp_result[i] != result[i]) {
-      |                                   ^
-vwnmsac_vv_u16_m.c:57:79: error: subscripted value is neither array nor pointer nor vector
-   57 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
-      |                                                                               ^
-vwnmsac_vv_u16_m.c:40:19: warning: variable 'result' set but not used [-Wunused-but-set-variable]
-   40 |     uint32x16x2_t result = {0};
-      |                   ^~~~~~
+vwnmsac_vv_u16_m.c:56:56: warning: passing argument 5 of 'vwnmsac_vv_u16_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
+   56 |     vwnmsac_vv_u16_m_golden(exp_mask,exp_a,exp_b,exp_c,exp_result);
+      |                                                        ^~~~~~~~~~
+      |                                                        |
+      |                                                        uint32_t (*)[16] {aka long unsigned int (*)[16]}
+vwnmsac_vv_u16_m.c:31:96: note: expected 'uint32_t (*)[32]' {aka 'long unsigned int (*)[32]'} but argument is of type 'uint32_t (*)[16]' {aka 'long unsigned int (*)[16]'}
+   31 | void vwnmsac_vv_u16_m_golden(uint64_t *mask,uint32_t a[2][16],uint16_t *b,uint16_t *c,uint32_t exp_result[][ELE_NUM]) {
+      |                                                                                       ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+vwnmsac_vv_u16_m.c:65:80: warning: format '%d' expects argument of type 'int', but argument 7 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   65 |                 printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
+      |                                                                               ~^                                 ~~~~~~~~~~~~~~~~
+      |                                                                                |                                              |
+      |                                                                                int                                            uint32_t {aka long unsigned int}
+      |                                                                               %ld
+vwnmsac_vv_u16_m.c:50:5: warning: 'mask' is used uninitialized in this function [-Wuninitialized]
+   50 |     data_init_bool(mask, exp_mask, 32, 0xffff);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+vwnmsac_vv_u16_m.c:64:29: warning: iteration 16 invokes undefined behavior [-Waggressive-loop-optimizations]
+   64 |             if(exp_result[i][j] != result.val[i][j]) {
+      |                ~~~~~~~~~~~~~^~~
+vwnmsac_vv_u16_m.c:63:9: note: within this loop
+   63 |         for(int j = 0; j < ELE_NUM; j++) {
+      |         ^~~
+vwnmsac_vv_u16_m.c:22:20: warning: iteration 2 invokes undefined behavior [-Waggressive-loop-optimizations]
+   22 |        a.val[i][j] = random(threshold); \
+      |                    ^
+vwnmsac_vv_u16_m.c:51:5: note: in expansion of macro 'data_init_matrix'
+   51 |     data_init_matrix(a, exp_a, 16, 2, 0xffffffff);
+      |     ^~~~~~~~~~~~~~~~
+vwnmsac_vv_u16_m.c:20:4: note: within this loop
+   20 |    for(int i = 0; i < m; i++) { \
+      |    ^~~
+vwnmsac_vv_u16_m.c:51:5: note: in expansion of macro 'data_init_matrix'
+   51 |     data_init_matrix(a, exp_a, 16, 2, 0xffffffff);
+      |     ^~~~~~~~~~~~~~~~
+/tmp/ccRJzVfe.s: Assembler messages:
+/tmp/ccRJzVfe.s:303: Error: junk at end of line, first unrecognized character is `&'
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vwnmsac_vv_u16_m.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

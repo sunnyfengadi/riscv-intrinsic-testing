@@ -4,87 +4,49 @@ vgldcb3_v_i32_m.c:16:2: warning: multi-line comment [-Wcomment]
 vgldcb3_v_i32_m.c:18:44: warning: backslash and newline separated by space
    18 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vgldcb3_v_i32_m.c:20:40: warning: backslash and newline separated by space
-   20 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vgldcb3_v_i32_m.c:21:35: warning: backslash and newline separated by space
-   21 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vgldcb3_v_i32_m.c:22:40: warning: backslash and newline separated by space
-   22 |              a[i] = random(threshold); \
-      |                                         
-vgldcb3_v_i32_m.c:23:27: warning: backslash and newline separated by space
-   23 |              b[i] = a[i]; \
-      |                            
-vgldcb3_v_i32_m.c:29:6: warning: no previous prototype for 'vgldcb3_v_i32_m_golden' [-Wmissing-prototypes]
-   29 | void vgldcb3_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,int32_t index,int32_t exp_result[][ELE_NUM]) {
+vgldcb3_v_i32_m.c:37:6: warning: no previous prototype for 'vgldcb3_v_i32_m_golden' [-Wmissing-prototypes]
+   37 | void vgldcb3_v_i32_m_golden(uint64_t *mask,int32_t maskoff[3][16],int32_t *base,int32_t *index,int32_t exp_result[][ELE_NUM]) {
       |      ^~~~~~~~~~~~~~~~~~~~~~
 vgldcb3_v_i32_m.c: In function 'vgldcb3_v_i32_m_golden':
-vgldcb3_v_i32_m.c:29:39: warning: unused parameter 'mask' [-Wunused-parameter]
-   29 | void vgldcb3_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,int32_t index,int32_t exp_result[][ELE_NUM]) {
+vgldcb3_v_i32_m.c:37:39: warning: unused parameter 'mask' [-Wunused-parameter]
+   37 | void vgldcb3_v_i32_m_golden(uint64_t *mask,int32_t maskoff[3][16],int32_t *base,int32_t *index,int32_t exp_result[][ELE_NUM]) {
       |                             ~~~~~~~~~~^~~~
-vgldcb3_v_i32_m.c:29:52: warning: unused parameter 'maskoff' [-Wunused-parameter]
-   29 | void vgldcb3_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,int32_t index,int32_t exp_result[][ELE_NUM]) {
-      |                                            ~~~~~~~~^~~~~~~
-vgldcb3_v_i32_m.c:29:82: warning: unused parameter 'index' [-Wunused-parameter]
-   29 | void vgldcb3_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,int32_t index,int32_t exp_result[][ELE_NUM]) {
-      |                                                                          ~~~~~~~~^~~~~
+vgldcb3_v_i32_m.c:37:52: warning: unused parameter 'maskoff' [-Wunused-parameter]
+   37 | void vgldcb3_v_i32_m_golden(uint64_t *mask,int32_t maskoff[3][16],int32_t *base,int32_t *index,int32_t exp_result[][ELE_NUM]) {
+      |                                            ~~~~~~~~^~~~~~~~~~~~~~
+vgldcb3_v_i32_m.c:37:90: warning: unused parameter 'index' [-Wunused-parameter]
+   37 | void vgldcb3_v_i32_m_golden(uint64_t *mask,int32_t maskoff[3][16],int32_t *base,int32_t *index,int32_t exp_result[][ELE_NUM]) {
+      |                                                                                 ~~~~~~~~~^~~~~
 vgldcb3_v_i32_m.c: In function 'main':
-vgldcb3_v_i32_m.c:54:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   54 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+vgldcb3_v_i32_m.c:62:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   62 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vgldcb3_v_i32_m.c:22:15: error: subscripted value is neither array nor pointer nor vector
-   22 |              a[i] = random(threshold); \
-      |               ^
-vgldcb3_v_i32_m.c:55:5: note: in expansion of macro 'data_init'
-   55 |     data_init(maskoff, exp_maskoff, 16*3, 0xffffffff);
-      |     ^~~~~~~~~
-vgldcb3_v_i32_m.c:23:22: error: subscripted value is neither array nor pointer nor vector
-   23 |              b[i] = a[i]; \
-      |                      ^
-vgldcb3_v_i32_m.c:55:5: note: in expansion of macro 'data_init'
-   55 |     data_init(maskoff, exp_maskoff, 16*3, 0xffffffff);
-      |     ^~~~~~~~~
-vgldcb3_v_i32_m.c:66:28: warning: passing argument 1 of 'vgldcb3_v_i32_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
-   66 |     vgldcb3_v_i32_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
-      |                            ^~~~~~~~
-      |                            |
-      |                            uint64_t * {aka long long unsigned int *}
-vgldcb3_v_i32_m.c:29:39: note: expected 'bool16_t *' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   29 | void vgldcb3_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,int32_t index,int32_t exp_result[][ELE_NUM]) {
-      |                             ~~~~~~~~~~^~~~
-vgldcb3_v_i32_m.c:66:37: warning: passing argument 2 of 'vgldcb3_v_i32_m_golden' makes integer from pointer without a cast [-Wint-conversion]
-   66 |     vgldcb3_v_i32_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
-      |                                     ^~~~~~~~~~~
-      |                                     |
-      |                                     int32_t * {aka long int *}
-vgldcb3_v_i32_m.c:29:52: note: expected 'int32_t' {aka 'long int'} but argument is of type 'int32_t *' {aka 'long int *'}
-   29 | void vgldcb3_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,int32_t index,int32_t exp_result[][ELE_NUM]) {
-      |                                            ~~~~~~~~^~~~~~~
-vgldcb3_v_i32_m.c:66:58: warning: passing argument 4 of 'vgldcb3_v_i32_m_golden' makes integer from pointer without a cast [-Wint-conversion]
-   66 |     vgldcb3_v_i32_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
-      |                                                          ^~~~~~~~~
-      |                                                          |
-      |                                                          int32_t * {aka long int *}
-vgldcb3_v_i32_m.c:29:82: note: expected 'int32_t' {aka 'long int'} but argument is of type 'int32_t *' {aka 'long int *'}
-   29 | void vgldcb3_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,int32_t index,int32_t exp_result[][ELE_NUM]) {
-      |                                                                          ~~~~~~~~^~~~~
-vgldcb3_v_i32_m.c:66:68: warning: passing argument 5 of 'vgldcb3_v_i32_m_golden' from incompatible pointer type [-Wincompatible-pointer-types]
-   66 |     vgldcb3_v_i32_m_golden(exp_mask,exp_maskoff,exp_base,exp_index,exp_result);
-      |                                                                    ^~~~~~~~~~
-      |                                                                    |
-      |                                                                    int32_t * {aka long int *}
-vgldcb3_v_i32_m.c:29:96: note: expected 'int32_t (*)[16]' {aka 'long int (*)[16]'} but argument is of type 'int32_t *' {aka 'long int *'}
-   29 | void vgldcb3_v_i32_m_golden(bool16_t *mask,int32_t maskoff,int32_t *base,int32_t index,int32_t exp_result[][ELE_NUM]) {
-      |                                                                                        ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
-vgldcb3_v_i32_m.c:75:76: warning: format '%x' expects argument of type 'unsigned int', but argument 6 has type 'int32_t' {aka 'long int'} [-Wformat=]
-   75 |                 printf("Failed: result.val[%d][%d] = %x, exp_result[%d] = %x\n", i,j, result.val[i][j], i*ELE_NUM+j, exp_result[i*ELE_NUM+j]);
-      |                                                                           ~^                                         ~~~~~~~~~~~~~~~~~~~~~~~
-      |                                                                            |                                                   |
-      |                                                                            unsigned int                                        int32_t {aka long int}
-      |                                                                           %lx
-make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb3_v_i32_m.o] Error 1
+vgldcb3_v_i32_m.c:83:80: warning: format '%d' expects argument of type 'int', but argument 7 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   83 |                 printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
+      |                                                                               ~^                                 ~~~~~~~~~~~~~~~~
+      |                                                                                |                                              |
+      |                                                                                int                                            int32_t {aka long int}
+      |                                                                               %ld
+vgldcb3_v_i32_m.c:62:5: warning: 'mask' is used uninitialized in this function [-Wuninitialized]
+   62 |     data_init_bool(mask, exp_mask, 16, 0xffffffff);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+vgldcb3_v_i32_m.c:28:20: warning: iteration 3 invokes undefined behavior [-Waggressive-loop-optimizations]
+   28 |        a.val[i][j] = random(threshold); \
+      |                    ^
+vgldcb3_v_i32_m.c:63:5: note: in expansion of macro 'data_init_matrix'
+   63 |     data_init_matrix(maskoff, exp_maskoff, 16, 3, 0xffffffff);
+      |     ^~~~~~~~~~~~~~~~
+vgldcb3_v_i32_m.c:26:4: note: within this loop
+   26 |    for(int i = 0; i < m; i++) { \
+      |    ^~~
+vgldcb3_v_i32_m.c:63:5: note: in expansion of macro 'data_init_matrix'
+   63 |     data_init_matrix(maskoff, exp_maskoff, 16, 3, 0xffffffff);
+      |     ^~~~~~~~~~~~~~~~
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/../lib/gcc/riscv32-rivai-elf/10.2.1/../../../../riscv32-rivai-elf/bin/ld: /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb3_v_i32_m.o: in function `main':
+/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test/vgldcb3_v_i32_m.c:62: undefined reference to `data_init_bool'
+collect2: error: ld returned 1 exit status
+make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb3_v_i32_m.elf] Error 1
 make: *** [bare] Error 2
 ======================================================================
 
@@ -101,6 +63,8 @@ make: *** [bare] Error 2
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing/test ~/workspace/risc-v/rivai/riscv-intrinsic-testing
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vgldcb3_v_i32_m.c
-Makefile:73: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb3_v_i32_m.o' failed
+Linking....
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb3_v_i32_m.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb3_v_i32_m.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+Makefile:85: recipe for target '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vgldcb3_v_i32_m.elf' failed
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 Makefile:37: recipe for target 'bare' failed

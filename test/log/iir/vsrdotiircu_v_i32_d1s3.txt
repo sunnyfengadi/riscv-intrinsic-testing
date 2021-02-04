@@ -4,64 +4,66 @@ vsrdotiircu_v_i32_d1s3.c:16:2: warning: multi-line comment [-Wcomment]
 vsrdotiircu_v_i32_d1s3.c:18:44: warning: backslash and newline separated by space
    18 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vsrdotiircu_v_i32_d1s3.c:20:40: warning: backslash and newline separated by space
-   20 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vsrdotiircu_v_i32_d1s3.c:21:35: warning: backslash and newline separated by space
-   21 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vsrdotiircu_v_i32_d1s3.c:22:40: warning: backslash and newline separated by space
-   22 |              a[i] = random(threshold); \
-      |                                         
-vsrdotiircu_v_i32_d1s3.c:23:27: warning: backslash and newline separated by space
-   23 |              b[i] = a[i]; \
-      |                            
-vsrdotiircu_v_i32_d1s3.c:29:6: warning: no previous prototype for 'vsrdotiircu_v_i32_d1s3_golden' [-Wmissing-prototypes]
-   29 | void vsrdotiircu_v_i32_d1s3_golden(int32_t base[],int32_t *a,int32_t *exp_result) {
+vsrdotiircu_v_i32_d1s3.c:37:6: warning: no previous prototype for 'vsrdotiircu_v_i32_d1s3_golden' [-Wmissing-prototypes]
+   37 | void vsrdotiircu_v_i32_d1s3_golden(int32_t *base,int32_t a[3][16],int32_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 vsrdotiircu_v_i32_d1s3.c: In function 'vsrdotiircu_v_i32_d1s3_golden':
-vsrdotiircu_v_i32_d1s3.c:31:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   31 | Operator Line --- TODO
+vsrdotiircu_v_i32_d1s3.c:38:1: error: unknown type name 'Operator'
+   38 | Operator Line --- TODO
       | ^~~~~~~~
-      | perror
-vsrdotiircu_v_i32_d1s3.c:31:1: note: each undeclared identifier is reported only once for each function it appears in
-vsrdotiircu_v_i32_d1s3.c:31:9: error: expected ';' before 'Line'
-   31 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vsrdotiircu_v_i32_d1s3.c:29:44: warning: unused parameter 'base' [-Wunused-parameter]
-   29 | void vsrdotiircu_v_i32_d1s3_golden(int32_t base[],int32_t *a,int32_t *exp_result) {
-      |                                    ~~~~~~~~^~~~~~
-vsrdotiircu_v_i32_d1s3.c:29:60: warning: unused parameter 'a' [-Wunused-parameter]
-   29 | void vsrdotiircu_v_i32_d1s3_golden(int32_t base[],int32_t *a,int32_t *exp_result) {
-      |                                                   ~~~~~~~~~^
-vsrdotiircu_v_i32_d1s3.c:29:71: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   29 | void vsrdotiircu_v_i32_d1s3_golden(int32_t base[],int32_t *a,int32_t *exp_result) {
-      |                                                              ~~~~~~~~~^~~~~~~~~~
+vsrdotiircu_v_i32_d1s3.c:38:15: error: expected '=', ',', ';', 'asm' or '__attribute__' before '--' token
+   38 | Operator Line --- TODO
+      |               ^~
+vsrdotiircu_v_i32_d1s3.c:42:5: warning: 'main' is normally a non-static function [-Wmain]
+   42 | int main(void) {
+      |     ^~~~
 vsrdotiircu_v_i32_d1s3.c: In function 'main':
-vsrdotiircu_v_i32_d1s3.c:22:15: error: subscripted value is neither array nor pointer nor vector
-   22 |              a[i] = random(threshold); \
-      |               ^
-vsrdotiircu_v_i32_d1s3.c:46:5: note: in expansion of macro 'data_init'
-   46 |     data_init(a, exp_a, 16*3, 0xffffffff);
-      |     ^~~~~~~~~
-vsrdotiircu_v_i32_d1s3.c:23:22: error: subscripted value is neither array nor pointer nor vector
-   23 |              b[i] = a[i]; \
-      |                      ^
-vsrdotiircu_v_i32_d1s3.c:46:5: note: in expansion of macro 'data_init'
-   46 |     data_init(a, exp_a, 16*3, 0xffffffff);
-      |     ^~~~~~~~~
-vsrdotiircu_v_i32_d1s3.c:58:14: warning: implicit declaration of function 'vsrdotiircu_v_i32_d1s3'; did you mean 'vsrdotiircu_v_u32_d1s3'? [-Wimplicit-function-declaration]
-   58 |     result = vsrdotiircu_v_i32_d1s3(base,a);
+vsrdotiircu_v_i32_d1s3.c:44:13: warning: declaration of 'base' shadows a parameter [-Wshadow]
+   44 |     int32_t base[ELE_NUM*COMBO_NUM];
+      |             ^~~~
+vsrdotiircu_v_i32_d1s3.c:37:45: note: shadowed declaration is here
+   37 | void vsrdotiircu_v_i32_d1s3_golden(int32_t *base,int32_t a[3][16],int32_t *exp_result) {
+      |                                    ~~~~~~~~~^~~~
+vsrdotiircu_v_i32_d1s3.c:45:18: warning: declaration of 'a' shadows a parameter [-Wshadow]
+   45 |     int32x16x3_t a;
+      |                  ^
+vsrdotiircu_v_i32_d1s3.c:37:58: note: shadowed declaration is here
+   37 | void vsrdotiircu_v_i32_d1s3_golden(int32_t *base,int32_t a[3][16],int32_t *exp_result) {
+      |                                                  ~~~~~~~~^~~~~~~~
+vsrdotiircu_v_i32_d1s3.c:50:13: warning: declaration of 'exp_result' shadows a parameter [-Wshadow]
+   50 |     int32_t exp_result[16] = {0};
+      |             ^~~~~~~~~~
+vsrdotiircu_v_i32_d1s3.c:37:76: note: shadowed declaration is here
+   37 | void vsrdotiircu_v_i32_d1s3_golden(int32_t *base,int32_t a[3][16],int32_t *exp_result) {
+      |                                                                   ~~~~~~~~~^~~~~~~~~~
+vsrdotiircu_v_i32_d1s3.c:65:14: warning: implicit declaration of function 'vsrdotiircu_v_i32_d1s3'; did you mean 'vsrdotiircu_v_u32_d1s3'? [-Wimplicit-function-declaration]
+   65 |     result = vsrdotiircu_v_i32_d1s3(base,a);
       |              ^~~~~~~~~~~~~~~~~~~~~~
       |              vsrdotiircu_v_u32_d1s3
-vsrdotiircu_v_i32_d1s3.c:58:14: error: incompatible types when assigning to type 'int32x16_t' from type 'int'
-vsrdotiircu_v_i32_d1s3.c:63:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'int32_t' {aka 'long int'} [-Wformat=]
-   63 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vsrdotiircu_v_i32_d1s3.c:65:14: error: incompatible types when assigning to type 'int32x16_t' from type 'int'
+vsrdotiircu_v_i32_d1s3.c:70:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'int32_t' {aka 'long int'} [-Wformat=]
+   70 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
       |                                                                unsigned int                     int32_t {aka long int}
       |                                                               %lx
+vsrdotiircu_v_i32_d1s3.c: In function 'vsrdotiircu_v_i32_d1s3_golden':
+vsrdotiircu_v_i32_d1s3.c:85:1: error: expected declaration or statement at end of input
+   85 | }
+      | ^
+vsrdotiircu_v_i32_d1s3.c:37:45: warning: unused parameter 'base' [-Wunused-parameter]
+   37 | void vsrdotiircu_v_i32_d1s3_golden(int32_t *base,int32_t a[3][16],int32_t *exp_result) {
+      |                                    ~~~~~~~~~^~~~
+vsrdotiircu_v_i32_d1s3.c:37:58: warning: unused parameter 'a' [-Wunused-parameter]
+   37 | void vsrdotiircu_v_i32_d1s3_golden(int32_t *base,int32_t a[3][16],int32_t *exp_result) {
+      |                                                  ~~~~~~~~^~~~~~~~
+vsrdotiircu_v_i32_d1s3.c:37:76: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   37 | void vsrdotiircu_v_i32_d1s3_golden(int32_t *base,int32_t a[3][16],int32_t *exp_result) {
+      |                                                                   ~~~~~~~~~^~~~~~~~~~
+At top level:
+vsrdotiircu_v_i32_d1s3.c:42:5: warning: 'main' defined but not used [-Wunused-function]
+   42 | int main(void) {
+      |     ^~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsrdotiircu_v_i32_d1s3.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

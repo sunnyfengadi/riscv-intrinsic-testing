@@ -4,26 +4,14 @@ vmacc_vv_i16.c:9:2: warning: multi-line comment [-Wcomment]
 vmacc_vv_i16.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vmacc_vv_i16.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vmacc_vv_i16.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vmacc_vv_i16.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vmacc_vv_i16.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vmacc_vv_i16.c:22:6: warning: no previous prototype for 'vmacc_vv_i16_golden' [-Wmissing-prototypes]
-   22 | void vmacc_vv_i16_golden(int16_t *a,int16_t *b,int16_t *c,int16_t *exp_result) {
+vmacc_vv_i16.c:30:6: warning: no previous prototype for 'vmacc_vv_i16_golden' [-Wmissing-prototypes]
+   30 | void vmacc_vv_i16_golden(int16_t *a,int16_t *b,int16_t *c,int16_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~
 soc_mode = 0 progsize = 2 
 binary file = /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i16.elf
-Start Loading Kernel @ Tue Feb  2 14:55:40 2021
+Start Loading Kernel @ Thu Feb  4 18:51:17 2021
 
-Start Setting Reset PC for orv32 @ Tue Feb  2 14:55:40 2021
+Start Setting Reset PC for orv32 @ Thu Feb  4 18:51:17 2021
 
 *** PASSED *** (tohost = 0)
 ======================================================================
@@ -42,41 +30,9 @@ Start Setting Reset PC for orv32 @ Tue Feb  2 14:55:40 2021
 make[1]: Entering directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
     CC vmacc_vv_i16.c
 Linking....
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i16.o -T/opt/analog/riscv/1.0.0/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.0/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/bin/riscv32-rivai-elf-gcc -o /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i16.elf /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i16.o -T/opt/analog/riscv/1.0.1/Riscv/software/target/bare/link.ld -nostartfiles -static -nostdlib -L/opt/analog/riscv/1.0.1/Riscv/software/target/common/lib/ -ldsp -lbare -lm -lc -lgcc
 Completed /home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i16.elf
 make[1]: Leaving directory '/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/test'
 ~/workspace/risc-v/rivai/riscv-intrinsic-testing
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i16.elf ++load_pk
-Failed: result[0] = 1134, exp_result[0] = ffffd874
-Failed: result[1] = ffff84da, exp_result[1] = ffffd896
-Failed: result[2] = ffffda14, exp_result[2] = 684c
-Failed: result[3] = ffffe5b3, exp_result[3] = 2d45
-Failed: result[4] = ffffe177, exp_result[4] = fffff497
-Failed: result[5] = fffffc93, exp_result[5] = 46d9
-Failed: result[6] = ffff82c7, exp_result[6] = ffffa615
-Failed: result[7] = ffffa1b1, exp_result[7] = 61e2
-Failed: result[8] = ffffafc1, exp_result[8] = 7fc8
-Failed: result[9] = 170f, exp_result[9] = 4bef
-Failed: result[10] = 476e, exp_result[10] = ffffb44d
-Failed: result[11] = 20e7, exp_result[11] = ffff9b62
-Failed: result[12] = ffffe5cf, exp_result[12] = ffff8382
-Failed: result[13] = ffffd9e0, exp_result[13] = 5fa0
-Failed: result[14] = ffffdb89, exp_result[14] = ffffb505
-Failed: result[15] = 10ce, exp_result[15] = 5d9e
-Failed: result[16] = fffff1c0, exp_result[16] = 4868
-Failed: result[17] = 200b, exp_result[17] = ffff8fd7
-Failed: result[18] = 1702, exp_result[18] = ffffcb03
-Failed: result[19] = fffff143, exp_result[19] = 7fac
-Failed: result[20] = fffffeac, exp_result[20] = fffffd04
-Failed: result[21] = 681f, exp_result[21] = 6681
-Failed: result[22] = ffffe1cb, exp_result[22] = 7fd3
-Failed: result[23] = ffff8686, exp_result[23] = fffffed2
-Failed: result[24] = 3d52, exp_result[24] = ffff9352
-Failed: result[25] = ffffa642, exp_result[25] = ffff9322
-Failed: result[26] = 3e77, exp_result[26] = fffffe4b
-Failed: result[27] = 1d73, exp_result[27] = 1497
-Failed: result[28] = 61c6, exp_result[28] = 3452
-Failed: result[29] = ffff90aa, exp_result[29] = ffffbb54
-Failed: result[30] = ffffbea9, exp_result[30] = 7258
-Failed: result[31] = ffffa1dd, exp_result[31] = 2b51
-TEST FAILED!
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/spike  --isa=rv32IMC ++set_orv32_rst_pc=80000000 ++/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vmacc_vv_i16.elf ++load_pk
+TEST PASSED!

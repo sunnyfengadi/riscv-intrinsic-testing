@@ -4,124 +4,143 @@ vardotacc_vv_u32_m1.c:9:2: warning: multi-line comment [-Wcomment]
 vardotacc_vv_u32_m1.c:11:44: warning: backslash and newline separated by space
    11 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vardotacc_vv_u32_m1.c:13:40: warning: backslash and newline separated by space
-   13 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vardotacc_vv_u32_m1.c:14:35: warning: backslash and newline separated by space
-   14 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vardotacc_vv_u32_m1.c:15:40: warning: backslash and newline separated by space
-   15 |              a[i] = random(threshold); \
-      |                                         
-vardotacc_vv_u32_m1.c:16:27: warning: backslash and newline separated by space
-   16 |              b[i] = a[i]; \
-      |                            
-vardotacc_vv_u32_m1.c:22:6: warning: no previous prototype for 'vardotacc_vv_u32_m1_golden' [-Wmissing-prototypes]
-   22 | void vardotacc_vv_u32_m1_golden(bool8_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+vardotacc_vv_u32_m1.c:30:6: warning: no previous prototype for 'vardotacc_vv_u32_m1_golden' [-Wmissing-prototypes]
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
 vardotacc_vv_u32_m1.c: In function 'vardotacc_vv_u32_m1_golden':
-vardotacc_vv_u32_m1.c:24:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   24 | Operator Line --- TODO
+vardotacc_vv_u32_m1.c:31:1: error: unknown type name 'Operator'
+   31 | Operator Line --- TODO
       | ^~~~~~~~
-      | perror
-vardotacc_vv_u32_m1.c:24:1: note: each undeclared identifier is reported only once for each function it appears in
-vardotacc_vv_u32_m1.c:24:9: error: expected ';' before 'Line'
-   24 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vardotacc_vv_u32_m1.c:22:41: warning: unused parameter 'dst_mask' [-Wunused-parameter]
-   22 | void vardotacc_vv_u32_m1_golden(bool8_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
-      |                                 ~~~~~~~~^~~~~~~~
-vardotacc_vv_u32_m1.c:22:60: warning: unused parameter 'a' [-Wunused-parameter]
-   22 | void vardotacc_vv_u32_m1_golden(bool8_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
-      |                                                  ~~~~~~~~~~^
-vardotacc_vv_u32_m1.c:22:72: warning: unused parameter 'b' [-Wunused-parameter]
-   22 | void vardotacc_vv_u32_m1_golden(bool8_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
-      |                                                              ~~~~~~~~~~^
-vardotacc_vv_u32_m1.c:22:84: warning: unused parameter 'c' [-Wunused-parameter]
-   22 | void vardotacc_vv_u32_m1_golden(bool8_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
-      |                                                                          ~~~~~~~~~~^
-vardotacc_vv_u32_m1.c:22:96: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   22 | void vardotacc_vv_u32_m1_golden(bool8_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
-      |                                                                                      ~~~~~~~~~~^~~~~~~~~~
+vardotacc_vv_u32_m1.c:31:15: error: expected '=', ',', ';', 'asm' or '__attribute__' before '--' token
+   31 | Operator Line --- TODO
+      |               ^~
+vardotacc_vv_u32_m1.c:35:5: warning: 'main' is normally a non-static function [-Wmain]
+   35 | int main(void) {
+      |     ^~~~
 vardotacc_vv_u32_m1.c: In function 'main':
-vardotacc_vv_u32_m1.c:44:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
-   44 |     data_init_bool(dst_mask, exp_dst_mask, 8, 0xffffffff);
+vardotacc_vv_u32_m1.c:37:13: warning: declaration of 'dst_mask' shadows a parameter [-Wshadow]
+   37 |     bool8_t dst_mask;
+      |             ^~~~~~~~
+vardotacc_vv_u32_m1.c:30:43: note: shadowed declaration is here
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+      |                                 ~~~~~~~~~~^~~~~~~~
+vardotacc_vv_u32_m1.c:38:17: warning: declaration of 'a' shadows a parameter [-Wshadow]
+   38 |     uint32x16_t a;
+      |                 ^
+vardotacc_vv_u32_m1.c:30:62: note: shadowed declaration is here
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+      |                                                    ~~~~~~~~~~^
+vardotacc_vv_u32_m1.c:39:17: warning: declaration of 'b' shadows a parameter [-Wshadow]
+   39 |     uint16x32_t b;
+      |                 ^
+vardotacc_vv_u32_m1.c:30:74: note: shadowed declaration is here
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+      |                                                                ~~~~~~~~~~^
+vardotacc_vv_u32_m1.c:40:17: warning: declaration of 'c' shadows a parameter [-Wshadow]
+   40 |     uint16x32_t c;
+      |                 ^
+vardotacc_vv_u32_m1.c:30:86: note: shadowed declaration is here
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+      |                                                                            ~~~~~~~~~~^
+vardotacc_vv_u32_m1.c:49:14: warning: declaration of 'exp_result' shadows a parameter [-Wshadow]
+   49 |     uint64_t exp_result[8] = {0};
+      |              ^~~~~~~~~~
+vardotacc_vv_u32_m1.c:30:98: note: shadowed declaration is here
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+      |                                                                                        ~~~~~~~~~~^~~~~~~~~~
+vardotacc_vv_u32_m1.c:51:5: warning: implicit declaration of function 'data_init_bool'; did you mean 'data_init_scalar'? [-Wimplicit-function-declaration]
+   51 |     data_init_bool(dst_mask, exp_dst_mask, 8, 0xffffffff);
       |     ^~~~~~~~~~~~~~
       |     data_init_scalar
-vardotacc_vv_u32_m1.c:48:38: error: macro "data_init_scalar" requires 3 arguments, but only 2 given
-   48 |     data_init_scalar(accum, exp_accum);
+vardotacc_vv_u32_m1.c:55:38: error: macro "data_init_scalar" requires 3 arguments, but only 2 given
+   55 |     data_init_scalar(accum, exp_accum);
       |                                      ^
 vardotacc_vv_u32_m1.c:11: note: macro "data_init_scalar" defined here
    11 |  #define data_init_scalar(a, b, threshold) \
       | 
-vardotacc_vv_u32_m1.c:48:5: error: 'data_init_scalar' undeclared (first use in this function)
-   48 |     data_init_scalar(accum, exp_accum);
+vardotacc_vv_u32_m1.c:55:5: error: 'data_init_scalar' undeclared (first use in this function)
+   55 |     data_init_scalar(accum, exp_accum);
       |     ^~~~~~~~~~~~~~~~
-vardotacc_vv_u32_m1.c:51:32: error: incompatible type for argument 1 of 'vardotacc_vv_u32_m1_golden'
-   51 |     vardotacc_vv_u32_m1_golden(exp_dst_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
-      |                                ^~~~~~~~~~~~
-      |                                |
-      |                                uint64_t * {aka long long unsigned int *}
-vardotacc_vv_u32_m1.c:22:41: note: expected 'bool8_t' but argument is of type 'uint64_t *' {aka 'long long unsigned int *'}
-   22 | void vardotacc_vv_u32_m1_golden(bool8_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
-      |                                 ~~~~~~~~^~~~~~~~
-vardotacc_vv_u32_m1.c:51:63: error: incompatible type for argument 5 of 'vardotacc_vv_u32_m1_golden'
-   51 |     vardotacc_vv_u32_m1_golden(exp_dst_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
+vardotacc_vv_u32_m1.c:55:5: note: each undeclared identifier is reported only once for each function it appears in
+vardotacc_vv_u32_m1.c:58:63: error: incompatible type for argument 5 of 'vardotacc_vv_u32_m1_golden'
+   58 |     vardotacc_vv_u32_m1_golden(exp_dst_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
       |                                                               ^~~~~~~~~
       |                                                               |
       |                                                               enum ACCUM
-vardotacc_vv_u32_m1.c:22:96: note: expected 'uint64_t *' {aka 'long long unsigned int *'} but argument is of type 'enum ACCUM'
-   22 | void vardotacc_vv_u32_m1_golden(bool8_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
-      |                                                                                      ~~~~~~~~~~^~~~~~~~~~
-vardotacc_vv_u32_m1.c:51:5: error: too many arguments to function 'vardotacc_vv_u32_m1_golden'
-   51 |     vardotacc_vv_u32_m1_golden(exp_dst_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
+vardotacc_vv_u32_m1.c:30:98: note: expected 'uint64_t *' {aka 'long long unsigned int *'} but argument is of type 'enum ACCUM'
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+      |                                                                                        ~~~~~~~~~~^~~~~~~~~~
+vardotacc_vv_u32_m1.c:58:5: error: too many arguments to function 'vardotacc_vv_u32_m1_golden'
+   58 |     vardotacc_vv_u32_m1_golden(exp_dst_mask,exp_a,exp_b,exp_c,exp_accum,exp_result);
       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
-vardotacc_vv_u32_m1.c:22:6: note: declared here
-   22 | void vardotacc_vv_u32_m1_golden(bool8_t dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+vardotacc_vv_u32_m1.c:30:6: note: declared here
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
       |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
-vardotacc_vv_u32_m1.c:54:5: note: use '-flax-vector-conversions' to permit conversions between vectors with differing element types or numbers of subparts
-   54 |     result = vardotacc_vv_u32_m1(dst_mask,a,b,c,accum);
+vardotacc_vv_u32_m1.c:61:5: note: use '-flax-vector-conversions' to permit conversions between vectors with differing element types or numbers of subparts
+   61 |     result = vardotacc_vv_u32_m1(dst_mask,a,b,c,accum);
       |     ^~~~~~
-vardotacc_vv_u32_m1.c:54:43: error: incompatible type for argument 2 of 'vardotacc_vv_u32_m1'
-   54 |     result = vardotacc_vv_u32_m1(dst_mask,a,b,c,accum);
+vardotacc_vv_u32_m1.c:61:43: error: incompatible type for argument 2 of 'vardotacc_vv_u32_m1'
+   61 |     result = vardotacc_vv_u32_m1(dst_mask,a,b,c,accum);
       |                                           ^
       |                                           |
       |                                           uint32x16_t
 In file included from vardotacc_vv_u32_m1.c:4:
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2037:46: note: expected 'uint64x8_t' but argument is of type 'uint32x16_t'
- 2037 | vardotacc_vv_u32_m1 (bool8_t __a, uint64x8_t __b, uint32x16_t __c, uint32x16_t __d, enum ACCUM accum)
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2025:46: note: expected 'uint64x8_t' but argument is of type 'uint32x16_t'
+ 2025 | vardotacc_vv_u32_m1 (bool8_t __a, uint64x8_t __b, uint32x16_t __c, uint32x16_t __d, enum ACCUM accum)
       |                                   ~~~~~~~~~~~^~~
-vardotacc_vv_u32_m1.c:54:45: error: incompatible type for argument 3 of 'vardotacc_vv_u32_m1'
-   54 |     result = vardotacc_vv_u32_m1(dst_mask,a,b,c,accum);
+vardotacc_vv_u32_m1.c:61:45: error: incompatible type for argument 3 of 'vardotacc_vv_u32_m1'
+   61 |     result = vardotacc_vv_u32_m1(dst_mask,a,b,c,accum);
       |                                             ^
       |                                             |
       |                                             uint16x32_t
 In file included from vardotacc_vv_u32_m1.c:4:
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2037:63: note: expected 'uint32x16_t' but argument is of type 'uint16x32_t'
- 2037 | vardotacc_vv_u32_m1 (bool8_t __a, uint64x8_t __b, uint32x16_t __c, uint32x16_t __d, enum ACCUM accum)
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2025:63: note: expected 'uint32x16_t' but argument is of type 'uint16x32_t'
+ 2025 | vardotacc_vv_u32_m1 (bool8_t __a, uint64x8_t __b, uint32x16_t __c, uint32x16_t __d, enum ACCUM accum)
       |                                                   ~~~~~~~~~~~~^~~
-vardotacc_vv_u32_m1.c:54:47: error: incompatible type for argument 4 of 'vardotacc_vv_u32_m1'
-   54 |     result = vardotacc_vv_u32_m1(dst_mask,a,b,c,accum);
+vardotacc_vv_u32_m1.c:61:47: error: incompatible type for argument 4 of 'vardotacc_vv_u32_m1'
+   61 |     result = vardotacc_vv_u32_m1(dst_mask,a,b,c,accum);
       |                                               ^
       |                                               |
       |                                               uint16x32_t
 In file included from vardotacc_vv_u32_m1.c:4:
-/opt/analog/riscv/1.0.0/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2037:80: note: expected 'uint32x16_t' but argument is of type 'uint16x32_t'
- 2037 | vardotacc_vv_u32_m1 (bool8_t __a, uint64x8_t __b, uint32x16_t __c, uint32x16_t __d, enum ACCUM accum)
+/opt/analog/riscv/1.0.1/Riscv/software/host/bin/gcc/lib/gcc/riscv32-rivai-elf/10.2.1/include/rivai_rugrats.h:2025:80: note: expected 'uint32x16_t' but argument is of type 'uint16x32_t'
+ 2025 | vardotacc_vv_u32_m1 (bool8_t __a, uint64x8_t __b, uint32x16_t __c, uint32x16_t __d, enum ACCUM accum)
       |                                                                    ~~~~~~~~~~~~^~~
-vardotacc_vv_u32_m1.c:59:43: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'long long unsigned int' [-Wformat=]
-   59 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vardotacc_vv_u32_m1.c:66:43: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'long long unsigned int' [-Wformat=]
+   66 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                          ~^                             ~~~~~~~~~
       |                                           |                                   |
       |                                           unsigned int                        long long unsigned int
       |                                          %llx
-vardotacc_vv_u32_m1.c:59:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint64_t' {aka 'long long unsigned int'} [-Wformat=]
-   59 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
+vardotacc_vv_u32_m1.c:66:64: warning: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'uint64_t' {aka 'long long unsigned int'} [-Wformat=]
+   66 |             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
       |                                                               ~^                      ~~~~~~~~~~~~~
       |                                                                |                                |
       |                                                                unsigned int                     uint64_t {aka long long unsigned int}
       |                                                               %llx
+vardotacc_vv_u32_m1.c: In function 'vardotacc_vv_u32_m1_golden':
+vardotacc_vv_u32_m1.c:81:1: error: expected declaration or statement at end of input
+   81 | }
+      | ^
+vardotacc_vv_u32_m1.c:30:43: warning: unused parameter 'dst_mask' [-Wunused-parameter]
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+      |                                 ~~~~~~~~~~^~~~~~~~
+vardotacc_vv_u32_m1.c:30:62: warning: unused parameter 'a' [-Wunused-parameter]
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+      |                                                    ~~~~~~~~~~^
+vardotacc_vv_u32_m1.c:30:74: warning: unused parameter 'b' [-Wunused-parameter]
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+      |                                                                ~~~~~~~~~~^
+vardotacc_vv_u32_m1.c:30:86: warning: unused parameter 'c' [-Wunused-parameter]
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+      |                                                                            ~~~~~~~~~~^
+vardotacc_vv_u32_m1.c:30:98: warning: unused parameter 'exp_result' [-Wunused-parameter]
+   30 | void vardotacc_vv_u32_m1_golden(uint64_t *dst_mask,uint32_t *a,uint16_t *b,uint16_t *c,uint64_t *exp_result) {
+      |                                                                                        ~~~~~~~~~~^~~~~~~~~~
+At top level:
+vardotacc_vv_u32_m1.c:35:5: warning: 'main' defined but not used [-Wunused-function]
+   35 | int main(void) {
+      |     ^~~~
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vardotacc_vv_u32_m1.o] Error 1
 make: *** [bare] Error 2
 ======================================================================

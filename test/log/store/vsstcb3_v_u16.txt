@@ -4,61 +4,20 @@ vsstcb3_v_u16.c:16:2: warning: multi-line comment [-Wcomment]
 vsstcb3_v_u16.c:18:44: warning: backslash and newline separated by space
    18 |  #define data_init_scalar(a, b, threshold) \
       |                                             
-vsstcb3_v_u16.c:20:40: warning: backslash and newline separated by space
-   20 |  #define data_init(a, b, n, threshold) \
-      |                                         
-vsstcb3_v_u16.c:21:35: warning: backslash and newline separated by space
-   21 |      for(int i = 0; i < n; i++) { \
-      |                                    
-vsstcb3_v_u16.c:22:40: warning: backslash and newline separated by space
-   22 |              a[i] = random(threshold); \
-      |                                         
-vsstcb3_v_u16.c:23:27: warning: backslash and newline separated by space
-   23 |              b[i] = a[i]; \
-      |                            
-vsstcb3_v_u16.c:29:6: warning: no previous prototype for 'vsstcb3_v_u16_golden' [-Wmissing-prototypes]
-   29 | void vsstcb3_v_u16_golden(uint16_t base[],int16_t *index,uint16_t *value,void *exp_result) {
-      |      ^~~~~~~~~~~~~~~~~~~~
-vsstcb3_v_u16.c: In function 'vsstcb3_v_u16_golden':
-vsstcb3_v_u16.c:31:1: error: 'Operator' undeclared (first use in this function); did you mean 'perror'?
-   31 | Operator Line --- TODO
-      | ^~~~~~~~
-      | perror
-vsstcb3_v_u16.c:31:1: note: each undeclared identifier is reported only once for each function it appears in
-vsstcb3_v_u16.c:31:9: error: expected ';' before 'Line'
-   31 | Operator Line --- TODO
-      |         ^~~~~
-      |         ;
-vsstcb3_v_u16.c:29:36: warning: unused parameter 'base' [-Wunused-parameter]
-   29 | void vsstcb3_v_u16_golden(uint16_t base[],int16_t *index,uint16_t *value,void *exp_result) {
-      |                           ~~~~~~~~~^~~~~~
-vsstcb3_v_u16.c:29:52: warning: unused parameter 'index' [-Wunused-parameter]
-   29 | void vsstcb3_v_u16_golden(uint16_t base[],int16_t *index,uint16_t *value,void *exp_result) {
-      |                                           ~~~~~~~~~^~~~~
-vsstcb3_v_u16.c:29:68: warning: unused parameter 'value' [-Wunused-parameter]
-   29 | void vsstcb3_v_u16_golden(uint16_t base[],int16_t *index,uint16_t *value,void *exp_result) {
-      |                                                          ~~~~~~~~~~^~~~~
-vsstcb3_v_u16.c:29:80: warning: unused parameter 'exp_result' [-Wunused-parameter]
-   29 | void vsstcb3_v_u16_golden(uint16_t base[],int16_t *index,uint16_t *value,void *exp_result) {
-      |                                                                          ~~~~~~^~~~~~~~~~
+vsstcb3_v_u16.c:37:79: error: expected declaration specifiers or '...' before ')' token
+   37 | void vsstcb3_v_u16_golden(uint16_t *base,int16_t *index,uint16_t value[3][32],) {
+      |                                                                               ^
 vsstcb3_v_u16.c: In function 'main':
-vsstcb3_v_u16.c:22:15: error: subscripted value is neither array nor pointer nor vector
-   22 |              a[i] = random(threshold); \
-      |               ^
-vsstcb3_v_u16.c:47:5: note: in expansion of macro 'data_init'
-   47 |     data_init(value, exp_value, 32*3, 0xffff);
-      |     ^~~~~~~~~
-vsstcb3_v_u16.c:23:22: error: subscripted value is neither array nor pointer nor vector
-   23 |              b[i] = a[i]; \
-      |                      ^
-vsstcb3_v_u16.c:47:5: note: in expansion of macro 'data_init'
-   47 |     data_init(value, exp_value, 32*3, 0xffff);
-      |     ^~~~~~~~~
-vsstcb3_v_u16.c:56:55: error: 'exp_result' undeclared (first use in this function)
-   56 |     vsstcb3_v_u16_golden(exp_base,exp_index,exp_value,exp_result);
+vsstcb3_v_u16.c:63:5: warning: implicit declaration of function 'vsstcb3_v_u16_golden'; did you mean 'vsstcb3_v_u16_m'? [-Wimplicit-function-declaration]
+   63 |     vsstcb3_v_u16_golden(exp_base,exp_index,exp_value,exp_result);
+      |     ^~~~~~~~~~~~~~~~~~~~
+      |     vsstcb3_v_u16_m
+vsstcb3_v_u16.c:63:55: error: 'exp_result' undeclared (first use in this function)
+   63 |     vsstcb3_v_u16_golden(exp_base,exp_index,exp_value,exp_result);
       |                                                       ^~~~~~~~~~
-vsstcb3_v_u16.c:62:9: error: 'i' undeclared (first use in this function)
-   62 |     for(i=0;i<ELE_NUM*COMBO_NUM;i++) {
+vsstcb3_v_u16.c:63:55: note: each undeclared identifier is reported only once for each function it appears in
+vsstcb3_v_u16.c:69:9: error: 'i' undeclared (first use in this function)
+   69 |     for(i=0;i<ELE_NUM*COMBO_NUM;i++) {
       |         ^
 make[1]: *** [/home/test/workspace/risc-v/rivai/riscv-intrinsic-testing/bin/test/vsstcb3_v_u16.o] Error 1
 make: *** [bare] Error 2

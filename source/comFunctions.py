@@ -30,22 +30,75 @@ def copyFile( templateFile, apitype, dstName ):
         
     return dstFile
     
-def writeFile (sourceFile,goldenlines, lines, tailfile):
+def writeFile (sourceFile, goldenlines, lines, tailfile):
     with open(sourceFile, 'a+') as f:
         for line in goldenlines:
             if line == '': f.write('\n')
             else: f.write(line + '\n' )
-            
         for line in lines:
             if line == '': f.write('\n')
             else: f.write( '    ' + line + '\n' )
+
     # Write the file tail
-    with open(os.path.join(TEMPLATE_PATH,tailfile),'r') as f:
+    with open(os.path.join(TEMPLATE_PATH, tailfile),'r') as f:
         tailLines=f.readlines()
     with open(sourceFile,'a') as f:
             for line in tailLines:
                 f.writelines(line)
     f.close()
+
+def getLoadStoreInputParameters(ldstApis, typeBit, elementnum, combonum):
+    inputList = ['int error = 0;']
+
+    api0 = ldstApis[0].split( '_' )
+    if (len(api0) == 3): #normal_test
+        dataTypeSymbol = api0[-1]
+    elif (len(api0) == 4): # mask_test
+        dataTypeSymbol = api0[-2]
+
+    if 'i' in dataTypeSymbol: dataType = 'int'
+    elif 'u' in dataTypeSymbol: dataType = 'uint'
+
+    scalar_dataType = dataType + str(typeBit) + '_t'
+    combo1_dataType = dataType + str(typeBit) + 'x' + str(elementnum) + '_t'
+    comboX_dataType = dataType + str(typeBit) + 'x' + str(elementnum) + 'x' + str(combonum) + '_t'
+
+    inputList.append(scalar_dataType + ' base[PAGE_NUM];')
+    inputList.append(scalar_dataType + ' base2[PAGE_NUM];')
+    inputList.append(combo1_dataType + ' index;')
+
+    if 'm' in ldstApis[0]:
+        if (elementnum == 8):
+            inputList.append('bool8_t mask = m8(0x100000101000001);\n')
+            inputList.append('uint64_t exp_mask[ELE_NUM] ={1,0,0,1,1,0,0,1};')
+        elif (elementnum == 16):
+            inputList.append('bool16_t mask = m16(0x1101100000011011);\n')
+            inputList.append('uint64_t exp_mask[ELE_NUM]={1,1,0,1,1,0,0,0,0,0,0,1,1,0,1,1};')
+        elif (elementnum == 32):
+            inputList.append('bool32_t mask = m32(0x5140014551400145);\n')
+            inputList.append('uint64_t exp_mask[ELE_NUM]={1,1,0,1,1,0,0,0,0,0,0,1,1,0,1,1,1,1,0,1,1,0,0,0,0,0,0,1,1,0,1,1};')
+
+    inputList.append(scalar_dataType + ' exp_base[PAGE_NUM];')
+    inputList.append(scalar_dataType + ' exp_index[ELE_NUM];')
+
+    inputList.append('\n\
+    unsigned int element_stride;\n\
+    unsigned int group_stride;')
+
+    if (combonum == '1'):
+        inputList.append('\n')
+        inputList.append(combo1_dataType + ' result = {0};')
+        inputList.append(combo1_dataType + ' tmp_result = {0};')
+        inputList.append(combo1_dataType + ' tmp2_result = {0};')
+        inputList.append(scalar_dataType + ' exp_result[ELE_NUM] = {0};')
+    else:
+        inputList.append('unsigned int combo_stride;\n')
+        inputList.append(comboX_dataType + ' result = {0};')
+        inputList.append(comboX_dataType + ' tmp_result = {0};')
+        inputList.append(comboX_dataType + ' tmp2_result = {0};')
+        inputList.append(scalar_dataType + ' exp_result[COMBO_NUM][ELE_NUM] = {0};')
+
+    return inputList
 
 def getInputParameters(inputDict, elementnum, combonum):
     inputList = ['int error = 0;']
@@ -142,11 +195,14 @@ def SetMacro(typebit, elenum, combonum, apitype):
     group_num = 4
     group_depth = element_width *group_num
 
-    lines.append('#define ELE_NUM ' + elenum)
+    lines.append('#define ELE_NUM ' + str(elenum))
     if (combonum != 1):
         lines.append('#define COMBO_NUM ' + str(combonum))
 
-    if apitype == 'load' or apitype == 'store' or apitype == 'iir':
+    if apitype == 'load_store':
+        lines.append('#define VLEN 64')
+        lines.append('#define BYTE_NUM 2')
+        lines.append('#define PAGE_NUM 4096')
         lines.append('#define ELE_WIDTH ' + str(element_width))
         lines.append('#define GROUP_NUM ' + str(group_num))
         lines.append('#define GROUP_DEPTH ' + str(group_depth))
@@ -158,29 +214,30 @@ def SetMacro(typebit, elenum, combonum, apitype):
 
     return lines
 
-def SetDataInitDefinition():
+def SetDataInitDefinition(apitype):
     lines = []
-    lines.append(' \
-#define random(threshold) rand()%threshold \n \
-//#define data_init_bool(a, b, n, threshold) \\ \n \
-//	a = b = 1;\n \
-#define data_init_scalar(a, b, threshold) \\ \n \
-  a = b = random(threshold);\n \
-#define data_init(a, b, n, threshold) \\\n \
-  for(int i = 0; i < n; i++) { \\\n \
-    a[i] = random(threshold); \\\n \
-    b[i] = a[i]; \\\n \
-  }\n \
-#define data_init_matrix(a, b, m, n, threshold) \\\n \
-  for(int i = 0; i < m; i++) { \\\n \
-    for(int j = 0; j < n; j++) { \\\n \
-      a.val[i][j] = random(threshold); \\\n \
-      b[i][j] = a.val[i][j]; \\\n \
-    } \\\n \
-  }\n '
-)
+    lines.append('\
+#define random(threshold) rand()%threshold\n\
+//#define data_init_bool(a, b, n, threshold) \\\n\
+//	a = b = 1;\n\
+#define data_init_scalar(a, b, threshold) \\\n\
+  a = b = random(threshold);\n\
+#define data_init(a, b, n, threshold) \\\n\
+  for(int i = 0; i < n; i++) { \\\n\
+    a[i] = random(threshold); \\\n\
+    b[i] = a[i]; \\\n\
+  }\n')
+    if apitype != 'load_store':
+        lines.append('\
+#define data_init_matrix(a, b, m, n, threshold) \\\n\
+  for(int i = 0; i < m; i++) { \\\n\
+    for(int j = 0; j < n; j++) { \\\n\
+      a.val[i][j] = random(threshold); \\\n\
+      b[i][j] = a.val[i][j]; \\\n\
+    } \\\n\
+  }\n')
     
-    lines.append('')
+    #lines.append('')
 
     return lines
 
@@ -214,7 +271,7 @@ def SetResultLine(node,typebit):
 
     return lines
 
-def DataInit(node,inputDict,typebit,eleNum,apitype):
+def DataInit(node,inputDict,ldstApis,typebit,eleNum,apitype):
     dataInit = ['']
     for i in range(1,8):
         if inputDict['Input_'+str(i)+'_Type']:
@@ -276,3 +333,26 @@ def DataInit(node,inputDict,typebit,eleNum,apitype):
             dataInit.append(data_init_str)
 
     return dataInit
+
+def getrelist(rootNode):
+    redic = {}
+
+    for node in rootNode:
+        if 'Load:' in node['Intrinsic_Type'] or 'Store:' in node['Intrinsic_Type']:
+            apiName = node['Intrinsic_Name'].rstrip()
+            comboNum = re.findall(r"\d+\.?\d*", apiName)[0]
+            split_api = apiName.split( '_' )
+
+            ret = re.match('vg?(ld)?s?(st)?cb[1-8](in0)?_v_[iu][136][624]_m$',apiName)
+            if ret:
+                restring = 'vldstcb'+ comboNum + '_v_' + split_api[-2] + '_m'
+            else:
+                restring = 'vldstcb'+ comboNum + '_v_' +  split_api[-1]
+
+            if restring not in redic:
+                redic[restring] = []
+            redic[restring].append(apiName)
+
+    return redic
+
+

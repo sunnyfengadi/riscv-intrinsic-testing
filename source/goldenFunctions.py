@@ -180,7 +180,7 @@ def move(node, variable):
     lines += '  }\n'
     return lines
 
-def load(node, variable):
+def load_store(node, variable):
     oper = ' \
     for(int i=0; i<COMBO_NUM; i++){\n \
         for(int j=0; j<GROUP_NUM; j++){\n \
@@ -191,7 +191,67 @@ def load(node, variable):
     }'
     return oper
 
-def SetGoldenFunction(node, elenum, typebit, apitype):
+def SetLoadStoreGoldenFunction(apiName, typebit, elenum, comboNum, apitype):
+    operator = ''
+    line1 = ['#pragma GCC push_options',
+             '#pragma GCC optimize("O0")',
+             '__attribute__((noinline, noclone))']
+    line3 = ['#pragma GCC pop_options', '',
+             'int main(void) {' ]
+
+    expInput = ''
+    api = apiName.split( '_' )
+    if (len(api) == 3): #normal_test
+        dataTypeSymbol = api[-1]
+    elif (len(api) == 4): # mask_test
+        dataTypeSymbol = api[-2]
+
+    if 'i' in dataTypeSymbol: dataType = 'int' + str(typebit) + '_t'
+    elif 'u' in dataTypeSymbol: dataType = 'uint' + str(typebit) + '_t'
+
+    if (comboNum == '1'):
+        if 'm' in apiName:
+            expInput += 'uint64_t *mask, '
+            operator += '    for (int i = 0; i < ELE_NUM; i++) {\n\
+        if (mask[i])\n\
+            exp_result[i] = base[index[i]];\n\
+        else\n\
+            exp_result[i] = 0;\n\
+    }\n'
+        if 'm' not in apiName:
+            operator += '    for (int i = 0; i < ELE_NUM; i++)\n\
+        exp_result[i] = base[index[i]];'
+
+        expInput += dataType + ' *base,'
+        expInput += dataType +  '*index,'
+        expInput += dataType + ' *exp_result'
+    else:
+        expInput += 'unsigned int combo_stride,'
+        if 'm' in apiName:
+            expInput += 'uint64_t *mask,'
+            operator += '   for (int j = 0; j < COMBO_NUM; j++)\n\
+        for (int i = 0; i < ELE_NUM; i++)\n\
+            if (mask[i])\n\
+                exp_result[j][i] = base[index[i] + combo_stride*j];\n\
+            else\n\
+                exp_result[j][i] = 0;\n'
+
+        expInput += dataType + ' *base, '
+        expInput += dataType + ' *index, '
+        expInput += dataType + ' exp_result[COMBO_NUM][ELE_NUM]'
+        if 'm' not in apiName:
+
+            operator +='    for (int j = 0; j < COMBO_NUM; j++)\n\
+        for (int i = 0; i < ELE_NUM; i++)\n\
+            exp_result[j][i] = base[index[i] + combo_stride*j];'
+    line2 = ['void '+ apiName + '_golden(' + expInput + ') {',
+        operator,
+        '}']
+
+    return line1+line2+line3
+
+
+def SetGoldenFunction(node, apiName, elenum, typebit, apitype):
     variableList = []
     expInput = ''
     
@@ -253,8 +313,8 @@ def SetGoldenFunction(node, elenum, typebit, apitype):
                     expInput += split_output[0] + '_t' + ' exp_result[][ELE_NUM]'
 
     # get exp operator 
-    if apitype == 'load':
-        operator = load(node, variableList)
+    # if apitype == 'load_store':
+    #     operator = load_store(node, variableList)
     if apitype == 'arithmetic':
         operator = arithmetic(node, variableList)
     if apitype == 'logic':
@@ -273,7 +333,7 @@ def SetGoldenFunction(node, elenum, typebit, apitype):
     line2 = ['void '+ node['Intrinsic_Name'].rstrip() + '_golden(' + expInput + ') {',
             operator,
             '}']
-            
+
     return line1+line2+line3
     
     

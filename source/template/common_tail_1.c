@@ -3,7 +3,7 @@
     for(int i = 0; i < ELE_NUM; i++) {
         if(exp_result[i] != result[i]) {
             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
-            //abort();
+            abort();
             error = 1;
         }
     }

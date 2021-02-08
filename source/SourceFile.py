@@ -52,10 +52,6 @@ def loadStoreFile(node, apiName, ldstApis):
     DataInitDefinitionLines = SetDataInitDefinition('load_store')
     goldenLines = SetLoadStoreGoldenFunction(apiName, typeBit, elementNum, comboNum, 'load_store')
     paraLines = getLoadStoreInputParameters(ldstApis, typeBit, elementNum, comboNum)
-    # resultLine = SetResultLine(node,typeBit)
-    # DataInitLines = DataInit(node,parameters,ldstApis,typeBit,elementNum,'load_store')
-    # vwrcsrLines = getVwrCsr()
-    # runLines = getRunlines(parameters, apiName, 'load_store' )
     data_init_str = 'data_init(exp_base, exp_base, PAGE_NUM, '
     if (typeBit == '8'):  data_init_str += '0xff);'
     elif (typeBit == '16'):  data_init_str += '0xffff);'
@@ -81,7 +77,7 @@ def loadStoreFile(node, apiName, ldstApis):
     rungoldenLines = ['','//Get golden result']
     runIntrinsicLines = ['','//Get Intrinsic result']
     goldenStr = ''
-    # print(ldstApis[0],ldstApis[1],ldstApis[2],ldstApis[3])
+
     # Get golden result
     if (comboNum != '1'):
         goldenStr += apiName + '_golden((combo_stride * BYTE_NUM + VLEN) / BYTE_NUM,'
@@ -147,40 +143,6 @@ def loadStoreFile(node, apiName, ldstApis):
     else: tailFile = 'common_tail_1.c'
 
     writeFile(apiFile, goldenLines, paraLines, tailFile)
-
-# def storeFile(node):
-#     parameters={}
-#     apiName = node['Intrinsic_Name'].rstrip()
-#     comboNum = re.findall(r"\d+\.?\d*", apiName)[0]
-#     apiFile = copyFile('template_head.c', 'store', apiName)
-    
-#     for item in node.items():
-#         if 'int' in item[1] and 'x' in item[1]:
-#             typeBit = re.sub("\D", "", item[1].split( 'x' )[0])      # get the type bit number 16/32/64 bit
-#             elementNum = re.sub("\D", "", item[1].split( 'x' )[1])   # get the number of element that is 16 or 32 
-#         if item[0].split( '_' )[0] == 'Input':                       # get the list of variables
-#             parameters[item[0]] = item[1]
-
-#     MacroLines = SetMacro(typeBit, elementNum, comboNum, 'store')
-#     DataInitDefinitionLines = SetDataInitDefinition('store')
-#     goldenLines = SetGoldenFunction(node, elementNum, typeBit, 'store')
-#     paraLines = getInputParameters(parameters, elementNum, comboNum)
-#     resultLine = SetResultLine(node,typeBit)
-#     DataInitLines = DataInit(node,parameters,typeBit,elementNum,'store')
-#     vwrcsrLines = getVwrCsr()
-#     runLines = getRunlines(parameters, apiName, 'store')
-
-#     goldenLines = MacroLines + DataInitDefinitionLines + goldenLines
-#     paraLines += resultLine + DataInitLines + vwrcsrLines + runLines
-    
-#     for item in INTRINSIC_TYPE_MAP.items():
-#         ret = re.match(item[0],node['Intrinsic_Name'])
-#         if ret:
-#             if comboNum != '1':
-#                 tailFile = item[1][2]
-#             else: tailFile = item[1][1]
-
-#     writeFile(apiFile, goldenLines, paraLines, tailFile)
     
 def iirFile(node):
     parameters={}
@@ -195,16 +157,14 @@ def iirFile(node):
         if item[0].split( '_' )[0] == 'Input':                     # get the list of variables
             parameters[item[0]] = item[1]
     
-    #paraLines = getInputParameters(parameters, elementNum, comboNum)
-    #runLines = getRunlines(parameters, apiName,'iir')
     MacroLines = SetMacro(typeBit, elementNum, comboNum, 'iir')
     DataInitDefinitionLines = SetDataInitDefinition('iir')
     goldenLines = SetGoldenFunction(node, '', elementNum, typeBit, 'iir')
-    paraLines = getInputParameters(parameters, elementNum, comboNum)
-    resultLine = SetResultLine(node,typeBit)
+    paraLines = getInputParameters(parameters, elementNum, comboNum, 'iir')
+    resultLine = SetResultLine(node,typeBit,'iir')
     DataInitLines = DataInit(node,parameters,'',typeBit, elementNum, 'iir')
     vwrcsrLines = getVwrCsr()
-    runLines = getRunlines(parameters, apiName, 'iir')
+    runLines = getRunlines(parameters, apiName, elementNum, 'iir')
 
     goldenLines = MacroLines + DataInitDefinitionLines + goldenLines
     paraLines += resultLine + DataInitLines + vwrcsrLines + runLines
@@ -247,12 +207,35 @@ def commonFile(node, apitype):
 
     MacroLines = SetMacro(typeBit, elementNum, comboNum, apitype)
     DataInitDefinitionLines = SetDataInitDefinition(apitype)
-    goldenLines = SetGoldenFunction(node, '', elementNum, typeBit, apitype)
-    paraLines = getInputParameters(parameters, elementNum, comboNum)
-    resultLine = SetResultLine(node,typeBit)
-    DataInitLines = DataInit(node,parameters,'',typeBit,elementNum, apitype)
-    runLines = getRunlines(parameters, apiName, apitype )
+    paraLines = getInputParameters(parameters, elementNum, comboNum, apitype)
+    if (apitype == 'compare'):
+        for i in range(1,8):
+            if parameters['Input_'+str(i)+'_Type']:
+                if (parameters['Input_'+ str(i)+'_Variable'] == 'a'):
+                    out_datatype = parameters['Input_'+str(i)+'_Type']
+                    out_exp_datatype = parameters['Input_'+str(i)+'_Type'].split('x')[0] + '_t'
+        resultLine = [out_datatype + ' result = {0};']
+        resultLine += [out_exp_datatype + ' exp_result[ELE_NUM] = {0};']
+
+        DataInitLines = DataInit(node,parameters,'',typeBit,elementNum, apitype)
+        if (typeBit == '16'):
+            DataInitLines += ['data_init(c, exp_c, 32, 0xffff);']
+            DataInitLines += ['data_init(d, exp_d, 32, 0xffff);']
+        elif (typeBit == '32'):
+            DataInitLines += ['data_init(c, exp_c, 16, 0xffffffff);']
+            DataInitLines += ['data_init(d, exp_d, 16, 0xffffffff);']
+        elif (typeBit == '64'):
+            DataInitLines += ['data_init(c, exp_c, 8, 0xffffffffffffffff);']
+            DataInitLines += ['data_init(d, exp_d, 8, 0xffffffffffffffff);']
+
+        goldenLines = SetCompareGoldenFunction(node, apiName, elementNum, typeBit, apitype)
+
+    else:
+        goldenLines = SetGoldenFunction(node, '', elementNum, typeBit, apitype)
+        resultLine = SetResultLine(node,typeBit,apitype)
+        DataInitLines = DataInit(node,parameters,'',typeBit,elementNum, apitype)
     
+    runLines = getRunlines(parameters, apiName, elementNum, apitype)
     goldenLines = MacroLines + DataInitDefinitionLines + goldenLines
     paraLines += resultLine + DataInitLines + runLines
 

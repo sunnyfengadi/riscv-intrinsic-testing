@@ -250,6 +250,51 @@ def SetLoadStoreGoldenFunction(apiName, typebit, elenum, comboNum, apitype):
 
     return line1+line2+line3
 
+def SetCompareGoldenFunction(node, apiName, elenum, typebit, apitype):
+    variableList = []
+    expInput = ''
+    operator = ''
+    line1 = ['#pragma GCC push_options',
+             '#pragma GCC optimize("O0")',
+             '__attribute__((noinline, noclone))']
+    line3 = ['#pragma GCC pop_options', '',
+             'int main(void) {' ]
+
+    api = apiName.split( '_' )
+    if (len(api) == 3): #normal_test
+        dataTypeSymbol = api[-1]
+    elif (len(api) == 4): # mask_test
+        dataTypeSymbol = api[-2]
+
+    if 'i' in dataTypeSymbol: dataType = 'int' + str(typebit) + '_t'
+    elif 'u' in dataTypeSymbol: dataType = 'uint' + str(typebit) + '_t'
+
+    operator += '  for (int i = 0; i < ELE_NUM; i++)\n'
+    operator += '    exp_result[i] ='
+    for item in OPERATOR_2.items():
+        ret = re.match(item[1],node['Intrinsic_Name'])
+        if ret:
+            PATTERN = item[0]
+
+    if 'vv' in apiName: ope_b = 'b[i]'
+    elif 'vx' in apiName: ope_b = 'b'
+    if (len(api) == 4): # mask_test
+        expInput += 'uint64_t *mask, '
+        operator += 'mask[i] ? (a[i]' + PATTERN + ope_b + '? c[i] : d[i]) : d[i];'
+    else:
+        operator += '(a[i]' + PATTERN + ope_b + ') ? c[i] : d[i];'
+
+    expInput += dataType + ' *a, '
+    expInput += dataType + ' *b, '
+    expInput += dataType + ' *c, '
+    expInput += dataType + ' *d, '
+    expInput += dataType + ' *exp_result, '
+
+    line2 = ['void '+ node['Intrinsic_Name'].rstrip() + '_golden(' + expInput + ') {',
+            operator,
+            '}']
+
+    return line1+line2+line3
 
 def SetGoldenFunction(node, apiName, elenum, typebit, apitype):
     variableList = []
@@ -323,8 +368,8 @@ def SetGoldenFunction(node, apiName, elenum, typebit, apitype):
         operator = shift(node, variableList)
     if apitype == 'mac':
         operator = mac(node, variableList)
-    if apitype == 'compare':
-        operator = compare(node, variableList)
+    # if apitype == 'compare':
+    #     operator = compare(node, variableList)
     if apitype == 'move':
         operator = move(node, variableList)
     else:

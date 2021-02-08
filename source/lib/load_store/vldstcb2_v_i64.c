@@ -6,7 +6,7 @@ extern void abort(void);
 #define ELE_NUM 8
 #define COMBO_NUM 2
 #define VLEN 64
-#define BYTE_NUM 2
+#define BYTE_NUM 8
 #define PAGE_NUM 4096
 #define ELE_WIDTH 8
 #define GROUP_NUM 4

@@ -39,9 +39,9 @@ int main(void) {
     int error = 0;
     uint32_t base[PAGE_NUM];
     uint32_t base2[PAGE_NUM];
-    uint32x16_t index;
+    int32x16_t index;
     uint32_t exp_base[PAGE_NUM];
-    uint32_t exp_index[ELE_NUM];
+    int32_t exp_index[ELE_NUM];
     
     unsigned int element_stride;
     unsigned int group_stride;

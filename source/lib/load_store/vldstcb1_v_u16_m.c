@@ -44,12 +44,12 @@ int main(void) {
     int error = 0;
     uint16_t base[PAGE_NUM];
     uint16_t base2[PAGE_NUM];
-    uint16x32_t index;
+    int16x32_t index;
     bool32_t mask = m32(0x5140014551400145);
 
     uint64_t exp_mask[ELE_NUM]={1,1,0,1,1,0,0,0,0,0,0,1,1,0,1,1,1,1,0,1,1,0,0,0,0,0,0,1,1,0,1,1};
     uint16_t exp_base[PAGE_NUM];
-    uint16_t exp_index[ELE_NUM];
+    int16_t exp_index[ELE_NUM];
     
     unsigned int element_stride;
     unsigned int group_stride;

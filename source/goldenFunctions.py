@@ -285,10 +285,11 @@ def SetCompareGoldenFunction(node, apiName, elenum, typebit, apitype):
         operator += '(a[i]' + PATTERN + ope_b + ') ? c[i] : d[i];'
 
     expInput += dataType + ' *a, '
-    expInput += dataType + ' *b, '
+    if 'vx' in apiName: expInput += dataType + ' b, '
+    else: expInput += dataType + ' *b, '
     expInput += dataType + ' *c, '
     expInput += dataType + ' *d, '
-    expInput += dataType + ' *exp_result, '
+    expInput += dataType + ' *exp_result'
 
     line2 = ['void '+ node['Intrinsic_Name'].rstrip() + '_golden(' + expInput + ') {',
             operator,

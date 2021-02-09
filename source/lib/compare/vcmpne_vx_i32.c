@@ -27,7 +27,7 @@ extern void abort(void);
 #pragma GCC push_options
 #pragma GCC optimize("O0")
 __attribute__((noinline, noclone))
-void vcmpne_vx_i32_golden(int32_t *a, int32_t *b, int32_t *c, int32_t *d, int32_t *exp_result, ) {
+void vcmpne_vx_i32_golden(int32_t *a, int32_t b, int32_t *c, int32_t *d, int32_t *exp_result) {
   for (int i = 0; i < ELE_NUM; i++)
     exp_result[i] =(a[i]!=b) ? c[i] : d[i];
 }

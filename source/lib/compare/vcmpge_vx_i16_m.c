@@ -27,7 +27,7 @@ extern void abort(void);
 #pragma GCC push_options
 #pragma GCC optimize("O0")
 __attribute__((noinline, noclone))
-void vcmpge_vx_i16_m_golden(uint64_t *mask, int16_t *a, int16_t *b, int16_t *c, int16_t *d, int16_t *exp_result, ) {
+void vcmpge_vx_i16_m_golden(uint64_t *mask, int16_t *a, int16_t b, int16_t *c, int16_t *d, int16_t *exp_result) {
   for (int i = 0; i < ELE_NUM; i++)
     exp_result[i] =mask[i] ? (a[i]>=b? c[i] : d[i]) : d[i];
 }

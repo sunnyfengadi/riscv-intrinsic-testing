@@ -27,7 +27,7 @@ extern void abort(void);
 #pragma GCC push_options
 #pragma GCC optimize("O0")
 __attribute__((noinline, noclone))
-void vcmpeq_vv_u16_golden(uint16_t *a, uint16_t *b, uint16_t *c, uint16_t *d, uint16_t *exp_result, ) {
+void vcmpeq_vv_u16_golden(uint16_t *a, uint16_t *b, uint16_t *c, uint16_t *d, uint16_t *exp_result) {
   for (int i = 0; i < ELE_NUM; i++)
     exp_result[i] =(a[i]==b[i]) ? c[i] : d[i];
 }

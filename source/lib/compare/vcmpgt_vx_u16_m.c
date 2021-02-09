@@ -27,7 +27,7 @@ extern void abort(void);
 #pragma GCC push_options
 #pragma GCC optimize("O0")
 __attribute__((noinline, noclone))
-void vcmpgt_vx_u16_m_golden(uint64_t *mask, uint16_t *a, uint16_t *b, uint16_t *c, uint16_t *d, uint16_t *exp_result, ) {
+void vcmpgt_vx_u16_m_golden(uint64_t *mask, uint16_t *a, uint16_t b, uint16_t *c, uint16_t *d, uint16_t *exp_result) {
   for (int i = 0; i < ELE_NUM; i++)
     exp_result[i] =mask[i] ? (a[i]>b? c[i] : d[i]) : d[i];
 }

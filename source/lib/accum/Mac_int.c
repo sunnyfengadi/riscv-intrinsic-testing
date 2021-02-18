@@ -194,11 +194,11 @@ int main(void) {
 
     return 0;
     }
-    /* { dg-final { scan-assembler-times "vwmacc.vv\t" 16} }
-    /* { dg-final { scan-assembler-times "vwsmaccq.vv\t" 16} }
-    /* { dg-final { scan-assembler-times "vwmsub.vv\t" 16} }
-    /* { dg-final { scan-assembler-times "vwsmsubq.vv\t" 16} }
-    /* { dg-final { scan-assembler-times "vwnmsac.vv\t" 16} }
-    /* { dg-final { scan-assembler-times "vwsnmsacq.vv\t" 16} }
-    /* { dg-final { scan-assembler-times "vwnmsub.vv\t" 16} }
-    /* { dg-final { scan-assembler-times "vwsnmsubq.vv\t" 16} }
+    /* { dg-final { scan-assembler-times "vwmacc.vv\t" 16} } */
+    /* { dg-final { scan-assembler-times "vwsmaccq.vv\t" 16} } */
+    /* { dg-final { scan-assembler-times "vwmsub.vv\t" 16} } */
+    /* { dg-final { scan-assembler-times "vwsmsubq.vv\t" 16} } */
+    /* { dg-final { scan-assembler-times "vwnmsac.vv\t" 16} } */
+    /* { dg-final { scan-assembler-times "vwsnmsacq.vv\t" 16} } */
+    /* { dg-final { scan-assembler-times "vwnmsub.vv\t" 16} } */
+    /* { dg-final { scan-assembler-times "vwsnmsubq.vv\t" 16} } */

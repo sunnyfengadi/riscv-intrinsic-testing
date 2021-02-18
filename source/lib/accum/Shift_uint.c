@@ -149,9 +149,9 @@ int main(void) {
 
     return 0;
     }
-    /* { dg-final { scan-assembler-times "vwsrl.av\t" 16} }
-    /* { dg-final { scan-assembler-times "vwsrl.ax\t" 16} }
-    /* { dg-final { scan-assembler-times "vwsrl.ai\t" 16} }
-    /* { dg-final { scan-assembler-times "vwsrl.as\t" 16} }
-    /* { dg-final { scan-assembler-times "vcsl.i\t" 8} }
-    /* { dg-final { scan-assembler-times "vcsr.i\t" 8} }
+    /* { dg-final { scan-assembler-times "vwsrl.av\t" 16} } */
+    /* { dg-final { scan-assembler-times "vwsrl.ax\t" 16} } */
+    /* { dg-final { scan-assembler-times "vwsrl.ai\t" 16} } */
+    /* { dg-final { scan-assembler-times "vwsrl.as\t" 16} } */
+    /* { dg-final { scan-assembler-times "vcsl.i\t" 8} } */
+    /* { dg-final { scan-assembler-times "vcsr.i\t" 8} } */

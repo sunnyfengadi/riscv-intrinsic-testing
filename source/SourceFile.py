@@ -315,7 +315,7 @@ def accumFile(nodes, apiName, apis):
                     CountDic[assembleName] += 1
 
     for key in CountDic:
-        line = '/* { dg-final { scan-assembler-times "'+ key + '\\t" '+ str(CountDic[key]) +'} }'
+        line = '/* { dg-final { scan-assembler-times "'+ key + '\\t" '+ str(CountDic[key]) +'} } */'
         TailLines.append(line)
 
     goldenLines = DataInitDefinitionLines + MacroLines + goldenLines

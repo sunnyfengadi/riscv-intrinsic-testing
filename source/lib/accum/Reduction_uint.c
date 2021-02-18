@@ -90,4 +90,4 @@ int main(void) {
 
     return 0;
     }
-    /* { dg-final { scan-assembler-times "vardotacc.vv\t" 24} }
+    /* { dg-final { scan-assembler-times "vardotacc.vv\t" 24} } */

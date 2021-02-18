@@ -18465,11 +18465,11 @@ int main(void) {
 
     return 0;
     }
-    /* { dg-final { scan-assembler-times "vadd.vv\t" 2048} }
-    /* { dg-final { scan-assembler-times "vwadd.ww\t" 2048} }
-    /* { dg-final { scan-assembler-times "vsadd.vv\t" 2048} }
-    /* { dg-final { scan-assembler-times "vwsadd.ww\t" 2048} }
-    /* { dg-final { scan-assembler-times "vsub.vv\t" 2048} }
-    /* { dg-final { scan-assembler-times "vwsub.ww\t" 2048} }
-    /* { dg-final { scan-assembler-times "vssub.vv\t" 2048} }
-    /* { dg-final { scan-assembler-times "vwssub.ww\t" 2048} }
+    /* { dg-final { scan-assembler-times "vadd.vv\t" 2048} } */
+    /* { dg-final { scan-assembler-times "vwadd.ww\t" 2048} } */
+    /* { dg-final { scan-assembler-times "vsadd.vv\t" 2048} } */
+    /* { dg-final { scan-assembler-times "vwsadd.ww\t" 2048} } */
+    /* { dg-final { scan-assembler-times "vsub.vv\t" 2048} } */
+    /* { dg-final { scan-assembler-times "vwsub.ww\t" 2048} } */
+    /* { dg-final { scan-assembler-times "vssub.vv\t" 2048} } */
+    /* { dg-final { scan-assembler-times "vwssub.ww\t" 2048} } */

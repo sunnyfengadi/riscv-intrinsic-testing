@@ -239,7 +239,6 @@ def getInputParameters(inputDict, elementnum, combonum, apiType):
     return inputList + expInput
 
 def getAccumRunlines(nodes, apiTotalNum, accumNum, accumNum1, accumNum2):
-    variableList = []
     apiRun = ['','//Get Intrinsic result']
 
     for i,node in enumerate(nodes):
@@ -259,13 +258,23 @@ def getAccumRunlines(nodes, apiTotalNum, accumNum, accumNum1, accumNum2):
         apiRunStr += ' = ' + functionName + '('
         for i in range(1,8):
             inputType = node['Input_'+str(i)+'_Type']
+            inputVar = node['Input_'+str(i)+'_Variable']
             if inputType:
                 if 'accum' in node['Intrinsic_Name']:
-                    Variables += node['Input_'+str(i)+'_Variable']+ ', '
+                    Variables += inputVar + ', '
                 else:
-                    if 'enum ACCUM' in inputType:
+                    if 'accum' in inputVar:
                         Variables += 'ACCUM' + str(accumNum)
-                    else: Variables += node['Input_'+str(i)+'_Variable'] + ', '
+                    else: 
+                        if 'Shift' in node['Intrinsic_Type']:
+                            if '_ax_' in node['Intrinsic_Name']:
+                                if inputVar == 'b':
+                                    inputVar = 'b1'
+                            elif '_ai_' in node['Intrinsic_Name'] or '_i_' in node['Intrinsic_Name']:
+                                if inputVar == 'imm':
+                                    inputVar = '8'
+
+                        Variables += inputVar + ', '
 
         apiRunStr += Variables.strip( ', ' ) + ');'
         apiRun.append(apiRunStr)
@@ -364,7 +373,7 @@ def SetAccumDataInitDefinition():
   for(int i = 0; i < n; i++) { \\\n\
     a[i] = random(threshold); \\\n\
   }\n\
-#define data_init_matrix(a, m, n, threshold) \\\n\
+#define data_init_matrix(a, n, m, threshold) \\\n\
   for(int i = 0; i < m; i++) { \\\n\
     for(int j = 0; j < n; j++) { \\\n\
       a.val[i][j] = random(threshold); \\\n\
@@ -388,7 +397,7 @@ def SetDataInitDefinition(apitype):
   }\n')
     if apitype != 'load_store':
         lines.append('\
-#define data_init_matrix(a, b, m, n, threshold) \\\n\
+#define data_init_matrix(a, b, n, m, threshold) \\\n\
   for(int i = 0; i < m; i++) { \\\n\
     for(int j = 0; j < n; j++) { \\\n\
       a.val[i][j] = random(threshold); \\\n\

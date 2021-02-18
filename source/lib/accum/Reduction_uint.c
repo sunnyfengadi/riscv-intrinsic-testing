@@ -10,7 +10,7 @@ extern void abort(void);
   for(int i = 0; i < n; i++) { \
     a[i] = random(threshold); \
   }
-#define data_init_matrix(a, m, n, threshold) \
+#define data_init_matrix(a, n, m, threshold) \
   for(int i = 0; i < m; i++) { \
     for(int j = 0; j < n; j++) { \
       a.val[i][j] = random(threshold); \

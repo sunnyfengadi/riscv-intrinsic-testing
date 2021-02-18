@@ -16,7 +16,7 @@ extern void abort(void);
     b[i] = a[i]; \
   }
 
-#define data_init_matrix(a, b, m, n, threshold) \
+#define data_init_matrix(a, b, n, m, threshold) \
   for(int i = 0; i < m; i++) { \
     for(int j = 0; j < n; j++) { \
       a.val[i][j] = random(threshold); \

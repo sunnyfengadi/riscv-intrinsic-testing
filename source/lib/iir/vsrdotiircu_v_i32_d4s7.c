@@ -5,31 +5,25 @@
 extern void abort(void);
 #define ELE_NUM 16
 #define COMBO_NUM 4
-#define ELE_WIDTH 4
-#define GROUP_NUM 4
-#define GROUP_DEPTH 16
-#define ELE_STRIDE 16
-#define COMBO_STRIDE 4
-#define GROUP_STRIDE 32
 
- #define random(threshold) rand()%threshold 
- //#define data_init_bool(a, b, n, threshold) \ 
- //	a = b = 1;
- #define data_init_scalar(a, b, threshold) \ 
-   a = b = random(threshold);
- #define data_init(a, b, n, threshold) \
-   for(int i = 0; i < n; i++) { \
-     a[i] = random(threshold); \
-     b[i] = a[i]; \
-   }
- #define data_init_matrix(a, b, m, n, threshold) \
-   for(int i = 0; i < m; i++) { \
-     for(int j = 0; j < n; j++) { \
-       a.val[i][j] = random(threshold); \
-       b[i][j] = a.val[i][j]; \
-     } \
-   }
- 
+#define random(threshold) rand()%threshold
+//#define data_init_bool(a, b, n, threshold) \
+//	a = b = 1;
+#define data_init_scalar(a, b, threshold) \
+  a = b = random(threshold);
+#define data_init(a, b, n, threshold) \
+  for(int i = 0; i < n; i++) { \
+    a[i] = random(threshold); \
+    b[i] = a[i]; \
+  }
+
+#define data_init_matrix(a, b, m, n, threshold) \
+  for(int i = 0; i < m; i++) { \
+    for(int j = 0; j < n; j++) { \
+      a.val[i][j] = random(threshold); \
+      b[i][j] = a.val[i][j]; \
+    } \
+  }
 
 #pragma GCC push_options
 #pragma GCC optimize("O0")
@@ -68,8 +62,8 @@ int main(void) {
     for(int i = 0; i < COMBO_NUM; i++) {
         for(int j = 0; j < ELE_NUM; j++) {
             if(exp_result[i][j] != result.val[i][j]) {
-                printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
-                //abort();
+                printf("Failed: result.val[%d][%d] = %llx, exp_result[%d][%d] = %llx\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
+                abort();
                 error = 1;
             }
         }

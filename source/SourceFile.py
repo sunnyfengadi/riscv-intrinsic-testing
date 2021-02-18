@@ -246,6 +246,83 @@ def commonFile(node, apitype):
 
     writeFile(apiFile, goldenLines, paraLines, tailFile)
 
+def accumFile(nodes, apiName, apis):
+    goldenLines = []
+    paraLines = []
+    IntrinsicRunLines = []
+    globalResult = ''
+    tmpResultLine = []
+
+    apiFile = copyFile('template_head.c', 'accum', apiName)
+    for item in nodes[apiName]:
+        typeBit = re.sub("\D", "", item['Output_Type'].split( 'x' )[0])    # get the type bit number 16/32/64 bit
+        elementNum = re.sub("\D", "", item['Output_Type'].split( 'x' )[1]) # get the number of element that is 16 or 32
+        if len(item['Output_Type'].split('x'))== 3:
+            comboNum = re.sub("\D", "", item['Output_Type'].split('x')[2])
+        else:
+            comboNum = 1
+    MacroLines = SetMacro(typeBit, elementNum, comboNum, 'accum')
+
+    DataInitDefinitionLines = SetAccumDataInitDefinition()
+
+    for node in nodes[apiName]:
+        if 'Arithmetic' in apiName:
+            for i in range(0,8):
+                for j in range(0,8):
+                    for k in range(0,8):
+                        ResultLine = node['Output_Type'] + ' final_result' + str(i)+str(j)+str(k)+' = {0};\n'
+                        if ResultLine not in globalResult:
+                            globalResult += ResultLine
+        else:
+            for i in range(0,8):
+                ResultLine = node['Output_Type'] + ' final_result'+ str(i) +' = {0};\n'
+                if ResultLine not in globalResult:
+                    globalResult += ResultLine
+
+    goldenLines.append(globalResult)
+    goldenLines.append('int main(void) {')
+
+    paraLines = getAccumInputParameters(nodes[apiName])
+    # expInputLines = getAccumExpInputParameters(nodes[apiName])
+
+    DataInitLines = AccumDataInit(nodes[apiName], typeBit, elementNum, comboNum)
+
+    if 'Arithmetic' in apiName:
+        for i in range(0,8):
+            for j in range(0,8):
+                for k in range(0,8):
+                    IntrinsicRunLines += getAccumRunlines(nodes[apiName],len(nodes[apiName]),i,j,k)
+                    tmpResultLine += SetAccumResultLine(nodes[apiName], len(nodes[apiName]),i,j,k)
+    else:
+        for i in range(0,8):
+            IntrinsicRunLines += getAccumRunlines(nodes[apiName],len(nodes[apiName]),i,0,0)
+            tmpResultLine += SetAccumResultLine(nodes[apiName], len(nodes[apiName]),i,0,0)
+
+    TailLines = ['','return 0;','}']
+    # to calculate the dg-final lines
+    CountDic = {}
+    for item in IntrinsicRunLines:
+        if '=' in item:
+            ApiNameList = item.split(' ')[2]
+            split_name = ApiNameList[0:ApiNameList.rfind('(')].split('_')
+            assembleName = split_name[0] + '.' + split_name[1]
+            IntrinsicName = split_name[0] + '_' + split_name[1]
+
+            if assembleName not in CountDic:
+                CountDic[assembleName] = 1
+            else:
+                if IntrinsicName in item:
+                    CountDic[assembleName] += 1
+
+    for key in CountDic:
+        line = '/* { dg-final { scan-assembler-times "'+ key + '\\t" '+ str(CountDic[key]) +'} }'
+        TailLines.append(line)
+
+    goldenLines = DataInitDefinitionLines + MacroLines + goldenLines
+    paraLines += tmpResultLine + DataInitLines + IntrinsicRunLines + TailLines
+
+    accumwriteFile(apiFile, goldenLines, paraLines)
+
 
 ###########################################################################################
 # usage: python3 
@@ -260,7 +337,12 @@ def sourceHandler(typeList):
     with open(file, 'r') as f:
         rootNode = json.loads(f.read())
 
+    # relist is used to map load and store api
     relist = getrelist(rootNode)
+    accumlist = getaccumApi(rootNode)
+    for apiName, apis in accumlist.items():#Arithmetic, shift, MAC, Reduction
+        accumFile(accumlist, apiName, apis)
+
     for nodes in rootNode:
         #for apis that have combo num: 1-8, others is 1 
         if 'Load:' in nodes['Intrinsic_Type'] or 'Store:' in nodes['Intrinsic_Type']:

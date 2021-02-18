@@ -5,46 +5,45 @@
 extern void abort(void);
 #define ELE_NUM 8
 
- #define random(threshold) rand()%threshold 
- //#define data_init_bool(a, b, n, threshold) \ 
- //	a = b = 1;
- #define data_init_scalar(a, b, threshold) \ 
-   a = b = random(threshold);
- #define data_init(a, b, n, threshold) \
-   for(int i = 0; i < n; i++) { \
-     a[i] = random(threshold); \
-     b[i] = a[i]; \
-   }
- #define data_init_matrix(a, b, m, n, threshold) \
-   for(int i = 0; i < m; i++) { \
-     for(int j = 0; j < n; j++) { \
-       a.val[i][j] = random(threshold); \
-       b[i][j] = a.val[i][j]; \
-     } \
-   }
- 
+#define random(threshold) rand()%threshold
+//#define data_init_bool(a, b, n, threshold) \
+//	a = b = 1;
+#define data_init_scalar(a, b, threshold) \
+  a = b = random(threshold);
+#define data_init(a, b, n, threshold) \
+  for(int i = 0; i < n; i++) { \
+    a[i] = random(threshold); \
+    b[i] = a[i]; \
+  }
+
+#define data_init_matrix(a, b, m, n, threshold) \
+  for(int i = 0; i < m; i++) { \
+    for(int j = 0; j < n; j++) { \
+      a.val[i][j] = random(threshold); \
+      b[i][j] = a.val[i][j]; \
+    } \
+  }
 
 #pragma GCC push_options
 #pragma GCC optimize("O0")
 __attribute__((noinline, noclone))
-void vrsum_v_i64_m_golden(uint64_t *mask,int64_t *maskoff,int64_t *a,int64_t *exp_result) {
+void vrsum_v_i64_m_golden(uint64_t *mask[2][8],int64_t *maskoff,int64_t *a,int64_t *exp_result) {
 Operator Line --- TODO
 }
 #pragma GCC pop_options
 
 int main(void) {
     int error = 0;
-    bool8_t mask;
-    int64x8_t maskoff;
+    bool8_t mask = m8(0x100000101000001);
+    bool8_t mask = m8(0x100000101000001);
     int64x8_t a;
-    uint64_t exp_mask[8];
+    uint64_t exp_mask[8*2];
     int64_t exp_maskoff[8];
     int64_t exp_a[8];
 
     int64x8_t result = {0};
     int64_t exp_result[8] = {0};
 
-    data_init_bool(mask, exp_mask, 8, 0xffffffffffffffff);
     data_init(maskoff, exp_maskoff, 8, 0xffffffffffffffff);
     data_init(a, exp_a, 8, 0xffffffffffffffff);
 
@@ -58,7 +57,7 @@ int main(void) {
     for(int i = 0; i < ELE_NUM; i++) {
         if(exp_result[i] != result[i]) {
             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
-            //abort();
+            abort();
             error = 1;
         }
     }

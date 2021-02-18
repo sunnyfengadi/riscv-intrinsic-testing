@@ -29,7 +29,18 @@ def copyFile( templateFile, apitype, dstName ):
         raise Exception("No this file as template")
         
     return dstFile
-    
+
+def accumwriteFile (sourceFile, goldenlines, lines):
+    with open(sourceFile, 'a+') as f:
+        for line in goldenlines:
+            if line == '': f.write('\n')
+            else: f.write(line + '\n' )
+        for line in lines:
+            if line == '': f.write('\n')
+            else: f.write( '    ' + line + '\n' )
+
+    f.close()
+
 def writeFile (sourceFile, goldenlines, lines, tailfile):
     with open(sourceFile, 'a+') as f:
         for line in goldenlines:
@@ -101,6 +112,57 @@ def getLoadStoreInputParameters(ldstApis, typeBit, elementnum, combonum):
         inputList.append(scalar_dataType + ' exp_result[COMBO_NUM][ELE_NUM] = {0};')
 
     return inputList
+
+
+def getAccumInputParameters(nodes):
+    inputList = ['int error = 0;']
+    for node in nodes:
+        for i in range(1,8):
+            inputType = node['Input_'+str(i)+'_Type']
+            inputVariable = node['Input_'+str(i)+'_Variable']
+            if inputType:
+                if inputType == 'bool8_t':
+                    inputStr = 'bool8_t ' + inputVariable +' = m8(0x100000101000001);'
+                elif inputType == 'bool16_t':
+                    inputStr = 'bool16_t ' + inputVariable +' = m16(0x1101100000011011);'
+                elif inputType == 'bool32_t':
+                    inputStr = 'bool32_t ' + inputVariable +' = m32(0x5140014551400145);'
+                elif inputType == 'enum ACCUM': pass
+                else:
+                    inputStr = inputType +' '+ inputVariable +';'
+
+                if inputStr not in inputList:
+                    inputList.append(inputStr)
+
+    return inputList
+
+def getAccumExpInputParameters(nodes):
+    expInput = ['']
+    for node in nodes:
+        for i in range(1,8):
+            inputType = node['Input_'+str(i)+'_Type']
+            inputVariable = node['Input_'+str(i)+'_Variable']
+            if inputType:
+                if 'bool' in inputType: pass
+                elif 'enum' in inputType: pass
+                else:
+                    split_input = inputType.split('x')
+                    if (len(split_input) == 1): ## int16_t
+                        typebit = re.sub("\D", "", split_input[0])
+                        expInputLine = inputType +' exp_'+ inputVariable.rstrip()+';'
+                    else:
+                        typebit = re.sub("\D", "", split_input[0])
+                        eleNum = re.sub("\D", "", split_input[1])
+                        expinputType = split_input[0] + '_t'
+                        expInputLine = expinputType +' exp_'+inputVariable.rstrip()
+                        if (len(split_input) == 2): # int16x32_t int16x32_t
+                            expInputLine += '[' + str(eleNum)+'];'
+                        elif(len(split_input) == 3): # int16x32x2_t int16x32x2_t
+                            comboNum = re.sub("\D", "", split_input[2])
+                            expInputLine += '[' + str(comboNum) +'][' + str(eleNum)+ '];'
+                if expInputLine not in expInput:
+                    expInput.append(expInputLine)
+    return expInput
 
 def getInputParameters(inputDict, elementnum, combonum, apiType):
     inputList = ['int error = 0;']
@@ -175,6 +237,45 @@ def getInputParameters(inputDict, elementnum, combonum, apiType):
                     expInput.append(compare_exp_datatype + ' exp_c[' + str(compare_exp_eleNum)+'];')
                     expInput.append(compare_exp_datatype + ' exp_d[' + str(compare_exp_eleNum)+'];')
     return inputList + expInput
+
+def getAccumRunlines(nodes, apiTotalNum, accumNum, accumNum1, accumNum2):
+    variableList = []
+    apiRun = ['','//Get Intrinsic result']
+
+    for i,node in enumerate(nodes):
+        Variables = ''
+
+        if 'accum' in node['Intrinsic_Name']:
+            functionName = node['Intrinsic_Name'].replace('[07][07][07]',str(accumNum)+str(accumNum1)+str(accumNum2))
+        else:
+            functionName = node['Intrinsic_Name']
+
+        apiRunStr = ''
+        if i == apiTotalNum-1:
+            apiRunStr += 'final_'
+        apiRunStr += 'result' + str(accumNum)
+        if 'accum' in node['Intrinsic_Name']:
+            apiRunStr += str(accumNum1) + str(accumNum2)
+        apiRunStr += ' = ' + functionName + '('
+        for i in range(1,8):
+            inputType = node['Input_'+str(i)+'_Type']
+            if inputType:
+                if 'accum' in node['Intrinsic_Name']:
+                    Variables += node['Input_'+str(i)+'_Variable']+ ', '
+                else:
+                    if 'enum ACCUM' in inputType:
+                        Variables += 'ACCUM' + str(accumNum)
+                    else: Variables += node['Input_'+str(i)+'_Variable'] + ', '
+
+        apiRunStr += Variables.strip( ', ' ) + ');'
+        apiRun.append(apiRunStr)
+    newapiRun = '*'.join(apiRun)
+    if 'accum' in node['Intrinsic_Name']:
+        newapiRun2 = newapiRun.replace('a,','bak,',1).replace('a,','result'+ str(accumNum) +str(accumNum1) + str(accumNum2)+',').replace('bak,','a,')
+    else:
+        newapiRun2 = newapiRun.replace('a,','bak,',1).replace('a,','result'+ str(accumNum) +',').replace('bak,','a,')
+    apiRun = newapiRun2.split('*')
+    return apiRun
 
 def getRunlines(inputDict, functionName, eleNum, apitype):
     variableList = []
@@ -253,6 +354,25 @@ def SetMacro(typebit, elenum, combonum, apitype):
 
     return lines
 
+def SetAccumDataInitDefinition():
+    lines = []
+    lines.append('\
+#define random(threshold) rand()%threshold\n\
+#define data_init_scalar(a, threshold) \\\n\
+  a = random(threshold);\n\
+#define data_init(a, n, threshold) \\\n\
+  for(int i = 0; i < n; i++) { \\\n\
+    a[i] = random(threshold); \\\n\
+  }\n\
+#define data_init_matrix(a, m, n, threshold) \\\n\
+  for(int i = 0; i < m; i++) { \\\n\
+    for(int j = 0; j < n; j++) { \\\n\
+      a.val[i][j] = random(threshold); \\\n\
+    } \\\n\
+  }\n')
+
+    return lines
+
 def SetDataInitDefinition(apitype):
     lines = []
     lines.append('\
@@ -277,6 +397,20 @@ def SetDataInitDefinition(apitype):
   }\n')
     
     #lines.append('')
+
+    return lines
+
+def SetAccumResultLine(nodes, apiTotalNum, accumNum, accumNum1, accumNum2):
+    lines = []
+
+    for node in nodes:
+        tmpResult = node['Output_Type'] + ' result' + str(accumNum)
+        if 'accum' in node['Intrinsic_Name']:
+                tmpResult += str(accumNum1) + str(accumNum2)
+        tmpResult += ' = {0};'
+
+        if tmpResult not in str(lines):
+            lines.append(tmpResult)
 
     return lines
 
@@ -309,6 +443,54 @@ def SetResultLine(node,typebit, apitype):
         lines.append(expResultLine)
 
     return lines
+
+def AccumDataInit(nodes,typebit, eleNum, comboNum):
+    dataInit = ['']
+    for node in nodes:
+        for i in range(1,8):
+            inputType = node['Input_'+str(i)+'_Type']
+            inputVariable = node['Input_'+ str(i)+'_Variable']
+            if inputType:
+                split_input = inputType.split('x')
+                if 'bool' in inputType: pass #bool8_t bool8x2_t
+                elif 'enum ACCUM' in inputType: pass
+                else:
+                    if (len(split_input) == 1): #int8_t
+                        typebit = re.sub("\D", "", split_input[0])
+                        if 'imm' in inputVariable:
+                            if 'Load' in node['Intrinsic_Type']:
+                                data_init_str = 'imm = 8; // imm do not need to call data_init'
+                            elif 'Shift' in node['Intrinsic_Type']:
+                                data_init_str = 'imm = rand()%' + str(eleNum)+'; // imm do not need to call data_init'
+                            else:
+                                data_init_str = 'imm = 0; // imm do not need to call data_init'
+                        else:
+                            data_init_str = 'data_init_scalar(' + \
+                                        inputVariable.strip( ',' )
+                    else: #int32x16_t int32x16x2_t
+                        typebit = re.sub("\D", "", split_input[0])
+                        eleNum = re.sub("\D", "", split_input[1])
+
+                        if (len(split_input) == 2): # int16x32_t int16x32_t
+                            data_init_str = 'data_init(' + \
+                                            inputVariable + \
+                                            ', ' + str(eleNum)
+                        elif(len(split_input) == 3): # int16x32x2_t int16x32x2_t
+                            comboNum = re.sub("\D", "", split_input[2])
+                            data_init_str = 'data_init_matrix(' + \
+                                            inputVariable + \
+                                            ', ' + str(eleNum) +', '+str(comboNum)
+
+                    if (typebit == '8'):  data_init_str += ', 0xff);'
+                    elif (typebit == '16'):  data_init_str += ', 0xffff);'
+                    elif (typebit == '32'):  data_init_str += ', 0xffffffff);'
+                    elif (typebit == '64'):  data_init_str += ', 0xffffffffffffffff);'
+                    else: data_init_str += ');'
+                if data_init_str not in dataInit:
+                    dataInit.append(data_init_str)
+
+    return dataInit
+
 
 def DataInit(node,inputDict,ldstApis,typebit,eleNum,apitype):
     dataInit = ['']
@@ -365,9 +547,12 @@ def DataInit(node,inputDict,ldstApis,typebit,eleNum,apitype):
 
     return dataInit
 
+
+# Map api
+# vldstcd1_v_i16 : vldcd1_v_i16, vstcd1_v_i16, vgldcd1_v_i16, vsstcd1_v_i16
+# vldstcd1_v_i16_m : vldcd1_v_i16_m, vstcd1_v_i16_m, vgldcd1_v_i16_m, vsstcd1_v_i16_m
 def getrelist(rootNode):
     redic = {}
-
     for node in rootNode:
         if 'Load:' in node['Intrinsic_Type'] or 'Store:' in node['Intrinsic_Type']:
             apiName = node['Intrinsic_Name'].rstrip()
@@ -386,4 +571,27 @@ def getrelist(rootNode):
 
     return redic
 
+# {'Arithmetic': [{'ID': '5', ...}, {...},...],
+#'Shift': [{'ID': '0', }, {},...]
+#...}
+def getaccumApi(rootNode):
+    accumApi = []
+    apiGroup = {}
 
+    for nodes in rootNode:
+        if 'accum' in nodes['Intrinsic_Name']:
+            accumApi.append(nodes)
+        for i in range(1,8):
+            if 'accum' in nodes['Input_'+str(i)+'_Variable']:
+                accumApi.append(nodes)
+
+    for node in accumApi:
+        apiName = node['Intrinsic_Type'].split(':')[0]
+        if 'uint' in node['Output_Type']:
+            apiName = str(apiName) + '_uint'
+        else: apiName = str(apiName) + '_int'
+        if apiName not in apiGroup:
+            apiGroup[apiName] = []
+        apiGroup[apiName].append(node)
+
+    return apiGroup

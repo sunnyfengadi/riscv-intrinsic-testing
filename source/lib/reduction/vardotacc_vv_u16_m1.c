@@ -5,24 +5,24 @@
 extern void abort(void);
 #define ELE_NUM 32
 
- #define random(threshold) rand()%threshold 
- //#define data_init_bool(a, b, n, threshold) \ 
- //	a = b = 1;
- #define data_init_scalar(a, b, threshold) \ 
-   a = b = random(threshold);
- #define data_init(a, b, n, threshold) \
-   for(int i = 0; i < n; i++) { \
-     a[i] = random(threshold); \
-     b[i] = a[i]; \
-   }
- #define data_init_matrix(a, b, m, n, threshold) \
-   for(int i = 0; i < m; i++) { \
-     for(int j = 0; j < n; j++) { \
-       a.val[i][j] = random(threshold); \
-       b[i][j] = a.val[i][j]; \
-     } \
-   }
- 
+#define random(threshold) rand()%threshold
+//#define data_init_bool(a, b, n, threshold) \
+//	a = b = 1;
+#define data_init_scalar(a, b, threshold) \
+  a = b = random(threshold);
+#define data_init(a, b, n, threshold) \
+  for(int i = 0; i < n; i++) { \
+    a[i] = random(threshold); \
+    b[i] = a[i]; \
+  }
+
+#define data_init_matrix(a, b, m, n, threshold) \
+  for(int i = 0; i < m; i++) { \
+    for(int j = 0; j < n; j++) { \
+      a.val[i][j] = random(threshold); \
+      b[i][j] = a.val[i][j]; \
+    } \
+  }
 
 #pragma GCC push_options
 #pragma GCC optimize("O0")
@@ -34,7 +34,7 @@ Operator Line --- TODO
 
 int main(void) {
     int error = 0;
-    bool16_t dst_mask;
+    bool32_t mask = m32(0x5140014551400145);
     uint32x16_t a;
     uint16x32_t b;
     uint16x32_t c;
@@ -46,7 +46,6 @@ int main(void) {
     uint32x16_t result = {0};
     uint32_t exp_result[16] = {0};
 
-    data_init_bool(dst_mask, exp_dst_mask, 16, 0xffff);
     data_init(a, exp_a, 16, 0xffffffff);
     data_init(b, exp_b, 32, 0xffff);
     data_init(c, exp_c, 32, 0xffff);
@@ -61,7 +60,7 @@ int main(void) {
     for(int i = 0; i < ELE_NUM; i++) {
         if(exp_result[i] != result[i]) {
             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
-            //abort();
+            abort();
             error = 1;
         }
     }

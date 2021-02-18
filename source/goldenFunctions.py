@@ -240,7 +240,6 @@ def SetLoadStoreGoldenFunction(apiName, typebit, elenum, comboNum, apitype):
         expInput += dataType + ' *index, '
         expInput += dataType + ' exp_result[COMBO_NUM][ELE_NUM]'
         if 'm' not in apiName:
-
             operator +='    for (int j = 0; j < COMBO_NUM; j++)\n\
         for (int i = 0; i < ELE_NUM; i++)\n\
             exp_result[j][i] = base[index[i] + combo_stride*j];'

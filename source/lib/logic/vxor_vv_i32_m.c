@@ -5,24 +5,24 @@
 extern void abort(void);
 #define ELE_NUM 16
 
- #define random(threshold) rand()%threshold 
- //#define data_init_bool(a, b, n, threshold) \ 
- //	a = b = 1;
- #define data_init_scalar(a, b, threshold) \ 
-   a = b = random(threshold);
- #define data_init(a, b, n, threshold) \
-   for(int i = 0; i < n; i++) { \
-     a[i] = random(threshold); \
-     b[i] = a[i]; \
-   }
- #define data_init_matrix(a, b, m, n, threshold) \
-   for(int i = 0; i < m; i++) { \
-     for(int j = 0; j < n; j++) { \
-       a.val[i][j] = random(threshold); \
-       b[i][j] = a.val[i][j]; \
-     } \
-   }
- 
+#define random(threshold) rand()%threshold
+//#define data_init_bool(a, b, n, threshold) \
+//	a = b = 1;
+#define data_init_scalar(a, b, threshold) \
+  a = b = random(threshold);
+#define data_init(a, b, n, threshold) \
+  for(int i = 0; i < n; i++) { \
+    a[i] = random(threshold); \
+    b[i] = a[i]; \
+  }
+
+#define data_init_matrix(a, b, m, n, threshold) \
+  for(int i = 0; i < m; i++) { \
+    for(int j = 0; j < n; j++) { \
+      a.val[i][j] = random(threshold); \
+      b[i][j] = a.val[i][j]; \
+    } \
+  }
 
 #pragma GCC push_options
 #pragma GCC optimize("O0")
@@ -37,8 +37,8 @@ void vxor_vv_i32_m_golden(uint64_t *mask,int32_t *maskoff,int32_t *a,int32_t *b,
 
 int main(void) {
     int error = 0;
-    bool16_t mask;
-    int32x16_t maskoff;
+    bool16_t mask = m16(0x1101100000011011);
+    bool16_t mask = m16(0x1101100000011011);
     int32x16_t a;
     int32x16_t b;
     uint64_t exp_mask[16];
@@ -49,7 +49,6 @@ int main(void) {
     int32x16_t result = {0};
     int32_t exp_result[16] = {0};
 
-    data_init_bool(mask, exp_mask, 16, 0xffffffff);
     data_init(maskoff, exp_maskoff, 16, 0xffffffff);
     data_init(a, exp_a, 16, 0xffffffff);
     data_init(b, exp_b, 16, 0xffffffff);
@@ -64,7 +63,7 @@ int main(void) {
     for(int i = 0; i < ELE_NUM; i++) {
         if(exp_result[i] != result[i]) {
             printf("Failed: result[%d] = %x, exp_result[%d] = %x\n", i, result[i], i, exp_result[i]);
-            //abort();
+            abort();
             error = 1;
         }
     }

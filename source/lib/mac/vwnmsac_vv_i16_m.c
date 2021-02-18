@@ -6,24 +6,24 @@ extern void abort(void);
 #define ELE_NUM 32
 #define COMBO_NUM 2
 
- #define random(threshold) rand()%threshold 
- //#define data_init_bool(a, b, n, threshold) \ 
- //	a = b = 1;
- #define data_init_scalar(a, b, threshold) \ 
-   a = b = random(threshold);
- #define data_init(a, b, n, threshold) \
-   for(int i = 0; i < n; i++) { \
-     a[i] = random(threshold); \
-     b[i] = a[i]; \
-   }
- #define data_init_matrix(a, b, m, n, threshold) \
-   for(int i = 0; i < m; i++) { \
-     for(int j = 0; j < n; j++) { \
-       a.val[i][j] = random(threshold); \
-       b[i][j] = a.val[i][j]; \
-     } \
-   }
- 
+#define random(threshold) rand()%threshold
+//#define data_init_bool(a, b, n, threshold) \
+//	a = b = 1;
+#define data_init_scalar(a, b, threshold) \
+  a = b = random(threshold);
+#define data_init(a, b, n, threshold) \
+  for(int i = 0; i < n; i++) { \
+    a[i] = random(threshold); \
+    b[i] = a[i]; \
+  }
+
+#define data_init_matrix(a, b, m, n, threshold) \
+  for(int i = 0; i < m; i++) { \
+    for(int j = 0; j < n; j++) { \
+      a.val[i][j] = random(threshold); \
+      b[i][j] = a.val[i][j]; \
+    } \
+  }
 
 #pragma GCC push_options
 #pragma GCC optimize("O0")
@@ -35,7 +35,7 @@ void vwnmsac_vv_i16_m_golden(uint64_t *mask,int32_t a[2][16],int16_t *b,int16_t 
 
 int main(void) {
     int error = 0;
-    bool32_t mask;
+    bool32_t mask = m32(0x5140014551400145);
     int32x16x2_t a;
     int16x32_t b;
     int16x32_t c;
@@ -47,7 +47,6 @@ int main(void) {
     int32x16x2_t result = {0};
     int32_t exp_result[2][16] = {0};
 
-    data_init_bool(mask, exp_mask, 32, 0xffff);
     data_init_matrix(a, exp_a, 16, 2, 0xffffffff);
     data_init(b, exp_b, 32, 0xffff);
     data_init(c, exp_c, 32, 0xffff);
@@ -62,8 +61,8 @@ int main(void) {
     for(int i = 0; i < COMBO_NUM; i++) {
         for(int j = 0; j < ELE_NUM; j++) {
             if(exp_result[i][j] != result.val[i][j]) {
-                printf("Failed: result.val[%d][%d] = %d, exp_result[%d][%d] = %d\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
-                //abort();
+                printf("Failed: result.val[%d][%d] = %llx, exp_result[%d][%d] = %llx\n", i,j, result.val[i][j], i,j, exp_result[i][j]);
+                abort();
                 error = 1;
             }
         }

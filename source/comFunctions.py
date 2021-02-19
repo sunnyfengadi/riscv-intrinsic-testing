@@ -261,6 +261,9 @@ def getAccumRunlines(nodes, apiTotalNum, accumNum, accumNum1, accumNum2):
             inputVar = node['Input_'+str(i)+'_Variable']
             if inputType:
                 if 'accum' in node['Intrinsic_Name']:
+                    if accumNum1 == accumNum2 and 'noaccum' not in node['Intrinsic_Name']:
+                        if inputVar == 'b':
+                            inputVar = 'result'+ str(accumNum) +str(accumNum1) + str(accumNum2)
                     Variables += inputVar + ', '
                 else:
                     if 'accum' in inputVar:
@@ -278,12 +281,15 @@ def getAccumRunlines(nodes, apiTotalNum, accumNum, accumNum1, accumNum2):
 
         apiRunStr += Variables.strip( ', ' ) + ');'
         apiRun.append(apiRunStr)
+
     newapiRun = '*'.join(apiRun)
+
     if 'accum' in node['Intrinsic_Name']:
         newapiRun2 = newapiRun.replace('a,','bak,',1).replace('a,','result'+ str(accumNum) +str(accumNum1) + str(accumNum2)+',').replace('bak,','a,')
     else:
         newapiRun2 = newapiRun.replace('a,','bak,',1).replace('a,','result'+ str(accumNum) +',').replace('bak,','a,')
     apiRun = newapiRun2.split('*')
+
     return apiRun
 
 def getRunlines(inputDict, functionName, eleNum, apitype):
